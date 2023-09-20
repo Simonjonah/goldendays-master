@@ -60,7 +60,6 @@ table, tr, td{
             @endif
 
         @endforeach
- 
   
   
     <table class="table">
@@ -84,7 +83,7 @@ table, tr, td{
 
             <tr>
                 <th colspan="2" style="text-align: center; text-transform: uppercase;">{{ $getyour_result->term }} REPORT FOR {{ $getyour_result->academic_session }} <br>
-                    {{ $getyour_result->surname }}, {{ $getyour_result->middlename }} {{ $getyour_result->surname }}
+                   UDO SIMON UDO
                 </th>
                 <th>-</th>
             </tr>
@@ -101,7 +100,6 @@ table, tr, td{
               <th>CA 3</th>
               <th>EXAMS</th>
               <th>TOTAL</th>
-              <th>TOTAL</th>
               <th>GRADE</th>
               <th>SUBJECT AVERAGE</th>
               
@@ -116,15 +114,10 @@ table, tr, td{
               <td>100</td>
               <td>-</td>
               <td>-</td>
-              <td>-</td>
 
             </tr>
        
             @foreach ($getyour_results as $getyour_result)
-                @if ($getyour_result->status == 'approved')
-                    @php
-                    $total_score +=$getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams;
-                @endphp
             <tr>
                 <td>{{ $getyour_result->subjectname }}</td>
                 <td>{{ $getyour_result->test_1 }}</td>
@@ -133,69 +126,78 @@ table, tr, td{
                 <td>{{ $getyour_result->exams }}</td>
                 <td>{{ $getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams}}</td>
                 <td>@if ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 79)
-                   
-                    <td>A</td>
+                    <td>a</td>
+                
                     @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 69)
-                    <td>B</td>
-
+                    <td>a</td>
                     @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 59)
-                    <td>C</td>
-
+                    <td>a</td>
                     @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 49)
-                    <td>D</td>
-
+                    <td>a</td>
                     @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 49)
-                    <td>E</td>
-
+                    <td>a</td>
                     @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 39)
-                    <td>F</td>
-
+                    <td>a</td>
                     @else
-                    <td>F</td>
-
+                    <td>a</td>
                 @endif</td>
-                {{-- <td>{{ $totalaverage / 2 }}</td> --}}
-                <td>{{ round($getyour_result['test_1'] + $getyour_result['test_2'] + $getyour_result['test_3'] + $getyour_result['exams'] / 2)  }}</td>
-                {{-- round( ($row['result1'] + $row['result2']) /2) ; --}}
+
             </tr>
-                @else
-                    
-                @endif
-           
             @endforeach
 
-        
-            
+                {{-- @if ($getyour_result->status == 'approved')
+                    @php
+                    $total_score +=$getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams;
+                @endphp --}}
+            {{-- <tr> --}}
+                {{-- <td>{{ $getyour_result->subjectname }}</td>
+                <td>{{ $getyour_result->test_1 }}</td>
+                <td>{{ $getyour_result->test_2 }}</td>
+                <td>{{ $getyour_result->test_3 }}</td>
+                <td>{{ $getyour_result->exams }}</td>
+                <td>{{ $getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams}}</td>
+                <td>@if ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 79)
+                    <p>A</p>
+                
+                    @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 69)
+                    <p>B</p>
+                    @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 59)
+                    <p>c</p>
+                    @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 49)
+                    <p>D</p>
+                    @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 49)
+                    <p>E</p>
+                    @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 39)
+                    <p>F</p>
+                    @else
+                    <p>F</p>
+                @endif</td> --}}
+                {{-- <td>{{ $totalaverage / 2 }}</td> --}}
+                {{-- <td>{{ round($getyour_result['test_1'] + $getyour_result['test_2'] + $getyour_result['test_3'] + $getyour_result['exams'] / 2)  }}</td> --}}
+                {{-- round( ($row['result1'] + $row['result2']) /2) ; --}}
+            {{-- </tr> --}}
+                {{-- @else
+                    
+                @endif --}}
+           
+            {{-- @endforeach
 
-            {{-- <tr>
-                <td>Mathematics</td>
-                <td>5</td>
-                <td>5</td>
-                <td>3</td>
-                <td>67</td>
-                <td>89</td>
-                <td>A</td>
-                <td>67.9</td>
-              </tr> --}}
 
-              <tr>
+              <tr> --}}
                 <td>Total</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
-                {{-- <td>-</td> --}}
-                <td><b>{{ $total_score }}</b></td>
-                <td><b>687.9</b></td>
                 <td>-</td>
-                <td>Grade</td>
-                <td>Subject Average</td>
-
+                <td><b>TOTAL SCORE</b></td>
+                <td>-</td>
+                <td><b>687.9</b></td>
               </tr>
 
           </table>
 
 
-          <table  style="margin-top: 20px;">
+          {{-- <table  style="margin-top: 20px;">
             <tr>
               <th>AFFECTIVE DOMAIN</th>
               <th colspan="5">GRADE</th>
@@ -216,7 +218,7 @@ table, tr, td{
 
               <td></td>
               <td>-</td>
-              {{-- <td>Club & Society</td> --}}
+              
               <td>4</td>
               <td>3</td>
               <td>2</td>
@@ -471,7 +473,7 @@ table, tr, td{
                 <td></td>
                 <td>Yes</td>
             </tr>
-          </table>
+          </table> --}}
 
 
           <table>
@@ -481,7 +483,7 @@ table, tr, td{
                 <td>SEX:</td>
                 <td>{{ $getyour_result->user['gender'] }}</td>
                 <td>TOTAL SCORE OBTAINABLE:</td>
-                <td>{{ $total_subject * 100 }}</td>
+                {{-- <td>{{ $total_subject * 100 }}</td> --}}
                 <td>NO. OF DISTINGTIONS (A-B):</td>
                 <td>7A's, 3B's</td>
             </tr>
@@ -535,7 +537,7 @@ table, tr, td{
                        growth and improvement. We are working on improving her focus and 								
                        drive in the coming term.								
                     </td>
-                    <td>Signature: {{ $total_student }}</td>
+                    <td>Signature: TOT SUBJECT</td>
                 </tr>
 
                 <tr>

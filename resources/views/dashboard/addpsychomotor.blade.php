@@ -59,12 +59,13 @@
                 <div class="table-responsive">
                   {{-- <p class="lead">Behaviour</p> --}}
     
-                  <form action="{{ url('web/createpsychomotoro/'.$add_psychomotor->id) }}" method="post">
+                  <form action="{{ url('web/createpsychomotoro/'.$add_psychomotor->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     @method('PUT')
                     <table class="table table-bordered">
                       <tr>
+                        {{-- <td><input type="text" name="" value="{{ $add_psychomotor->images }}" id=""></td> --}}
                         <th style="width:50%">COGNITIVE DOMAIN:</th>
                         <th style="width:50%">4</th>
                         <th style="width:50%">3</th>

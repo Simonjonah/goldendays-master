@@ -66,4 +66,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function lessonnotes(): HasMany 
+    {
+        return $this->hasMany(Lessonnote::class);
+    }
+
+    public function guardian(): BelongsTo
+    {
+        return $this->belongsTo(Guardian::class);
+    }
 }

@@ -478,6 +478,35 @@
           </li>
 
 
+            
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Lesson Notes
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('web/addlessonnotes') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Lesson Notes</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('web/lessonnoteview') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Lesson Notes</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+
 
                     
           

@@ -566,19 +566,19 @@
               <li class="nav-item">
                 
                 <li class="nav-item">
-                  <a href="{{ route('admin.viewbookings') }}" class="nav-link">
+                  <a href="{{ route('admin.viewlessonnotesad') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>View Lesson Notes</p>
                   </a>
                 </li>
               </li>
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ route('admin.viewcontact') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Contact</p>
                 </a>
-              </li>
+              </li> --}}
             </li>
             </ul>
           </li>

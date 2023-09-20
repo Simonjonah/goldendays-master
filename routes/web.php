@@ -24,6 +24,7 @@ use App\Http\Controllers\ClassnameController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\LessonnoteController;
 use App\Http\Controllers\MainsliderController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PsycomotorController;
@@ -105,6 +106,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::middleware(['auth:admin'])->group(function() {
         
         
+        Route::get('deleteslessonnote/{slug}', [LessonnoteController::class, 'deleteslessonnote'])->name('deleteslessonnote');
+        Route::get('lesonapprove/{slug}', [LessonnoteController::class, 'lesonapprove'])->name('lesonapprove');
+        Route::get('suspendlessonnotes/{slug}', [LessonnoteController::class, 'suspendlessonnotes'])->name('suspendlessonnotes');
+        Route::get('rejectlessonnote/{slug}', [LessonnoteController::class, 'rejectlessonnote'])->name('rejectlessonnote');
+        Route::put('updatelesoonote/{id}', [LessonnoteController::class, 'updatelesoonote'])->name('updatelesoonote');
+        Route::get('editsinglenotesad/{slug}', [LessonnoteController::class, 'editsinglenotesad'])->name('editsinglenotesad');
+        Route::get('viewsinglelesson/{slug}', [LessonnoteController::class, 'viewsinglelesson'])->name('viewsinglelesson');
+        Route::get('viewlessonnotesad', [LessonnoteController::class, 'viewlessonnotesad'])->name('viewlessonnotesad');
         Route::get('viewclassresults/{classname}', [ClassnameController::class, 'viewclassresults'])->name('viewclassresults');
         Route::post('createresultsad', [ResultController::class, 'createresultsad'])->name('createresultsad');
         Route::get('addresultsad1/{ref_no1}', [UserController::class, 'addresultsad1'])->name('addresultsad1');
@@ -350,6 +359,8 @@ Route::prefix('guardian')->name('guardian.')->group(function() {
     
     Route::middleware(['auth:guardian'])->group(function() {
         Route::get('/paylounge/{ref_no}', [TransactionController::class, 'paylounge'])->name('paylounge');
+        Route::get('/currentresult', [UserController::class, 'currentresult'])->name('currentresult');
+        Route::get('/pdf1', [ResultController::class, 'pdf1'])->name('pdfi');
         
         Route::view('/home','dashboard.guardian.home')->name('home');
         Route::get('/viewclassactivityparespecial', [ClassactivityController::class, 'viewclassactivityparespecial'])->name('viewclassactivityparespecial');
@@ -458,6 +469,12 @@ Route::prefix('web')->name('web.')->group(function() {
 
         Route::get('/home', [UserController::class, 'home'])->name('home');
         
+        Route::put('/updatelessonotesteacher/{id}', [LessonnoteController::class, 'updatelessonotesteacher'])->name('updatelessonotesteacher');
+        Route::get('/editlessonteacher/{slug}', [LessonnoteController::class, 'editlessonteacher'])->name('editlessonteacher');
+        Route::get('/viewlessonnotesteacher/{slug}', [LessonnoteController::class, 'viewlessonnotesteacher'])->name('viewlessonnotesteacher');
+        Route::get('/lessonnoteview', [LessonnoteController::class, 'lessonnoteview'])->name('lessonnoteview');
+        Route::post('/createlessonotes', [LessonnoteController::class, 'createlessonotes'])->name('createlessonotes');
+        Route::get('/addlessonnotes', [LessonnoteController::class, 'addlessonnotes'])->name('addlessonnotes');
         Route::get('/mysubjectsguestion', [TeacherassignController::class, 'mysubjectsguestion'])->name('mysubjectsguestion');
         Route::get('studentsubjectbyhead/{ref_no1}', [UserController::class, 'studentsubjectbyhead'])->name('studentsubjectbyhead');
         Route::get('studentsubjectsbyheads/{ref_no1}', [UserController::class, 'studentsubjectsbyheads'])->name('studentsubjectsbyheads');

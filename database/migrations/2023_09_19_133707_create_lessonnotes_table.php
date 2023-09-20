@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('images')->nullable();
             $table->string('ref_no')->nullable();
             $table->string('title')->nullable();
-            $table->string('subject')->nullable();
+            $table->string('subjectname')->nullable();
             $table->text('messages')->nullable();
             $table->string('status')->nullable();
             $table->string('slug')->nullable();

@@ -1194,6 +1194,19 @@ class UserController extends Controller
        // $view_teachersubjects = Teacherassign::where('user_id', auth::guard('web')->id())->get();
         return view('dashboard.admin.addresultsad1', compact('view_teachersubjects','view_studentsubject'));
     }
+    public function currentresult(){
+        $view_yourresults = User::where('guardian_id', auth::guard('guardian')->id()
+        )->get();
+        return view('dashboard.guardian.currentresult', compact('view_yourresults'));
+    }
+    // public function currentresult(){
+    //     // $view_classstudents = Academicsession::where('academic_session', $academic_session)->first();
+
+    //     //$view_classstudents = Academicsession::where('academic_session', $academic_session)->first();
+    //     // $view_classstudents = User::where('guardian_id', auth::guard('guardian_id')->id())->get();
+
+    //     return view('dashboard.guardian.currentresult', compact('view_classstudents'));
+    // }
     public function logout(){
         Auth::guard('web')->logout();
         return redirect('login');

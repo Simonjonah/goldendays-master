@@ -94,7 +94,9 @@
                                 @foreach ($view_teachersubjects as $view_teachersubject)
                                   @if ($view_teachersubject->section == 'Primary')
                                   <tr>
-                                      <td><input type="text" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
+                                      <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
+
+                                      {{-- <td><input type="text" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td> --}}
                                       <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
                                       <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
                                       <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
@@ -106,7 +108,12 @@
                                       <td><input type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber"></td>
                                       <td><input type="hidden" name="guardian_id[]" value="{{ $view_studentsubject->guardian_id }}" placeholder="Parent ID"></td>
                                       <td><input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="Parent ID"></td>
-                                      
+                                      <td><input type="hidden" name="fname[]" value="{{ $view_studentsubject->fname }}" placeholder="Parent ID"></td>
+                                      <td><input type="hidden" name="middlename[]" value="{{ $view_studentsubject->middlename }}" placeholder="Parent ID"></td>
+                                      <td><input type="hidden" name="surname[]" value="{{ $view_studentsubject->surname }}" placeholder="Parent ID"></td>
+                                      <td><input type="hidden" name="gender[]" value="{{ $view_studentsubject->gender }}" placeholder="Parent ID"></td>
+                                      <td><input type="hidden" name="images[]" value="{{ $view_studentsubject->images }}" placeholder="Parent ID"></td>
+                                     
                                         
                                     </tr>
                                   @else
@@ -164,7 +171,7 @@
                           @foreach ($view_teachersubjects as $view_teachersubject)
                             @if ($view_teachersubject->section == 'Secondary')
                             <tr>
-                                <td><input type="text" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
+                                <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
                                 <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
                                 <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
                                 <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
@@ -176,6 +183,11 @@
                                 <td><input type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber"></td>
                                 <td><input type="hidden" name="guardian_id[]" value="{{ $view_studentsubject->guardian_id }}" placeholder="Parent ID"></td>
                                 <td><input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="Parent ID"></td>
+                                <td><input type="hidden" name="fname[]" value="{{ $view_studentsubject->fname }}" placeholder="Parent ID"></td>
+                                <td><input type="hidden" name="middlename[]" value="{{ $view_studentsubject->middlename }}" placeholder="Parent ID"></td>
+                                <td><input type="hidden" name="surname[]" value="{{ $view_studentsubject->surname }}" placeholder="Parent ID"></td>
+                                <td><input type="hidden" name="gender[]" value="{{ $view_studentsubject->gender }}" placeholder="Parent ID"></td>
+                                <td><input type="hidden" name="images[]" value="{{ $view_studentsubject->images }}" placeholder="Parent ID"></td>
                                    
                               </tr>
                             @else

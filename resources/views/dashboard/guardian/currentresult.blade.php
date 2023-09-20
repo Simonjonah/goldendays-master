@@ -13,18 +13,10 @@
             <h1>DataTables</h1>
           </div>
           <div class="col-sm-6">
-            @foreach ($view_classess as $view_classes)
             <ol class="breadcrumb float-sm-right">
               Class
               
-               
-                  <a href="{{ url('web/classes/'.$view_classes->classname) }}">{{ $view_classes->classname }}</a>
-               
-           
-              {{-- <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li> --}}
             </ol>
-            @endforeach
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -39,7 +31,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title" style="color: red">Your {{ Auth::guard('web')->user()->centername }} Center</h3>
+                <h3 class="card-title" style="color: red">Your Result</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -73,82 +65,84 @@
                     </tr>
                   </thead>
                   <tbody>
-                  {{-- @if (Auth::guard('web')->user()->section = 'Pre-School') --}}
-                    @foreach ($view_preschstudents as $view_preschstudent)
-                    @if ($view_preschstudent->centername == Auth::guard('web')->user()->centername && $view_preschstudent->status == null)
+                    @foreach ($view_yourresults as $view_yourresult)
                       <tr>
-                        <td>{{ $view_preschstudent->classname }}</td>
-                        <td>{{ $view_preschstudent->middlename }}</td>
-                        <td>{{ $view_preschstudent->fname }}</td>
-                        <td>{{ $view_preschstudent->entrylevel }}</td>
-                        <td>{{ $view_preschstudent->centername }}
-                            <small style="color: red">{{ $view_preschstudent->section }}</small>
+                        <td>{{ $view_yourresult->classname }}</td>
+                        <td>{{ $view_yourresult->middlename }}</td>
+                        <td>{{ $view_yourresult->fname }}</td>
+                        <td>{{ $view_yourresult->entrylevel }}</td>
+                        <td>{{ $view_yourresult->centername }}
+                        <small style="color: red">{{ $view_yourresult->section }}</small>
                         </td>
   
-                        <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_preschstudent->images")}}" alt=""></td>
-                        <td><a href="{{ url('admin/viewstudents/'.$view_preschstudent->ref_no) }}"
+                        <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_yourresult->images")}}" alt=""></td>
+                        <td><a href="{{ url('guardian/viewresultsbyyear/'.$view_yourresult->academic_session) }}"
                             class='btn btn-default'>
                             <i class="far fa-eye"></i>
                         </a></td>
-                        <td>@if ($view_preschstudent->status == null)
+                        <td>@if ($view_yourresult->status == null)
                           <span class="badge badge-secondary"> In progress</span>
-                        @elseif($view_preschstudent->status == 'suspend')
+                        @elseif($view_yourresult->status == 'suspend')
                         <span class="badge badge-warning"> Suspended</span>
-                        @elseif($view_preschstudent->status == 'reject')
+                        @elseif($view_yourresult->status == 'reject')
                         <span class="badge badge-danger"> Rejected</span>
-                        @elseif($view_preschstudent->status == 'approved')
+                        @elseif($view_yourresult->status == 'approved')
                         <span class="badge badge-info"> Approved</span>
-                        @elseif($view_preschstudent->status == 'admitted')
+                        @elseif($view_yourresult->status == 'admitted')
                         
                         <span class="badge badge-success">Admitted</span>
                         @endif</td>
                         
-                      <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default">
+                                          {{-- <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default">
                        Print
-                      </button></td>
+                      </button></td> --}}
+                      <td><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                        Action
+                      </button>
+                      <ul class="dropdown-menu">
+                        
+                        <li class="dropdown-item"><a href="{{ url('guardian/primarysection') }}">Primary Section</a></li>
+                      </ul>
+                    </div></td>
   
-                      <td>{{ $view_preschstudent->regnumber }}</td>
-                      <td>{{ $view_preschstudent->ref_no }}</td>
-                        <td><a href="{{ url('admin/editstudent/'.$view_preschstudent->ref_no) }}"
+                      <td>{{ $view_yourresult->regnumber }}</td>
+                      <td>{{ $view_yourresult->ref_no }}</td>
+                        <td><a href="{{ url('guardian/editstudent/'.$view_yourresult->ref_no) }}"
                           class='btn btn-info'>
                           <i class="far fa-edit"></i>
                       </a></td>  
                       
                         
-                      <th><a href="{{ url('admin/rejectstudent/'.$view_preschstudent->ref_no) }}" class="btn btn-sm bg-teal">
+                      <th><a href="{{ url('guardian/rejectstudent/'.$view_yourresult->ref_no) }}" class="btn btn-sm bg-teal">
                         <i class="fas fa-user"></i>
                       </a></th>
-                      <th><a href="{{ url('admin/assignedteacher/'.$view_preschstudent->ref_no) }}" class="btn btn-sm bg-teal">
+                      <th><a href="{{ url('guardian/assignedteacher/'.$view_yourresult->ref_no) }}" class="btn btn-sm bg-teal">
                         <i class="fas fa-comments"></i>
-                      </a></th><th><a href="{{ url('admin/suspendstudent/'.$view_preschstudent->ref_no) }}" class="btn btn-sm bg-teal">
+                      </a></th><th><a href="{{ url('guardian/suspendstudent/'.$view_yourresult->ref_no) }}" class="btn btn-sm bg-teal">
                         <i class="fas fa-comments"></i>
                       </a></th>
   
-                      <th> <a href="{{ url('admin/studentsaddmit/'.$view_preschstudent->ref_no) }}" class="btn btn-sm btn-primary">
+                      <th> <a href="{{ url('guardian/studentsaddmit/'.$view_yourresult->ref_no) }}" class="btn btn-sm btn-primary">
                         <i class="fas fa-user"></i> 
                       </a></th>
-                      <th> <a href="{{ url('admin/studentsubjects/'.$view_preschstudent->ref_no) }}" class="btn btn-sm btn-primary">
+                      <th> <a href="{{ url('guardian/studentsubjects/'.$view_yourresult->ref_no) }}" class="btn btn-sm btn-primary">
                         <i class="fas fa-user"></i> 
                       </a></th>
                     
-                      {{-- <th><a href="{{ url('admin/studentit/'.$view_preschstudent->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
-                      <td><a href="{{ url('admin/deletestudent/'.$view_preschstudent->ref_no) }}"
+                      {{-- <th><a href="{{ url('guardian/studentit/'.$view_yourresult->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
+                      <td><a href="{{ url('guardian/deletestudent/'.$view_yourresult->ref_no) }}"
                         class='btn btn-danger'>
                         <i class="far fa-trash-alt"></i>
                     </a></td>
                     
-                    <td>{{ $view_preschstudent->created_at->format('D d, M Y, H:i')}}</td>
+                    <td>{{ $view_yourresult->created_at->format('D d, M Y, H:i')}}</td>
   
                       </tr>
-                      @else
-                        
-                      @endif  
+                       
                     
                   @endforeach
-                        {{-- @else
-                        
-                      @endif
-                 --}}
+                       
+                
                   </tbody>
                   <tfoot>
                     <tr>
@@ -198,7 +192,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtonnschools.com.ng">brixtonnschools.com.ng</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="https://goldenacademyschools.com">goldenacademyschools.com</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -228,7 +222,7 @@
 <script src="{{  asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{  asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
-<script src="{{  asset('assets/dist/js/adminlte.min.js?v=3.2.0')}}"></script>
+<script src="{{  asset('assets/dist/js/guardianlte.min.js?v=3.2.0')}}"></script>
 
 <script src="{{  asset('assets/dist/js/demo.js')}}"></script>
 

@@ -10,6 +10,7 @@ use App\Models\Classname;
 use App\Models\Notification;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\Result;
 
 class GuardianController extends Controller
 {
@@ -102,7 +103,10 @@ class GuardianController extends Controller
         $view_notice = Notification::latest()->take(1)->get();
         $sumpayments = Transaction::where('guardian_id', auth::guard('guardian')->id()
         )->sum('amount');
-        return view('dashboard.guardian.home', compact('sumpayments', 'view_notice', 'viewoursreplyactivity', 'countclassactivity', 'viewourstudents', 'countstudents'));
+
+        $countresults = Result::where('guardian_id', auth::guard('guardian')->id()
+        )->count();
+        return view('dashboard.guardian.home', compact('countresults', 'sumpayments', 'view_notice', 'viewoursreplyactivity', 'countclassactivity', 'viewourstudents', 'countstudents'));
     }
        
     public function profile(){

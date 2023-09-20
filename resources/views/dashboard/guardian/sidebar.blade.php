@@ -4,9 +4,15 @@
     <a href="{{ url('guardian/home') }}" class="brand-link">
       <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="guardianLTE Logo" class="brand-image "
            style="opacity: .8">
-      <span class="brand-text font-weight-light"> Golden Schools</span>
+      <span class="brand-text font-weight-light"> Golden Destiny Schools</span>
     </a>
+@php
+    // use App\Models\User;
+    // use Illuminate\Support\Facades\Auth;
+    
+    // $view_acdemic_sessions = User::where('guardian_id', auth::guard('guardian_id')->id())->get();
 
+@endphp
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -192,6 +198,8 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+              
               <li class="nav-item">
                 <a href="{{ url('guardian/checkresult') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

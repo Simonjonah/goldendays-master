@@ -29,6 +29,12 @@ class ResultController extends Controller
         $terms = $request->input('term');
         $guardian_ids = $request->input('guardian_id');
         $classnames = $request->input('classname');
+        $fnames = $request->input('fname');
+        $middlenames = $request->input('middlename');
+        $surnames = $request->input('surname');
+        $genders = $request->input('gender');
+        $images_ds = $request->input('images');
+        
         
         
       
@@ -48,6 +54,11 @@ class ResultController extends Controller
                 'term' => $terms[$i],
                 'guardian_id' => $guardian_ids[$i],
                 'classname' => $classnames[$i],
+                'fname' => $fnames[$i],
+                'middlename' => $middlenames[$i],
+                'surname' => $surnames[$i],
+                'gender' => $genders[$i],
+                'images' => $images_ds[$i],
                 
             ];
         }
@@ -536,12 +547,12 @@ class ResultController extends Controller
       }
          
       
-
+public function pdf1(){
+        $getyour_results = Result::all();
+        return view('dashboard.guardian.pdf1', compact('getyour_results'));
+    }
 }
-    // public function pdf(){
-    //     $getyour_results = Result::all();
-    //     return view('dashboard.guardian.pdf', compact('getyour_results'));
-    // }
+    
     // }
     
 

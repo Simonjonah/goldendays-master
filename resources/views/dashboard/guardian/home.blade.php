@@ -84,7 +84,7 @@
               <div class="inner">
                 <h3>{{ $viewoursreplyactivity }}</h3>
 
-                <p>My Results NID</p>
+                <p>Your Class Activity Replied</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -96,16 +96,16 @@
 
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            {{-- <div class="small-box bg-secondary">
+            <div class="small-box bg-secondary">
               <div class="inner">
-                <h3>33</h3>
+                <h3>{{ $countresults }}</h3>
 
                 <p>Results</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person"></i>
 
-              </div> --}}
+              </div>
               {{-- <a href="{{ route('guardian.viewpersonnel') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
             </div>
           </div>

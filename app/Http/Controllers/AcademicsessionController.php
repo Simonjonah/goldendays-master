@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Academicsession;
+use App\Models\Result;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class AcademicsessionController extends Controller
 {
@@ -53,5 +57,7 @@ class AcademicsessionController extends Controller
         $edit_clesses = Academicsession::where('id', $id)->delete();
         return redirect()->back()->with('success', 'you have deleted successfully');
     }
+
+    
 
 }
