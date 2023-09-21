@@ -202,11 +202,10 @@
                   <table class="table table-bordered">
                     <tr>
                       <th style="width:50%">BEHAVIOUR:</th>
-                      <th style="width:50%">A</th>
-                      <th style="width:50%">B</th>
-                      <th style="width:50%">C</th>
-                      <th style="width:50%">D</th>
-                      <th style="width:50%">E</th>
+                      <th style="width:50%">4</th>
+                      <th style="width:50%">3</th>
+                      <th style="width:50%">2</th>
+                      <th style="width:50%">1</th>
                     </tr>
                     {{-- <td><input type="hidden" name="user_id" value="{{ $view_student->id }}" id=""></td> --}}
 
@@ -237,81 +236,68 @@
                       <td><input type="checkbox" name="punt3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->punt5 == 'Yes')
-                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                        @else
-                      <td><input type="checkbox" name="punt5" value="Yes" id=""></td>
-                      @endif
+                     
                     
                     </tr>
 
                     <tr>
-                      <th>Mental Alertness</th>
+                      <th>Politeness</th>
 
-                      @if ($view_results->mentalalert1 == 'Yes')
+                      @if ($view_results->polite1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="mentalalert1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="polite1" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->mentalalert2 == 'Yes')
+                      @if ($view_results->polite2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="mentalalert2" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="polite2" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->mentalalert3 == 'Yes')
+                      @if ($view_results->polite3 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="mentalalert3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="polite3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->mentalalert4 == 'Yes')
+                      @if ($view_results->polite4 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="mentalalert3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="polite3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->mentalalert5 == 'Yes')
-                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                        @else
-                      <td><input type="checkbox" name="mentalalert5" value="Yes" id=""></td>
-                      @endif
-                    
+                     
                     
                     </tr>
                     <tr>
-                      <th>Respect</th>
+                      <th>Responsiblity</th>
                       
-                      @if ($view_results->respect1 == 'Yes')
+                      @if ($view_results->respond1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="respect1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="respond1" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->respect2 == 'Yes')
+                      @if ($view_results->respond2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="respect2" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="respond2" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->respect3 == 'Yes')
+                      @if ($view_results->respond3 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="respect3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="respond3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->respect4 == 'Yes')
+                      @if ($view_results->respond4 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="respect3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="respond3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->respect5 == 'Yes')
-                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                        @else
-                      <td><input type="checkbox" name="respect5" value="Yes" id=""></td>
-                      @endif
+                     
 
                     </tr>
                     <tr>
@@ -341,194 +327,214 @@
                       <td><input type="checkbox" name="neat3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->neat5 == 'Yes')
+                     
+
+                    </tr>
+
+
+                    <tr>
+                      <th>Coorporate</th>
+                      
+                      @if ($view_results->neat1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="neat5" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="corporate1" value="Yes" id=""></td>
                       @endif
 
+                      @if ($view_results->corporate2 == 'Yes')
+                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                        @else
+                      <td><input type="checkbox" name="corporate2" value="Yes" id=""></td>
+                      @endif
 
-                     
+                      @if ($view_results->corporate3 == 'Yes')
+                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                        @else
+                      <td><input type="checkbox" name="corporate3" value="Yes" id=""></td>
+                      @endif
+
+                      @if ($view_results->corporate4 == 'Yes')
+                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                        @else
+                      <td><input type="checkbox" name="corporate3" value="Yes" id=""></td>
+                      @endif
+
+                      
                     </tr>
                     <tr>
-                      <th>Politeness</th>
+                      <th>Attentiveness</th>
 
 
-                      @if ($view_results->polite1 == 'Yes')
+                      @if ($view_results->attentive1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="polite1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="attentive1" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->polite2 == 'Yes')
+                      @if ($view_results->attentive2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="polite2" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="attentive2" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->polite3 == 'Yes')
+                      @if ($view_results->attentive3 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="polite3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="attentive3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->polite4 == 'Yes')
+                      @if ($view_results->attentive4 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="polite3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="attentive3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->polite5 == 'Yes')
+                      @if ($view_results->attentive5 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="polite5" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="attentive5" value="Yes" id=""></td>
                       @endif
               
                      
                     </tr>
 
                     <tr>
-                      <th>Honesty</th>
+                      <th>Initiative</th>
 
-                      @if ($view_results->honesty1 == 'Yes')
+                      @if ($view_results->init1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="honesty1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="init1" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->honesty2 == 'Yes')
+                      @if ($view_results->init2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="honesty2" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="init2" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->honesty3 == 'Yes')
+                      @if ($view_results->init3 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="honesty3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="init3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->honesty4 == 'Yes')
+                      @if ($view_results->init4 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="honesty3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="init3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->honesty5 == 'Yes')
-                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                        @else
-                      <td><input type="checkbox" name="honesty5" value="Yes" id=""></td>
-                      @endif
+                      
+                      
                       
                     
                     </tr>
                     <tr>
-                      <th>Relationship with peers</th>
+                      <th>Organisation</th>
 
-                      
-                      @if ($view_results->relationship1 == 'Yes')
+                      @if ($view_results->organ1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="relationship1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="organ1" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->relationship2 == 'Yes')
+                      @if ($view_results->organ2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="relationship2" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="organ2" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->relationship3 == 'Yes')
+                      @if ($view_results->organ3 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="relationship3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="organ3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->relationship4 == 'Yes')
+                      @if ($view_results->organ4 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="relationship3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="organ3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->relationship5 == 'Yes')
-                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                        @else
-                      <td><input type="checkbox" name="relationship5" value="Yes" id=""></td>
-                      @endif
-              
+                     
                       
                     </tr>
                     <tr>
-                      <th>Willingness to learn</th>
-                      @if ($view_results->williness1 == 'Yes')
+                      <th>Perseverance</th>
+                      @if ($view_results->pers1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="relationship1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="organ1" value="Yes" id=""></td>
                       @endif
                       
 
-                      @if ($view_results->williness2 == 'Yes')
+                      @if ($view_results->pers2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="williness2" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="pers2" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->williness3 == 'Yes')
+                      @if ($view_results->pers3 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="williness3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="pers3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->williness4 == 'Yes')
+                      @if ($view_results->pers4 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="williness4" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="pers4" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->williness5 == 'Yes')
-                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                        @else
-                      <td><input type="checkbox" name="williness5" value="Yes" id=""></td>
-                      @endif
                     </tr>
                     <tr>
-                      <th>Team Spirit</th>
-                      @if ($view_results->teamspirit1 == 'Yes')
+                      <th>Attitude to Work</th>
+                      @if ($view_results->atti1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="teamspirit1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="atti1" value="Yes" id=""></td>
                       @endif
                       
 
-                      @if ($view_results->teamspirit2 == 'Yes')
+                      @if ($view_results->atti2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="teamspirit2" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="atti2" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->teamspirit3 == 'Yes')
+                      @if ($view_results->atti3 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="teamspirit3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="atti3" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->teamspirit4 == 'Yes')
+                      @if ($view_results->atti4 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="teamspirit4" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="atti4" value="Yes" id=""></td>
                       @endif
 
-                      @if ($view_results->teamspirit5 == 'Yes')
+                      @if ($view_results->atti5 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="teamspirit5" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="atti5" value="Yes" id=""></td>
                       @endif
                     </tr>
 
                   </table>
                   <div class="form-group">
-                      <textarea class="form-control" name="teacher_comment" id="" cols="20" rows="5" placeholder="Teacher's Comment">{{ $view_results->teacher_comment }}</textarea>
+                      <textarea class="form-control" name="teacher_comment" id="" cols="10" rows="2" placeholder="Teacher's Comment">{{ $view_results->teacher_comment }}</textarea>
                   </div>
+
+                  <div class="form-group">
+                    <textarea class="form-control" name="headteach_comment" id="" cols="10" rows="2" placeholder="Teacher's Comment">{{ $view_results->headteach_comment }}</textarea>
+                </div>
+
+                <td>Next Term Begin: <input class="form-control" type="text" name="atti5" value="{{ $view_results->next_term }}" id=""></td>
+                <td>No of Days School Open: <input class="form-control" type="text" name="atti5" value="{{ $view_results->dayschopen }}" id=""></td>
+                <td>Next Term Begin: <input class="form-control" type="text" name="atti5" value="{{ $view_results->dayspresent }}" id=""></td>
+
             </div>
           </div>
           <!-- /.col -->
@@ -546,38 +552,34 @@
                   <th style="width:50%">E</th>
                 </tr>
                 <tr>
-                  <th>Verbal Skills</th>
-                  @if ($view_results->verbal1 == 'Yes')
+                  <th>Club & Society</th>
+                  @if ($view_results->club1 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="verbal1" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="club1" value="Yes" id=""></td>
                   @endif
-                  @if ($view_results->verbal2 == 'Yes')
+                  @if ($view_results->club2 == 'Yes')
                       <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                         @else
-                      <td><input type="checkbox" name="verbal2" value="Yes" id=""></td>
-                  @endif
-
-                  @if ($view_results->verbal3 == 'Yes')
-                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                        @else
-                      <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
+                      <td><input type="checkbox" name="club2" value="Yes" id=""></td>
                   @endif
 
-                  @if ($view_results->verbal4 == 'Yes')
+                  @if ($view_results->club3 == 'Yes')
+                      <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                        @else
+                      <td><input type="checkbox" name="club3" value="Yes" id=""></td>
+                  @endif
+
+                  @if ($view_results->club4 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
-                  <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
+                  <td><input type="checkbox" name="club3" value="Yes" id=""></td>
               @endif
-              @if ($view_results->verbal5 == 'Yes')
-              <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                @else
-              <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
-            @endif
+             
                  
                 </tr>
                 <tr>
-                  <th>Games and Sports</th>
+                  <th>Sports</th>
                   @if ($view_results->sports1 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
@@ -600,76 +602,151 @@
                   <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
                   @endif
 
-                  @if ($view_results->sports5 == 'Yes')
+                 
+
+
+                </tr>
+
+
+                <tr>
+                  <th>Hand Writing</th>
+                  @if ($view_results->hand1 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
+                  @endif
+                  @if ($view_results->hand2 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
                   @endif
 
+                  @if ($view_results->hand3 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
+                  @endif
+                  @if ($view_results->hand4 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="verbal3" value="Yes" id=""></td>
+                  @endif
+
+                </tr>
+
+
+                <tr>
+                  <th>Handling Tools</th>
+
+                  @if ($view_results->tool1 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tool1" value="Yes" id=""></td>
+                  @endif
+                  @if ($view_results->tool2 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tool1" value="Yes" id=""></td>
+                  @endif
+
+                  @if ($view_results->tool3 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tool1" value="Yes" id=""></td>
+                  @endif
+
+                  @if ($view_results->tool4 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tool1" value="Yes" id=""></td>
+                  @endif
+
+                 
+                </tr>
+
+
+                
+                <tr>
+                  <th>Technical Works</th>
+
+                  @if ($view_results->tech1 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tech1" value="Yes" id=""></td>
+                  @endif
+                  @if ($view_results->tech2 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tech1" value="Yes" id=""></td>
+                  @endif
+
+                  @if ($view_results->tech3 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tech1" value="Yes" id=""></td>
+                  @endif
+
+                  @if ($view_results->tech4 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="tech1" value="Yes" id=""></td>
+                  @endif
 
                 </tr>
 
                 <tr>
-                  <th>Arts and Craft</th>
-
-                  @if ($view_results->arts1 == 'Yes')
+                  <th>Practical Works</th>
+                  @if ($view_results->pract1 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
-                  @if ($view_results->arts2 == 'Yes')
+                  @if ($view_results->pract2 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
-
-                  @if ($view_results->arts3 == 'Yes')
+                  @if ($view_results->pract3 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
-
-                  @if ($view_results->arts4 == 'Yes')
+                  @if ($view_results->pract4 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
 
-                  @if ($view_results->arts5 == 'Yes')
-                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                    @else
-                  <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
-                  @endif
+                 
                 </tr>
+
+
                 <tr>
-                  <th>Creativity</th>
-                  @if ($view_results->creativity1 == 'Yes')
+                  <th>Craftmanship</th>
+                  @if ($view_results->craft1 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
-                  @if ($view_results->creativity2 == 'Yes')
+                  @if ($view_results->craft2 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
-                  @if ($view_results->creativity3 == 'Yes')
+                  @if ($view_results->craft3 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
-                  @if ($view_results->creativity4 == 'Yes')
+                  @if ($view_results->craft4 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
                   <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
                   @endif
 
-                  @if ($view_results->creativity5 == 'Yes')
-                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                    @else
-                  <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
-                  @endif
+                 
                 </tr>
+
 
                 <tr>
                   <th>Music Skills</th>
@@ -696,45 +773,64 @@
                     @else
                   <td><input type="checkbox" name="music4" value="Yes" id=""></td>
                   @endif
-                  @if ($view_results->music5 == 'Yes')
-                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                    @else
-                  <td><input type="checkbox" name="music5" value="Yes" id=""></td>
-                  @endif
+                 
                  
                 </tr>
 
                 <tr>
-                  <th>Dance Skills</th>
-                  @if ($view_results->dance1 == 'Yes')
+                  <th>Drawing & Painting</th>
+                  @if ($view_results->paint1 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
-                  <td><input type="checkbox" name="dance1" value="Yes" id=""></td>
+                  <td><input type="checkbox" name="paint1" value="Yes" id=""></td>
                   @endif
-                  @if ($view_results->dance2 == 'Yes')
+                  @if ($view_results->paint2 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
-                  <td><input type="checkbox" name="dance2" value="Yes" id=""></td>
-                  @endif
-
-                  @if ($view_results->dance3 == 'Yes')
-                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
-                    @else
-                  <td><input type="checkbox" name="dance3" value="Yes" id=""></td>
+                  <td><input type="checkbox" name="paint2" value="Yes" id=""></td>
                   @endif
 
-                  @if ($view_results->dance4 == 'Yes')
+                  @if ($view_results->paint3 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
-                  <td><input type="checkbox" name="dance4" value="Yes" id=""></td>
+                  <td><input type="checkbox" name="paint3" value="Yes" id=""></td>
                   @endif
 
-                  @if ($view_results->dance5 == 'Yes')
+                  @if ($view_results->paint4 == 'Yes')
                   <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
                     @else
-                  <td><input type="checkbox" name="dance5" value="Yes" id=""></td>
+                  <td><input type="checkbox" name="paint4" value="Yes" id=""></td>
                   @endif
+
+                 
                 </tr>
+
+                <tr>
+                  <th>Practical Works</th>
+                  @if ($view_results->pract1 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
+                  @endif
+                  @if ($view_results->pract2 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
+                  @endif
+                  @if ($view_results->pract3 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
+                  @endif
+                  @if ($view_results->pract4 == 'Yes')
+                  <td><h5><i style="color: green" class="icon fas fa-check"></i> </h5> </td>
+                    @else
+                  <td><input type="checkbox" name="arts1" value="Yes" id=""></td>
+                  @endif
+
+                 
+                </tr>
+
               
               </table>
 
@@ -747,32 +843,29 @@
             <div class="table-responsive">
               <table class="table table-bordered">
                 <tr>
-                  <th style="width:50%"></th>
-                  <th style="width:50%">KEY</th>
+                  <th style="width:50%">AFFECTIVE/PSYCOMOTIVE </th>
+                  <th style="width:50%">DOMAIN</th>
                   
                 </tr>
                 <tr>
-                  <th>A</th>
+                  <th>1</th>
                   <td>Excellence</td>
                 </tr>
                 <tr>
-                  <th>B</th>
+                  <th>2</th>
                   <td>Very Good</td>
                 </tr>
 
                 <tr>
-                  <th>C</th>
+                  <th>3</th>
                   <td>Good</td>
                 </tr>
                 <tr>
-                  <th>D</th>
-                  <td>Needs Improvement</td>
+                  <th>1</th>
+                  <td>Fair</td>
                 </tr>
 
-                <tr>
-                  <th>E</th>
-                  <td>Unsatisfactory</td>
-                </tr>
+                
                 
                
                
@@ -791,9 +884,9 @@
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
-                  <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> Submit
+                  {{-- <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> Submit
                     Submit 
-                  </button>
+                  </button> --}}
                 
                   {{-- <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                   <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
@@ -801,9 +894,9 @@
                   </button> --}}
 
                 </form>
-                  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                  {{-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
-                  </button>
+                  </button> --}}
                 </div>
               </div>
             </div>

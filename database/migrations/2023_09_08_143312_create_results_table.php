@@ -152,10 +152,10 @@ return new class extends Migration
             $table->string('sports4', 5)->nullable();
 
 
-            $table->string('music1', 5)->nullable();
-            $table->string('music2', 5)->nullable();
-            $table->string('music3', 5)->nullable();
-            $table->string('music4', 5)->nullable();
+            // $table->string('music1', 5)->nullable();
+            // $table->string('music2', 5)->nullable();
+            // $table->string('music3', 5)->nullable();
+            // $table->string('music4', 5)->nullable();
 
             $table->string('creativity1', 5)->nullable();
             $table->string('creativity2', 5)->nullable();

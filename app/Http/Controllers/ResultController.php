@@ -211,10 +211,10 @@ class ResultController extends Controller
         $add_assignteacher->organ4 = $request->organ4;
 
         
-        $add_assignteacher->per1 = $request->per1;
-        $add_assignteacher->per2 = $request->per2;
-        $add_assignteacher->per3 = $request->per3;
-        $add_assignteacher->per4 = $request->per4;
+        $add_assignteacher->pers1 = $request->pers1;
+        $add_assignteacher->pers2 = $request->pers2;
+        $add_assignteacher->pers3 = $request->pers3;
+        $add_assignteacher->pers4 = $request->pers4;
 
 
         $add_assignteacher->atti1 = $request->atti1;
@@ -229,7 +229,11 @@ class ResultController extends Controller
         $add_assignteacher->club4 = $request->club4;
 
         $add_assignteacher->teacher_comment = $request->teacher_comment;
-
+        $add_assignteacher->next_term = $request->next_term;
+        $add_assignteacher->headteach_comment = $request->headteach_comment;
+        $add_assignteacher->dayschopen = $request->dayschopen;
+        $add_assignteacher->dayspresent = $request->dayspresent;
+        
         $add_assignteacher->sports1 = $request->sports1;
         $add_assignteacher->sports2 = $request->sports2;
         $add_assignteacher->sports3 = $request->sports3;
@@ -468,10 +472,10 @@ class ResultController extends Controller
           $add_psychomotorad->organ4 = $request->organ4;
   
           
-          $add_psychomotorad->per1 = $request->per1;
-          $add_psychomotorad->per2 = $request->per2;
-          $add_psychomotorad->per3 = $request->per3;
-          $add_psychomotorad->per4 = $request->per4;
+          $add_psychomotorad->pers1 = $request->pers1;
+          $add_psychomotorad->pers2 = $request->pers2;
+          $add_psychomotorad->pers3 = $request->pers3;
+          $add_psychomotorad->pers4 = $request->pers4;
   
   
           $add_psychomotorad->atti1 = $request->atti1;
@@ -547,10 +551,12 @@ class ResultController extends Controller
       }
          
       
-public function pdf1(){
+    public function pdf1(){
         $getyour_results = Result::all();
         return view('dashboard.guardian.pdf1', compact('getyour_results'));
     }
+
+    
 }
     
     // }

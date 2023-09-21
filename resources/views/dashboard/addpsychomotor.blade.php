@@ -62,6 +62,17 @@
                   <form action="{{ url('web/createpsychomotoro/'.$add_psychomotor->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
 
+                    @if (Session::get('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+  
+                    @if (Session::get('fail'))
+                    <div class="alert alert-danger">
+                    {{ Session::get('fail') }}
+                    @endif
+
                     @method('PUT')
                     <table class="table table-bordered">
                       <tr>
@@ -164,6 +175,15 @@
                       <div class="form-group">
                           <textarea class="form-control" name="teacher_comment" id="" cols="20" rows="5" placeholder="Teacher's Comment"></textarea>
                       </div>
+
+                      <div class="form-group">
+                        <textarea class="form-control" name="headteach_comment" id="" cols="20" rows="5" placeholder="Head Teacher's Comment"></textarea>
+                    </div>
+                    <td>Next Term Begin: <input type="date" value="" class="form-control" name="next_term" id=""></td>
+                    <td>Days School Open: <input type="number" value="" class="form-control" name="dayschopen" placeholder="No of Days School Open"></td>
+                    <td>No of Days Open: <input type="number" value="" class="form-control" name="dayspresent" placeholder="No of days Present"></td>
+
+                      
                 </div>
                
               </div>
@@ -315,7 +335,8 @@
                   
                 </table>
               </div>
-              <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> Submit
+              
+              <button style="margin-top: 20px;" type="submit" class="btn btn-success"><i class="far fa-bell"></i> Submit
                  
               </button>
               <!-- /.col -->

@@ -181,7 +181,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+
+
         /*
          * Package Service Providers...
          */
@@ -194,10 +195,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Unicodeveloper\Paystack\PaystackServiceProvider::class,
         KingFlamez\Rave\RaveServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -211,9 +212,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Rave' => KingFlamez\Rave\Facades\Rave::class
+        'Rave' => KingFlamez\Rave\Facades\Rave::class,
     ])->toArray(),
 
 ];

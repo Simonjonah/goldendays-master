@@ -517,11 +517,11 @@ table, tr, td{
         <table class="dayopen" style="margin-top: 10px; " >
             <tr>
                 <td class="von">Days School Opens:</td>
-                <td class="von">120</td>
+                <td class="von">{{ $getyour_result->dayschopen }}</td>
                 <td class="von">No of Days Present:</td>
-                <td class="von">120</td>
+                <td class="von">{{ $getyour_result->dayspresent }}</td>
                 <td class="von">Next Term Begins:</td>
-                <td class="von">28th January, 2023</td>
+                <td class="von">{{ $getyour_result->next_term }}</td>
             </tr>
 
            
@@ -530,20 +530,14 @@ table, tr, td{
             <table style="margin-top: 2px;">
                 <tr>
                     <td>Class Teacher's Comment</td>
-                    <td>Precious is an intelligent and active class participant. She has shown 								
-                        improvement in some of her subjects .There is still lots of room for  								
-                       growth and improvement. We are working on improving her focus and 								
-                       drive in the coming term.								
+                    <td>{{ $getyour_result->teacher_comment}}								
                     </td>
-                    <td>Signature: {{ $total_student }}</td>
+                    <td>Signature: </td>
                 </tr>
 
                 <tr>
                     <td>Head Teacher's Comment</td>
-                    <td>Precious is an intelligent and active class participant. She has shown 								
-                        improvement in some of her subjects .There is still lots of room for  								
-                       growth and improvement. We are working on improving her focus and 								
-                       drive in the coming term.								
+                    <td>{{ $getyour_result->headteach_comment}}								
                     </td>
                     <td>Signature: </td>
                 </tr>

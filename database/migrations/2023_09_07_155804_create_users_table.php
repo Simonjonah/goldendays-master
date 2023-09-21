@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('term')->nullable();
             $table->string('previouschoolname')->nullable();
             $table->string('ref_no1')->nullable();
-            $table->string('regnumber', 50)->unique();
+            $table->string('regnumber', 50)->nullable()->unique();
 
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();

@@ -23,24 +23,18 @@ return [
         'model'=>App\Models\Admin::class,
     ],
 
+    
     'guardian'=>[
         'driver' => 'eloquent',
         'model'=>App\Models\Guardian::class,
     ],
 
-
+    
     'account'=>[
         'driver' => 'eloquent',
         'model'=>App\Models\Account::class,
     ],
 
-    
-
-
-    // 'account'=>[
-    //     'driver' => 'eloquent',
-    //     'model'=>App\Models\Account::class,
-    // ],
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -68,14 +62,14 @@ return [
             'provider'=>'admins',
         ],
 
-        'guardian'=>[
-            'driver'=> 'session',
-            'provider'=>'guardians',
-        ],
-
         'account'=>[
             'driver'=> 'session',
             'provider'=>'accounts',
+        ],
+
+        'guardian'=>[
+            'driver'=> 'session',
+            'provider'=>'guardians',
         ],
     ],
 
@@ -112,11 +106,11 @@ return [
             'model' => App\Models\Guardian::class,
         ],
 
-
         'accounts'=>[
             'driver' => 'eloquent',
             'model' => App\Models\Account::class,
         ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -154,14 +148,14 @@ return [
             'model'=> App\Models\Admin::class,
         ],
 
-        'guardians'=>[
-            'driver'=> 'eloquent',
-            'model'=> App\Models\Guardian::class,
-        ],
-
         'accounts'=>[
             'driver'=> 'eloquent',
             'model'=> App\Models\Account::class,
+        ],
+
+        'guardians'=>[
+            'driver'=> 'eloquent',
+            'model'=> App\Models\Guardian::class,
         ],
 
     ],
