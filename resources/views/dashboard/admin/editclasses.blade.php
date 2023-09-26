@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Add Courses</h1>
+            <h1 class="m-0 text-dark">Add Class</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add Courses </li>
+              <li class="breadcrumb-item active">Add Class </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -69,12 +69,25 @@
 
                     <div class="form-group">
                       <label for="exampleInputEmail1">Section</label>
-                      <input type="text" value="{{ $edit_clesses->section }}" name="section" class="form-control" @error('name')
-                          
-                      @enderror value="{{ old('section') }}" id="exampleInputEmail1" placeholder="Name">
+                      <select name="section" class="form-control" id="">
+                        <option value="{{ $edit_clesses->section }}">{{ $edit_clesses->section }}</option>
+                        <option value="Pre-School">Pre-School</option>
+                        <option value="Primary">Primary</option>
+                        <option value="Secondary">Secondary</option>
                     </div>
                     @error('section')
                     <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                  </div>
+                  
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Section</label>
+                      <input type="hidden" type="text" value="" name="" class="form-control" @error('name')
+                          
+                      @enderror value="" id="exampleInputEmail1" placeholder="Name">
+                    </div>
+                    @error('section')
                     @enderror
 
                   </div>

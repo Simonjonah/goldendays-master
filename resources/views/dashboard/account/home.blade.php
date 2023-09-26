@@ -31,10 +31,10 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
               {{-- cog --}}
               <div class="info-box-content">
-                <span class="info-box-text"><a href="{{ url('account.admittedstureg') }}">Students</a></span>
+                <span class="info-box-text"><a href="{{ url('account.admittedstureg') }}">Payments</a></span>
                 <span class="info-box-number">
-                  {{-- {{ $count_students }} --}}
-                  <small>%</small>
+                  {{ $countspayment }}
+                  <small></small>
                 </span>
               </div>
               <!-- /.info-box-content -->

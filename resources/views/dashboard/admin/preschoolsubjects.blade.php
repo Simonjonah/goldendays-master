@@ -38,21 +38,10 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Class</th>
                     <th>Subjects</th>
-                    <th>Questions</th>
-                    <th>Term</th>
-                    <th>Centername</th>
+                    <th>Section</th>
+                    <th>Assign Teacher</th>
 
-                    <th>Option</th>
-
-                    <th>Answers</th>
-                    
-                    <th>Status</th>
-                    <th>Action</th>
-                   
-                    <th>Delete</th>
                     <th>Date</th>
                   </tr>
                   </thead>
@@ -68,59 +57,22 @@
                     <div class="alert alert-danger">
                     {{ Session::get('fail') }}
                     @endif
-                    @foreach ($view_abujaquestions as $view_abujaquestion)
-                      {{-- @if ($view_abujaquestion->status = 'teacher') --}}
-                      <tr>
-
-                        <td><a href="{{ url('admin/teachersquestion/'.$view_abujaquestion->user_id) }}"> {{ $view_abujaquestion->user['fname'] }}</a></td>
-                        <td>{{ $view_abujaquestion->classname }}</td>
-                        <td>{{ $view_abujaquestion->subjectname }}</td>
-                        <td>{{ $view_abujaquestion->question }}</td>
-                        <td>{{ $view_abujaquestion->term }}</td>
-                        <td>{{ $view_abujaquestion->centername }}</td>
-                        <td><select name="" id="" class="form-control">
-                            <option value="">{{ $view_abujaquestion->option1 }}</option>
-                            <option value="">{{ $view_abujaquestion->option2 }}</option>
-                            <option value="">{{ $view_abujaquestion->option3 }}</option>
-                        </select></td>
-                        
-                        <td>{{ $view_abujaquestion->is_correct }}</td>
-
-                       
-                       
-                        <td>@if ($view_abujaquestion->status == null)
-                          <span class="badge badge-secondary">In Review</span>
-                          @elseif ($view_abujaquestion->status == 'unapproved')
-                          <span class="badge badge-danger">Unapproved</span>
-                          
-                            @else
-                            <span class="badge badge-success">Approved</span>
-                          @endif</td>
-
-                       <td> <div class="input-group-prepend">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                          Action
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="{{ url('admin/viewsinglequestionz/'.$view_abujaquestion->id) }}">View</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/editquestionzadmin/'.$view_abujaquestion->id) }}">Edit</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/questionzapprove/'.$view_abujaquestion->id) }}">Approved</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/questionzsunapprove/'.$view_abujaquestion->id) }}">Unapproved</a></li>
-                        </ul>
-                      </div></td>
-                       
+                    @foreach ($viewnursery_subjects as $viewnursery_subject)
+                        @if ($viewnursery_subject->section = 'Primary')
+                        <tr>
+                            <td>{{ $viewnursery_subject->subjectname }}</td>
+                            <td>{{ $viewnursery_subject->section }}</td>
+                         
+                          <th><a href="{{ url('admin/assignsubject/'.$viewnursery_subject->id) }}" class="btn btn-success"><i class="fas fa-user"></i></a></th>
+                            
+                         <td>{{ $viewnursery_subject->created_at->format('D d, M Y, H:i')}}</td>
+    
+                          </tr> 
+                        @else
+                            
+                        @endif
                      
-                       <td><a href="{{ url('admin/questiondelete/'.$view_abujaquestion->ref_no) }}"
-                        class='btn btn-danger'>
-                         <i class="far fa-trash-alt"></i>
-                     </a></td>
-                        
-                     <td>{{ $view_abujaquestion->created_at->format('D d, M Y, H:i')}}</td>
-
-                      </tr>
-                      {{-- @else
-                        
-                      @endif --}}
+                     
                     @endforeach
                  
                  
@@ -128,23 +80,12 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Class</th>
                         <th>Subjects</th>
-                        <th>Questions</th>
-                        <th>Term</th>
-                        <th>Centername</th>
-    
-                        <th>Option</th>
-    
-                        <th>Answers</th>
-                        
-                        <th>Status</th>
-                        <th>Action</th>
-                       
-                        <th>Delete</th>
+                        <th>Section</th>
+                        <th>Assign Teacher</th>
                         <th>Date</th>
                       </tr>
+                    </tr>
                   </tfoot>
                 </table>
               </div>
@@ -165,7 +106,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="httpS://BRIXTONNSCHOOLS.COM.NG">BRIXTONN SCHOOLS</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="httpS://golden">GOLDEN SCHOOLS</a>.</strong> All rights
     reserved.
   </footer>
 

@@ -193,14 +193,19 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{ url('admin/preschoolad') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pre-School Pupils</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{ route('admin.adminprogress') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pimary Pupils</p>
                 </a>
               </li>
               
-              
-             
               
               <li class="nav-item">
                 <a href="{{ route('admin.admittedstudents') }}" class="nav-link">
@@ -261,9 +266,15 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ route('admin.preschoolsubjects') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Assign Pre-School Sub</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ route('admin.nurserysubjects') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Assign Prim & Nursery Sub</p>
+                  <p>Assign Elementary Sub</p>
                 </a>
               </li>
               <li class="nav-item">

@@ -555,7 +555,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                My Assigned Subjects 
+                My Assigned Duties 
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -583,7 +583,7 @@
                     <p>Upload Result</p>
                   </a>
                 </li>
-                @else
+                @elseif(Auth::guard('web')->user()->promotion == 'Secondary')
                 <li class="nav-item">
                   <a href="{{ url('web/highschools') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -598,7 +598,33 @@
                   </li>
                 </li>
               </li>
-                @endif
+
+              @elseif(Auth::guard('web')->user()->promotion == 'Pre-School Head')
+
+              <li class="nav-item">
+                <a href="{{ url('web/preschoolshead') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Pre-Schools</p>
+                </a>
+
+                <li class="nav-item">
+                  <a href="{{ url('web/viewaddresults') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Upload Result</p>
+                  </a>
+                </li>
+              </li>
+            </li>
+
+            @else
+            <li class="nav-item">
+              <a href="{{ url('web/viewaddresults') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Upload Result</p>
+              </a>
+          </li>
+
+            @endif
                 
 
             </ul>

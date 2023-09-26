@@ -67,6 +67,7 @@ table, tr, td{
 
         <tr>
             <th style="text-align: center; width: 120px; height: 100px; padding: 0px">
+                <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('assets/dist/img/AdminLTELogo.png')))}}">
                 {{-- <img src="{{ public_path('public/assets/dist/img/AdminLTELogo.png') }}"> --}}
             </th>
 
@@ -77,7 +78,9 @@ table, tr, td{
             </th>
                 
             <th style="text-align: center; width: 120px;">
-                Student Image
+                <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path({{ URL::asset("/public/../$getyour_result->images")}}))) }}">
+                {{-- <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('/resourceimages/{{$getyour_result->images}}')))}}"> --}}
+                {{-- <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('/resourceimages/{{$getyour_result->images}}')))}}"> --}}
             </th>
         </tr>
        

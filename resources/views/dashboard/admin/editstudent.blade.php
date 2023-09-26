@@ -58,8 +58,9 @@ l            <ol class="breadcrumb float-sm-right">
                         <label> Sections</label>
                         <select name="section" class="form-control" id="">
                           <option value="{{  $edit_students->section }}">{{ $edit_students->section }}</option>
-                          <option value="Primary">Primary</option>
-                          <option value="Secondary">Secondary</option>
+                          <option value="Pre-School">Pre-School</option>
+                          <option value="Primary">Elementary</option>
+                          <option value="Secondary">High School</option>
                         </select>
 
                       </div>

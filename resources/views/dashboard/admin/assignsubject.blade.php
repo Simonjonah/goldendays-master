@@ -73,6 +73,7 @@
                         <h5>Section </h5>
                         <select required class="form-control" type="text" name="section">
                           <option value="{{ $assigned_subject->section }}">{{ $assigned_subject->section }}</option>
+                          <option value="Pre-School">Pre-School</option>
                           <option value="Primary">Primary</option>
                           <option value="Secondary">Secondary</option>
                         </select>
@@ -94,13 +95,19 @@
                       <select required class="form-control" type="text" name="user_id">
                         @if ($assigned_subject->section == 'Primary')
                           @foreach ($assigned_teacherto_subjects as $assigned_teacherto_subject)
-                            <option value="{{ $assigned_teacherto_subject->id }}">{{ $assigned_teacherto_subject->fname }} {{ $assigned_teacherto_subject->surname }} {{ $assigned_teacherto_subject->centername }} {{ $assigned_teacherto_subject->section }} {{ $assigned_teacherto_subject->classname }}</option>
+                            <option value="{{ $assigned_teacherto_subject->id }}">{{ $assigned_teacherto_subject->fname }} {{ $assigned_teacherto_subject->surname }} {{ $assigned_teacherto_subject->section }} {{ $assigned_teacherto_subject->classname }}</option>
                           @endforeach
-                        @else
+
+                        @elseif($assigned_subject->section == 'Secondary')
                         @foreach ($assigned_highschool_subjects as $assigned_highschool_subject)
-                        <option value="{{ $assigned_highschool_subject->id }}">{{ $assigned_highschool_subject->fname }} {{ $assigned_highschool_subject->surname }} {{ $assigned_highschool_subject->centername }} {{ $assigned_highschool_subject->section }} {{ $assigned_highschool_subject->classname }}</option>
+                        <option value="{{ $assigned_highschool_subject->id }}">{{ $assigned_highschool_subject->fname }} {{ $assigned_highschool_subject->surname  }} {{ $assigned_highschool_subject->section }} {{ $assigned_highschool_subject->classname }}</option>
                         @endforeach
-                        
+
+                        @foreach ($assigned_preschool_subjects as $assigned_preschool_subject)
+                        <option value="{{ $assigned_preschool_subject->id }}">{{ $assigned_preschool_subject->fname }} {{ $assigned_highschool_subject->surname  }} {{ $assigned_highschool_subject->section }} {{ $assigned_highschool_subject->classname }}</option>
+                        @endforeach
+                        @else
+
                         @endif
                       </select>
                   </div>

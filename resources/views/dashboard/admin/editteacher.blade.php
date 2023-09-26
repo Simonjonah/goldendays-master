@@ -96,8 +96,9 @@
                   <h5>Section </h5>
                   <select required class="form-control" type="text" name="section">
                 <option value="{{ $edit_singteachers->section }}">{{ $edit_singteachers->section }}</option>
-                    <option value="Primary">Primary</option>
-                    <option value="Secondary">Secondary</option>
+                    <option value="Pre-School">Pre-School</option>
+                    <option value="Primary">Elementary</option>
+                    <option value="Secondary">High School</option>
                                       
                   </select>
                 </div>  

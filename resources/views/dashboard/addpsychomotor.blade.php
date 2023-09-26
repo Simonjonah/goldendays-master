@@ -25,7 +25,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title">Monthly Recap Report</h5>
+            <h5 class="card-title"></h5>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -190,7 +190,7 @@
               <!-- /.col -->
               <div class="col-md-6">
                 <p class="text-center">
-                  <strong>Goal Completion</strong>
+                  {{-- <strong>Goal Completion</strong> --}}
                 </p>
 
                 <div class="table-responsive">

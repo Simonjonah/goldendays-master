@@ -73,15 +73,24 @@ class SubjectController extends Controller
         ->whereNotIn('section', ['Secondary'])->get();
         $assigned_highschool_subjects = User::where('status', 'teacher')
         ->where('section', 'Secondary')->get();
+
+        $assigned_preschool_subjects = User::where('status', 'teacher')
+        ->where('section', 'Pre-School')->get();
+
         $classnames = Classname::all();
         
-        return view('dashboard.admin.assignsubject', compact('classnames', 'assigned_highschool_subjects', 'assigned_teacherto_subjects', 'assigned_subject'));
+        return view('dashboard.admin.assignsubject', compact('assigned_preschool_subjects', 'classnames', 'assigned_highschool_subjects', 'assigned_teacherto_subjects', 'assigned_subject'));
     }
 
     public function nurserysubjects(){
         $viewnursery_subjects = Subject::where('section', 'Primary')->get();
         return view('dashboard.admin.nurserysubjects', compact('viewnursery_subjects'));
     }
+    public function preschoolsubjects(){
+        $viewnursery_subjects = Subject::where('section', 'Pre-School')->get();
+        return view('dashboard.admin.preschoolsubjects', compact('viewnursery_subjects'));
+    }
+    
      
     public function allsubjects(){
         $viewnursery_subjects = Subject::all();

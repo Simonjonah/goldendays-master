@@ -101,6 +101,7 @@
                                       <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
                                       <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
                                       <td><input type="number" class="form-control" name="exams[]" placeholder="Exams"></td>
+                                      
                                       <td><input type="hidden" name="teacher_id" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID"></td>
                                       <td><input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID"></td>
                                       <td><input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="Term"></td>

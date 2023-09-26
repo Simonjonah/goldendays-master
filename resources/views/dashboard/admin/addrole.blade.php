@@ -54,6 +54,7 @@
 
                    <select name="promotion" id="" class="form-control">
                         <option value="{{ $view_teachers->promotion }}">{{ $view_teachers->promotion }}</option>
+                        <option value="Pre-School Head">Pre-School Admin</option>
                         <option value="Primary Head">Primary Admin</option>
                         <option value="Secondary">Secondary Admin</option>
                    </select>
@@ -64,6 +65,7 @@
             <h5>Section </h5>
             <select required class="form-control" type="text" name="section">
               <option value="{{ $view_teachers->section }}">{{ $view_teachers->section }}</option>
+              <option value="Pre-School">Pre-School </option>
               <option value="Primary">Primary </option>
               <option value="Secondary">Secondary</option>                  
             </select>

@@ -22,24 +22,24 @@ class UserController extends Controller
        
         $request->validate([
             'guardian_id' => ['nullable', 'string'],
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'age' => ['required', 'string'],
-            'bloodgroup' => ['required', 'string'],
-            'genotype' => ['required', 'string'],
-            'previouschoolname' => ['required', 'string'],
-            'preclassname' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'lastschooladdress' => ['required', 'string'],
-            'disability' => ['required', 'string'],
-            'dob' => ['required', 'string'],
-            'ref_no' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'academic_session' => ['required', 'string'],
-            'term' => ['required', 'string'],
-            // 'password' => ['required', 'string'],
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'age' => ['nullable', 'string'],
+            'bloodgroup' => ['nullable', 'string'],
+            'genotype' => ['nullable', 'string'],
+            'previouschoolname' => ['nullable', 'string'],
+            'preclassname' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'lastschooladdress' => ['nullable', 'string'],
+            'disability' => ['nullable', 'string'],
+            'dob' => ['nullable', 'string'],
+            'ref_no' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
+            'academic_session' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
+            // 'password' => ['nullable', 'string'],
             
             
             'images' => 'nullable|mimes:jpg,png,jpeg'
@@ -108,12 +108,12 @@ class UserController extends Controller
     public function updateaddthirdondadmmin(Request $request, $ref_no){
         $addthid_admission = User::where('ref_no', $ref_no)->first();
         $request->validate([
-            'lastschool' => ['required', 'string'],
-            'landmark' => ['required', 'string'],
-            'relationship' => ['required', 'string'],
-            'brixtonsiblings' => ['required', 'string'],
-            'schooladdress' => ['required', 'string'],
-            'aboutus' => ['required', 'string'],
+            'lastschool' => ['nullable', 'string'],
+            'landmark' => ['nullable', 'string'],
+            'relationship' => ['nullable', 'string'],
+            'brixtonsiblings' => ['nullable', 'string'],
+            'schooladdress' => ['nullable', 'string'],
+            'aboutus' => ['nullable', 'string'],
             'birthcert' => 'nullable|mimes:jpg,png,jpeg',
           
             
@@ -151,20 +151,20 @@ class UserController extends Controller
         $edit_students = User::where('ref_no1', $ref_no1)->first();
        
         $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'age' => ['required', 'string'],
-            'bloodgroup' => ['required', 'string'],
-            'genotype' => ['required', 'string'],
-            'previouschoolname' => ['required', 'string'],
-            'preclassname' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'lastschooladdress' => ['required', 'string'],
-            'disability' => ['required', 'string'],
-            'dob' => ['required', 'string'],
-            'section' => ['required', 'string'],
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'age' => ['nullable', 'string'],
+            'bloodgroup' => ['nullable', 'string'],
+            'genotype' => ['nullable', 'string'],
+            'previouschoolname' => ['nullable', 'string'],
+            'preclassname' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'lastschooladdress' => ['nullable', 'string'],
+            'disability' => ['nullable', 'string'],
+            'dob' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
            'images' => 'nullable|mimes:jpg,png,jpeg'
         ]);
         // dd($request->all());
@@ -265,8 +265,8 @@ class UserController extends Controller
     public function addingregno(Request $request, $id){
         $student_regno = User::where('id', $id)->first();
         $request->validate([
-            //'regnumber' => ['required', 'string', 'max:255'],
-            'regnumber' => ['required', 'string', 'max:255', 'unique:users'],
+            //'regnumber' => ['nullable', 'string', 'max:255'],
+            'regnumber' => ['nullable', 'string', 'max:255', 'unique:users'],
 
         ]);
        
@@ -481,8 +481,8 @@ class UserController extends Controller
     
     public function checkfirst (Request $request){
         $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'exists:users'],
-            'password' => ['required', 'string', 'min:8']
+            'email' => ['nullable', 'string', 'email', 'max:255', 'exists:users'],
+            'password' => ['nullable', 'string', 'min:8']
         ], [
             'email.exist'=>'This email does not exist in the admins table'
         ]);
@@ -527,16 +527,16 @@ class UserController extends Controller
     public function createteacher (Request $request){
        
         $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'middlename' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'password' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'term' => ['required', 'string'],
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
+            'middlename' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'password' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
             
-            'images' => 'required|mimes:jpg,png,jpeg'
+            'images' => 'nullable|mimes:jpg,png,jpeg'
         ]);
 
         if ($request->hasFile('images')){
@@ -572,8 +572,8 @@ class UserController extends Controller
    
     public function printclasses(Request $request){
         $request->validate([
-            'classname' => ['required', 'string'],
-            'centername' => ['required', 'string'],
+            'classname' => ['nullable', 'string'],
+            'centername' => ['nullable', 'string'],
         ]);
         if($getyour_classes = user::where('classname', $request->classname)
         ->where('centername', $request->centername)
@@ -616,9 +616,9 @@ class UserController extends Controller
             $add_assignteacher = User::where('ref_no1', $ref_no1)->first();
             $request->validate([
                
-                'classname' => ['required', 'string', 'max:255'],
-                'term' => ['required', 'string', 'max:255'],
-                'section' => ['required', 'string', 'max:255'],
+                'classname' => ['nullable', 'string', 'max:255'],
+                'term' => ['nullable', 'string', 'max:255'],
+                'section' => ['nullable', 'string', 'max:255'],
                 
             ]);
             $add_assignteacher->classname = $request->classname;
@@ -645,8 +645,8 @@ class UserController extends Controller
         public function assignstudentclass(Request $request, $ref_no){
         $add_assignstudents = User::where('ref_no', $ref_no)->first();
         $request->validate([
-            'classname' => ['required', 'string', 'max:255'],
-            'term' => ['required', 'string', 'max:255'],
+            'classname' => ['nullable', 'string', 'max:255'],
+            'term' => ['nullable', 'string', 'max:255'],
         ]);
         
         $add_assignstudents->classname = $request->classname;
@@ -679,18 +679,18 @@ class UserController extends Controller
         $edit_singteachers = User::where('ref_no1', $ref_no1)->first();
        
         $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'gender' => ['required', 'string'],
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            // 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
       
-            'section' => ['required', 'string'],
-            'term' => ['required', 'string'],
+            'section' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
             
-            'images' => 'required|mimes:jpg,png,jpeg'
+            'images' => 'nullable|mimes:jpg,png,jpeg'
         ]);
 
         if ($request->hasFile('images')){
@@ -830,10 +830,10 @@ class UserController extends Controller
     public function changgeteacherclass (Request $request, $id){
         $change_classestoTeacher = User::find($id);
         $request->validate([
-            'classname' => ['required', 'string', 'max:255'],
-            'centername' => ['required', 'string', 'max:255'],
-            'term' => ['required', 'string'],
-            'section' => ['required', 'string'],
+            'classname' => ['nullable', 'string', 'max:255'],
+            'centername' => ['nullable', 'string', 'max:255'],
+            'term' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
         ]);
       
         $change_classestoTeacher->classname = $request->classname;
@@ -865,10 +865,10 @@ class UserController extends Controller
     public function createrol (Request $request, $id){
         $add_roles = User::find($id);
         $request->validate([
-            'promotion' => ['required', 'string', 'max:255'],
-            'fname' => ['required', 'string', 'max:255'],
-            'section' => ['required', 'string', 'max:255'],
-            'classname' => ['required', 'string', 'max:255'],
+            'promotion' => ['nullable', 'string', 'max:255'],
+            'fname' => ['nullable', 'string', 'max:255'],
+            'section' => ['nullable', 'string', 'max:255'],
+            'classname' => ['nullable', 'string', 'max:255'],
         ]);
       
         $add_roles->fname = $request->fname;
@@ -929,6 +929,20 @@ class UserController extends Controller
         $view_highstudents = User::where('section', 'Secondary')->get();
         return view('dashboard.highschools', compact('view_classess', 'view_highstudents'));
     }
+
+    
+    public function preschoolshead(){
+        $view_classess = Classname::where('section', 'Pre-School')->get();
+        $view_highstudents = User::where('section', 'Pre-School')->get();
+        return view('dashboard.preschoolshead', compact('view_classess', 'view_highstudents'));
+    }
+
+    public function preschoolad(){
+        // $view_classess = Classname::where('section', 'Pre-School')->get();
+        $view_preschools = User::where('section', 'Pre-School')->get();
+        return view('dashboard.admin.preschoolad', compact('view_preschools'));
+    }
+
     public function viewaddresults(){
         $view_classess = Classname::where('section', 'Secondary')->get();
         $view_highstudents = User::where('section', 'Secondary')->get();
@@ -983,22 +997,22 @@ class UserController extends Controller
         $editby_parent = User::where('ref_no1', $ref_no1)->first();
        
         $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'age' => ['required', 'string'],
-            'bloodgroup' => ['required', 'string'],
-            'genotype' => ['required', 'string'],
-            'previouschoolname' => ['required', 'string'],
-            'preclassname' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'lastschooladdress' => ['required', 'string'],
-            'disability' => ['required', 'string'],
-            'dob' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'term' => ['required', 'string'],
-            'gender' => ['required', 'string'],
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'age' => ['nullable', 'string'],
+            'bloodgroup' => ['nullable', 'string'],
+            'genotype' => ['nullable', 'string'],
+            'previouschoolname' => ['nullable', 'string'],
+            'preclassname' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'lastschooladdress' => ['nullable', 'string'],
+            'disability' => ['nullable', 'string'],
+            'dob' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
             'images' => 'nullable|mimes:jpg,png,jpeg'
         ]);
         // dd($request->all());
@@ -1105,24 +1119,24 @@ class UserController extends Controller
        
         $request->validate([
             'guardian_id' => ['nullable', 'string'],
-            'fname' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string'],
-            'middlename' => ['required', 'string'],
-            'age' => ['required', 'string'],
-            'bloodgroup' => ['required', 'string'],
-            'genotype' => ['required', 'string'],
-            'previouschoolname' => ['required', 'string'],
-            'preclassname' => ['required', 'string'],
-            'gender' => ['required', 'string'],
-            'classname' => ['required', 'string'],
-            'lastschooladdress' => ['required', 'string'],
-            'disability' => ['required', 'string'],
-            'dob' => ['required', 'string'],
-            'ref_no' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'academic_session' => ['required', 'string'],
-            'term' => ['required', 'string'],
-            // 'password' => ['required', 'string'],
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'age' => ['nullable', 'string'],
+            'bloodgroup' => ['nullable', 'string'],
+            'genotype' => ['nullable', 'string'],
+            'previouschoolname' => ['nullable', 'string'],
+            'preclassname' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'lastschooladdress' => ['nullable', 'string'],
+            'disability' => ['nullable', 'string'],
+            'dob' => ['nullable', 'string'],
+            'ref_no' => ['nullable', 'string'],
+            'section' => ['nullable', 'string'],
+            'academic_session' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
+            // 'password' => ['nullable', 'string'],
             
             
             'images' => 'nullable|mimes:jpg,png,jpeg'

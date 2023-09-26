@@ -102,7 +102,7 @@
                          Print
                         </button></td>
     
-                        <td>{{ $view_classstudent->ref_no1 }}</td>
+                        <td>{{ $view_classstudent->regnumber }}</td>
                           <td><a href="{{ url('admin/editstudent/'.$view_classstudent->ref_no1) }}"
                             class='btn btn-info'>
                             <i class="far fa-edit"></i>
@@ -238,7 +238,7 @@
                      Print
                     </button></td>
 
-                    <td>{{ $view_student_abuja->ref_no1 }}</td>
+                    <td>{{ $view_student_abuja->regnumber }}</td>
                     <td>{{ $view_student_abuja->ref_no1 }}</td>
                       <td><a href="{{ url('admin/editstudent/'.$view_student_abuja->ref_no1) }}"
                         class='btn btn-info'>

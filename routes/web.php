@@ -184,6 +184,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('queriedteachers', [QueryController::class, 'queriedteachers'])->name('queriedteachers');
         Route::get('sackedteachers', [UserController::class, 'sackedteachers'])->name('sackedteachers');
         Route::get('suspendedteachers', [UserController::class, 'suspendedteachers'])->name('suspendedteachers');
+        Route::get('preschoolad', [UserController::class, 'preschoolad'])->name('preschoolad');
+        
+        
+        Route::get('preschoolsubjects', [SubjectController::class, 'preschoolsubjects'])->name('preschoolsubjects');
         Route::get('nurserysubjects', [SubjectController::class, 'nurserysubjects'])->name('nurserysubjects');
         Route::get('approveteachers', [UserController::class, 'approveteachers'])->name('approveteachers');
         Route::get('teachersprint', [UserController::class, 'teachersprint'])->name('teachersprint');
@@ -308,25 +312,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/uyoquestions', [QuestionController::class, 'uyoquestions'])->name('uyoquestions');
         Route::get('/abujaquestions', [QuestionController::class, 'abujaquestions'])->name('abujaquestions');
         Route::get('/teachersquestion/{user_id}', [QuestionController::class, 'teachersquestion'])->name('teachersquestion');
+     
         
-        
-        Route::get('/addnidnetcoursesl1stsem', [RegistercourseController::class, 'addnidnetcoursesl1stsem'])->name('addnidnetcoursesl1stsem');
-        Route::get('/viewnetworkcourses', [RegistercourseController::class, 'viewnetworkcourses'])->name('viewnetworkcourses');
-        Route::get('/print1stinglepaymentspdf/{id}', [StudentController::class, 'print1stinglepaymentspdf'])->name('print1stinglepaymentspdf');
-        Route::get('/viewallpaymentfirst', [StudentController::class, 'viewallpaymentfirst'])->name('viewallpaymentfirst');
-        Route::get('/print1stinglepaymentspdfgf', [StudentController::class, 'print1stinglepaymentspdfgf'])->name('print1stinglepaymentspdfgf');
-        Route::get('/nidhardwarelevel200course', [RegistercourseController::class, 'nidhardwarelevel200course'])->name('nidhardwarelevel200course');
-        Route::get('/addnidhardcourses200', [RegistercourseController::class, 'addnidhardcourses200'])->name('addnidhardcourses200');
-        Route::get('/addnidmanagecourses100', [RegistercourseController::class, 'addnidmanagecourses100'])->name('addnidmanagecourses100');
-        Route::get('/viewnidmanagecourses', [RegistercourseController::class, 'viewnidmanagecourses'])->name('viewnidmanagecourses');
-        Route::get('/addnidmanagecourses200', [RegistercourseController::class, 'addnidmanagecourses200'])->name('addnidmanagecourses200');
-        Route::get('/nidmanagelevel200course', [RegistercourseController::class, 'nidmanagelevel200course'])->name('nidmanagelevel200course');
-        
-        Route::get('/addnidsoft2ndsem', [RegistercourseController::class, 'addnidsoft2ndsem'])->name('addnidsoft2ndsem');
-        Route::get('/addnidsoftcourses2l', [RegistercourseController::class, 'addnidsoftcourses2l'])->name('addnidsoftcourses2l');
-        Route::get('/addnidschoolfees', [AddnidfeeController::class, 'addnidschoolfees'])->name('addnidschoolfees');
-        Route::post('/addfeesfornid', [AddnidfeeController::class, 'addfeesfornid'])->name('addfeesfornid');
-        Route::get('/nidschfees', [AddnidfeeController::class, 'nidschfees'])->name('nidschfees');
         
         
         Route::view('/home','dashboard.admin.home')->name('home');
@@ -479,6 +466,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('studentsubjectbyhead/{ref_no1}', [UserController::class, 'studentsubjectbyhead'])->name('studentsubjectbyhead');
         Route::get('studentsubjectsbyheads/{ref_no1}', [UserController::class, 'studentsubjectsbyheads'])->name('studentsubjectsbyheads');
         Route::get('studentsubjectsall/{ref_no1}', [UserController::class, 'studentsubjectsall'])->name('studentsubjectsall');
+        Route::get('preschoolshead', [UserController::class, 'preschoolshead'])->name('preschoolshead');
         
         
         Route::get('/viewspecific', [ClassactivityController::class, 'viewspecific'])->name('viewspecific');

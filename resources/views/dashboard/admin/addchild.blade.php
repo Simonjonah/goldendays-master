@@ -119,10 +119,11 @@ l            <ol class="breadcrumb float-sm-right">
 
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Term</label>
+                        <label>Section</label>
                         <select name="section" class="form-control" id="">
-                          <option value="Primary">Primary</option>
-                          <option value="Secondary">Secondary</option>
+                          <option value="Pre-School">Pre-School</option>
+                          <option value="Primary">Elementary</option>
+                          <option value="Secondary">High School</option>
                         </select>
                     
                       </div>
@@ -157,9 +158,9 @@ l            <ol class="breadcrumb float-sm-right">
                       
                      <div class="col-sm-6">
                         <div class="form-group">
-                          <label>presvious School Name</label>
+                          <label>previous School Name</label>
                         <input type="text" name="previouschoolname" @error('previouschoolname')
-                        @enderror  value="" class="form-control" placeholder="presvious School Name">
+                        @enderror  value="" class="form-control" placeholder="previous School Name">
                          
                         </div>
                         @error('previouschoolname')

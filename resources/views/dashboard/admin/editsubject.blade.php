@@ -73,8 +73,9 @@
                           <option value="Pre-School">Pre-School</option>
                           <option value="Preparatory">Preparatory</option> --}}
                           <option value="{{ $edit_subject->section }}">{{ $edit_subject->section }}</option>
-                          <option value="Primary">Primary</option>
-                          <option value="High School">High School</option>
+                          <option value="Pre-School">Pre-School</option>
+                          <option value="Primary">Elementary</option>
+                          <option value="Secondary">High School</option>
                         </select>
                       </div> 
                     </div>

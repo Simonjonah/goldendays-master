@@ -69,12 +69,9 @@
                       <div class="form-group">
                         <h5>Section </h5>
                         <select required class="form-control" type="text" name="section">
-                          {{-- <option value="Creche">Creche</option>
                           <option value="Pre-School">Pre-School</option>
-                          <option value="Preparatory">Preparatory</option> --}}
-                          {{-- <option value="Nursery">Nursery</option> --}}
-                          <option value="Primary">Primary</option>
-                          <option value="Secondary">Secondary</option>
+                          <option value="Primary">Elementary</option>
+                          <option value="Secondary">High School</option>
                         </select>
                       </div> 
                     </div>
