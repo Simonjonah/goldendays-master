@@ -80,7 +80,7 @@
                                   @if ($view_teachersubject->section == 'Primary')
                                   <tr>
                                      <tr>
-                                      <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                      <td>{{ $view_teachersubject->phpsubjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
 
                                       {{-- <td><input type="text" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td> --}}
                                       <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>

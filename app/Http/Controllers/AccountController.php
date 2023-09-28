@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Models\Payment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class AccountController extends Controller
@@ -63,10 +64,10 @@ class AccountController extends Controller
         // $countsqueries = Query::count();
         // $countsrepliedqueries = Query::where('status', 'reply')->count();
         // $countsevents = Event::where('status', 'reply')->count();
-        $countspayment = Payment::count();
-        
-        
-        return view('dashboard.account.home', compact('countspayment'));
+        $countspayment = Transaction::count();
+        $fees = Payment::count();
+        $getyour_payments = Transaction::latest()->take(20)->get();
+        return view('dashboard.account.home', compact('getyour_payments', 'fees', 'countspayment'));
     }
 
     public function profile() {

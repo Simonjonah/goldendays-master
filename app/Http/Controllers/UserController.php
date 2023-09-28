@@ -11,6 +11,8 @@ use App\Models\Subject;
 use App\Models\Teacherassign;
 use App\Models\Result;
 use App\Models\Payment;
+use Illuminate\Support\Facades\DB;
+
 
 
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +20,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function add_childto_parents (Request $request){
+    public function addchildbyparent(Request $request){
        
         $request->validate([
-            'guardian_id' => ['nullable', 'string'],
+            //'user_id' => ['nullable', 'string'],
             'fname' => ['nullable', 'string', 'max:255'],
             'surname' => ['nullable', 'string'],
             'middlename' => ['nullable', 'string'],
@@ -39,11 +41,34 @@ class UserController extends Controller
             'section' => ['nullable', 'string'],
             'academic_session' => ['nullable', 'string'],
             'term' => ['nullable', 'string'],
-            // 'password' => ['nullable', 'string'],
+            'images' => 'required|mimes:jpg,png,jpeg',
+
+
+            'fathername' => ['required', 'string'],
+            'section' => ['required', 'string'],
+            'mothername' => ['required', 'string'],
+            'motheroccupation' => ['required', 'string'],
+            'fatheroccupation' => ['required', 'string'],
+            'phone' => ['required',  'string', 'unique:users'],
             
+            'stateoforigin' => ['required', 'string'],
+            'maritalstatus' => ['required', 'string'],
+            'officeaddress' => ['required', 'string'],
+            'homeaddress' => ['required', 'string'],
+            'doctorphone' => ['required', 'string'],
+            'doctorname' => ['required', 'string'],
+            'emergencyphone' => ['required', 'string'],
+            'emergencyaddress' => ['required', 'string'],
+            'whointro' => ['required', 'string'],
+            'academic_session' => ['required', 'string'],
+
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['nullable', 'string'],
+            // 'cpassword' => 'required|min:5|max:30|same:cpassword',
+
             
-            'images' => 'nullable|mimes:jpg,png,jpeg'
         ]);
+       //dd($request->all());
 
         if ($request->hasFile('images')){
 
@@ -57,35 +82,63 @@ class UserController extends Controller
         }
 
         $add_adimission = new User();
-
         $add_adimission['images'] = $path;
         $add_adimission->surname = $request->surname;
         $add_adimission->middlename = $request->middlename;
         $add_adimission->previouschoolname = $request->previouschoolname;
-        $add_adimission->guardian_id = $request->guardian_id;
         $add_adimission->fname = $request->fname;
         $add_adimission->age = $request->age;
         $add_adimission->dob = $request->dob;
         $add_adimission->gender = $request->gender;
         $add_adimission->bloodgroup = $request->bloodgroup;
         $add_adimission->genotype = $request->genotype;
-        
-       $add_adimission->preclassname = $request->preclassname;
+
+        $add_adimission->preclassname = $request->preclassname;
         $add_adimission->classname = $request->classname;
         $add_adimission->lastschooladdress = $request->lastschooladdress;
         $add_adimission->disability = $request->disability;
         $add_adimission->section = $request->section;
-        $add_adimission->academic_session = $request->academic_session;
+        // $add_adimission->academic_session = $request->academic_session;
         $add_adimission->term = $request->term;
-        // $add_adimission->state = $request->state;
-        // $add_adimission->term = $request->term;
-        // $add_adimission->classname = $request->classname;
+        
          $add_adimission->ref_no = $request->ref_no;
         
-        // $add_adimission->password = \Hash::make($request->password);
+        $add_adimission->password = \Hash::make($request->password);
         $add_adimission->ref_no1 = substr(rand(0,time()),0, 9);
 
+
+
+
+        $add_adimission->section = $request->section;
+        $add_adimission->academic_session = $request->academic_session;
+        
+        $add_adimission->fathername = $request->fathername;
+        $add_adimission->mothername = $request->mothername;
+        $add_adimission->phone = $request->phone;
+        $add_adimission->ref_no = substr(rand(0,time()),0, 9);
+        $add_adimission->email = $request->email;
+        $add_adimission->fatheroccupation = $request->fatheroccupation;
+        $add_adimission->motheroccupation = $request->motheroccupation;
+        $add_adimission->maritalstatus = $request->maritalstatus;
+        $add_adimission->officeaddress = $request->officeaddress;
+        $add_adimission->homeaddress = $request->homeaddress;
+        $add_adimission->stateoforigin = $request->stateoforigin;
+        $add_adimission->doctorname = $request->doctorname;
+        $add_adimission->doctorphone = $request->doctorphone;
+        $add_adimission->emergencyphone = $request->emergencyphone;
+        $add_adimission->emergencyaddress = $request->emergencyaddress;
+        $add_adimission->whointro = $request->whointro;
+        $add_adimission->academic_session = $request->academic_session;
+        
+        $add_adimission->password = \Hash::make($request->password);
+
         $add_adimission->save();
+        if ($add_adimission) {
+            return redirect()->route('web.home')->with('success', 'you have successfully registered');
+                
+            }else{
+                return redirect()->back()->with('error', 'you have fail to registered');
+        }
         return redirect()->back()->with('success', 'You have successfully add child to parent');
 
     }
@@ -910,7 +963,7 @@ class UserController extends Controller
     public function printstudents ($ref_no1){
         $printyouchild = User::where('ref_no1', $ref_no1)->first();
 
-        return view('dashboard.guardian.printstudents', compact('printyouchild'));
+        return view('dashboard.printstudents', compact('printyouchild'));
     }
 
     public function preschoolheads(){
@@ -984,14 +1037,15 @@ class UserController extends Controller
     public function parentviewstudent($ref_no1){
         $viewyour_child = User::where('ref_no1', $ref_no1)->first();
         $view_classes = Classname::all();
-        return view('dashboard.guardian.parentviewstudent', compact('view_classes', 'viewyour_child'));
+        return view('dashboard.parentviewstudent', compact('view_classes', 'viewyour_child'));
     }
 
     public function parenteditstudent ($ref_no1){
         $editby_parent = User::where('ref_no1', $ref_no1)->first();
         $view_classes = Classname::all();
-        return view('dashboard.guardian.parenteditstudent', compact('view_classes', 'editby_parent'));
+        return view('dashboard.parenteditstudent', compact('view_classes', 'editby_parent'));
     }
+
     public function updatebyparent(Request $request, $ref_no1){
 
         $editby_parent = User::where('ref_no1', $ref_no1)->first();
@@ -1056,33 +1110,33 @@ class UserController extends Controller
     public function addyourchild(){
        $view_classes = Classname::all();
        $acas = Academicsession::all();
-        return view('dashboard.guardian.addyourchild', compact('acas', 'view_classes'));
+        return view('dashboard.addyourchild', compact('acas', 'view_classes'));
     }
     public function yourchildren(){
-        $viewyour_childrens = User::where('guardian_id', auth::guard('guardian')->id()
+        $viewyour_childrens = User::where('user_id', auth::guard('web')->id()
         )->get();
-        return view('dashboard.guardian.yourchildren', compact('viewyour_childrens'));
+        return view('dashboard.yourchildren', compact('viewyour_childrens'));
     }
     public function payment(){
-        $viewyour_childrens = User::where('guardian_id', auth::guard('guardian')->id()
+        $viewyour_childrens = User::where('user_id', auth::guard('web')->id()
         )->where('term', 'First Term')->get();
-        return view('dashboard.guardian.payment', compact('viewyour_childrens'));
+        return view('dashboard.payment', compact('viewyour_childrens'));
     }
 
     public function buspayment(){
-        $bus_payments = User::where('guardian_id', auth::guard('guardian')->id()
+        $bus_payments = User::where('user_id', auth::guard('web')->id()
         )->where('term', 'First Term')->get();
-        return view('dashboard.guardian.buspayment', compact('bus_payments'));
+        return view('dashboard.buspayment', compact('bus_payments'));
     }
     public function feedingpaypayment(){
-        $bus_payments = User::where('guardian_id', auth::guard('guardian')->id()
+        $bus_payments = User::where('user_id', auth::guard('web')->id()
         )->where('term', 'First Term')->get();
-        return view('dashboard.guardian.feedingpaypayment', compact('bus_payments'));
+        return view('dashboard.feedingpaypayment', compact('bus_payments'));
     }
     public function partypayment(){
-        $bus_payments = User::where('guardian_id', auth::guard('guardian')->id()
+        $bus_payments = User::where('user_id', auth::guard('web')->id()
         )->where('term', 'First Term')->get();
-        return view('dashboard.guardian.partypayment', compact('bus_payments'));
+        return view('dashboard.partypayment', compact('bus_payments'));
     }
     
 
@@ -1090,35 +1144,34 @@ class UserController extends Controller
         $pay_fees = User::where('classname', $classname)->first();
         $view_classpayments = Payment::where('classname', $classname)->where('feeding', 'school')
         ->get();
-        return view('dashboard.guardian.payschoolfees', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
+        return view('dashboard.payschoolfees', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
     }
     public function payfeeding($classname){
         $pay_fees = User::where('classname', $classname)->first();
         $view_classpayments = Payment::where('classname', $classname)
         ->where('feeding', 'feeding')->get();
-        return view('dashboard.guardian.payfeeding', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
+        return view('dashboard.payfeeding', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
     }
 
     public function paybuservicefee($classname){
         $pay_fees = User::where('classname', $classname)->first();
         $view_classpayments = Payment::where('classname', $classname)
         ->where('feeding', 'trans')->get();
-        return view('dashboard.guardian.paybuservicefee', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
+        return view('dashboard.paybuservicefee', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
     }
 
     public function paypartfee($classname){
         $pay_fees = User::where('classname', $classname)->first();
         $view_classpayments = Payment::where('classname', $classname)
         ->where('feeding', 'party')->get();
-        return view('dashboard.guardian.paypartfee', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
+        return view('dashboard.paypartfee', ['pay_fees' => $pay_fees, 'view_classpayments' => $view_classpayments]);
     }
     
     
     
-    public function addchildbyparent (Request $request){
+    public function addyourchildren (Request $request){
        
         $request->validate([
-            'guardian_id' => ['nullable', 'string'],
             'fname' => ['nullable', 'string', 'max:255'],
             'surname' => ['nullable', 'string'],
             'middlename' => ['nullable', 'string'],
@@ -1136,12 +1189,14 @@ class UserController extends Controller
             'section' => ['nullable', 'string'],
             'academic_session' => ['nullable', 'string'],
             'term' => ['nullable', 'string'],
-            // 'password' => ['nullable', 'string'],
-            
-            
-            'images' => 'nullable|mimes:jpg,png,jpeg'
-        ]);
+            'mothername' => ['nullable', 'string'],
+           'user_id' => ['nullable', 'string'],
 
+            'images' => 'nullable|mimes:jpg,png,jpeg',
+            
+
+        ]);
+        // dd($request->all());
         if ($request->hasFile('images')){
 
             $file = $request['images'];
@@ -1159,15 +1214,16 @@ class UserController extends Controller
         $add_adimission->surname = $request->surname;
         $add_adimission->middlename = $request->middlename;
         $add_adimission->previouschoolname = $request->previouschoolname;
-        $add_adimission->guardian_id = $request->guardian_id;
         $add_adimission->fname = $request->fname;
         $add_adimission->age = $request->age;
         $add_adimission->dob = $request->dob;
         $add_adimission->gender = $request->gender;
         $add_adimission->bloodgroup = $request->bloodgroup;
         $add_adimission->genotype = $request->genotype;
+        $add_adimission->mothername = $request->mothername;
         
        $add_adimission->preclassname = $request->preclassname;
+       $add_adimission->user_id = $request->user_id;
         $add_adimission->classname = $request->classname;
         $add_adimission->lastschooladdress = $request->lastschooladdress;
         $add_adimission->disability = $request->disability;
@@ -1183,6 +1239,18 @@ class UserController extends Controller
         $add_adimission->ref_no1 = substr(rand(0,time()),0, 9);
 
         $add_adimission->save();
+
+        if ($add_adimission) {
+            DB::table('users')->updateOrInsert(
+                ['user_id' => $add_adimission->user_id],
+                [
+                    'student_id' => $add_adimission->id,
+                    //'last_name' => $user->last_name,
+                    // Add more fields as needed
+                ]
+            );
+        }
+
         return redirect()->back()->with('success', 'You have successfully add child to parent');
 
     }
@@ -1209,18 +1277,22 @@ class UserController extends Controller
         return view('dashboard.admin.addresultsad1', compact('view_teachersubjects','view_studentsubject'));
     }
     public function currentresult(){
-        $view_yourresults = User::where('guardian_id', auth::guard('guardian')->id()
+        $view_yourresults = User::where('user_id', auth::guard('user')->id()
         )->get();
-        return view('dashboard.guardian.currentresult', compact('view_yourresults'));
+        return view('dashboard.currentresult', compact('view_yourresults'));
     }
-    // public function currentresult(){
-    //     // $view_classstudents = Academicsession::where('academic_session', $academic_session)->first();
 
-    //     //$view_classstudents = Academicsession::where('academic_session', $academic_session)->first();
-    //     // $view_classstudents = User::where('guardian_id', auth::guard('guardian_id')->id())->get();
 
-    //     return view('dashboard.guardian.currentresult', compact('view_classstudents'));
-    // }
+    
+    public function admissions(){
+        $view_classes = Classname::latest()->get();
+        $acas = Academicsession::latest()->get();
+        
+        return view('dashboard.admissions', compact('acas', 'view_classes'));
+    }
+
+
+
     public function logout(){
         Auth::guard('web')->logout();
         return redirect('login');

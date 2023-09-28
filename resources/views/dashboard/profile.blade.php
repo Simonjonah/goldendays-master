@@ -10,11 +10,11 @@
             <h1>@if (Auth::guard('web')->user()->status == null)
               Please {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} your admission is under review we will get bact to you shortly!
             @elseif (Auth::guard('web')->user()->status == 'reject')
-              <small class="btn btn-danger">Dear {{ Auth::guard('web')->user()->fname }} You have been rejected in the Brixtonn School you can do well to contact us through info@brixtonnschools.com.ng</small>
+              <small class="btn btn-danger">Dear {{ Auth::guard('web')->user()->fname }} You have been rejected in the Golden Destiny School you can do well to contact us through info@goldendestinyschools.com.ng</small>
               @elseif (Auth::guard('web')->user()->status == 'suspend')
-              <small class="btn btn-warning" style="color: #000">Dear {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->middlename }} You have been suspended in the Brixtonn School you can do well to contact us through info@brixtonnschools.com.ng</small>
+              <small class="btn btn-warning" style="color: #000">Dear {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->middlename }} You have been suspended in the Goldendestiny School you can do well to contact us through info@Goldendestinyschools.com.ng</small>
               @elseif (Auth::guard('web')->user()->status == 'admitted')
-              <small class="btn btn-success">Dear {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->middlename }} Congratulations! You been given admission in BRIXTONN SCHOOLS</small>
+              <small class="btn btn-success">Dear {{ Auth::guard('web')->user()->surname }}, {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->middlename }} Congratulations! You been given admission in Goldendestiny SCHOOLS</small>
               Please Print your admission letter and pay school fees throgh this account
               @else
                 

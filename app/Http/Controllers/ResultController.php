@@ -304,7 +304,7 @@ class ResultController extends Controller
    
     public function checkresult(){
        $the_results = Academicsession::all();
-        return view('dashboard.guardian.checkresult', compact('the_results'));
+        return view('dashboard.checkresult', compact('the_results'));
     }
     
 

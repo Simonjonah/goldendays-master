@@ -33,7 +33,7 @@ class FlutterwaveController extends Controller
                 "classname" => request()->classname,
                 "term" => request()->term,
                 "section" => request()->section,
-                "guardian_id" => request()->guardian_id,
+                "user_id" => request()->user_id,
                 "address" => request()->address,
                 "student_id" => request()->student_id,
                 "dev_amount" => request()->dev_amount,
@@ -45,12 +45,13 @@ class FlutterwaveController extends Controller
                 "form_amount" => request()->form_amount,
                 "tuition" => request()->tuition,
                 "feeding" => request()->feeding,
+                "payment_id" => request()->payment_id,
                 
             ],
 
             "meta" => [
                 'student_id' => request()->student_id,
-                'guardian_id' => request()->guardian_id,
+                'user_id' => request()->user_id,
                 'address' => request()->address,
                 'email' => request()->email,
                 'amount' => request()->amount,
@@ -72,6 +73,7 @@ class FlutterwaveController extends Controller
                 'dev_amount' => request()->dev_amount,
                 'section' => request()->section,
                 "feeding" => request()->feeding,
+                "payment_id" => request()->payment_id,
 
             ],
 
@@ -111,8 +113,8 @@ class FlutterwaveController extends Controller
         if ($data['data']['meta']['feeding'] == 'school') {
             $schoolfeespayment = new Transaction();
             $schoolfeespayment->student_id = $data['data']['meta']['student_id'];
-            // $schoolfeespayment->payment_id = $data['data']['meta']['payment_id'];
-           $schoolfeespayment->guardian_id = Auth::guard('guardian')->user()->id;
+            $schoolfeespayment->payment_id = $data['data']['meta']['payment_id'];
+           $schoolfeespayment->user_id = Auth::guard('web')->user()->id;
             $schoolfeespayment->amount = $data['data']['meta']['amount'];
             $schoolfeespayment->form_amount = $data['data']['meta']['form_amount'];
             $schoolfeespayment->uniforms_amount = $data['data']['meta']['uniforms_amount'];
@@ -163,12 +165,12 @@ class FlutterwaveController extends Controller
             $schoolfeespayment->ref_no = substr(rand(0,time()),0, 9);
             $schoolfeespayment->save();
 
-            return view('dashboard.guardian.paylounge');
+            return view('dashboard.paylounge');
 
         } elseif($data['data']['meta']['feeding'] == 'feeding') { {
             $schoolfeespayment = new Transaction();
             $schoolfeespayment->student_id = $data['data']['meta']['student_id'];
-            $schoolfeespayment->guardian_id = Auth::guard('guardian')->user()->id;
+            $schoolfeespayment->user_id = Auth::guard('web')->user()->id;
             $schoolfeespayment->amount = $data['data']['meta']['amount'];
           
             
@@ -212,14 +214,14 @@ class FlutterwaveController extends Controller
             $schoolfeespayment->ref_no = substr(rand(0,time()),0, 9);
             $schoolfeespayment->save();
 
-            return view('dashboard.guardian.paylounge');
+            return view('dashboard.paylounge');
         }
 
         
         }elseif($data['data']['meta']['feeding'] == 'trans'){
             $schoolfeespayment = new Transaction();
             $schoolfeespayment->student_id = $data['data']['meta']['student_id'];
-            $schoolfeespayment->guardian_id = Auth::guard('guardian')->user()->id;
+            $schoolfeespayment->user_id = Auth::guard('web')->user()->id;
             $schoolfeespayment->address = $data['data']['meta']['address'];
             $schoolfeespayment->amount = $data['data']['meta']['amount'];
           
@@ -264,11 +266,11 @@ class FlutterwaveController extends Controller
             $schoolfeespayment->ref_no = substr(rand(0,time()),0, 9);
             $schoolfeespayment->save();
 
-            return view('dashboard.guardian.paylounge');
+            return view('dashboard.paylounge');
         }elseif($data['data']['meta']['feeding'] == 'party'){
             $schoolfeespayment = new Transaction();
             $schoolfeespayment->student_id = $data['data']['meta']['student_id'];
-            $schoolfeespayment->guardian_id = Auth::guard('guardian')->user()->id;
+            $schoolfeespayment->user_id = Auth::guard('web')->user()->id;
             // $schoolfeespayment->address = $data['data']['meta']['address'];
             $schoolfeespayment->amount = $data['data']['meta']['amount'];
           
@@ -312,7 +314,7 @@ class FlutterwaveController extends Controller
             
             $schoolfeespayment->ref_no = substr(rand(0,time()),0, 9);
             $schoolfeespayment->save();
-            return view('dashboard.guardian.paylounge');
+            return view('dashboard.paylounge');
 
         }
     }

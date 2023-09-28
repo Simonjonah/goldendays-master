@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('guardian_id')->nullable();
+            
+            $table->string('user_id')->nullable();
             $table->string('fname')->nullable();
             $table->string('middlename')->nullable();
             $table->string('surname')->nullable();
@@ -36,9 +37,6 @@ return new class extends Migration
             $table->string('alms')->nullable();
             $table->string('section')->nullable();
             $table->string('academic_session')->nullable();
-            $table->string('ref_no')->nullable();
-            $table->string('status')->nullable();
-            $table->string('role')->nullable();
             $table->string('slug')->nullable();
             $table->string('term')->nullable();
             $table->string('previouschoolname')->nullable();
@@ -48,6 +46,24 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+
+            $table->string('fathername')->nullable();
+            $table->string('mothername')->nullable();
+            $table->string('fatheroccupation')->nullable();
+            $table->string('motheroccupation')->nullable();
+            $table->string('maritalstatus')->nullable();
+            $table->string('officeaddress')->nullable();
+            $table->string('stateoforigin')->nullable();
+            $table->string('doctorname')->nullable();
+            $table->string('homeaddress')->nullable();
+            $table->string('doctorphone')->nullable();
+            $table->string('emergencyphone')->nullable();
+            $table->string('emergencyaddress')->nullable();
+            $table->string('whointro')->nullable();
+            $table->string('ref_no')->nullable();
+            $table->string('status')->nullable();
+            $table->string('role')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -72,8 +72,8 @@ class User extends Authenticatable
         return $this->hasMany(Lessonnote::class);
     }
 
-    public function guardian(): BelongsTo
+    public function guardians(): HasMany
     {
-        return $this->belongsTo(Guardian::class);
+        return $this->hasMany(Guardian::class);
     }
 }

@@ -142,10 +142,9 @@ class ClassactivityController extends Controller
     }
 
     public function viewclassactivitypare (){
-        // $view_specifics = Classactivity::where('user_id', auth::guard('web')->id()
-        // )->get();
+        
         $vieew_clasactivities = Classactivity::where('status', 'approved')->get();
-        return view('dashboard.guardian.viewclassactivitypare', compact('vieew_clasactivities'));
+        return view('dashboard.viewclassactivitypare', compact('vieew_clasactivities'));
     }
 
     public function addclassactivitiesad (){
@@ -156,7 +155,7 @@ class ClassactivityController extends Controller
     public function viewclassactivityparespecial (){
         $view_specialactivities = Classactivity::where('student_id', auth::guard('web')->id()
         )->where('status', 'approved')->get();
-        return view('dashboard.guardian.viewclassactivityparespecial', compact('view_specialactivities'));
+        return view('dashboard.viewclassactivityparespecial', compact('view_specialactivities'));
     }
 
     
@@ -263,11 +262,11 @@ class ClassactivityController extends Controller
 
     public function parentviewsingleactivity($slug){
        $view_singleclassactivities = Classactivity::where('slug', $slug)->first();
-        return view('dashboard.guardian.parentviewsingleactivity', compact('view_singleclassactivities'));
+        return view('dashboard.parentviewsingleactivity', compact('view_singleclassactivities'));
     }
     public function replyclassactivity($id){
         $view_singleclassactivities = Classactivity::find($id);
-         return view('dashboard.guardian.replyclassactivity', compact('view_singleclassactivities'));
+         return view('dashboard.replyclassactivity', compact('view_singleclassactivities'));
      }
 
 

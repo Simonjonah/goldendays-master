@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('form_amount')->default(0)->nullable();
             $table->string('tuition')->default(0)->nullable();
             $table->string('address')->nullable();
+            $table->string('feeding')->nullable();
             
             $table->string('status')->default('pending')->nullable();
             $table->string('transaction_id')->nullable();

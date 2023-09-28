@@ -14,7 +14,7 @@
           <img src="{{ asset('/public/../'.Auth::guard('web')->user()->images)}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no11) }}" class="d-block">{{ Auth::guard('web')->user()->fname }}</a>
+          <a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no1) }}" class="d-block">{{ Auth::guard('web')->user()->fname }}</a>
         </div>
       </div>
 
@@ -51,66 +51,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Pay Fees {{ Auth::guard('web')->user()->classname }}
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              {{-- <li class="nav-item">
-                <a href="{{ url('payment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pioneer Term</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('payment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pensulate Term</p>
-                </a>
-              </li> --}}
-
-              <li class="nav-item">
-                <a href="{{ url('payment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Premium Term</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ url('payment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pay All Term</p>
-                </a>
-              </li>
-             
-            </ul>
-          </li>
-
           
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Payments History
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('web.paymenthistory') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Payments History</p>
-                </a>
-              </li>
-            
-            </ul>
-          </li>
           
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
@@ -188,8 +129,7 @@
       @elseif (Auth::guard('web')->user()->status == 'admitted')
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+         
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -208,54 +148,102 @@
               
             </ul>
           </li>
+          
           <li class="nav-item">
-            <a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no1) }}" class="nav-link">
+            <a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no) }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                Profile
+                Parent Profile
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Pay Fees {{ Auth::guard('web')->user()->classname }}
+                Your Child
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('web/payment') }}" class="nav-link">
+                <a href="{{ url('web/yourchildren') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pioneer Term</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('web/payment') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pensulate Term</p>
+                  <p>Your Child</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{ url('payment') }}" class="nav-link">
+                <a href="{{ url('web/addyourchild') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Premium Term</p>
+                  <p>Add Another Child</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Pay Fees 
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('web/payment') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pay School Fees</p>
+                </a>
+              </li>
+              {{-- <li class="nav-item">
+                <a href="{{ url('web.payment') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Seccond Term</p>
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="{{ url('payment') }}" class="nav-link">
+               {{-- <li class="nav-item">
+                <a href="{{ url('web.payment') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Third Term</p>
+                </a>
+              </li> --}}
+
+              {{-- <li class="nav-item">
+                <a href="{{ url('web.payment') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pay All Term</p>
+                </a>
+              </li> --}}
+              <li class="nav-item">
+                <a href="{{ url('web/feedingpaypayment') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pay Feeding</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('web/buspayment') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bus Services</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('web/partypayment') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Party Fees</p>
                 </a>
               </li>
              
             </ul>
-          </li>
+          </li>          
+
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
@@ -266,7 +254,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('web.paymenthistory') }}" class="nav-link">
+                <a href="{{ url('web/paymenthistory') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Payments History</p>
                 </a>
@@ -275,15 +263,31 @@
             </ul>
           </li>
           
-          
-          <li class="nav-header">ADMIMISSION</li>
-          <li class="nav-item">
-            <a href="{{ url('web/admisionletter') }}" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Admission Letter</p>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Class Activities
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('web/viewclassactivitypare') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Activities</p>
+                </a>
+              </li>
 
+              <li class="nav-item">
+                <a href="{{ url('web/viewclassactivityparespecial') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Special Activity</p>
+                </a>
+              </li>
+            
+            </ul>
+          </li>
 
 
           <li class="nav-item has-treeview">
@@ -295,6 +299,8 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+              
               <li class="nav-item">
                 <a href="{{ url('web/checkresult') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -304,28 +310,6 @@
 
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                My Teacher 
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <li class="nav-item">
-                  <a href="{{ url('web/myprogram') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>My Teacher</p>
-                  </a>
-                </li>
-              </li>
-            
-
-            </ul>
-          </li>
-
           
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">

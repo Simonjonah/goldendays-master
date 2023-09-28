@@ -37,7 +37,7 @@
                 <div class="col-12">
                   <h4>
                   <td>{{ $view_single_payment->ref_no }}</td>
-                    <small class="float-right">Date: {{ Auth::guard('guardian')->user()->created_at->format('D d, M Y, H:i') }}</small>
+                    <small class="float-right">Date: {{ Auth::guard('admin')->user()->created_at->format('D d, M Y, H:i') }}</small>
                   </h4>
                 </div>
                 <!-- /.col -->

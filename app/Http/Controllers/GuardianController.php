@@ -18,28 +18,50 @@ class GuardianController extends Controller
         
 
         $request->validate([
-            'fathername' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'mothername' => ['required', 'string'],
-            'motheroccupation' => ['required', 'string'],
-            'fatheroccupation' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            
-            'academic_session' => ['required', 'string'],
-            'stateoforigin' => ['required', 'string'],
-           
-            'maritalstatus' => ['required', 'string'],
-            'officeaddress' => ['required', 'string'],
-            'homeaddress' => ['required', 'string'],
-            'doctorphone' => ['required', 'string'],
-            'doctorname' => ['required', 'string'],
-            'emergencyphone' => ['required', 'string'],
-            'emergencyaddress' => ['required', 'string'],
-            'whointro' => ['required', 'string'],
-            'academic_session' => ['required', 'string'],
-            
-          'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
-            
+        'fathername' => ['required', 'string'],
+        'section' => ['required', 'string'],
+        'mothername' => ['required', 'string'],
+        'motheroccupation' => ['required', 'string'],
+        'fatheroccupation' => ['required', 'string'],
+        'phone' => ['required', 'string'],
+        
+        'academic_session' => ['required', 'string'],
+        'stateoforigin' => ['required', 'string'],
+        
+        'maritalstatus' => ['required', 'string'],
+        'officeaddress' => ['required', 'string'],
+        'homeaddress' => ['required', 'string'],
+        'doctorphone' => ['required', 'string'],
+        'doctorname' => ['required', 'string'],
+        'emergencyphone' => ['required', 'string'],
+        'emergencyaddress' => ['required', 'string'],
+        'whointro' => ['required', 'string'],
+        'academic_session' => ['required', 'string'],
+        
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:guardians'],
+        
+
+        'fname' => ['nullable', 'string', 'max:255'],
+        'surname' => ['nullable', 'string'],
+        'middlename' => ['nullable', 'string'],
+        'age' => ['nullable', 'string'],
+        'bloodgroup' => ['nullable', 'string'],
+        'genotype' => ['nullable', 'string'],
+        'previouschoolname' => ['nullable', 'string'],
+        'preclassname' => ['nullable', 'string'],
+        'gender' => ['nullable', 'string'],
+        'classname' => ['nullable', 'string'],
+        'lastschooladdress' => ['nullable', 'string'],
+        'disability' => ['nullable', 'string'],
+        'dob' => ['nullable', 'string'],
+        'ref_no' => ['nullable', 'string'],
+        'section' => ['nullable', 'string'],
+        'academic_session' => ['nullable', 'string'],
+        'term' => ['nullable', 'string'],
+        'password' => ['nullable', 'string'],
+        'cpassword' => 'required|min:5|max:30|same:cpassword',
+        'images' => 'nullable|mimes:jpg,png,jpeg'
+        
         ]);
         // dd($request->all());
         $addsec_admission = new Guardian ();

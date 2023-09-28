@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classname;
 use App\Models\Result;
 use App\Models\Transaction;
-use App\Models\user;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClassnameController extends Controller

@@ -24,7 +24,7 @@
     <!-- /.content-header -->
 
    @if (Auth::guard('web')->user()->status == null)
-     @include('dashboard.firstregistration')
+     <h1> Dear {{ Auth::guard('web')->user()->fathername}} Thank You for your Registration, Please Wait for Approval Shortly!</h1>
    @elseif (Auth::guard('web')->user()->status == 'suspend')
     <h1>{{ Auth::guard('web')->user()->fname }}, You have been suspended</h1>
     @elseif (Auth::guard('web')->user()->status == 'reject')

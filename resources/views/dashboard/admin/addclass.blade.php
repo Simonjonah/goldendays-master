@@ -72,8 +72,8 @@
                       <label for="exampleInputEmail1">Section</label>
                       <select name="section" class="form-control" id="">
                         <option value="Pre-School">Pre-School</option>
-                        <option value="Primary">Primary</option>
-                        <option value="Secondary">Secondary</option>
+                        <option value="Primary">Elementary</option>
+                        <option value="Secondary">High School</option>
                     </div>
                     @error('section')
                     <span class="text-danger">{{ $message }}</span>

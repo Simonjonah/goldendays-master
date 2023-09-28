@@ -32,7 +32,7 @@
           <h4>
             <td>{{ $print_single_payment->ref_no }}</td>
 
-            <small class="float-right">Date: {{ Auth::guard('guardian')->user()->created_at->format('D d, M Y, H:i') }}</small>
+            <small class="float-right">Date: {{ Auth::guard('admin')->user()->created_at->format('D d, M Y, H:i') }}</small>
           </h4>
         </div>
         <!-- /.col -->
@@ -41,7 +41,7 @@
       <div class="row invoice-info">
         <div class="col-sm-2 invoice-col">
        
-            <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="guardianLTE Logo">
+            <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="adminLTE Logo">
         </div>
         <!-- /.col -->
         <div class="col-sm-8 invoice-col">

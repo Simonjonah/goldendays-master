@@ -246,7 +246,7 @@
                         <i class="fas fa-user"></i>
                       </a></th>
 
-                      <th><a href="printpdf" class="btn btn-success"><i class="fas fa-print"></i></a></th>
+                      <th><a href="{{ url('admin/printsinglepaymentspdf/'.$viewall_paymentsad->ref_no) }}" class="btn btn-success"><i class="fas fa-print"></i></a></th>
                        <td><a href="{{ url('admin/deletepayment/'.$viewall_paymentsad->slug) }}"
                         class='btn btn-danger'>
                          <i class="far fa-trash-alt"></i>

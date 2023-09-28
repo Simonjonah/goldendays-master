@@ -29,8 +29,8 @@ class RedirectIfAuthenticated
                     return redirect()->route('admin.home');
                 }
 
-                if ($guard === 'guardian') {
-                    return redirect()->route('guardian.home');
+                if ($guard === 'account') {
+                    return redirect()->route('account.home');
                 }
 
                 // return redirect(RouteServiceProvider::HOME);

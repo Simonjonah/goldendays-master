@@ -67,6 +67,9 @@ Route::get('/register', function () {
 
     return view('auth.register');
 });
+Route::get('admissions', [UserController::class, 'admissions'])->name('admissions');
+Route::post('/addchildbyparent', [UserController::class, 'addchildbyparent'])->name('addchildbyparent');
+
 
 Route::post('/createbooking', [BookingController::class, 'createbooking'])->name('createbooking');
 Route::post('/createcontact', [ContactController::class, 'createcontact'])->name('createcontact');
@@ -350,44 +353,6 @@ Route::prefix('guardian')->name('guardian.')->group(function() {
         Route::get('/pdf1', [ResultController::class, 'pdf1'])->name('pdfi');
         
         Route::view('/home','dashboard.guardian.home')->name('home');
-        Route::get('/viewclassactivityparespecial', [ClassactivityController::class, 'viewclassactivityparespecial'])->name('viewclassactivityparespecial');
-        Route::get('/parentviewsingleactivity/{slug}', [ClassactivityController::class, 'parentviewsingleactivity'])->name('parentviewsingleactivity');
-        Route::get('/replyclassactivity/{id}', [ClassactivityController::class, 'replyclassactivity'])->name('replyclassactivity');
-        Route::post('/replyclassactivitys/{id}', [ClassactivityController::class, 'replyclassactivitys'])->name('replyclassactivitys');
-        
-        Route::post('generatePDF', [ResultController::class, 'generatePDF'])->name('generatePDF');
-
-        Route::get('/checkresult', [ResultController::class, 'checkresult'])->name('checkresult');
-        Route::get('/partypayment', [UserController::class, 'partypayment'])->name('partypayment');
-        Route::get('/feedingpaypayment', [UserController::class, 'feedingpaypayment'])->name('feedingpaypayment');
-        Route::get('/buspayment', [UserController::class, 'buspayment'])->name('buspayment');
-        Route::get('/viewclassactivitypare', [ClassactivityController::class, 'viewclassactivitypare'])->name('viewclassactivitypare');
-        Route::get('/home', [GuardianController::class, 'home'])->name('home');
-        Route::get('/paymenthistory', [TransactionController::class, 'paymenthistory'])->name('paymenthistory');
-        Route::get('/viewpayment1/{ref_no}', [TransactionController::class, 'viewpayment1'])->name('viewpayment1');
-        Route::get('/paymentspdf1/{ref_no}', [TransactionController::class, 'paymentspdf1'])->name('paymentspdf1');
-        
-        Route::get('/paypartfee/{ref_no1}', [UserController::class, 'paypartfee'])->name('paypartfee');
-        Route::get('/paybuservicefee/{ref_no1}', [UserController::class, 'paybuservicefee'])->name('paybuservicefee');
-        Route::get('/payfeeding/{ref_no1}', [UserController::class, 'payfeeding'])->name('payfeeding');
-        Route::get('/payschoolfees/{ref_no1}', [UserController::class, 'payschoolfees'])->name('payschoolfees');
-        Route::get('/payment', [UserController::class, 'payment'])->name('payment');
-        Route::get('/yourchildren', [UserController::class, 'yourchildren'])->name('yourchildren');
-        Route::get('/parentviewstudent/{ref_no1}', [UserController::class, 'parentviewstudent'])->name('parentviewstudent');
-        Route::get('/printstudents/{ref_no1}', [UserController::class, 'printstudents'])->name('printstudents');
-        Route::get('/viewclassactivity', [ClassactivityController::class, 'viewclassactivity'])->name('viewclassactivity');
-        
-        Route::get('/parenteditstudent/{ref_no1}', [UserController::class, 'parenteditstudent'])->name('parenteditstudent');
-        Route::put('/updatebyparent/{ref_no1}', [UserController::class, 'updatebyparent'])->name('updatebyparent');
-        Route::get('/addyourchild', [UserController::class, 'addyourchild'])->name('addyourchild');
-        Route::post('/addchildbyparent', [UserController::class, 'addchildbyparent'])->name('addchildbyparent');
-        Route::get('/profile/{ref_no}', [GuardianController::class, 'profile'])->name('profile');
-        
-        Route::get('/viewstudent/{ref_no1}', [UserController::class, 'viewstudent'])->name('viewstudent');
-        
-        Route::put('/settingsupdate/{id}', [GuardianController::class, 'settingsupdate'])->name('settingsupdate');
-        
-        Route::get('/profile', [GuardianController::class, 'profile'])->name('profile');
        
        
         Route::get('/logout', [GuardianController::class, 'logout'])->name('logout'); 
@@ -455,7 +420,45 @@ Route::prefix('web')->name('web.')->group(function() {
     Route::middleware(['auth:web'])->group(function() {
 
         Route::get('/home', [UserController::class, 'home'])->name('home');
+        Route::get('/yourchildren', [UserController::class, 'yourchildren'])->name('yourchildren');
+        Route::get('/viewclassactivityparespecial', [ClassactivityController::class, 'viewclassactivityparespecial'])->name('viewclassactivityparespecial');
+        Route::get('/parentviewsingleactivity/{slug}', [ClassactivityController::class, 'parentviewsingleactivity'])->name('parentviewsingleactivity');
+        Route::get('/replyclassactivity/{id}', [ClassactivityController::class, 'replyclassactivity'])->name('replyclassactivity');
+        Route::post('/replyclassactivitys/{id}', [ClassactivityController::class, 'replyclassactivitys'])->name('replyclassactivitys');
         
+        Route::post('generatePDF', [ResultController::class, 'generatePDF'])->name('generatePDF');
+
+        Route::get('/checkresult', [ResultController::class, 'checkresult'])->name('checkresult');
+        Route::get('/partypayment', [UserController::class, 'partypayment'])->name('partypayment');
+        Route::get('/feedingpaypayment', [UserController::class, 'feedingpaypayment'])->name('feedingpaypayment');
+        Route::get('/buspayment', [UserController::class, 'buspayment'])->name('buspayment');
+        Route::get('/viewclassactivitypare', [ClassactivityController::class, 'viewclassactivitypare'])->name('viewclassactivitypare');
+        Route::get('/home', [GuardianController::class, 'home'])->name('home');
+        Route::get('/paymenthistory', [TransactionController::class, 'paymenthistory'])->name('paymenthistory');
+        Route::get('/viewpayment1/{ref_no}', [TransactionController::class, 'viewpayment1'])->name('viewpayment1');
+        Route::get('/paymentspdf1/{ref_no}', [TransactionController::class, 'paymentspdf1'])->name('paymentspdf1');
+        
+        Route::get('/paypartfee/{ref_no1}', [UserController::class, 'paypartfee'])->name('paypartfee');
+        Route::get('/paybuservicefee/{ref_no1}', [UserController::class, 'paybuservicefee'])->name('paybuservicefee');
+        Route::get('/payfeeding/{ref_no1}', [UserController::class, 'payfeeding'])->name('payfeeding');
+        Route::get('/payschoolfees/{ref_no1}', [UserController::class, 'payschoolfees'])->name('payschoolfees');
+        Route::get('/payment', [UserController::class, 'payment'])->name('payment');
+        Route::get('/parentviewstudent/{ref_no1}', [UserController::class, 'parentviewstudent'])->name('parentviewstudent');
+        Route::get('/printstudents/{ref_no1}', [UserController::class, 'printstudents'])->name('printstudents');
+        Route::get('/viewclassactivity', [ClassactivityController::class, 'viewclassactivity'])->name('viewclassactivity');
+        
+        Route::get('/parenteditstudent/{ref_no1}', [UserController::class, 'parenteditstudent'])->name('parenteditstudent');
+        Route::put('/updatebyparent/{ref_no1}', [UserController::class, 'updatebyparent'])->name('updatebyparent');
+        Route::get('/addyourchild', [UserController::class, 'addyourchild'])->name('addyourchild');
+        Route::post('/addyourchildren', [UserController::class, 'addyourchildren'])->name('addyourchildren');
+        Route::get('/profile/{ref_no}', [GuardianController::class, 'profile'])->name('profile');
+        
+        Route::get('/viewstudent/{ref_no1}', [UserController::class, 'viewstudent'])->name('viewstudent');
+        
+        Route::put('/settingsupdate/{id}', [GuardianController::class, 'settingsupdate'])->name('settingsupdate');
+        
+        Route::get('/profile', [GuardianController::class, 'profile'])->name('profile');
+       
         Route::put('/updatelessonotesteacher/{id}', [LessonnoteController::class, 'updatelessonotesteacher'])->name('updatelessonotesteacher');
         Route::get('/editlessonteacher/{slug}', [LessonnoteController::class, 'editlessonteacher'])->name('editlessonteacher');
         Route::get('/viewlessonnotesteacher/{slug}', [LessonnoteController::class, 'viewlessonnotesteacher'])->name('viewlessonnotesteacher');
@@ -500,7 +503,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::post('/createresults', [ResultController::class, 'createresults'])->name('createresults');
         Route::put('/assignstudentclass/{ref_no1}', [UserController::class, 'assignstudentclass'])->name('assignstudentclass');
         Route::get('addresults/{ref_no1}', [UserController::class, 'addresults'])->name('addresults');
-        Route::get('payment', [SchoolfeeController::class, 'payment'])->name('payment');
+        // Route::get('payment', [SchoolfeeController::class, 'payment'])->name('payment');
         // Route::get('/generate-report', 'ReportController@generateReport');
         //Route::get('generatePdf', [ResultController::class, 'generatePdf'])->name('generatePdf');
         //Route::get('generatePdf', [ResultController::class, 'generatePdf'])->name('generatePdf');

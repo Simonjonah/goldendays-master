@@ -15,7 +15,7 @@
           <img src="{{ asset('assets/dist/img/AdminLTELogo.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{ url('account/profile') }}" class="d-block">{{ Auth::guard('account')->user()->name }}</a>
+          <a href="#" class="d-block">{{ Auth::guard('account')->user()->name }}</a>
         </div>
       </div>
 <?php
@@ -47,7 +47,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ url('account.profile') }}" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile

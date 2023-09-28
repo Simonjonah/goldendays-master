@@ -10,21 +10,21 @@ class TransactionController extends Controller
     //
       public function paylounge($ref_no){
         $pay_lounge = Transaction::where('ref_no', $ref_no)->first();
-        return view('dashboard.guardian.paylounge', compact('pay_lounge'));
+        return view('dashboard.paylounge', compact('pay_lounge'));
       }
 
       public function paymenthistory(){
-        $getyour_payments = Transaction::where('guardian_id', auth::guard('guardian')->id()
+        $getyour_payments = Transaction::where('user_id', auth::guard('web')->id()
         )->latest()->get();
-        return view('dashboard.guardian.paymenthistory', compact('getyour_payments'));
+        return view('dashboard.paymenthistory', compact('getyour_payments'));
       }
       public function viewpayment1($ref_no){
         $viewsingle_payment = Transaction::where('ref_no', $ref_no)->first();
-        return view('dashboard.guardian.viewpayment1', compact('viewsingle_payment'));
+        return view('dashboard.viewpayment1', compact('viewsingle_payment'));
       }
       public function paymentspdf1($ref_no){
         $printsingle_payment = Transaction::where('ref_no', $ref_no)->first();
-        return view('dashboard.guardian.paymentspdf1', compact('printsingle_payment'));
+        return view('dashboard.paymentspdf1', compact('printsingle_payment'));
       }
       public function viewallpayment(){
         $viewall_payments = Transaction::latest()->get();
