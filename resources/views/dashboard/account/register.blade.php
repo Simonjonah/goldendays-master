@@ -22,7 +22,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="/"><b>Goldern Account </b>Admin</a>
+    <a href="/"><b>Golden Account </b>Admin</a>
   </div>
 
   <div class="card">
