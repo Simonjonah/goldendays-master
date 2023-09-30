@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     //
-    public function create(Request $request){
+
+    
+    public function subcreate(Request $request){
         //create method
         $request->validate([
             'fname' => ['required', 'string', 'max:255'],
@@ -38,6 +40,35 @@ class AdminController extends Controller
         $registration->fname = $request->fname;
         $registration->surname = $request->surname;
        $registration->role = 0;
+        $registration->email = $request->email;
+        $registration->password = \Hash::make($request->password);
+        $registration->save();
+ 
+        if ($registration) {
+            return redirect()->route('admin.home')->with('success', 'you have successfully registered');
+                
+            }else{
+                return redirect()->back()->with('error', 'you have fail to registered');
+        }
+    }
+
+
+    public function create(Request $request){
+        //create method
+        $request->validate([
+            'fname' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'agree' => ['required', 'string', 'max:255'],
+            
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            'password' => ['required', 'string', 'min:8'],
+            'cpassword' => 'required|min:5|max:30|same:cpassword'
+           
+        ]);
+        $registration = new Admin();
+        $registration->fname = $request->fname;
+        $registration->surname = $request->surname;
+       $registration->role = 'sub';
         $registration->email = $request->email;
         $registration->password = \Hash::make($request->password);
         $registration->save();
@@ -87,9 +118,9 @@ class AdminController extends Controller
         $countsnoti = Notification::count();
         $countsactivity = Classactivity::count();
         $countsclasses = Classname::count();
-        $countsparent = Guardian::count();
-        $countsecparent = Guardian::where('section', 'Primary')->count();
-        $countprimparent = Guardian::where('section', 'Secondary')->count();
+        $countsparent = User::where('role', null)->count();
+        $countsecparent = User::where('section', 'Primary')->count();
+        $countprimparent = User::where('section', 'Secondary')->count();
 
         
         $view_lecturers = User::orderby('created_at', 'DESC')->where('status', 'teacher')->take(4)->get();
@@ -140,7 +171,34 @@ class AdminController extends Controller
 
     }
 
+    public function viewadminstrator(){
+        $admins = Admin::all();
+        return view('dashboard.admin.viewadminstrator', compact('admins'));
+    }
 
+
+    public function sackedadmin($id){
+        $reject_student = Admin::find($id);
+        $reject_student->role = 'sacked';
+        $reject_student->save();
+        return redirect()->back()->with('success', 'you have sacked successfully');
+    }
+
+    public function approveadmin($id){
+        $reject_student = Admin::find($id);
+        $reject_student->role = 'approved';
+        $reject_student->save();
+        return redirect()->back()->with('success', 'you have approved successfully');
+    }
+
+    public function deleteadmin($id){
+        $reject_student = Admin::where('id', $id)->delete();
+        
+        return redirect()->back()->with('success', 'you have approved successfully');
+    }
+
+    
+    
 
     public function logout(){
         Auth::guard('admin')->logout();

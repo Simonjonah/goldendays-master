@@ -20,6 +20,12 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+    @if (Auth::guard('account')->user()->role == null)
+      <h1>Please wait for Approval</h1>
+    @elseif (Auth::guard('account')->user()->role == 'reject')
+    <h1>You have been suspended</h1>
+      
+    @else
 
     <!-- Main content -->
     <section class="content">
@@ -243,6 +249,8 @@
       </div><!--/. container-fluid -->
     </section>
 
+    
+    @endif
     
     <!-- /.content -->
     <!-- /.content -->

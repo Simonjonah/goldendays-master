@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QueryController;
 use App\Http\Controllers\PaymentController;
 
-use App\Http\Controllers\GuardianController;
+// use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\AccountController;
 
 use App\Http\Controllers\HomeController;
@@ -101,14 +101,24 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
         Route::view('/login', 'dashboard.admin.login')->name('login');
         Route::view('/register','dashboard.admin.register')->name('register');
+        Route::view('/subregister','dashboard.admin.subregister')->name('subregister');
+        Route::post('/subcreate', [AdminController::class, 'subcreate'])->name('subcreate');
         Route::post('/create', [AdminController::class, 'create'])->name('create');
         Route::post('/check', [AdminController::class, 'check'])->name('check');
+        
 
     });
     
     Route::middleware(['auth:admin'])->group(function() {
         
-        
+        Route::get('/approveaccount/{id}', [AccountController::class, 'approveaccount'])->name('approveaccount');
+        Route::get('/sackedaccount/{id}', [AccountController::class, 'sackedaccount'])->name('sackedaccount');
+        Route::get('/deleteadmin/{id}', [AdminController::class, 'deleteadmin'])->name('deleteadmin');
+        Route::get('/approveadmin/{id}', [AdminController::class, 'approveadmin'])->name('approveadmin');
+        Route::get('/sackedadmin/{id}', [AdminController::class, 'sackedadmin'])->name('sackedadmin');
+        Route::get('/viewadminstrator', [AdminController::class, 'viewadminstrator'])->name('viewadminstrator');
+        Route::get('/viewaccountant', [AccountController::class, 'viewaccountant'])->name('viewaccountant');
+
         Route::get('deleteslessonnote/{slug}', [LessonnoteController::class, 'deleteslessonnote'])->name('deleteslessonnote');
         Route::get('lesonapprove/{slug}', [LessonnoteController::class, 'lesonapprove'])->name('lesonapprove');
         Route::get('suspendlessonnotes/{slug}', [LessonnoteController::class, 'suspendlessonnotes'])->name('suspendlessonnotes');
@@ -289,14 +299,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/viewabujanursery', [UserController::class, 'viewabujanursery'])->name('viewabujanursery');
         Route::get('/viewabujaprimary', [UserController::class, 'viewabujaprimary'])->name('viewabujaprimary');
         Route::get('/viewabjhighschool', [UserController::class, 'viewabjhighschool'])->name('viewabjhighschool');
-        Route::post('/createparent1', [GuardianController::class, 'createparent1'])->name('createparent1');
+        // Route::post('/createparent1', [GuardianController::class, 'createparent1'])->name('createparent1');
         
-        Route::get('/parentochild1/{ref_no}', [GuardianController::class, 'parentochild1'])->name('parentochild1');
-        Route::get('/viewparents', [GuardianController::class, 'viewparents'])->name('viewparents');
-        Route::get('/viewparent/{ref_no}', [GuardianController::class, 'viewparent'])->name('viewparent');
-        Route::get('/editparent/{ref_no}', [GuardianController::class, 'editparent'])->name('editparent');
-        Route::put('/updateparent/{ref_no}', [GuardianController::class, 'updateparent'])->name('updateparent');
-        Route::get('/addchild/{id}', [GuardianController::class, 'addchild'])->name('addchild');
+        // Route::get('/parentochild1/{ref_no}', [GuardianController::class, 'parentochild1'])->name('parentochild1');
+        // Route::get('/viewparents', [GuardianController::class, 'viewparents'])->name('viewparents');
+        // Route::get('/viewparent/{ref_no}', [GuardianController::class, 'viewparent'])->name('viewparent');
+        // Route::get('/editparent/{ref_no}', [GuardianController::class, 'editparent'])->name('editparent');
+        // Route::put('/updateparent/{ref_no}', [GuardianController::class, 'updateparent'])->name('updateparent');
+        // Route::get('/addchild/{id}', [GuardianController::class, 'addchild'])->name('addchild');
         Route::post('/add_childto_parents', [UserController::class, 'add_childto_parents'])->name('add_childto_parents');
         
         
@@ -336,30 +346,30 @@ Route::prefix('admin')->name('admin.')->group(function() {
 });
 
 
-Route::prefix('guardian')->name('guardian.')->group(function() {
+// Route::prefix('guardian')->name('guardian.')->group(function() {
 
-    Route::middleware(['guest:guardian'])->group(function() {
+//     Route::middleware(['guest:guardian'])->group(function() {
 
-        Route::view('/login', 'dashboard.guardian.login')->name('login');
-        Route::view('/register','dashboard.guardian.register')->name('register');
-        Route::post('/create', [GuardianController::class, 'create'])->name('create');
-        Route::post('/guardiancheck', [GuardianController::class, 'guardiancheck'])->name('guardiancheck');
+//         Route::view('/login', 'dashboard.guardian.login')->name('login');
+//         Route::view('/register','dashboard.guardian.register')->name('register');
+//         Route::post('/create', [GuardianController::class, 'create'])->name('create');
+//         Route::post('/guardiancheck', [GuardianController::class, 'guardiancheck'])->name('guardiancheck');
 
-    });
+//     });
     
-    Route::middleware(['auth:guardian'])->group(function() {
-        Route::get('/paylounge/{ref_no}', [TransactionController::class, 'paylounge'])->name('paylounge');
-        Route::get('/currentresult', [UserController::class, 'currentresult'])->name('currentresult');
-        Route::get('/pdf1', [ResultController::class, 'pdf1'])->name('pdfi');
+//     Route::middleware(['auth:guardian'])->group(function() {
+//         Route::get('/paylounge/{ref_no}', [TransactionController::class, 'paylounge'])->name('paylounge');
+//         Route::get('/currentresult', [UserController::class, 'currentresult'])->name('currentresult');
+//         Route::get('/pdf1', [ResultController::class, 'pdf1'])->name('pdfi');
         
-        Route::view('/home','dashboard.guardian.home')->name('home');
+//         Route::view('/home','dashboard.guardian.home')->name('home');
        
        
-        Route::get('/logout', [GuardianController::class, 'logout'])->name('logout'); 
+//         Route::get('/logout', [GuardianController::class, 'logout'])->name('logout'); 
         
        
-    });
-});
+//     });
+// });
 
 
 
@@ -401,7 +411,7 @@ Route::prefix('account')->name('account.')->group(function() {
         Route::get('/printfee/{id}', [PaymentController::class, 'printfee'])->name('printfee');
         Route::get('/printfeeall', [PaymentController::class, 'printfeeall'])->name('printfeeall');
         Route::get('/deletefee/{id}', [PaymentController::class, 'deletefee'])->name('deletefee');
-        Route::get('/profile', [GuardianController::class, 'profile'])->name('profile');
+        // Route::get('/profile', [GuardianController::class, 'profile'])->name('profile');
         Route::get('/logout', [AccountController::class, 'logout'])->name('logout'); 
        
     });
@@ -433,7 +443,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/feedingpaypayment', [UserController::class, 'feedingpaypayment'])->name('feedingpaypayment');
         Route::get('/buspayment', [UserController::class, 'buspayment'])->name('buspayment');
         Route::get('/viewclassactivitypare', [ClassactivityController::class, 'viewclassactivitypare'])->name('viewclassactivitypare');
-        Route::get('/home', [GuardianController::class, 'home'])->name('home');
+        // Route::get('/home', [GuardianController::class, 'home'])->name('home');
         Route::get('/paymenthistory', [TransactionController::class, 'paymenthistory'])->name('paymenthistory');
         Route::get('/viewpayment1/{ref_no}', [TransactionController::class, 'viewpayment1'])->name('viewpayment1');
         Route::get('/paymentspdf1/{ref_no}', [TransactionController::class, 'paymentspdf1'])->name('paymentspdf1');
@@ -451,13 +461,13 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::put('/updatebyparent/{ref_no1}', [UserController::class, 'updatebyparent'])->name('updatebyparent');
         Route::get('/addyourchild', [UserController::class, 'addyourchild'])->name('addyourchild');
         Route::post('/addyourchildren', [UserController::class, 'addyourchildren'])->name('addyourchildren');
-        Route::get('/profile/{ref_no}', [GuardianController::class, 'profile'])->name('profile');
+        // Route::get('/profile/{ref_no}', [GuardianController::class, 'profile'])->name('profile');
         
         Route::get('/viewstudent/{ref_no1}', [UserController::class, 'viewstudent'])->name('viewstudent');
         
-        Route::put('/settingsupdate/{id}', [GuardianController::class, 'settingsupdate'])->name('settingsupdate');
+        // Route::put('/settingsupdate/{id}', [GuardianController::class, 'settingsupdate'])->name('settingsupdate');
         
-        Route::get('/profile', [GuardianController::class, 'profile'])->name('profile');
+        // Route::get('/profile', [GuardianController::class, 'profile'])->name('profile');
        
         Route::put('/updatelessonotesteacher/{id}', [LessonnoteController::class, 'updatelessonotesteacher'])->name('updatelessonotesteacher');
         Route::get('/editlessonteacher/{slug}', [LessonnoteController::class, 'editlessonteacher'])->name('editlessonteacher');

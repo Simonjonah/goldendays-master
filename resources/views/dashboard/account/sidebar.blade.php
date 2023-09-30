@@ -24,6 +24,48 @@
     $view_classes = Classname::latest()->get();
 ?>
       <!-- Sidebar Menu -->
+      @if (Auth::guard('account')->user()->role == null)
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+            Please Wait for Approval
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('account.logout') }}" class="nav-link active">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Logout </p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+
+      @elseif(Auth::guard('account')->user()->role == 'reject')
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+            You have been suspended
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('account.logout') }}" class="nav-link active">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Logout </p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+
+      @else
+
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -198,6 +240,11 @@
          
         </ul>
       </nav>
+
+      
+
+      
+      @endif
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

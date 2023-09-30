@@ -315,7 +315,7 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                       </div>
-                    <
+                    
 
                        <div class="col-sm-6">
                         <div class="form-group">
@@ -413,7 +413,13 @@
                         </div>
                       </div>
 
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Already have A Child Login</label>
+                          <a href="{{ url('login') }}" class="btn-btn-primary">Login</a>
 
+                        </div>
+                      </div>
                      
                       <div class="col-sm-6">
                         <div class="form-group">

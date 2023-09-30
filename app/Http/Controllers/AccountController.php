@@ -113,7 +113,25 @@ class AccountController extends Controller
 
     }
 
+    public function viewaccountant(){
+        $view_accounts = Account::all();
+        return view('dashboard.admin.viewaccountant', compact('view_accounts'));
+    }
+    public function sackedaccount($id){
+        $reject_student = Account::find($id);
+        $reject_student->role = 'reject';
+        $reject_student->save();
+        return redirect()->back()->with('success', 'you have suspended successfully');
+    }
 
+    public function approveaccount($id){
+        $reject_student = Account::find($id);
+        $reject_student->role = 'approved';
+        $reject_student->save();
+        return redirect()->back()->with('success', 'you have approved successfully');
+    }
+
+    
 
     public function logout(){
         Auth::guard('account')->logout();
