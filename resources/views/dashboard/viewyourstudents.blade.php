@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            {{-- <h1>DataTables</h1> --}}
+            <h1>DataTables</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -21,6 +21,8 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+
+    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -33,77 +35,88 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="eample1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                    <tr>
-                      <th>Firstname</th>
-                      <th>Middlename</th>
-                      <th>Surname</th>
+                  <tr>
+                    <th>First name</th>
+                    <th>Middlename</th>
+                    <th>Surname</th>
+                    {{-- <th>Centername</th> --}}
+                    <th>Classname</th>
+                    <th>Term</th>
+                    <th>Gender</th>
 
-                      <th>Admit No</th>
-                      <th>Amount</th>
-                      <th>View</th>
-                    <th>Print</th>
-                    
+                    <th>Images</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Add Results</th>
+                    <th>Add Class Activities</th>
+                    <th>Edit</th>
                     <th>Date</th>
-
+                    
                   </tr>
                   </thead>
                   <tbody>
 
-                    @foreach ($getyour_payments as $getyour_payment)
-                    <tr>
-                      <td>{{ $getyour_payment->fname }}</td>
+                    @foreach ($view_students as $view_student)
+                    {{-- @if ($view_student->section == Auth::guard('web')->user()->section && $view_student->term == Auth::guard('web')->user()->term && $view_student->classname == Auth::guard('web')->user()->classname && $view_student->role == Auth::guard('web')->user()->role = null) --}}
+                        <tr>
+                          <td>{{ $view_student->fname }}</td>
+                          <td>{{ $view_student->middlename }}</td>
+                          <td>{{ $view_student->surname }}</td>
 
-                        <td>{{ $getyour_payment->middlename }}</td>
-                        <td>{{ $getyour_payment->surname }}</td>
-                        <td>{{ $getyour_payment->regnumber }}</td>
-                        <td>{{ $getyour_payment->amount }}</td>
-                        {{-- <td>{{ $getyour_payment->semester }}</td> --}}
+                          {{-- <td> {{ $view_student->centername }}</td> --}}
+                          <td> {{ $view_student->classname }}</td>
+                          
+                          <td> {{ $view_student->term }}</td>
+                          <td> {{ $view_student->gender }}</td>
+                          <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_student->images")}}" alt=""></td>
+                          <td> <span class="badge badge-success">{{ $view_student->status }}</span></td>
 
-
-                        <td><a href="{{ url('web/viewpayment1/'.$getyour_payment->ref_no) }}"
+                          <td><a href="{{ url('web/viewstudent/'.$view_student->ref_no1) }}"
                             class='btn btn-default'>
-                             <i class="far fa-eye"></i>
-                         </a></td>
-                        
-                       {{-- <td>@if ($getyour_payment->status == null)
-                        <span class="badge badge-secondary"> In progress</span>
-                       @elseif($getyour_payment->status == 'suspend')
-                       <span class="badge badge-warning"> Suspended</span>
-                       @else
-                       <span class="badge badge-success">Approved</span>
-                       @endif</td> --}}
-                      
+                             <i class="far fa-eye"></i></a></td>
 
-                      
+                             {{-- @if ($view_student == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
+                              <td><a href="{{ url('web/addresults/'.$view_student->ref_no1) }}"
+                                class='btn btn-primary'>
+                                Add Results
+                            </a></td>
 
-                      
-                      <th><a href="{{ url('web/paymentspdf1/'.$getyour_payment->ref_no) }}" class="btn btn-success"><i class="fas fa-print"></i></a></th>
-                      
-                        
-                     <td>{{ $getyour_payment->created_at->format('D d, M Y, H:i')}}</td>
+                            
+                             <td><a href="{{ url('web/addaclassctivities') }}"
+                              class='btn btn-info'>
+                              Add Classactivity
+                          </a></td>
+                          <td><a href="{{ url('web/edityourstudent/'.$view_student->ref_no1) }}"
+                            class='btn btn-default'>
+                             <i class="far fa-edit"></i></a></td>
+                            <td>{{ $view_student->created_at->format('D d, M Y, H:i')}}</td>
 
-                      </tr>
-                    @endforeach
-                 
-                 
-                   
+                        </tr>
+                    {{-- @else
+                    @endif --}}
+                  @endforeach
+                      
+                
                   </tbody>
                   <tfoot>
                     <tr>
-                        <th>Firstname</th>
-                        <th>Middlename</th>
+                      <th>First name</th>
+                      <th>Middlename</th>
                       <th>Surname</th>
-
-                        <th>Admit No</th>
-                        <th>Amount</th>
-                      
-                      <th>View</th>
-
-                      <th>Print</th>
-                      
-                      <th>Date</th>
+                      {{-- <th>Centername</th> --}}
+                      <th>Classname</th>
+                      <th>Term</th>
+                      <th>Gender</th>
+  
+                      <th>Images</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                      <th>Add Results</th>
+                    <th>Add Class Activities</th>
+                    <th>Edit</th>
+                    <th>Date</th>
 
                     </tr>
                   </tfoot>
@@ -119,7 +132,6 @@
       </div>
       <!-- /.container-fluid -->
     </section>
-    <!-- Main content -->
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -127,7 +139,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://goldenacademyschools.com">Golden Academy</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2019 <a href="https://golderndayschools.com">golderndayschools</a>.</strong> All rights
     reserved.
   </footer>
 

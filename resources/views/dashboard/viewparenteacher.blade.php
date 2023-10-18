@@ -1,7 +1,7 @@
-@include('dashboard.admin.header')
+@include('dashboard.header')
 
   <!-- Main Sidebar Container -->
-  @include('dashboard.admin.sidebar')
+  @include('dashboard.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -55,30 +55,18 @@
                     <th>Doctor's Phone</th>
                     <th>View</th>
                     <th>Status</th>
-                    <th>Approved</th>
+ 
 
                     <th>Ref. No</th>
                     <th>Edit</th>
-                    <th>Suspend</th>
-                    {{-- <th>Admit</th> --}}
-                    
-                    <th>Delete</th>
+                 
 
                     <th>Date</th>
 
                   </tr>
                   </thead>
                   <tbody>
-                    @if (Session::get('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                    @endif
-  
-                    @if (Session::get('fail'))
-                    <div class="alert alert-danger">
-                    {{ Session::get('fail') }}
-                    @endif
+
                     @foreach ($view_parents as $view_parent)
        
                       <tr>
@@ -89,7 +77,7 @@
                         <td>{{ $view_parent->homeaddress }}</td>
                         <td>{{ $view_parent->officeaddress }}</td>
                         <td>{{ $view_parent->maritalstatus }}</td>
-                        <th><a href="{{ url('admin/addchild/'.$view_parent->id) }}" class="btn btn-sm bg-teal">
+                        <th><a href="{{ url('web/addyourchild/'.$view_parent->id) }}" class="btn btn-sm bg-teal">
                             <i class="fas fa-user"></i>
                           </a></th>
                         <td>{{ $view_parent->stateoforigin }}</td>
@@ -102,7 +90,7 @@
 
 
                         {{-- <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_parent->images")}}" alt=""></td> --}}
-                        <td><a href="{{ url('admin/viewparent/'.$view_parent->ref_no) }}"
+                        <td><a href="{{ url('web/viewsingleparent/'.$view_parent->ref_no) }}"
                             class='btn btn-default'>
                              <i class="far fa-eye"></i>
                          </a></td>
@@ -118,42 +106,42 @@
                          
                          <span class="badge badge-success">Admitted</span>
                          @endif</td>
-                         <th> <a href="{{ url('admin/parentsaddmit/'.$view_parent->ref_no) }}" class="btn btn-sm btn-primary">
-                          <i class="fas fa-user"></i> 
-                        </a></th>
+                        
                        {{-- <td> <div class="input-group-prepend">
                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
                           Action
                         </button>
                         <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="{{ url('admin/allparentprim') }}">Print  Parent Primary</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allparentsec') }}">Print  Parent Secondary </a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/parentochild1/'.$view_parent->ref_no) }}">Viiew Children </a></li>
+                          <li class="dropdown-item"><a href="{{ url('web/allparentprim') }}">Print  Parent Primary</a></li>
+                          <li class="dropdown-item"><a href="{{ url('web/allparentsec') }}">Print  Parent Secondary </a></li>
+                          <li class="dropdown-item"><a href="{{ url('web/parentochild1/'.$view_parent->ref_no) }}">Viiew Children </a></li>
                           
                         </ul>
                       </div></td> --}}
 
                       <td>{{ $view_parent->ref_no }}</td>
-                         <td><a href="{{ url('admin/editparent/'.$view_parent->ref_no) }}"
+                         <td><a href="{{ url('web/editsingleparent/'.$view_parent->ref_no) }}"
                           class='btn btn-info'>
                            <i class="far fa-edit"></i>
                        </a></td>  
                        
-                        
+{{--                         
                        
                 
-                      </a></th><th><a href="{{ url('admin/suspendparent/'.$view_parent->ref_no) }}" class="btn btn-sm bg-teal">
+                      </a></th><th><a href="{{ url('web/suspendparent/'.$view_parent->ref_no) }}" class="btn btn-sm bg-teal">
                         <i class="fas fa-comments"></i>
-                      </a></th>
+                      </a></th> --}}
 
+                      {{-- <th> <a href="{{ url('web/studentsaddmit/'.$view_parent->ref_no) }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-user"></i> 
+                      </a></th>
+                       --}}
                      
-                      
-                     
-                      {{-- <th><a href="{{ url('admin/studentit/'.$view_parent->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
-                       <td><a href="{{ url('admin/deleteparent/'.$view_parent->ref_no) }}"
+                      {{-- <th><a href="{{ url('web/studentit/'.$view_parent->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
+                       {{-- <td><a href="{{ url('web/deleteparent/'.$view_parent->ref_no) }}"
                         class='btn btn-danger'>
                          <i class="far fa-trash-alt"></i>
-                     </a></td>
+                     </a></td> --}}
                      {{-- <td>@if ($view_parent->student_identity == null)
                       <span class="badge badge-danger">Not Send</span>
                      @elseif($view_parent->student_identity == 'IT SEND')
@@ -189,22 +177,22 @@
                         <th>Doctor's Phone</th>
                         <th>View</th>
                         <th>Status</th>
-                        <th>Approved</th>
     
                         {{-- <th>Reg No</th> --}}
                         <th>Ref. No</th>
                         <th>Edit</th>
 
-                        <th>Suspend</th>
-                        {{-- <th>Admit</th> --}}
-                        
-                        <th>Delete</th>
     
                         <th>Date</th>
     
                       </tr>
                   </tfoot>
                 </table>
+
+
+
+
+                
               </div>
               <!-- /.card-body -->
             </div>

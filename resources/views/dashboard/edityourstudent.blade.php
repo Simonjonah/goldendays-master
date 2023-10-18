@@ -8,14 +8,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Parents </h1>
+            <h1 class="m-0 text-dark">Ediit </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
 l            <ol class="breadcrumb float-sm-right">
               {{-- <li cass="breadcrumb-item"><a href="{{ route('admin.addnidnetsem2leve200l') }}" class="btn btn-success">Add Semester Courses</a></li> --}}
               <li class="breadcrumb-item"><a href="#">Home</a></li>
 
-              <li class="breadcrumb-item active">Parents  </li>
+              <li class="breadcrumb-item active">Ediit  </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -32,11 +32,11 @@ l            <ol class="breadcrumb float-sm-right">
             
             <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">Register Child</h3>
+                <h3 class="card-title">Edit Child</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="{{ url('web/addyourchildren') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('web/updateadmissionteacher/'.$edit_students->ref_no1) }}" method="post" enctype="multipart/form-data">
                   @csrf
                   {{-- @method('PUT') --}}
                   @if (Session::get('success'))
@@ -49,64 +49,50 @@ l            <ol class="breadcrumb float-sm-right">
                   <div class="alert alert-danger">
                   {{ Session::get('fail') }}
                   @endif
+
+                  @method('PUT')
                   <div class="row">
                     <div class="col-sm-6">
+                      <!-- select -->
                       <div class="form-group">
-                        <label> First Name</label>
-                        <input type="hidden" name="user_id" value="{{ $add_childtoparent->id }}" id="">
-                        <input type="hidden" name="teacher_id" value="{{ Auth::guard('web')->user()->id }}" id="">
-                        <input type="hidden" name="ref_no" value="{{ Auth::guard('web')->user()->ref_no }}" id="">
-                        <input type="hidden" name="mothername" value="{{ Auth::guard('web')->user()->mothername }}" id="">
-                        {{-- <input type="text" name="email" value="{{ $add_childtoparents->email }}" id=""> --}}
-                        <input type="text"  value="" class="form-control" name="fname" placeholder="fname">
+                        <label> Sections</label>
+                        <select name="section" class="form-control" id="">
+                          <option value="{{  $edit_students->section }}">{{ $edit_students->section }}</option>
+                          <option value="Pre-School">Pre-School</option>
+                          <option value="Primary">Elementary</option>
+                          <option value="Secondary">High School</option>
+                        </select>
+
                       </div>
+
+                      
                     </div>
-
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                          <label> Sections</label>
-                          <select name="section" class="form-control" id="">
-                            <option value="Pre-School">Pre-School</option>
-                            <option value="Primary">Elementary</option>
-                            <option value="Secondary">High School</option>
-                          </select>
-                          {{-- <input type="hidden" name="academic_session" value="{{ Auth::guard('web')->user()->academic_session }}" id=""> --}}
-                        </div>
-                      </div>
-
-                      
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                          <label> Session</label>
-                          <select name="academic_session" class="form-control" id="">
-                            @foreach ($acas as $aca)
-                            <option value="{{ $aca->academic_session}}">{{ $aca->academic_session }}</option>
-                            @endforeach
-                          </select>
-                          {{-- <input type="hidden" name="academic_session" value="{{ Auth::guard('web')->user()->academic_session }}" id=""> --}}
-                        </div>
-                      </div>
-
-                      
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Middle Name</label>
-                       <input type="text" value="" required name="middlename" class="form-control" placeholder="Middle Name">
+                       <input type="text" value="{{  $edit_students->middlename }}" required name="middlename" class="form-control" placeholder="Middle Name">
                       </div>
                      
                     </div>
                  <div class="col-sm-6">
                       <div class="form-group">
                         <label>Surname</label>
-                        <input type="text" value="" required name="surname" class="form-control" placeholder="Surname">
+                        <input type="text" value="{{  $edit_students->surname }}" required name="surname" class="form-control" placeholder="Surname">
+
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Firstname</label>
+                        <input type="text" value="{{  $edit_students->fname }}" required name="fname" class="form-control" placeholder="First Name">
 
                       </div>
                     </div>
                    <div class="col-sm-6">
                       <div class="form-group">
                         <label>Age</label>
-                        <input type="text" name="age" value="" required class="form-control" placeholder="Age">
+                        <input type="text" name="age" value="{{  $edit_students->age }}" required class="form-control" placeholder="Age">
 
                       </div>
                     </div>
@@ -114,7 +100,7 @@ l            <ol class="breadcrumb float-sm-right">
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Date of Birth</label>
-                        <input type="date" name="dob" value="" required class="form-control" placeholder="Date of Birth">
+                        <input type="date" name="dob" value="{{  $edit_students->dob }}" required class="form-control" placeholder="Date of Birth">
 
                       </div>
                     </div>
@@ -122,6 +108,7 @@ l            <ol class="breadcrumb float-sm-right">
                       <div class="form-group">
                         <label>Gender</label>
                         <select name="gender" class="form-control" id="">
+                          <option value="{{  $edit_students->gender }}">{{  $edit_students->gender }}</option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
                         </select>
@@ -133,6 +120,7 @@ l            <ol class="breadcrumb float-sm-right">
                       <div class="form-group">
                         <label>Term</label>
                         <select name="term" class="form-control" id="">
+                          <option value="{{  $edit_students->term }}">{{  $edit_students->term }}</option>
                           <option value="First Term">First Term</option>
                           <option value="Second Term">Second Term</option>
                           <option value="Third Term">Third Term</option>
@@ -146,7 +134,7 @@ l            <ol class="breadcrumb float-sm-right">
                         <div class="form-group">
                           <label>BLood Group</label>
                         <input type="text" name="bloodgroup" @error('bloodgroup')
-                        @enderror  value="" class="form-control" placeholder="Blood Group">
+                        @enderror  value="{{  $edit_students->bloodgroup }}" class="form-control" placeholder="Blood Group">
                          
                         </div>
                         @error('bloodgroup')
@@ -159,7 +147,7 @@ l            <ol class="breadcrumb float-sm-right">
                         <div class="form-group">
                           <label>Genotype</label>
                         <input type="text" name="genotype" @error('genotype')
-                        @enderror  value="" class="form-control" placeholder="Genotype">
+                        @enderror  value="{{  $edit_students->genotype }}" class="form-control" placeholder="Genotype">
                          
                         </div>
                         @error('genotype')
@@ -169,9 +157,9 @@ l            <ol class="breadcrumb float-sm-right">
                       
                      <div class="col-sm-6">
                         <div class="form-group">
-                          <label>Presvious School Name</label>
+                          <label>presvious School Name</label>
                         <input type="text" name="previouschoolname" @error('previouschoolname')
-                        @enderror  value="" class="form-control" placeholder="Previous School Name">
+                        @enderror  value="{{  $edit_students->previouschoolname }}" class="form-control" placeholder="presvious School Name">
                          
                         </div>
                         @error('previouschoolname')
@@ -183,7 +171,7 @@ l            <ol class="breadcrumb float-sm-right">
                         <div class="form-group">
                           <label>Present Class Name</label>
                         <input type="text" name="preclassname" @error('preclassname')
-                        @enderror  value="" class="form-control" placeholder="Previous School Name">
+                        @enderror  value="{{  $edit_students->preclassname }}" class="form-control" placeholder="Previous School Name">
                          
                         </div>
                         @error('preclassname')
@@ -196,8 +184,8 @@ l            <ol class="breadcrumb float-sm-right">
                         <div class="form-group">
                           <label>Class Addmitted To</label>
                           <select name="classname" class="form-control" id="">
-                            @foreach ($view_classes as $view_classe)
-                            <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option>
+                            @foreach ($add_class as $add_clas)
+                            <option value="{{ $add_clas->classname }}">{{ $add_clas->classname }}</option>
                             @endforeach
                           </select>
                         
@@ -208,6 +196,10 @@ l            <ol class="breadcrumb float-sm-right">
                       </div>
 
                     <div class="col-sm-6">
+                      <td><img style="width: 30%; height: 30%;" class="profile-user-img img-fluid"
+                        src="{{ URL::asset("/public/../$edit_students->images")}}"
+                        alt="User profile picture"></td>
+                
                         <div class="form-group">
                           <label>Passport </label>
                         <input type="file" name="images" @error('images')
@@ -223,7 +215,7 @@ l            <ol class="breadcrumb float-sm-right">
                         <div class="form-group">
                           <label>Previous School Address</label>
                         <input type="text" name="lastschooladdress" @error('lastschooladdress')
-                        @enderror  value="" class="form-control" placeholder="Previous School Address">
+                        @enderror  value="{{ $edit_students->lastschooladdress }}" class="form-control" placeholder="Previous School Address">
                          
                         </div>
                         @error('lastschooladdress')
@@ -235,7 +227,7 @@ l            <ol class="breadcrumb float-sm-right">
                         <div class="form-group">
                           <label>Allegies/Physical Disability</label>
                         <input type="text" name="disability" @error('disability')
-                        @enderror  value="" class="form-control" placeholder="Allegies/Physical Disability">
+                        @enderror  value="{{ $edit_students->disability }}" class="form-control" placeholder="Allegies/Physical Disability">
                          
                         </div>
                         @error('disability')
@@ -272,3 +264,4 @@ l            <ol class="breadcrumb float-sm-right">
 
 
     @include('dashboard.footer')
+

@@ -103,12 +103,17 @@
                         <option value="{{ $assigned_highschool_subject->id }}">{{ $assigned_highschool_subject->fname }} {{ $assigned_highschool_subject->surname  }} {{ $assigned_highschool_subject->section }} {{ $assigned_highschool_subject->classname }}</option>
                         @endforeach
 
-                        @foreach ($assigned_preschool_subjects as $assigned_preschool_subject)
-                        <option value="{{ $assigned_preschool_subject->id }}">{{ $assigned_preschool_subject->fname }} {{ $assigned_highschool_subject->surname  }} {{ $assigned_highschool_subject->section }} {{ $assigned_highschool_subject->classname }}</option>
-                        @endforeach
+                      
+                        
+                        
                         @else
 
+                        @foreach ($assigned_preschool_subjects as $assigned_preschool_subject)
+                        <option value="{{ $assigned_preschool_subject->id }}">{{ $assigned_preschool_subject->fname }} {{ $assigned_preschool_subject->surname  }} {{ $assigned_preschool_subject->section }} {{ $assigned_preschool_subject->classname }}</option>
+                        @endforeach
+                        
                         @endif
+         
                       </select>
                   </div>
                       

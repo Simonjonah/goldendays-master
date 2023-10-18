@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('preclassname')->nullable();
             $table->string('age')->nullable();
             $table->string('promotion')->nullable();
+            $table->string('teacher_id')->nullable();
             
             $table->string('phone')->nullable();
             $table->string('classname')->nullable();

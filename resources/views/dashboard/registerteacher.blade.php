@@ -146,7 +146,7 @@
 
 
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control"  @error('email') is-invalid @enderror"
+          <input type="email" required name="email" class="form-control"  @error('email') is-invalid @enderror"
           value="{{ old('email') }}" placeholder="email">
           
           <div class="input-group-append">

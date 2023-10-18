@@ -378,12 +378,35 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ url('/web/addparenteacher') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Parents</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{ url('/web/viewparenteacher') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Your Parents</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('/web/viewyourstudents') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Your Students</p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="{{ url('/web/firsterm') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>First Term</p>
                 </a>
               </li>
+
               <li class="nav-item">
                 <a href="{{ url('/web/secondterm') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -560,7 +583,23 @@
                   </a>
                 </li>
 
+                <a href="{{ url('web/preschoolshead') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Pre-Schools</p>
+                </a>
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoollessonnotes') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Lesson Notes</p>
+                  </a>
+                </li>
 
+                <li class="nav-item">
+                  <a href="{{ url('web/elementarylessonnotes') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Lesson Notes</p>
+                  </a>
+                </li>
                 <li class="nav-item">
                   <a href="{{ url('web/addrults') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -573,7 +612,14 @@
                     <i class="far fa-circle nav-icon"></i>
                     <p>Secondary Schools</p>
                   </a>
+                </li>
 
+                <li class="nav-item">
+                  <a href="{{ url('web/highschoolessonnotes') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Lesson Notes</p>
+                  </a>
+                </li>
                   <li class="nav-item">
                     <a href="{{ url('web/viewaddresults') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
@@ -581,6 +627,7 @@
                     </a>
                   </li>
                 </li>
+                
               </li>
 
               @elseif(Auth::guard('web')->user()->promotion == 'Pre-School Head')
@@ -590,7 +637,12 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Pre-Schools</p>
                 </a>
-
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoollessonnotes') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Lesson Notes</p>
+                  </a>
+                </li>
                 <li class="nav-item">
                   <a href="{{ url('web/viewaddresults') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>

@@ -58,7 +58,7 @@
                     {{ Session::get('fail') }}
                     @endif
                     @foreach ($viewnursery_subjects as $viewnursery_subject)
-                        @if ($viewnursery_subject->section = 'Primary')
+                        @if ($viewnursery_subject->section = 'Pre-School')
                         <tr>
                             <td>{{ $viewnursery_subject->subjectname }}</td>
                             <td>{{ $viewnursery_subject->section }}</td>

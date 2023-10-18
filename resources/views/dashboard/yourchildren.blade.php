@@ -69,7 +69,7 @@
                     @foreach ($viewyour_childrens as $viewyour_children)
                     {{-- @if ($viewyour_children->centername == Auth::guard('web')->user()->centername && $viewyour_children->status == null) --}}
                       <tr>
-                        <td>{{ $viewyour_children->user['fname'] }}</td>
+                        <td>{{ $viewyour_children->fname }}</td>
                         <td>{{ $viewyour_children->middlename }}</td>
                         <td>{{ $viewyour_children->surname }}</td>
                         <td>{{ $viewyour_children->classname }}</td>

@@ -55,7 +55,7 @@ l            <ol class="breadcrumb float-sm-right">
                       <div class="form-group">
                         <label> Sections</label>
                         <input type="hidden" name="academic_session" value="{{ $add_childtoparents->academic_session }}" id="">
-                        <input type="hidden" name="guardian_id" value="{{ $add_childtoparents->id }}" id="">
+                        <input type="hidden" name="user_id" value="{{ $add_childtoparents->id }}" id="">
                         <input type="hidden" name="section" value="{{ $add_childtoparents->section }}" id="">
                         <input type="hidden" name="ref_no" value="{{ $add_childtoparents->ref_no }}" id="">
                         {{-- <input type="text" name="email" value="{{ $add_childtoparents->email }}" id=""> --}}
@@ -86,6 +86,29 @@ l            <ol class="breadcrumb float-sm-right">
 
                       </div>
                     </div>
+
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Sellect Teacher</label>
+                        <select name="teacher_id" class="form-control" id="">
+                          @foreach ($select_teachers as $select_teacher)
+                              <option value="{{ $select_teacher->id }}">{{ $select_teacher->fname }} {{ $select_teacher->surname }} {{ $select_teacher->section }}</option>
+                              
+                          @endforeach
+                        </select>
+
+                      </div>
+                    </div>
+
+                    {{-- <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Age</label>
+                      
+                        <input type="text" name="age" value="" required class="form-control" placeholder="Age">
+
+                      </div>
+                    </div> --}}
 
                     <div class="col-sm-6">
                       <div class="form-group">

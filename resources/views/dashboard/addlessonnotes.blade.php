@@ -110,7 +110,8 @@
                   {{ Session::get('fail') }}
                   @endif
                   <div class="form-group">
-                  <input type="hidden" class="form-control" name="user_id" value="{{ Auth::guard('web')->user()->id }}" placeholder="Subject">
+                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::guard('web')->user()->id }}" placeholder="Subject">
+                    <input type="hidden" class="form-control" name="section" value="{{ Auth::guard('web')->user()->section }}" placeholder="Subject">
                 </div>
 
                   <div class="form-group">

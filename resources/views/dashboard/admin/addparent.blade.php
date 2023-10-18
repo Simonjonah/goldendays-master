@@ -38,7 +38,16 @@
               <div class="card-body">
                 <form action="{{ route('admin.createparent1') }}" method="post" enctype="multipart/form-data">
                   @csrf
-                  
+                  @if (Session::get('success'))
+                  <div class="alert alert-success">
+                      {{ Session::get('success') }}
+                  </div>
+                  @endif
+
+                  @if (Session::get('fail'))
+                  <div class="alert alert-danger">
+                  {{ Session::get('fail') }}
+                  @endif
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- select -->

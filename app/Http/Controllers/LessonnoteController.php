@@ -27,6 +27,7 @@ class LessonnoteController extends Controller
         
         $request->validate([
             'user_id' => ['required', 'string', 'max:255'],
+            'section' => ['required', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'subjectname' => ['required', 'string', 'max:255'],
             'academic_session' => ['required', 'string', 'max:255'],
@@ -59,6 +60,7 @@ class LessonnoteController extends Controller
         $add_lessonnote->classname = $request->classname;
         $add_lessonnote->subjectname = $request->subjectname;
         $add_lessonnote->title = $request->title;
+        $add_lessonnote->section = $request->section;
         $add_lessonnote->messages = $request->messages;
         $add_lessonnote->save();
         if ($add_lessonnote) {
@@ -223,5 +225,55 @@ class LessonnoteController extends Controller
         }
 
     }
+
+    public function highschoolessonnotes(){
+        $view_classess = Classname::where('section', 'Secondary')->get();
+        $view_primarystudents = Lessonnote::where('section', 'Secondary')->get();
+        return view('dashboard.highschoolessonnotes', compact('view_classess', 'view_primarystudents'));
+    }
+
+    public function preschoollessonnotes(){
+        $view_classess = Classname::where('section', 'Pre-School')->get();
+        $view_primarystudents = Lessonnote::where('section', 'Pre-School')->get();
+        return view('dashboard.preschoollessonnotes', compact('view_classess', 'view_primarystudents'));
+    }
+    
+
+    public function elementarylessonnotes(){
+        $view_classess = Classname::where('section', 'Primary')->get();
+        $view_primarystudents = Lessonnote::where('section', 'Primary')->get();
+        return view('dashboard.elementarylessonnotes', compact('view_classess', 'view_primarystudents'));
+    }
+    
+    public function approvelesssons($id){
+        $reject_student = Lessonnote::find($id);
+        $reject_student->status = 'approved';
+        $reject_student->save();
+        return redirect()->back()->with('success', 'you have approve the lesson notes successfully');
+    }
+
+    public function rejectlesssons($id){
+        $reject_student = Lessonnote::find($id);
+        $reject_student->status = 'reject';
+        $reject_student->save();
+        return redirect()->back()->with('success', 'you have rejected the lesson notes successfully');
+    }
+    public function suspendlesssons($id){
+        $reject_student = Lessonnote::find($id);
+        $reject_student->status = 'suspend';
+        $reject_student->save();
+        return redirect()->back()->with('success', 'you have suspended the lesson notes successfully');
+    }
+
+
+    
+    public function deletelesons($id){
+        $reject_student = Lessonnote::where('id', $id)->delete();
+        
+        return redirect()->back()->with('success', 'you have suspended the lesson notes successfully');
+    }
+
+    
+    
      
 }

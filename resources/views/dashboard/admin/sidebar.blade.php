@@ -184,7 +184,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              {{-- <li class="nav-item">
+              <li class="nav-item">
                 <a href="{{ route('admin.addparent') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Register Parents</p>
@@ -195,7 +195,7 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Parents</p>
                 </a>
-              </li> --}}
+              </li>
 
               <li class="nav-item">
                 <a href="{{ url('admin/preschoolad') }}" class="nav-link">
@@ -1054,18 +1054,23 @@
                   <p>View all Teachers </p>
                 </a>
               </li>
-            
+              <li class="nav-item">
+                <a href="{{ route('admin.preschoolteachers') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pre-School Teachers </p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="{{ route('admin.primaryteachers') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Primary Teachers </p>
+                  <p>Elementary Teachers </p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="{{ route('admin.secondaryteachers') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Secondary Teachers </p>
+                  <p>High Sch. Teachers </p>
                 </a>
               </li>
               
