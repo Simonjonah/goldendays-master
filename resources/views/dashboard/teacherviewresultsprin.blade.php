@@ -54,6 +54,11 @@
                     Off Senator Akon Eyakenyi Street,
                     Off General Edet Akpan Ave, 520101, Uyo
                   </address>
+
+                  <address>
+                    Name: {{ $view_myresult_result->surname }}, {{ $view_myresult_result->fname }} {{ $view_myresult_result->middlename }}
+                   
+                  </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-2 invoice-col">
@@ -71,17 +76,19 @@
                       <thead>
                       <tr>
                         {{-- <th>S/N</th> --}}
-                        <th>Firstname</th>
+                        {{-- <th>Firstname</th>
                         <th>Middlename</th>
-                        <th>Surname</th>
+                        <th>Surname</th> --}}
                         <th>Subjects</th>
-                        <th>Ca 1</th>
-                        <th>Ca 2</th>
-                        <th>Ca 3</th>
+                        <th>Summative</th>
+                        <th>Formative</th>
+                       
                         <th>Exams</th>
                         <th>Total</th>
                         <th>Grade</th>
                         <th>Subject Average</th>
+                        <th>Teacher Name</th>
+
                         
                       </tr>
                       </thead>
@@ -96,13 +103,13 @@
                           // $totalsubject_score +=$view_myresult_result->test_1  + $view_myresult_result->test_2  + $view_myresult_result->test_3  + $view_myresult_result->exams                            
                           @endphp
                           <tr>
-                              <td>{{ $view_myresult_result->user['fname'] }}</td>
+                              {{-- <td>{{ $view_myresult_result->user['fname'] }}</td>
                               <td>{{ $view_myresult_result->user['middlename'] }}</td>
-                              <td>{{ $view_myresult_result->user['surname'] }}</td>
+                              <td>{{ $view_myresult_result->user['surname'] }}</td> --}}
                               <td>{{ $view_myresult_result->subjectname }}</td>
                               <td>{{ $view_myresult_result->test_1 }}</td>
                               <td>{{ $view_myresult_result->test_2 }}</td>
-                              <td>{{ $view_myresult_result->test_3 }}</td>
+                              {{-- <td>{{ $view_myresult_result->test_3 }}</td> --}}
                               <td>{{ $view_myresult_result->exams }}</td>
                               <td>{{ $view_myresult_result->test_1  + $view_myresult_result->test_2  + $view_myresult_result->test_3  + $view_myresult_result->exams }}</td>
                               <td>@if ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 69)
@@ -125,6 +132,7 @@
                                 
                               {{-- <td>{{ $total_score / 2 }}</td> --}}
                             </td>
+                            <td>{{ $view_myresult_result->surname }}</td>
 
                             </tr>
                           @endforeach
@@ -874,6 +882,7 @@
                
               </table>
 
+              <a href="{{ url('web/addcomment/'.$view_myresult_result->id) }}" class="btn btn-primary">Add Comment</a>
              
             </div>
 

@@ -1,7 +1,7 @@
-@include('dashboard.admin.header')
+@include('dashboard.header')
 
   <!-- Main Sidebar Container -->
-  @include('dashboard.admin.sidebar')
+  @include('dashboard.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Subjects for Secondary School</h1>
+            <h1>DataTables</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -38,72 +38,77 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Subjects</th>
-                    <th>Code</th>
+                    <th>First name</th>
+                    <th>Middlename</th>
+                    <th>Surname</th>
                     <th>Section</th>
-                    <th>Actions</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>Date</th>
+                    <th>Classname</th>
+                    <th>Term</th>
+                    <th>Gender</th>
+
+                    <th>Images</th>
+                    <th>Reg.no</th>
+                    <th>Action</th>
+                    <th>Add Results</th>
+                    <th>Add Midterm Results</th>
+                    
                   </tr>
                   </thead>
                   <tbody>
-                    @if (Session::get('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                    @endif
 
-                    @if (Session::get('fail'))
-                    <div class="alert alert-danger">
-                    {{ Session::get('fail') }}
-                    </div>
-                  @endif
+                    @foreach ($view_studentsclassresults as $view_studentsclassresult)
+                    {{-- @if ($view_studentsclassresult->section == Auth::guard('web')->user()->section && $view_studentsclassresult->term == Auth::guard('web')->user()->term && $view_studentsclassresult->classname == Auth::guard('web')->user()->classname && $view_studentsclassresult->role == Auth::guard('web')->user()->role = null) --}}
+                        <tr>
+                          <td>{{ $view_studentsclassresult->fname }}</td>
+                          <td>{{ $view_studentsclassresult->middlename }}</td>
+                          <td>{{ $view_studentsclassresult->surname }}</td>
+
+                          <td> {{ $view_studentsclassresult->section }}</td>
+                          <td> {{ $view_studentsclassresult->classname }}</td>
+                          
+                          <td> {{ $view_studentsclassresult->term }}</td>
+                          <td> {{ $view_studentsclassresult->gender }}</td>
+                          <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_studentsclassresult->images")}}" alt=""></td>
+                          <td> <span class="badge badge-success">{{ $view_studentsclassresult->regnumber }}</span></td>
+
+                          <td><a href="{{ url('web/assignedstudent/'.$view_studentsclassresult->ref_no1) }}"
+                            class='btn btn-default'>
+                             <i class="far fa-eye"></i>
+
+                             {{-- @if ($view_studentsclassresult == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
+                              <td><a href="{{ url('web/addresults/'.$view_studentsclassresult->ref_no1) }}"
+                                class='btn btn-primary'>
+                                Add Results
+                            </a></td>
+
+                            <td><a href="{{ url('web/addmidtermresults/'.$view_studentsclassresult->ref_no1) }}"
+                                class='btn btn-info'>
+                                Add Midterm Results
+                            </a></td>
+                            
+                            
+                        </tr>
+                    {{-- @else
+                    @endif --}}
+                  @endforeach
+                      
                 
-                    @foreach ($view_subjects as $view_subject)
-       
-                      <tr>
-                        <td>{{ $view_subject->subjectname }}</td>
-                        <td>{{ $view_subject->title }}</td>
-                        <td>{{ $view_subject->section }}</td>
-                       
-                        
-                        
-                        <td><a href="{{ url('admin/assignsubject/'.$view_subject->id) }}"
-                          class='btn btn-primary'>
-                           <i class="far fa-user"></i>
-                       </a></td> 
-                    
-                         <td><a href="{{ url('admin/editsubject/'.$view_subject->id) }}"
-                          class='btn btn-info'>
-                           <i class="far fa-edit"></i>
-                       </a></td>  
-
-                     
-                     
-                       <td><a href="{{ url('admin/deletesubject/'.$view_subject->id) }}"
-                        class='btn btn-danger'>
-                         <i class="far fa-trash-alt"></i>
-                     </a></td>
-                    
-                     <td>{{ $view_subject->created_at->format('D d, M Y, H:i')}}</td>
-
-                      </tr>
-                     
-                    @endforeach
-                 
-                 
-                   
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th>Subjects</th>
-                      <th>Code</th>
+                      <th>First name</th>
+                      <th>Middlename</th>
+                      <th>Surname</th>
                       <th>Section</th>
-                      <th>Actions</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                      <th>Date</th>
+                      <th>Classname</th>
+                      <th>Term</th>
+                      <th>Gender</th>
+  
+                      <th>Images</th>
+                      <th>Reg.no</th>
+                      <th>Action</th>
+                      <th>Add Results</th>
+                    <th>Add Midterm Results</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -120,37 +125,12 @@
     </section>
     <!-- /.content -->
   </div>
-
-  <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Default Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-control">
-            
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://golden.com.ng">Golden</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2019 <a href="https://golderndayschools.com">golderndayschools</a>.</strong> All rights
     reserved.
   </footer>
 

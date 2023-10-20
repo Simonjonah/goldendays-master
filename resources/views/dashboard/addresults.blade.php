@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Subjects </h1>
+            <h1>Result of {{ $view_studentsubject->fname }} {{ $view_studentsubject->middlename }} {{ $view_studentsubject->surname }} in {{ $view_studentsubject->classname }} {{ $view_studentsubject->term }} {{ $view_studentsubject->section }}  {{ $view_studentsubject->regnumber }} Section</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -199,7 +199,7 @@
                         </tbody>
                       </table>
                  
-                  @else
+                  @elseif($view_studentsubject->section === 'Secondary')
 
                 <form action="{{ url('web/createresults') }}" method="post" enctype="multipart/form-data">
                   @csrf
@@ -217,10 +217,10 @@
                   <table class="table table-striped">
                       <thead>
                       <tr>
-                        <th>Subjects</th>
-                        <th>Ca 1</th>
-                        <th>Ca 2</th>
-                        <th>Ca 3</th>
+                        <th>Subjects Title</th>
+                        <th>Subject Code</th>
+                        <th>Summative</th>
+                        <th>Formative</th>
                         <th>Exams</th>
                         
                       </tr>
@@ -231,16 +231,19 @@
                             @if ($view_teachersubject->section == 'Secondary')
                             <tr>
                                 <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
+                                <td>{{ $view_teachersubject->subject['title'] }}<input type="hidden" value="{{ $view_teachersubject->subject['title'] }}" name="title[]" id=""></td>
                                 <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
                                 <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
-                                <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
+                                {{-- <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td> --}}
                                 <td><input type="number" class="form-control" name="exams[]" placeholder="Exams"></td>
+                                <td><input type="hidden" name="tname[]" value="{{ Auth::guard('web')->user()->fname }}" placeholder="Teacher ID"></td>
+                                <td><input type="hidden" name="tsurname[]" value="{{ Auth::guard('web')->user()->surname }}" placeholder="Teacher ID"></td>
                                 <td><input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID"></td>
                                 <td><input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID"></td>
                                 <td><input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="Term"></td>
                                 <td><input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session"></td>
-                                <td><input type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber"></td>
-                                <td><input type="hidden" name="guardian_id[]" value="{{ $view_studentsubject->guardian_id }}" placeholder="Parent ID"></td>
+                                <td><input required type="hidden" name="regnumber[]" value="{{ $view_studentsubject->regnumber }}" placeholder="regnumber"></td>
+                                {{-- <td><input type="text" name="guardian_id[]" value="{{ $view_studentsubject->id }}" placeholder="Parent ID"></td> --}}
                                 <td><input type="hidden" name="classname[]" value="{{ $view_studentsubject->classname }}" placeholder="Parent ID"></td>
                                 <td><input type="hidden" name="fname[]" value="{{ $view_studentsubject->fname }}" placeholder="Parent ID"></td>
                                 <td><input type="hidden" name="middlename[]" value="{{ $view_studentsubject->middlename }}" placeholder="Parent ID"></td>

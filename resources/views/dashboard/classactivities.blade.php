@@ -39,7 +39,7 @@
                 <th>Subject</th>
                 <th>Topic</th>
                 <th>Youtube</th>
-                {{-- <th>Messages</th> --}}
+                <th>Action</th>
                 <th>Status</th>
                 <th>View</th>
                 <th>Edit</th>
@@ -48,39 +48,59 @@
               </tr>
               </thead>
               <tbody>
+                @if (Session::get('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+                @endif
 
-                @foreach ($view_activities as $view_activitie)
+                @if (Session::get('fail'))
+                <div class="alert alert-danger">
+                {{ Session::get('fail') }}
+                @endif
+                @foreach ($view_aclassactivitisbyheads as $view_aclassactivitisbyhead)
    
                   <tr>
-                    <td>{{ $view_activitie->classname }}</td>
-                    <td>{{ $view_activitie->section }}</td>
-                    <td>{{ $view_activitie->subject }}</td>
-                    <td>{{ $view_activitie->topic }}</td>
-                    <td><a href="{{ $view_activitie->youtube }}">Youtube</a></td>
-                    {{-- <td>{{ $view_activitie->messages }}</td> --}}
-                    <td>@if ($view_activitie->status == null)
+                    <td>{{ $view_aclassactivitisbyhead->classname }}</td>
+                    <td>{{ $view_aclassactivitisbyhead->section }}</td>
+                    <td>{{ $view_aclassactivitisbyhead->subject }}</td>
+                    <td>{{ $view_aclassactivitisbyhead->topic }}</td>
+                    <td><a href="{{ $view_aclassactivitisbyhead->youtube }}">Youtube</a></td>
+                       <td> <div class="input-group-prepend">
+                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-item"><a href="{{ url('web/approveclassactivity/'.$view_aclassactivitisbyhead->slug) }}">Approved</a></li>
+                          {{-- <li class="dropdown-item"><a href="{{ url('web/rejectclassactivity/'.$view_aclassactivitisbyhead->slug) }}">Reject </a></li> --}}
+                          <li class="dropdown-item"><a href="{{ url('web/suspendclassactivity/'.$view_aclassactivitisbyhead->slug) }}">Suspend </a></li>
+                          
+                        </ul>
+                      </div></td>
+
+                    <td>@if ($view_aclassactivitisbyhead->status == null)
                         <span class="badge badge-secondary">In Review</span>
-                        @elseif ($view_activitie->status == 'reject')
+                        @elseif ($view_aclassactivitisbyhead->status == 'reject')
                         <span class="badge badge-danger">Reject</span>
-                        @elseif ($view_activitie->status == 'suspend')
+                        @elseif ($view_aclassactivitisbyhead->status == 'suspend')
                         <span class="badge badge-warning">Suspended</span>
-                        @elseif ($view_activitie->status == 'approved')
-                        <span class="badge badge-success">Employed</span>
+                        @elseif ($view_aclassactivitisbyhead->status == 'approved')
+                        <span class="badge badge-success">Approved</span>
 
                         @endif</td>
-                        <td><a href="{{ url('web/viewsingleactivies/'.$view_activitie->slug) }}"
+                        <td><a href="{{ url('web/viewsingleactivies/'.$view_aclassactivitisbyhead->slug) }}"
                             class='btn btn-default'>
                              <i class="far fa-eye"></i>
                       
                  
-                        <td><a href="{{ url('web/editactivies/'.$view_activitie->slug) }}"
+                        <td><a href="{{ url('web/editactivies/'.$view_aclassactivitisbyhead->slug) }}"
                                 class='btn btn-info'>
                                  <i class="far fa-edit"></i>
                           
                      
                    
                 
-                 <td>{{ $view_activitie->created_at->format('D d, M Y, H:i')}}</td>
+                 <td>{{ $view_aclassactivitisbyhead->created_at->format('D d, M Y, H:i')}}</td>
 
                   </tr>
                  
@@ -96,7 +116,7 @@
                     <th>Subject</th>
                     <th>Topic</th>
                     <th>Youtube</th>
-                    {{-- <th>Messages</th> --}}
+                    <th>Action</th>
                     <th>Status</th>
                     <th>View</th>
                     <th>Edit</th>

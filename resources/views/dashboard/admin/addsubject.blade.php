@@ -63,7 +63,19 @@
                         @error('subjectname')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror 
-                    </div>
+                    
+
+                    <div class="col-lg-6 col-md-6 col-sm-23">
+                      <div class="form-group">
+                          <label>Sublect Code</label>
+                          <input type="text" class="form-control" @error('title')
+                          @enderror value="{{ old('title') }}" name="title" placeholder="Subject Code">
+                        </div>
+                      </div>
+                      @error('title')
+                      <span class="text-danger">{{ $message }}</span>
+                      @enderror 
+                  </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-23">
                       <div class="form-group">

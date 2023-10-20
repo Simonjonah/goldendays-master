@@ -95,13 +95,31 @@
                   <div class="alert alert-danger">
                   {{ Session::get('fail') }}
                   @endif
+                    @php
+                        use App\Models\Classname;
 
+                        $viewclasses = Classname::all();
+                    @endphp
                     @method('PUT')
-                  <div class="mb-3">
-                      <input type="hidden" name="user_id" value="{{ $query_singteachers->id }}" class="form-control" placeholder="Query Title">
-                      <input type="text" name="querytitle" class="form-control" placeholder="Query Title">
-                      <input type="hidden" name="images" value="{{ $query_singteachers->images }}" class="form-control" placeholder="Query Title">
-                      </div>
+                    <div class="mb-3">
+                        <select name="classname" class="form-control" id="">
+                            @foreach ($viewclasses as $viewclasse)
+                              <option value="{{ $viewclasse->classname }}">{{ $viewclasse->classname }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                      <select name="section" class="form-control" id="">
+                            <option value="Pre-School">Pre-School</option>
+                            <option value="Primary">Primary</option>
+                            <option value="Secondary">High School</option>
+                      </select>
+                  </div>
+                      <div class="mb-3">
+                        <input type="hidden" name="user_id" value="{{ $query_singteachers->id }}" class="form-control" placeholder="Query Title">
+                        <input type="text" name="querytitle" class="form-control" placeholder="Query Title">
+                        <input type="hidden" name="images" value="{{ $query_singteachers->images }}" class="form-control" placeholder="Query Title">
+                        </div>
                     <div class="mb-3">
                       <textarea name="messages" class="textarea" placeholder="Place some text here"
                                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>

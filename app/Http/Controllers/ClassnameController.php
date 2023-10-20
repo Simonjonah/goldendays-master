@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Academicsession;
 use App\Models\Classname;
 use App\Models\Result;
 use App\Models\Transaction;
@@ -124,8 +125,23 @@ class ClassnameController extends Controller
         $view_addresults = Result::where('classname', $classname)->latest()->get();
         return view('dashboard.admin.viewclassresults', compact('view_addresults'));
     }
-    
 
+    public function addresultinclass($classname){
+        $view_studentsclassresults = Classname::where('classname', $classname)->first();
+        $view_studentsclassresults = User::where('classname', $classname)->where('role', 'student')->latest()->get();
+        return view('dashboard.addresultinclass', compact('view_studentsclassresults'));
+    }
+    
+    public function highschoolresult($classname){
+        $view_studentstermresults = Classname::where('classname', $classname)->first();
+        $view_studentstermresults = Result::where('classname', $classname)->latest()->get();
+
+        $academic_sessions = Academicsession::latest()->get();
+        return view('dashboard.highschoolresult', compact('academic_sessions', 'view_studentstermresults'));
+    }
+
+    
+    
     
     
 }

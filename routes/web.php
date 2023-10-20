@@ -38,6 +38,7 @@ use App\Http\Controllers\TransactionController;
 use App\Models\Academicsession;
 use App\Models\Classactivity;
 use App\Models\Transaction;
+use App\Models\User;
 
 // use App\Models\Team;
 
@@ -438,6 +439,10 @@ Route::prefix('web')->name('web.')->group(function() {
     
     Route::middleware(['auth:web'])->group(function() {
         
+        Route::post('/searchresultbyteacherprin', [ResultController::class, 'searchresultbyteacherprin'])->name('searchresultbyteacherprin');
+        Route::get('/highschoolresult/{classname}', [ClassnameController::class, 'highschoolresult'])->name('highschoolresult');
+        Route::post('/searchresultbyteacher', [ResultController::class, 'searchresultbyteacher'])->name('searchresultbyteacher');
+        Route::get('/addresultinclass/{classname}', [ClassnameController::class, 'addresultinclass'])->name('addresultinclass');
         Route::get('/preschoollessonnotes', [LessonnoteController::class, 'preschoollessonnotes'])->name('preschoollessonnotes');
         Route::get('/highschoolessonnotes', [LessonnoteController::class, 'highschoolessonnotes'])->name('highschoolessonnotes');
         Route::get('/deletelesons/{id}', [LessonnoteController::class, 'deletelesons'])->name('deletelesons');
@@ -517,24 +522,27 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/viewsingleactivies/{slug}', [ClassactivityController::class, 'viewsingleactivies'])->name('viewsingleactivies');
         Route::get('/viewclassactivities', [ClassactivityController::class, 'viewclassactivities'])->name('viewclassactivities');
         Route::post('/createclassactivity', [ClassactivityController::class, 'createclassactivity'])->name('createclassactivity');
-        Route::get('/editquestion/{id}', [QuestionController::class, 'editquestion'])->name('editquestion');
-        Route::put('/updatequestion/{id}', [QuestionController::class, 'updatequestion'])->name('updatequestion');
+        Route::get('/classactivities', [ClassactivityController::class, 'classactivities'])->name('classactivities');
+        Route::get('/approveclassactivity/{slug}', [ClassactivityController::class, 'approveclassactivity'])->name('approveclassactivity');
+        Route::get('/suspendclassactivity/{slug}', [ClassactivityController::class, 'suspendclassactivity'])->name('suspendclassactivity');
         
-        Route::get('/mysquestions', [QuestionController::class, 'mysquestions'])->name('mysquestions');
-        Route::post('/createquestion', [QuestionController::class, 'createquestion'])->name('createquestion');
-        Route::get('/setquestion/{id}', [QuestionController::class, 'setquestion'])->name('setquestion');
-        Route::get('/viewquestion/{id}', [QuestionController::class, 'viewquestion'])->name('viewquestion');
-        Route::get('/viewquestion/{id}', [QuestionController::class, 'viewquestion'])->name('viewquestion');
+        Route::get('/viewqueries', [QueryController::class, 'viewqueries'])->name('viewqueries');
         Route::get('/printresult/{id}', [ResultController::class, 'printresult'])->name('printresult');
         Route::get('/mysubjects', [TeacherassignController::class, 'mysubjects'])->name('mysubjects');
         Route::post('/yourresult', [ResultController::class, 'yourresult'])->name('yourresult');
         Route::get('/checkresult', [ResultController::class, 'checkresult'])->name('checkresult');
         Route::get('/checkresultterminal', [ResultController::class, 'checkresultterminal'])->name('checkresultterminal');
-        Route::get('/teacherviewresults3rd/{id}', [ResultController::class, 'teacherviewresults3rd'])->name('teacherviewresults3rd');
+        // Route::get('/teacherviewresults3rd/{id}', [ResultController::class, 'teacherviewresults3rd'])->name('teacherviewresults3rd');
         Route::get('/thirdtermresults', [ResultController::class, 'thirdtermresults'])->name('thirdtermresults');
         Route::get('/teacherviewresults2nd/{id}', [ResultController::class, 'teacherviewresults2nd'])->name('teacherviewresults2nd');
         Route::get('/secondtermresults', [ResultController::class, 'secondtermresults'])->name('secondtermresults');
         Route::get('/addpsychomotor/{user_id}', [ResultController::class, 'addpsychomotor'])->name('addpsychomotor');
+       
+        Route::get('/addcomment/{user_id}', [ResultController::class, 'addcomment'])->name('addcomment');
+        Route::get('/highschoolparents', [UserController::class, 'highschoolparents'])->name('highschoolparents');
+        Route::get('/approvedparent/{ref_no}', [UserController::class, 'approvedparent'])->name('approvedparent');
+        
+        Route::put('/createcomment/{id}', [ResultController::class, 'createcomment'])->name('createcomment');
         Route::put('/createpsychomotoro/{id}', [ResultController::class, 'createpsychomotoro'])->name('createpsychomotoro');
         Route::post('/createresults', [ResultController::class, 'createresults'])->name('createresults');
         Route::put('/assignstudentclass/{ref_no1}', [UserController::class, 'assignstudentclass'])->name('assignstudentclass');

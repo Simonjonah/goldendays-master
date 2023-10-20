@@ -7,6 +7,12 @@
       <span class="brand-text font-weight-light">GoldenDestiny Sch.</span>
     </a>
 
+    @php
+        use App\Models\Classname;
+        
+        $classnames = Classname::where('section', 'Secondary')->get();
+    @endphp
+
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -620,6 +626,38 @@
                     <p>View Lesson Notes</p>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('web/highschoolparents') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Parents</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('web/classactivities') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Class Activities</p>
+                  </a>
+                </li>
+
+
+                <li class="nav-item">
+                  <a href="{{ url('web/viewqueries') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Queries</p>
+                  </a>
+                </li>
+                @foreach ($classnames as $classname)
+                <li class="nav-item">
+                  <a href="{{ url('web/highschoolresult/'.$classname->classname) }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Results in {{ $classname->classname }}</p>
+                  </a>
+                </li>
+                @endforeach
+                
+
                   <li class="nav-item">
                     <a href="{{ url('web/viewaddresults') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>

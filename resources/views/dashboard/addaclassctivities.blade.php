@@ -112,6 +112,8 @@
                   @endif
                 <div class="form-group">
                   <input type="hidden" class="form-control" name="user_id" value="{{ Auth::guard('web')->user()->id }}" placeholder=":">
+                  <input type="hidden" class="form-control" name="classname" value="{{ Auth::guard('web')->user()->classname }}" placeholder=":">
+                  <input type="hidden" class="form-control" name="section" value="{{ Auth::guard('web')->user()->section }}" placeholder=":">
                   {{-- <input class="form-control" name="images" value="{{ Auth::guard('web')->user()->images }}" placeholder=":"> --}}
                   <input type="text" class="form-control" name="subject" value="" placeholder="Subject">
                 </div>

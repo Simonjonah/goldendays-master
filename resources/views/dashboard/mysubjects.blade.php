@@ -40,6 +40,8 @@
                 <th>Class</th>
 
                 <th>Subjects</th>
+                <th>Code</th>
+
                 <th>Section</th>
                 
                 <th>Date</th>
@@ -52,8 +54,9 @@
                   <tr>
                     <td>{{ Auth::guard('web')->user()->fname }}</td>
                     <td>{{ Auth::guard('web')->user()->surname }}</td>
-                    <td>{{ $my_subject->classname }}</td>
+                    <td><a href="{{ url('web/addresultinclass/'.$my_subject->classname) }}" target="_blank" rel="noopener noreferrer">{{ $my_subject->classname }}</a></td>
                     <td>{{ $my_subject->subject['subjectname'] }}</td>
+                    <td>{{ $my_subject->subject['title'] }}</td>
                     <td>{{ $my_subject->section }}</td>
                    
                  
@@ -75,6 +78,7 @@
                 <th>Class</th>
 
                 <th>Subjects</th>
+                <th>Code</th>
 
                 <th>Section</th>
                 

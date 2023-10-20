@@ -1,7 +1,7 @@
-@include('dashboard.admin.header')
+@include('dashboard.header')
 
   <!-- Main Sidebar Container -->
-  @include('dashboard.admin.sidebar')
+  @include('dashboard.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Subjects for Secondary School</h1>
+            <h1>DataTables</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -38,72 +38,60 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Subjects</th>
-                    <th>Code</th>
-                    <th>Section</th>
-                    <th>Actions</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>Date</th>
+                    <th>First name</th>
+                    <th>Middlename</th>
+                    <th>Surname</th>
+                    {{-- <th>Centername</th> --}}
+                    <th>Classname</th>
+                    <th>Entry Level</th>
+                    
+
+                    <th>Images</th>
+                    <th>View Query</th>
+
                   </tr>
                   </thead>
                   <tbody>
-                    @if (Session::get('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                    @endif
 
-                    @if (Session::get('fail'))
-                    <div class="alert alert-danger">
-                    {{ Session::get('fail') }}
-                    </div>
-                  @endif
+                    @foreach ($view_queriesbyheadesbyheades as $view_queriesbyheade)
+                    {{-- @if ($view_queriesbyheade->centername == Auth::guard('web')->user()->centername && $view_queriesbyheade->entrylevel == Auth::guard('web')->user()->entrylevel && $view_queriesbyheade->classname == Auth::guard('web')->user()->classname && $view_queriesbyheade->role == Auth::guard('web')->user()->role = null) --}}
+                        <tr>
+                          <td>{{ $view_queriesbyheade->user['fname'] }}</td>
+                          <td>{{ $view_queriesbyheade->user['middlename'] }}</td>
+                          <td>{{ $view_queriesbyheade->user['surname'] }}</td>
+
+                          {{-- <td> {{ $view_queriesbyheade->user['centername'] }}</td> --}}
+                          <td> {{ $view_queriesbyheade->user['classname'] }}</td>
+                          
+                          <td> {{ $view_queriesbyheade->user['term'] }} <small>{{ $view_queriesbyheade->status }}</small></td>
+                          <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_queriesbyheade->images")}}" alt=""></td>
+
+                         
+                             <td><a href="{{ url('web/viewquery/'.$view_queriesbyheade->id) }}"
+                              class='btn btn-info'>
+                               view Query
+                           </a></td>
+                         </a></td>
+                        </tr>
+                    {{-- @else
+                    @endif --}}
+                  @endforeach
+                      
                 
-                    @foreach ($view_subjects as $view_subject)
-       
-                      <tr>
-                        <td>{{ $view_subject->subjectname }}</td>
-                        <td>{{ $view_subject->title }}</td>
-                        <td>{{ $view_subject->section }}</td>
-                       
-                        
-                        
-                        <td><a href="{{ url('admin/assignsubject/'.$view_subject->id) }}"
-                          class='btn btn-primary'>
-                           <i class="far fa-user"></i>
-                       </a></td> 
-                    
-                         <td><a href="{{ url('admin/editsubject/'.$view_subject->id) }}"
-                          class='btn btn-info'>
-                           <i class="far fa-edit"></i>
-                       </a></td>  
-
-                     
-                     
-                       <td><a href="{{ url('admin/deletesubject/'.$view_subject->id) }}"
-                        class='btn btn-danger'>
-                         <i class="far fa-trash-alt"></i>
-                     </a></td>
-                    
-                     <td>{{ $view_subject->created_at->format('D d, M Y, H:i')}}</td>
-
-                      </tr>
-                     
-                    @endforeach
-                 
-                 
-                   
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th>Subjects</th>
-                      <th>Code</th>
-                      <th>Section</th>
-                      <th>Actions</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                      <th>Date</th>
+                      <th>First name</th>
+                      <th>Middlename</th>
+                      <th>Surname</th>
+                      {{-- <th>Centername</th> --}}
+                      <th>Classname</th>
+                      <th>Entry Level</th>
+                      
+  
+                      <th>Images</th>
+                      <th>View Query</th>
+                      
                     </tr>
                   </tfoot>
                 </table>
@@ -120,37 +108,12 @@
     </section>
     <!-- /.content -->
   </div>
-
-  <div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Default Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-control">
-            
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://golden.com.ng">Golden</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="httpS://golderndayschools.com">Golderndays</a>.</strong> All rights
     reserved.
   </footer>
 

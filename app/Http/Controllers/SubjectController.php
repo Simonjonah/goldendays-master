@@ -20,11 +20,13 @@ class SubjectController extends Controller
         $request->validate([
             'subjectname' => ['required', 'string', 'max:255'],
             'section' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
             
         ]);
         $addsubjects = new Subject();
         $addsubjects->subjectname = $request->subjectname;
         $addsubjects->section = $request->section;
+        $addsubjects->title = $request->title;
         $addsubjects->save();
         if ($addsubjects) {
             return redirect()->back()->with('success', 'you have successfully registered');
@@ -52,12 +54,12 @@ class SubjectController extends Controller
         $request->validate([
             'subjectname' => ['required', 'string', 'max:255'],
             'section' => ['required', 'string', 'max:255'],
-            //'classname' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
             
         ]);
         $edit_subject->subjectname = $request->subjectname;
         $edit_subject->section = $request->section;
-       //$edit_subject->classname = $request->classname;
+       $edit_subject->title = $request->title;
         $edit_subject->update();
         if ($edit_subject) {
             return redirect()->back()->with('success', 'you have successfully updated');

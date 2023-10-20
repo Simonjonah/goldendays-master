@@ -103,12 +103,12 @@
                           Action
                         </button>
                         <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="{{ url('admin/viewsingleteacher/'.$view_abujateacher->ref_no) }}">View</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/editteacher/'.$view_abujateacher->ref_no) }}">Edit</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/teacherapprove/'.$view_abujateacher->ref_no) }}">Approved</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/teachersuspend/'.$view_abujateacher->ref_no) }}">Suspend</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/teachersacked/'.$view_abujateacher->ref_no) }}">Sacked</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/teacherquery/'.$view_abujateacher->ref_no) }}">Query</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/viewsingleteacher/'.$view_abujateacher->ref_no1) }}">View</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/editteacher/'.$view_abujateacher->ref_no1) }}">Edit</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/teacherapprove/'.$view_abujateacher->ref_no1) }}">Approved</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/teachersuspend/'.$view_abujateacher->ref_no1) }}">Suspend</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/teachersacked/'.$view_abujateacher->ref_no1) }}">Sacked</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/teacherquery/'.$view_abujateacher->ref_no1) }}">Query</a></li>
                         </ul>
                       </div></td>
                        

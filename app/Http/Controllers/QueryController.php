@@ -14,6 +14,8 @@ class QueryController extends Controller
         $add_query = User::where('ref_no', $ref_no)->first();
         $request->validate([
             'user_id' => ['required', 'string', 'max:255'],
+            'classname' => ['required', 'string', 'max:255'],
+            'section' => ['required', 'string', 'max:255'],
            
             'querytitle' => ['required', 'string', 'max:255'],
             'messages' => ['required', 'string'],
@@ -21,6 +23,8 @@ class QueryController extends Controller
         ]);
         $add_query = new Query();
         $add_query->user_id = $request->user_id;
+        $add_query->section = $request->section;
+        $add_query->classname = $request->classname;
        
         $add_query->images = $request->images;
         $add_query->querytitle = $request->querytitle;
@@ -125,5 +129,9 @@ class QueryController extends Controller
         return view('dashboard.admin.queriedteachersreply', compact('queried_replied'));
     }
     
+    public function viewqueries(){
+        $view_queriesbyheades = Query::where('section', 'Secondary')->latest()->get();
+        return view('dashboard.viewqueries', compact('view_queriesbyheades'));
+    }
     
 }

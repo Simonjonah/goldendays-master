@@ -22,6 +22,8 @@ class ClassactivityController extends Controller
 
         $request->validate([
             'user_id' => ['required', 'string', 'max:255'],
+            'classname' => ['required', 'string', 'max:255'],
+            'section' => ['required', 'string', 'max:255'],
            
             'subject' => ['required', 'string'],
             'youtube' => ['required', 'string'],
@@ -34,6 +36,8 @@ class ClassactivityController extends Controller
         // dd($request->all());
         $add_classactivity = new Classactivity();
         $add_classactivity->user_id = $request->user_id;
+        $add_classactivity->classname = $request->classname;
+        $add_classactivity->section = $request->section;
         $add_classactivity->images = $request->images;
         $add_classactivity->topic = $request->topic;
         $add_classactivity->slug = SlugService::createSlug(Classactivity::class, 'slug', $request->topic);
@@ -201,6 +205,14 @@ class ClassactivityController extends Controller
         return view('dashboard.admin.viewclassactivitiesads', compact('view_aclassactivitis'));
     }
 
+
+    public function viewclassactivities(){
+
+        $view_activities = Classactivity::all();
+        return view('dashboard.viewclassactivities', compact('view_activities'));
+    }
+    
+
     public function viewsingclassactivity($slug){
 
         $view_singclassactivitis = Classactivity::where('slug', $slug)->first();
@@ -254,6 +266,23 @@ class ClassactivityController extends Controller
         $approved_classactivity->save();
         return redirect()->back()->with('success', 'you have suspend successfully');
     }
+
+    public function suspendclassactivity($slug){
+        $approved_classactivity = Classactivity::where('slug', $slug)->first();
+        $approved_classactivity->status = 'suspend';
+        $approved_classactivity->save();
+        return redirect()->back()->with('success', 'you have suspend successfully');
+    }
+
+    
+
+    public function approveclassactivity($slug){
+        $approved_classactivity = Classactivity::where('slug', $slug)->first();
+        $approved_classactivity->status = 'approved';
+        $approved_classactivity->save();
+        return redirect()->back()->with('success', 'you have approved successfully');
+    }
+    
     public function classactivitydelete($slug){
         $approved_classactivity = Classactivity::where('slug', $slug)->delete();
        
@@ -307,6 +336,11 @@ class ClassactivityController extends Controller
             return redirect()->back()->with('fail', 'you have not added successfully');
         }
 
+    }
+
+    public function classactivities(){
+        $view_aclassactivitisbyheads = Classactivity::where('section', 'Secondary')->latest()->get();
+        return view('dashboard.classactivities', compact('view_aclassactivitisbyheads'));
     }
     
     

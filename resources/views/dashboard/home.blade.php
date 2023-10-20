@@ -275,6 +275,24 @@
       </div>
       <!-- ./col -->
 
+      
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-dark">
+          <div class="inner">
+            <h3>{{ $countlessonnotes }}</h3>
+
+            <p>My Lesson Notes</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-person"></i>
+
+          </div>
+          <a href="{{ route('web.lessonnoteview') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+
     </div>
     <!-- /.row -->
     <!-- Main row -->

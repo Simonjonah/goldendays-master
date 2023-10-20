@@ -775,6 +775,7 @@ class UserController extends Controller
 
     public function home(){
 
+        $countlessonnotes = Lessonnote::where('user_id', auth::guard('web')->id())->count();
         $countyourresults = Result::where('teacher_id', auth::guard('web')->id())->count();
         $countqueries = Query::where('user_id', auth::guard('web')->id())
         ->where('status', null)
@@ -784,7 +785,7 @@ class UserController extends Controller
         ->count();
         $countmysubjects = Teacherassign::where('user_id', auth::guard('web')->id())->count();
        $countmyactivity = Classactivity::where('user_id', auth::guard('web')->id())->count();
-        return view('dashboard/home', compact('countmyactivity', 'countmysubjects', 'countreplyqueries', 'countqueries', 'countyourresults'));
+        return view('dashboard/home', compact('countlessonnotes', 'countmyactivity', 'countmysubjects', 'countreplyqueries', 'countqueries', 'countyourresults'));
     }
 
     public function profile($ref_no1){
@@ -1846,6 +1847,21 @@ class UserController extends Controller
     public function viewparents(){
         $view_parents = User::where('designation', 'parent')->latest()->get();
         return view('dashboard.admin.viewparents', compact('view_parents'));
+    }
+
+    public function highschoolparents(){
+
+        $view_highschoolparents = User::where('designation', 'parent')
+        ->where('section', 'Secondary')->latest()->get();
+        return view('dashboard.highschoolparents', compact('view_highschoolparents'));
+    }
+    
+    
+    public function approvedparent($ref_no){
+        $approve_parents = User::where('ref_no', $ref_no)->first();
+        $approve_parents->status = 'admitted';
+        $approve_parents->save();
+        return redirect()->back()->with('success', 'you have approved successfully');
     }
 
     public function logout(){

@@ -67,6 +67,18 @@
 
                     <div class="col-lg-6 col-md-6 col-sm-23">
                       <div class="form-group">
+                          <label>Code</label>
+                          <input type="text" class="form-control" @error('title')
+                          @enderror value="{{ $edit_subject->title }}" name="title" placeholder="Subject Code">
+                        </div>
+                      </div>
+                      @error('title')
+                      <span class="text-danger">{{ $message }}</span>
+                      @enderror 
+                  </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-23">
+                      <div class="form-group">
                         <h5>Section </h5>
                         <select required class="form-control" type="text" name="section">
                           {{-- <option value="Creche">Creche</option>

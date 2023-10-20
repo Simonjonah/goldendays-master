@@ -43,11 +43,11 @@
                     <th>Middlename</th>
                     <th>Admission No</th>
                     <th>Search</th>
-                    <th>Psycomotor</th>
+                    <th>Add Comment</th>
                     {{-- <th>Ref. No</th> --}}
-                    <th>CA 1</th>
-                    <th>CA 2</th>
-                    <th>CA 3</th>
+                    <th>Summative</th>
+                    <th>Formative</th>
+                    {{-- <th>CA 3</th> --}}
                     <th>Exams</th>
                     <th>Total</th>
                     <th>Grade</th>
@@ -63,44 +63,43 @@
                         
                       //  $total_score = 0;
                     @endphp
-                    @foreach ($view_myresults as $view_myresult)
+                    @foreach ($view_studentstermresults as $view_studentstermresult)
                       @php
-                         // $total_score +=$view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams;
+                         // $total_score +=$view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams;
                           
                       @endphp
                       <tr>
-                        <td>{{ $view_myresult->user['surname'] }}</td>
-                        <td>{{ $view_myresult->user['fname'] }}</td>
-                        <td>{{ $view_myresult->user['middlename'] }}</td>
-                        <td>{{ $view_myresult->user['regnumber'] }}</td>
+                        <td>{{ $view_studentstermresult->user['surname'] }}</td>
+                        <td>{{ $view_studentstermresult->user['fname'] }}</td>
+                        <td>{{ $view_studentstermresult->user['middlename'] }}</td>
+                        <td>{{ $view_studentstermresult->user['regnumber'] }}</td>
                         <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                           Search Pupils/Students Results
                          </button></td>
-                        <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
+                        <td><a href="{{ url('web/addcomment/'.$view_studentstermresult->id) }}"
                           class='btn btn-default'>
-                          Add Psycomotor
+                          Add Comment
                            <i class="far fa-eye"></i>
 
                        
 
-                      {{-- <td>{{ $view_myresult->user['ref_no'] }}</td> --}}
-                      <td>{{ $view_myresult->test_1 }}</td>
-                      <td>{{ $view_myresult->test_2 }}</td>
-                      <td>{{ $view_myresult->test_3 }}</td>
-                      <td>{{ $view_myresult->exams }}</td>
-                      <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
-                      <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 79)
+                      {{-- <td>{{ $view_studentstermresult->user['ref_no'] }}</td> --}}
+                      <td>{{ $view_studentstermresult->test_1 }}</td>
+                      <td>{{ $view_studentstermresult->test_2 }}</td>
+                      <td>{{ $view_studentstermresult->exams }}</td>
+                      <td>{{ $view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams }}</td>
+                      <td>@if ($view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams > 79)
                         <p>A</p>
                        
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
+                        @elseif ($view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams > 69)
                         <p>B</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
+                        @elseif ($view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams > 59)
                         <p>C</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
+                        @elseif ($view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams > 49)
                         <p>D</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
+                        @elseif ($view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams > 40)
                         <p>E</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
+                        @elseif ($view_studentstermresult->test_1 + $view_studentstermresult->test_2 + $view_studentstermresult->test_3 + $view_studentstermresult->exams > 39)
                         <p>F</p>
                         @else
                         <p>F</p>
@@ -110,7 +109,7 @@
                          
                       
                      
-                         <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
+                         <td><a href="{{ url('web/teacherviewresults/'.$view_studentstermresult->user_id)}}"
                           class='btn btn-default'>
                            <i class="far fa-eye"></i>
                        </a></td>
@@ -132,12 +131,12 @@
                       <th>Admission No</th>
                     <th>Search</th>
 
-                      <th>Psycomotor</th>
+                      <th>Add Comment</th>
 
                       {{-- <th>Ref. No</th> --}}
-                      <th>CA 1</th>
-                      <th>CA 2</th>
-                      <th>CA 3</th>
+                      <th>Summative</th>
+                      <th>Formative</th>
+                      {{-- <th>CA 3</th> --}}
                       <th>Exams</th>
                       <th>Total</th>
                       <th>Grade</th>
@@ -231,14 +230,14 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="{{ url('web/searchresultbyteacher') }}" method="post">
+      <form action="{{ url('web/searchresultbyteacherprin') }}" method="post">
         @csrf
         
         <div class="form-group">
           <label for="">Reg Number</label>
           <select name="regnumber" class="form-control" id="">
-           @foreach ($view_myresults as $view_myresult)
-             <option value="{{ $view_myresult->regnumber }}">{{ $view_myresult->regnumber }}</option>
+           @foreach ($view_studentstermresults as $view_studentstermresult)
+             <option value="{{ $view_studentstermresult->regnumber }}">{{ $view_studentstermresult->regnumber }}</option>
            @endforeach
           </select>
         </div>
@@ -246,8 +245,8 @@
         <div class="form-group">
           <label for="">Select Term</label>
           <select name="term" class="form-control" id="">
-           @foreach ($view_myresults as $view_myresult)
-             <option value="{{ $view_myresult->term }}">{{ $view_myresult->term }}</option>
+           @foreach ($view_studentstermresults as $view_studentstermresult)
+             <option value="{{ $view_studentstermresult->term }}">{{ $view_studentstermresult->term }}</option>
            @endforeach
           </select>
         </div>

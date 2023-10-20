@@ -41,8 +41,8 @@
                     <th>First name</th>
                     <th>Middlename</th>
                     <th>Surname</th>
-                    {{-- <th>Centername</th> --}}
-                    <th>Classname</th>
+                    <th>Search</th>
+                    {{-- <th>Classname</th> --}}
                     <th>Term</th>
                     <th>Gender</th>
 
@@ -51,6 +51,7 @@
                     <th>Action</th>
                     <th>Add Results</th>
                     <th>Add Class Activities</th>
+                    <th>Add Midterm Results</th>
                     
                   </tr>
                   </thead>
@@ -63,7 +64,7 @@
                           <td>{{ $view_term->middlename }}</td>
                           <td>{{ $view_term->surname }}</td>
 
-                          {{-- <td> {{ $view_term->centername }}</td> --}}
+                          
                           <td> {{ $view_term->classname }}</td>
                           
                           <td> {{ $view_term->term }}</td>
@@ -87,6 +88,12 @@
                               Add Classactivity
                           </a></td>
 
+                         {{-- @if ($view_studentsclassresult == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
+                         <td><a href="{{ url('web/addmidtermresults/'.$view_term->ref_no1) }}"
+                          class='btn btn-info'>
+                          Add Midterm Results
+                      </a></td>
+
                             
                          </a></td>
                         </tr>
@@ -101,8 +108,8 @@
                       <th>First name</th>
                       <th>Middlename</th>
                       <th>Surname</th>
-                      {{-- <th>Centername</th> --}}
-                      <th>Classname</th>
+                      <th>Search</th>
+                      {{-- <th>Classname</th> --}}
                       <th>Term</th>
                       <th>Gender</th>
   
@@ -111,6 +118,7 @@
                       <th>Action</th>
                       <th>Add Results</th>
                     <th>Add Class Activities</th>
+                    <th>Add Midterm Results</th>
                     </tr>
                   </tfoot>
                 </table>

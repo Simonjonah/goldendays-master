@@ -15,6 +15,56 @@ class ResultController extends Controller
 {
     public function createresults(Request $request){
         
+       if (Auth::guard('web')->user()->section == 'Secondary') {
+        $data = [];
+        $subjectnames = $request->input('subjectname');
+        $test_1s = $request->input('test_1');
+        $test_2s = $request->input('test_2');
+        $tnames= $request->input('tname');
+        $tsurnames = $request->input('tsurname');
+        $examss = $request->input('exams');
+        $user_ids = $request->input('user_id');
+        $teacher_ids = $request->input('teacher_id');
+        $academic_sessions = $request->input('academic_session');
+        $regnumbers = $request->input('regnumber');
+        $terms = $request->input('term');
+        // $guardian_ids = $request->input('guardian_id');
+        $classnames = $request->input('classname');
+        $fnames = $request->input('fname');
+        $middlenames = $request->input('middlename');
+        $surnames = $request->input('surname');
+        $genders = $request->input('gender');
+        $images_ds = $request->input('images');
+        $titles = $request->input('title');
+        
+        for ($i = 0; $i < count($subjectnames); $i++) {
+            $data[] = [
+
+                'subjectname' => $subjectnames[$i],
+                'test_1' => $test_1s[$i],
+                'test_2' => $test_2s[$i],
+                'tname' => $tnames[$i],
+                'tsurname' => $tsurnames[$i],
+                'exams' => $examss[$i],
+                'user_id' => $user_ids[$i],
+                'teacher_id' =>$teacher_ids[$i],
+
+                'academic_session' =>$academic_sessions[$i],
+                'regnumber' =>$regnumbers[$i],
+                'term' => $terms[$i],
+                // 'guardian_id' => $guardian_ids[$i],
+                'classname' => $classnames[$i],
+                'fname' => $fnames[$i],
+                'middlename' => $middlenames[$i],
+                'surname' => $surnames[$i],
+                'gender' => $genders[$i],
+                'images' => $images_ds[$i],
+                'title' => $titles[$i],
+                
+            ];
+        }
+       }elseif (Auth::guard('web')->user()->section == 'Primary') {
+        # code...
 
         $data = [];
         $subjectnames = $request->input('subjectname');
@@ -27,13 +77,14 @@ class ResultController extends Controller
         $academic_sessions = $request->input('academic_session');
         $regnumbers = $request->input('regnumber');
         $terms = $request->input('term');
-        $guardian_ids = $request->input('guardian_id');
+        // $guardian_ids = $request->input('guardian_id');
         $classnames = $request->input('classname');
         $fnames = $request->input('fname');
         $middlenames = $request->input('middlename');
         $surnames = $request->input('surname');
         $genders = $request->input('gender');
         $images_ds = $request->input('images');
+        $titles = $request->input('title');
         
         
         
@@ -52,16 +103,74 @@ class ResultController extends Controller
                 'academic_session' =>$academic_sessions[$i],
                 'regnumber' =>$regnumbers[$i],
                 'term' => $terms[$i],
-                'guardian_id' => $guardian_ids[$i],
+                // 'guardian_id' => $guardian_ids[$i],
                 'classname' => $classnames[$i],
                 'fname' => $fnames[$i],
                 'middlename' => $middlenames[$i],
                 'surname' => $surnames[$i],
                 'gender' => $genders[$i],
                 'images' => $images_ds[$i],
+                'title' => $titles[$i],
                 
             ];
         }
+
+       }else{
+
+        $data = [];
+        $subjectnames = $request->input('subjectname');
+        $test_1s = $request->input('test_1');
+        $test_2s = $request->input('test_2');
+        $test_3s = $request->input('test_3');
+        $examss = $request->input('exams');
+        $user_ids = $request->input('user_id');
+        $teacher_ids = $request->input('teacher_id');
+        $academic_sessions = $request->input('academic_session');
+        $regnumbers = $request->input('regnumber');
+        $terms = $request->input('term');
+        // $guardian_ids = $request->input('guardian_id');
+        $classnames = $request->input('classname');
+        $fnames = $request->input('fname');
+        $middlenames = $request->input('middlename');
+        $surnames = $request->input('surname');
+        $genders = $request->input('gender');
+        $images_ds = $request->input('images');
+        $titles = $request->input('title');
+        
+        
+        
+      
+        for ($i = 0; $i < count($subjectnames); $i++) {
+            $data[] = [
+
+                'subjectname' => $subjectnames[$i],
+                'test_1' => $test_1s[$i],
+                'test_2' => $test_2s[$i],
+                'test_3' => $test_3s[$i],
+                'exams' => $examss[$i],
+                'user_id' => $user_ids[$i],
+                'teacher_id' =>$teacher_ids[$i],
+
+                'academic_session' =>$academic_sessions[$i],
+                'regnumber' =>$regnumbers[$i],
+                'term' => $terms[$i],
+                // 'guardian_id' => $guardian_ids[$i],
+                'classname' => $classnames[$i],
+                'fname' => $fnames[$i],
+                'middlename' => $middlenames[$i],
+                'surname' => $surnames[$i],
+                'gender' => $genders[$i],
+                'images' => $images_ds[$i],
+                'title' => $titles[$i],
+                
+            ];
+        }
+       }
+
+
+    
+       
+        
 //dd($data);
         Result::insert($data);
 
@@ -103,7 +212,7 @@ class ResultController extends Controller
                 'academic_session' =>$academic_sessions[$i],
                 'regnumber' =>$regnumbers[$i],
                 'term' => $terms[$i],
-                'guardian_id' => $guardian_ids[$i],
+                // 'guardian_id' => $guardian_ids[$i],
                 'classname' => $classnames[$i],
             ];
         }
@@ -118,18 +227,19 @@ class ResultController extends Controller
         $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
          ->where('term', 'First Term')
         ->get();
-        return view('dashboard.firstermresults', compact('view_myresults'));
+        $academic_sessions = Academicsession::latest()->get();
+        return view('dashboard.firstermresults', compact('academic_sessions', 'view_myresults'));
     }
     
-    public function teacherviewresults($user_id){
-        $view_myresult_results = Result::where('user_id', $user_id)
-        ->where('term', 'First Term')
-        ->get();
+    // public function teacherviewresults($user_id){
+    //     $view_myresult_results = Result::where('user_id', $user_id)
+    //     ->where('term', 'First Term')
+    //     ->get();
 
-        $view_results = Result::where('user_id', $user_id)->first();
+    //     $view_results = Result::where('user_id', $user_id)->first();
            
-        return view('dashboard.teacherviewresults', compact('view_results', 'view_myresult_results'));
-    }
+    //     return view('dashboard.teacherviewresults', compact('view_results', 'view_myresult_results'));
+    // }
 
     public function teacherviewresults2nd($user_id){
         $view_myresult_results = Result::where('user_id', $user_id)
@@ -556,6 +666,82 @@ class ResultController extends Controller
         return view('dashboard.guardian.pdf1', compact('getyour_results'));
     }
 
+
+    public function searchresultbyteacher(Request $request){
+        $request->validate([
+            'regnumber' => ['required', 'string',],
+            'academic_session' => ['required', 'string',],
+            'term' => ['required', 'string',],
+
+        ], [
+            'regnumber.exist'=>'This Admission number does not exist in result table'
+        ]);
+        if($view_myresult_results = Result::where('regnumber', $request->regnumber)->where('term', $request->term)
+        ->where('academic_session', $request->academic_session)
+        ->exists()) {
+        $view_myresult_results = Result::where('academic_session', $request->academic_session)
+        
+        ->where('regnumber', $request->regnumber)->where('term', $request->term)
+        ->where('academic_session', $request->academic_session)
+        ->get();
+        }else{
+            return redirect()->back()->with('fail', 'There is no results for you!');
+        }
+        $view_results = Result::where('term', $request->term)->first();
+       
+    return view('dashboard.teacherviewresults', compact('view_results', 'view_myresult_results'));
+      
+    }
+
+
+    public function searchresultbyteacherprin(Request $request){
+        $request->validate([
+            'regnumber' => ['required', 'string',],
+            'academic_session' => ['required', 'string',],
+            'term' => ['required', 'string',],
+
+        ], [
+            'regnumber.exist'=>'This Admission number does not exist in result table'
+        ]);
+        if($view_myresult_results = Result::where('regnumber', $request->regnumber)->where('term', $request->term)
+        ->where('academic_session', $request->academic_session)
+        ->exists()) {
+        $view_myresult_results = Result::where('academic_session', $request->academic_session)
+        
+        ->where('regnumber', $request->regnumber)->where('term', $request->term)
+        ->where('academic_session', $request->academic_session)
+        ->get();
+        }else{
+            return redirect()->back()->with('fail', 'There is no results for you!');
+        }
+        $view_results = Result::where('term', $request->term)->first();
+       
+    return view('dashboard.teacherviewresultsprin', compact('view_results', 'view_myresult_results'));
+      
+    }
+
+
+    public function addcomment($id){
+        $add_psychomotor = Result::find($id);
+        return view('dashboard.addcomment', compact('add_psychomotor'));
+    }
+
+    
+    public function createcomment(Request $request, $user_id){
+        
+        $add_psychomotorad = Result::find($user_id);
+        $request->validate([
+            'headteach_comment' => ['nullable', 'string', 'max:255'],
+            
+        ]);
+
+       
+        $add_psychomotorad->headteach_comment = $request->headteach_comment;
+      
+        $add_psychomotorad->update();
+
+        return redirect()->back()->with('success', 'you have added successfully');
+    }
     
 }
     

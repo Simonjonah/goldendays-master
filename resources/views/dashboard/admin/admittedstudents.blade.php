@@ -61,7 +61,7 @@
                         <td>{{ $admit_student->surname }}</td>
                         <td>{{ $admit_student->middlename }}</td>
                         <td>{{ $admit_student->fname }}</td>
-                        <td>{{ $admit_student->ref_no1 }}</td>
+                        <td>{{ $admit_student->regnumber }}</td>
                         <td>{{ $admit_student->classname }}</td>
                         <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$admit_student->images")}}" alt=""></td>
                         <td><a href="{{ url('admin/viewstudent/'.$admit_student->ref_no1) }}"
