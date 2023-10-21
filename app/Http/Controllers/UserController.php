@@ -84,6 +84,7 @@ class UserController extends Controller
 
         $add_adimission = new User();
         $add_adimission['images'] = $path;
+        $add_adimission->teacher_id = Auth::guard('web')->user()->id;
         $add_adimission->surname = $request->surname;
         $add_adimission->middlename = $request->middlename;
         $add_adimission->previouschoolname = $request->previouschoolname;
@@ -874,13 +875,13 @@ class UserController extends Controller
 
 
         public function firsterm(){
-            $view_terms = User::all();
+            $view_terms = User::where('term', 'First Term')->latest()->get();
           
             return view('dashboard.firsterm', compact('view_terms'));
         }
 
         public function secondterm(){
-            $view_terms = User::all();
+            $view_terms = User::where('term', 'Second Term')->latest()->get();
             return view('dashboard.secondterm', compact('view_terms'));
         }
 
@@ -919,7 +920,7 @@ class UserController extends Controller
         }
         
         public function thirdterm(){
-            $view_terms = User::all();
+            $view_terms = User::where('term', 'Third Term')->latest()->get();
           
             return view('dashboard.thirdterm', compact('view_terms'));
         }
@@ -981,6 +982,9 @@ class UserController extends Controller
             $filename = 'SimonJonah-' . time() . '.' . $file->getClientOriginalExtension();
             $path = $request->file('images')->storeAs('resourceimages', $filename);
 
+        }else{
+
+            $path = 'noimage.jpg';
         }
 
         $edit_singteachers['images'] = $path;

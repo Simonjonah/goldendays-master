@@ -526,6 +526,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/approveclassactivity/{slug}', [ClassactivityController::class, 'approveclassactivity'])->name('approveclassactivity');
         Route::get('/suspendclassactivity/{slug}', [ClassactivityController::class, 'suspendclassactivity'])->name('suspendclassactivity');
         
+        Route::get('/queryrepliedviewbyheads', [QueryController::class, 'queryrepliedviewbyheads'])->name('queryrepliedviewbyheads');
         Route::get('/viewqueries', [QueryController::class, 'viewqueries'])->name('viewqueries');
         Route::get('/printresult/{id}', [ResultController::class, 'printresult'])->name('printresult');
         Route::get('/mysubjects', [TeacherassignController::class, 'mysubjects'])->name('mysubjects');

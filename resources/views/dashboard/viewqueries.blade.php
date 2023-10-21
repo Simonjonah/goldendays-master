@@ -53,7 +53,7 @@
                   </thead>
                   <tbody>
 
-                    @foreach ($view_queriesbyheadesbyheades as $view_queriesbyheade)
+                    @foreach ($view_queriesbyheades as $view_queriesbyheade)
                     {{-- @if ($view_queriesbyheade->centername == Auth::guard('web')->user()->centername && $view_queriesbyheade->entrylevel == Auth::guard('web')->user()->entrylevel && $view_queriesbyheade->classname == Auth::guard('web')->user()->classname && $view_queriesbyheade->role == Auth::guard('web')->user()->role = null) --}}
                         <tr>
                           <td>{{ $view_queriesbyheade->user['fname'] }}</td>

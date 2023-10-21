@@ -111,7 +111,7 @@
                   @endif
                 <div class="form-group">
                   <input type="hidden" class="form-control" name="section" value="{{ $reply_singlequeries->section }}" placeholder="Subject:">
-                  <input class="form-control" name="classname" value="{{ $reply_singlequeries->classname }}" placeholder="Subject:">
+                  <input type="hidden" class="form-control" name="classname" value="{{ $reply_singlequeries->classname }}" placeholder="Subject:">
                   <input class="form-control" name="querytitle" value="{{ $reply_singlequeries->querytitle }}" placeholder="Subject:">
                 </div>
                 <div class="form-group">

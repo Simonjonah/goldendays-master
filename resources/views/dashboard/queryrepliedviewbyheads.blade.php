@@ -44,59 +44,33 @@
                     {{-- <th>Centername</th> --}}
                     <th>Classname</th>
                     <th>Term</th>
-                    <th>Gender</th>
+                    
 
                     <th>Images</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                    <th>Add Results</th>
-                    <th>Add Class Activities</th>
-                    <th>Edit</th>
-                    <th>Date</th>
-                    <th>Add Midterm Results</th>
-                    
+                    <th>View Query</th>
+
                   </tr>
                   </thead>
                   <tbody>
 
-                    @foreach ($view_students as $view_student)
-                    {{-- @if ($view_student->section == Auth::guard('web')->user()->section && $view_student->term == Auth::guard('web')->user()->term && $view_student->classname == Auth::guard('web')->user()->classname && $view_student->role == Auth::guard('web')->user()->role = null) --}}
+                    @foreach ($view_replies as $view_replie)
+                    {{-- @if ($view_replie->centername == Auth::guard('web')->user()->centername && $view_replie->entrylevel == Auth::guard('web')->user()->entrylevel && $view_replie->classname == Auth::guard('web')->user()->classname && $view_replie->role == Auth::guard('web')->user()->role = null) --}}
                         <tr>
-                          <td>{{ $view_student->fname }}</td>
-                          <td>{{ $view_student->middlename }}</td>
-                          <td>{{ $view_student->surname }}</td>
+                          <td>{{ $view_replie->user['fname'] }}</td>
+                          <td>{{ $view_replie->user['middlename'] }}</td>
+                          <td>{{ $view_replie->user['surname'] }}</td>
 
-                          {{-- <td> {{ $view_student->centername }}</td> --}}
-                          <td> {{ $view_student->classname }} <small>{{ $view_student->section }}</small></td>
+                          <td> {{ $view_replie->user['classname'] }}</td>
                           
-                          <td> {{ $view_student->term }}</td>
-                          <td> {{ $view_student->gender }}</td>
-                          <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_student->images")}}" alt=""></td>
-                          <td> <span class="badge badge-success">{{ $view_student->status }}</span></td>
+                          <td> {{ $view_replie->user['term'] }} <small>{{ $view_replie->status }}</small></td>
+                          <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_replie->images")}}" alt=""></td>
 
-                          <td><a href="{{ url('web/viewstudent/'.$view_student->ref_no1) }}"
-                            class='btn btn-default'>
-                             <i class="far fa-eye"></i></a></td>
-
-                             {{-- @if ($view_student == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
-                              <td><a href="{{ url('web/addresults/'.$view_student->ref_no1) }}"
-                                class='btn btn-primary'>
-                                Add Results
-                            </a></td>
-
-                            
-                             <td><a href="{{ url('web/addaclassctivities') }}"
+                         
+                             <td><a href="{{ url('web/viewquery/'.$view_replie->id) }}"
                               class='btn btn-info'>
-                              Add Classactivity
-                          </a></td>
-                          <td><a href="{{ url('web/edityourstudent/'.$view_student->ref_no1) }}"
-                            class='btn btn-default'>
-                             <i class="far fa-edit"></i></a></td>
-                            <td>{{ $view_student->created_at->format('D d, M Y, H:i')}}</td>
-                            <td><a href="{{ url('web/addmidtermresults/'.$view_student->ref_no1) }}"
-                              class='btn btn-success'>
-                              Add Midterm Results
-                          </a></td>
+                               View Query
+                           </a></td>
+                         </a></td>
                         </tr>
                     {{-- @else
                     @endif --}}
@@ -112,18 +86,11 @@
                       {{-- <th>Centername</th> --}}
                       <th>Classname</th>
                       <th>Term</th>
-                      <th>Gender</th>
+                      
   
                       <th>Images</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                      <th>Add Results</th>
-                    <th>Add Class Activities</th>
-                    <th>Edit</th>
-                    <th>Date</th>
-                    <th>Add Midterm Results</th>
-
-
+                      <th>View Query</th>
+                      
                     </tr>
                   </tfoot>
                 </table>

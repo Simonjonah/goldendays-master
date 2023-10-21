@@ -58,7 +58,7 @@
                   <tbody>
 
                     @foreach ($view_terms as $view_term)
-                    @if ($view_term->section == Auth::guard('web')->user()->section && $view_term->term == Auth::guard('web')->user()->term && $view_term->classname == Auth::guard('web')->user()->classname && $view_term->role == Auth::guard('web')->user()->role = null)
+                    @if ($view_term->section == Auth::guard('web')->user()->section && $view_term->term == Auth::guard('web')->user()->term && $view_term->classname == Auth::guard('web')->user()->classname && $view_term->role == 'student')
                         <tr>
                           <td>{{ $view_term->fname }}</td>
                           <td>{{ $view_term->middlename }}</td>
@@ -90,9 +90,9 @@
 
                          {{-- @if ($view_studentsclassresult == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
                          <td><a href="{{ url('web/addmidtermresults/'.$view_term->ref_no1) }}"
-                          class='btn btn-info'>
+                          class='btn btn-success'>
                           Add Midterm Results
-                      </a></td>
+                          </a></td>
 
                             
                          </a></td>

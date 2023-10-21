@@ -73,6 +73,8 @@ class ResultController extends Controller
         $test_3s = $request->input('test_3');
         $examss = $request->input('exams');
         $user_ids = $request->input('user_id');
+        // $tnames= $request->input('tname');
+        // $tsurnames = $request->input('tsurname');
         $teacher_ids = $request->input('teacher_id');
         $academic_sessions = $request->input('academic_session');
         $regnumbers = $request->input('regnumber');
@@ -84,7 +86,7 @@ class ResultController extends Controller
         $surnames = $request->input('surname');
         $genders = $request->input('gender');
         $images_ds = $request->input('images');
-        $titles = $request->input('title');
+        // $titles = $request->input('title');
         
         
         
@@ -99,6 +101,8 @@ class ResultController extends Controller
                 'exams' => $examss[$i],
                 'user_id' => $user_ids[$i],
                 'teacher_id' =>$teacher_ids[$i],
+                // 'tname' =>$tnames[$i],
+                // 'tsurname' =>$tsurnames[$i],
 
                 'academic_session' =>$academic_sessions[$i],
                 'regnumber' =>$regnumbers[$i],
@@ -110,7 +114,7 @@ class ResultController extends Controller
                 'surname' => $surnames[$i],
                 'gender' => $genders[$i],
                 'images' => $images_ds[$i],
-                'title' => $titles[$i],
+                // 'title' => $titles[$i],
                 
             ];
         }
@@ -269,7 +273,10 @@ class ResultController extends Controller
         $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
          ->where('term', 'third Term')
         ->get();
-        return view('dashboard.thirdtermresults', compact('view_myresults'));
+
+       
+       $academic_sessions = Academicsession::latest()->get();
+        return view('dashboard.thirdtermresults', compact('academic_sessions', 'view_myresults'));
     }
     public function createpsychomotoro(Request $request, $user_id){
       //dd($request->all());
@@ -405,10 +412,11 @@ class ResultController extends Controller
     
 
     public function secondtermresults(){
-        $view_myresult_penultimates = Result::where('teacher_id', auth::guard('web')->id())
+        $view_myresults = Result::where('teacher_id', auth::guard('web')->id())
          ->where('term', 'Second Term')
         ->get();
-        return view('dashboard.secondtermresults', compact('view_myresult_penultimates'));
+        $academic_sessions = Academicsession::latest()->get();
+        return view('dashboard.secondtermresults', compact('academic_sessions', 'view_myresults'));
     }
     
    
@@ -687,7 +695,7 @@ class ResultController extends Controller
         }else{
             return redirect()->back()->with('fail', 'There is no results for you!');
         }
-        $view_results = Result::where('term', $request->term)->first();
+        $view_results = Result::where('term', $request->term)->where('regnumber', $request->regnumber)->first();
        
     return view('dashboard.teacherviewresults', compact('view_results', 'view_myresult_results'));
       

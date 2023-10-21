@@ -95,7 +95,8 @@ class QueryController extends Controller
     public function replyquery(Request $request, $id){
         $reply_singlequeries = Query::find($id);
         $request->validate([
-            // 'user_id' => ['required', 'string', 'max:255'],
+            'section' => ['required', 'string', 'max:255'],
+            'classname' => ['required', 'string', 'max:255'],
            
             'querytitle' => ['required', 'string', 'max:255'],
             'messages' => ['required', 'string'],
@@ -106,6 +107,8 @@ class QueryController extends Controller
        
         $reply_singlequeries->images = Auth::guard('web')->user()->images;
         $reply_singlequeries->querytitle = $request->querytitle;
+        $reply_singlequeries->section = $request->section;
+        $reply_singlequeries->classname = $request->classname;
         $reply_singlequeries->messages = $request->messages;
         $reply_singlequeries->status = 'reply';
         $reply_singlequeries->save();
@@ -133,5 +136,11 @@ class QueryController extends Controller
         $view_queriesbyheades = Query::where('section', 'Secondary')->latest()->get();
         return view('dashboard.viewqueries', compact('view_queriesbyheades'));
     }
+
+    public function queryrepliedviewbyheads(){
+        $view_replies = Query::where('section', 'Secondary')->where('status', 'reply')->latest()->get();
+        return view('dashboard.queryrepliedviewbyheads', compact('view_replies'));
+    }
+  
     
 }

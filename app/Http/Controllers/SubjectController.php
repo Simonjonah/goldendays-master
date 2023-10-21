@@ -20,7 +20,7 @@ class SubjectController extends Controller
         $request->validate([
             'subjectname' => ['required', 'string', 'max:255'],
             'section' => ['required', 'string', 'max:255'],
-            'title' => ['required', 'string', 'max:255'],
+            'title' => ['nullable', 'string', 'max:255'],
             
         ]);
         $addsubjects = new Subject();

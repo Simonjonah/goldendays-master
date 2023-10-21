@@ -58,10 +58,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <div class="callout callout-info">
+          {{-- <div class="callout callout-info">
             <h5><i class="fas fa-info"></i> Note:</h5>
             This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
-          </div>
+          </div> --}}
 
           <!-- Main content -->
           <div class="invoice p-3 mb-3">
@@ -76,7 +76,7 @@
             </div>
             <!-- info row -->
             <div class="row invoice-info">
-              <div class="col-sm-4 invoice-col">
+              <div class="col-sm-2 invoice-col">
                 <img style="width: 100px; height: 100px;" src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt=""> 
 
                 <address>
@@ -87,7 +87,7 @@
             
 
               
-              <div class="col-lg-8 invoice-col">
+              <div class="col-lg-8 invoice-col" style="text-align: center">
                 {{-- <b>Details </b><br> --}}
                 <br>
 
@@ -96,7 +96,7 @@
                 OffSenator Akon Eyakenyi Street,
                 Off General Edet Akpan Ave, 520101, Uyo <br>
                 
-                Email: info@golderndayschools.com
+                Email: info@goldendestinyacademy.com
              
                 {{-- <b> ID:</b> {{ Auth::guard('web')->user()->ref_no1 }}<br>
                 <b>Class:</b> {{ Auth::guard('web')->user()->classname }}<br>
@@ -105,8 +105,8 @@
               </div>
 
                   
-              <div class="col-sm-4 invoice-col">
-                <small class="float-right"> <img style="width: 200px; height: 200px;" src="{{ asset('/public/../'.Auth::guard('web')->user()->images)}}" class="" alt="User Image"></small>
+              <div class="col-sm-2 invoice-col">
+                <small class="float-right"> <img style="width: 100px; height: 100px;" src="{{ asset('/public/../'.Auth::guard('web')->user()->images)}}" class="" alt="User Image"></small>
               </div>
               <!-- /.col -->
             </div>

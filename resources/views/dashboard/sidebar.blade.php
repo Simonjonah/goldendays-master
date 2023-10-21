@@ -613,6 +613,35 @@
                   </a>
                 </li>
                 @elseif(Auth::guard('web')->user()->promotion == 'Secondary')
+
+                  
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Query Section
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="{{ url('web/viewqueries') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Query</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{ url('web/queryrepliedviewbyheads') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Query Replied</p>
+                      </a>
+                    </li>
+                    
+                  </ul>
+                </li>
+
+
                 <li class="nav-item">
                   <a href="{{ url('web/highschools') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -642,12 +671,12 @@
                 </li>
 
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a href="{{ url('web/viewqueries') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>View Queries</p>
                   </a>
-                </li>
+                </li> --}}
                 @foreach ($classnames as $classname)
                 <li class="nav-item">
                   <a href="{{ url('web/highschoolresult/'.$classname->classname) }}" class="nav-link">

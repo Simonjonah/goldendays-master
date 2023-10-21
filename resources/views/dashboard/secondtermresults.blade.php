@@ -42,96 +42,91 @@
                     <th>Firstname</th>
                     <th>Middlename</th>
                     <th>Admission No</th>
+                    <th>Search</th>
                     <th>Psycomotor</th>
-                    <th>Ref. No</th>
+                    {{-- <th>Ref. No</th> --}}
                     <th>CA 1</th>
                     <th>CA 2</th>
                     <th>CA 3</th>
                     <th>Exams</th>
                     <th>Total</th>
                     <th>Grade</th>
-                    <th>Remarks</th>
-                    <th>Edit</th>
+                    <th>Status</th>
                     <th>View</th>
 
-                    <th>Delete</th>
               
                     {{-- <th>Date</th> --}}
                   </tr>
                   </thead>
                   <tbody>
-
-                    @foreach ($view_myresult_penultimates as $view_myresult_penultimate)
-       
+                    @php
+                        
+                      //  $total_score = 0;
+                    @endphp
+                    @foreach ($view_myresults as $view_myresult)
+                      @php
+                         // $total_score +=$view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams;
+                          
+                      @endphp
                       <tr>
-                        <td>{{ $view_myresult_penultimate->user['surname'] }}</td>
-                        <td>{{ $view_myresult_penultimate->user['fname'] }}</td>
-                        <td>{{ $view_myresult_penultimate->user['middlename'] }}</td>
-                        <td>{{ $view_myresult_penultimate->user['regnumber'] }}</td>
-                        <td><a href="{{ url('web/addpsychomotor/'.$view_myresult_penultimate->id) }}"
+                        <td>{{ $view_myresult->user['surname'] }}</td>
+                        <td>{{ $view_myresult->user['fname'] }}</td>
+                        <td>{{ $view_myresult->user['middlename'] }}</td>
+                        <td>{{ $view_myresult->user['regnumber'] }}</td>
+                        <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                          Search Pupils/Students Results
+                         </button></td>
+                        <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
                           class='btn btn-default'>
                           Add Psycomotor
                            <i class="far fa-eye"></i>
 
                        
 
-                      <td>{{ $view_myresult_penultimate->user['ref_no'] }}</td>
-                      <td>{{ $view_myresult_penultimate->test_1 }}</td>
-                      <td>{{ $view_myresult_penultimate->test_2 }}</td>
-                      <td>{{ $view_myresult_penultimate->test_3 }}</td>
-                      <td>{{ $view_myresult_penultimate->exams }}</td>
-                      <td>{{ $view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams }}</td>
-                      <td>@if ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 69)
+                      {{-- <td>{{ $view_myresult->user['ref_no'] }}</td> --}}
+                      <td>{{ $view_myresult->test_1 }}</td>
+                      <td>{{ $view_myresult->test_2 }}</td>
+                      <td>{{ $view_myresult->test_3 }}</td>
+                      <td>{{ $view_myresult->exams }}</td>
+                      <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
+                      <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 79)
                         <p>A</p>
                        
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 59)
+                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
                         <p>B</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 49)
+                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
                         <p>C</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 44)
+                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
                         <p>D</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 40)
+                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
                         <p>E</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 39)
+                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
                         <p>F</p>
                         @else
                         <p>F</p>
                       @endif</td>
 
-                      <td>@if ($view_myresult_penultimate->test + $view_myresult_penultimate->exams > 69)
-                        <p>An Excellent Performance </p>
-                       
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 59)
-                        <p>A good Performance</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 49)
-                        <p>A fair performance</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 44)
-                        <p>A Poor performance.</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 40)
-                        <p>A Poor performance.</p>
-                        @elseif ($view_myresult_penultimate->test_1 + $view_myresult_penultimate->test_2 + $view_myresult_penultimate->test_3 + $view_myresult_penultimate->exams > 39)
-                        <p>A Poor performance.</p>
-                        @else
-                        <p>A Poor performance.</p>
-                      @endif</td>
-                         
+                      <td>@if ($view_myresult->status == null)
+                        <span class="badge badge-secondary"> In progress</span>
+                    @elseif($view_myresult->status == 'suspend')
+                    <span class="badge badge-warning"> Suspended</span>
+                    @elseif($view_myresult->status == 'reject')
+                    <span class="badge badge-danger"> Rejected</span>
+                    @elseif($view_myresult->status == 'approved')
+                    <span class="badge badge-info"> Approved</span>
+                    @elseif($view_myresult->status == 'admitted')
+                    
+                    <span class="badge badge-success">Admitted</span>
+                    @endif</td>
+                    
                       
-                     <td><a href="{{ url('web/editresult/'.$view_myresult_penultimate->id) }}"
-                            class='btn btn-info'>
-                             <i class="far fa-edit"></i>
-                         </a></td>
-                         <td><a href="{{ url('web/teacherviewresults/'.$view_myresult_penultimate->user_id)}}"
+                     
+                         <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
                           class='btn btn-default'>
                            <i class="far fa-eye"></i>
                        </a></td>
                        
-                      {{-- <th><a href="{{ url('web/studentit/'.$view_myresult_penultimate->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
-                       <td><a href="{{ url('web/deletreslt/'.$view_myresult_penultimate->id) }}"
-                        class='btn btn-danger'>
-                         <i class="far fa-trash-alt"></i>
-                     </a></td>
-                    
-                     {{-- <td>{{ $view_myresult_penultimate->created_at->format('D d, M Y, H:i')}}</td> --}}
+                  
 
                       </tr>
                      
@@ -146,19 +141,20 @@
                       <th>Firstname</th>
                       <th>Middlename</th>
                       <th>Admission No</th>
+                    <th>Search</th>
+
                       <th>Psycomotor</th>
 
-                      <th>Ref. No</th>
+                      {{-- <th>Ref. No</th> --}}
                       <th>CA 1</th>
                       <th>CA 2</th>
                       <th>CA 3</th>
                       <th>Exams</th>
                       <th>Total</th>
                       <th>Grade</th>
-                      <th>Remarks</th>
-                      <th>Edit</th>
+                      <th>Status</th>
+
                       <th>View</th>
-                      <th>Delete</th>
                 
                       {{-- <th>Date</th> --}}
                     </tr>
@@ -182,7 +178,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://goldernschools.com">Golderndays</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="https://goldendestinyacademyschools.com">Goldendestinyschools</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -235,3 +231,59 @@
 </script>
 </body>
 </html>
+
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Search for Pupils/Students results here</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ url('web/searchresultbyteacher') }}" method="post">
+        @csrf
+        
+        <div class="form-group">
+          <label for="">Reg Number</label>
+          <select name="regnumber" class="form-control" id="">
+           @foreach ($view_myresults as $view_myresult)
+             <option value="{{ $view_myresult->regnumber }}">{{ $view_myresult->regnumber }}</option>
+           @endforeach
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="">Select Term</label>
+          <select name="term" class="form-control" id="">
+           @foreach ($view_myresults as $view_myresult)
+             <option value="{{ $view_myresult->term }}">{{ $view_myresult->term }}</option>
+           @endforeach
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="">Select Academic Session</label>
+          <select name="academic_session" class="form-control" id="">
+           @foreach ($academic_sessions as $academic_session)
+             <option value="{{ $academic_session->academic_session }}">{{ $academic_session->academic_session }}</option>
+           @endforeach
+          </select>
+        </div>
+      
+       
+
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

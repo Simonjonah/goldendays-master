@@ -51,7 +51,7 @@
                     <th>Exams</th>
                     <th>Total</th>
                     <th>Grade</th>
-                    <th>Remarks</th>
+                    <th>Status</th>
                     <th>View</th>
 
               
@@ -106,8 +106,19 @@
                         <p>F</p>
                       @endif</td>
 
-                      <td></td>
-                         
+                      <td>@if ($view_myresult->status == null)
+                        <span class="badge badge-secondary"> In progress</span>
+                    @elseif($view_myresult->status == 'suspend')
+                    <span class="badge badge-warning"> Suspended</span>
+                    @elseif($view_myresult->status == 'reject')
+                    <span class="badge badge-danger"> Rejected</span>
+                    @elseif($view_myresult->status == 'approved')
+                    <span class="badge badge-info"> Approved</span>
+                    @elseif($view_myresult->status == 'admitted')
+                    
+                    <span class="badge badge-success">Admitted</span>
+                    @endif</td>
+                    
                       
                      
                          <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
@@ -141,7 +152,8 @@
                       <th>Exams</th>
                       <th>Total</th>
                       <th>Grade</th>
-                      <th>Remarks</th>
+                      <th>Status</th>
+
                       <th>View</th>
                 
                       {{-- <th>Date</th> --}}

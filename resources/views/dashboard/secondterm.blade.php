@@ -41,43 +41,62 @@
                     <th>First name</th>
                     <th>Middlename</th>
                     <th>Surname</th>
-                    <th>section</th>
-                    <th>Classname</th>
+                    <th>Search</th>
+                    {{-- <th>Classname</th> --}}
                     <th>Term</th>
                     <th>Gender</th>
 
                     <th>Images</th>
-                    {{-- <th>Status</th> --}}
+                    <th>Status</th>
                     <th>Action</th>
-
+                    <th>Add Results</th>
+                    <th>Add Class Activities</th>
+                    <th>Add Midterm Results</th>
                     
                   </tr>
                   </thead>
                   <tbody>
 
                     @foreach ($view_terms as $view_term)
-                      @if ($view_term->section == Auth::guard('web')->user()->section &&  $view_term->term == Auth::guard('web')->user()->term && $view_term->classname == Auth::guard('web')->user()->classname && $view_term->role == Auth::guard('web')->user()->role = null)
+                    @if ($view_term->section == Auth::guard('web')->user()->section && $view_term->term == Auth::guard('web')->user()->term && $view_term->classname == Auth::guard('web')->user()->classname && $view_term->role == 'student')
                         <tr>
                           <td>{{ $view_term->fname }}</td>
                           <td>{{ $view_term->middlename }}</td>
                           <td>{{ $view_term->surname }}</td>
-                          <td> {{ $view_term->section }}</td>
+
+                          
                           <td> {{ $view_term->classname }}</td>
+                          
                           <td> {{ $view_term->term }}</td>
                           <td> {{ $view_term->gender }}</td>
                           <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_term->images")}}" alt=""></td>
                           <td> <span class="badge badge-success">{{ $view_term->status }}</span></td>
-                          
+
                           <td><a href="{{ url('web/assignedstudent/'.$view_term->ref_no1) }}"
                             class='btn btn-default'>
                              <i class="far fa-eye"></i>
-                      
-                        </tr>
 
-                        <td><a href="{{ url('web/addresults/'.$view_term->ref_no1) }}"
-                          class='btn btn-info'>
-                           Add Results
-                       </a></td>
+                             {{-- @if ($view_term == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
+                              <td><a href="{{ url('web/addresults/'.$view_term->ref_no1) }}"
+                                class='btn btn-primary'>
+                                Add Results
+                            </a></td>
+
+                            
+                             <td><a href="{{ url('web/addaclassctivities') }}"
+                              class='btn btn-info'>
+                              Add Classactivity
+                          </a></td>
+
+                         {{-- @if ($view_studentsclassresult == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
+                         <td><a href="{{ url('web/addmidtermresults/'.$view_term->ref_no1) }}"
+                          class='btn btn-success'>
+                          Add Midterm Results
+                          </a></td>
+
+                            
+                         </a></td>
+                        </tr>
                     @else
                     @endif
                   @endforeach
@@ -89,15 +108,17 @@
                       <th>First name</th>
                       <th>Middlename</th>
                       <th>Surname</th>
-                      <th>section</th>
-                      <th>Classname</th>
+                      <th>Search</th>
+                      {{-- <th>Classname</th> --}}
                       <th>Term</th>
                       <th>Gender</th>
   
                       <th>Images</th>
-                      {{-- <th>Status</th> --}}
+                      <th>Status</th>
                       <th>Action</th>
-                      
+                      <th>Add Results</th>
+                    <th>Add Class Activities</th>
+                    <th>Add Midterm Results</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -119,7 +140,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2024 <a href="#">Golden Destiny Schools</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2019 <a href="https://golderndayschools.com">golderndayschools</a>.</strong> All rights
     reserved.
   </footer>
 
