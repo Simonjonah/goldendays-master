@@ -40,6 +40,7 @@
                   <tr>
                     <th>Subjects</th>
                     <th>Section</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                   
                     <th>Date</th>
@@ -63,7 +64,8 @@
                             <td>{{ $viewnursery_subject->subjectname }}</td>
                             <td>{{ $viewnursery_subject->section }}</td>
                          
-                          <th><a href="{{ url('admin/subdelte/'.$viewnursery_subject->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></th>
+                            <th><a href="{{ url('admin/editsubject/'.$viewnursery_subject->id) }}" class="btn btn-info"><i class="fas fa-edit"></i></a></th>
+                            <th><a href="{{ url('admin/subdelte/'.$viewnursery_subject->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></th>
                             
                          <td>{{ $viewnursery_subject->created_at->format('D d, M Y, H:i')}}</td>
     
@@ -82,6 +84,7 @@
                     <tr>
                       <th>Section</th>
                       <th>Section</th>
+                      <th>Edit</th>
                       <th>Delete</th>
                         
                         <th>Date</th>

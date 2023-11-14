@@ -66,10 +66,125 @@
                   </thead>
                   <tbody>
                   {{-- @if (Auth::guard('web')->user()->section = 'Pre-School') --}}
+                    {{-- @foreach ($viewyour_childrens as $viewyour_children) --}}
+                    {{-- @if ($viewyour_children->centername == Auth::guard('web')->user()->centername && $viewyour_children->status == null) --}}
+                      <tr>
+                        <td>{{ Auth::guard('web')->user()->fname }} <small>{{ Auth::guard('web')->user()->regnumber }}</small></td>
+                        <td>{{ Auth::guard('web')->user()->middlename }}</td>
+                        <td>{{ Auth::guard('web')->user()->surname }}</td>
+                        <td>{{ Auth::guard('web')->user()->classname }}</td>
+                        <td>{{ Auth::guard('web')->user()->term }}</td>
+                       
+  
+                        <td><img style="width: 100%; height: 60px;" src="{{ asset("/public/../Auth::guard('web')->user()->images")}}" alt=""></td>
+                        <td><a href="{{ url('web/parentviewstudent/'.Auth::guard('web')->user()->ref_no1) }}"
+                            class='btn btn-default'>
+                            <i class="far fa-eye"></i>
+                        </a></td>
+                      
+                      <td>{{ Auth::guard('web')->user()->ref_no1 }}</td>
+                        <td><a href="{{ url('web/parenteditstudent/'.Auth::guard('web')->user()->ref_no1) }}"
+                          class='btn btn-info'>
+                          <i class="far fa-edit"></i>
+                      </a></td>  
+                 
+                 
+                         
+                        <td><a href="{{ url('web/printstudents/'.Auth::guard('web')->user()->ref_no1) }}"
+                          class='btn btn-info'>Print
+                          <i class="far fa-print"></i>
+                      </a></td>  
+                      <td><a href="{{ url('web/printstudents/'.Auth::guard('web')->user()->ref_no1) }}"
+                        class='btn btn-info'>Check Result
+                        <i class="far fa-print"></i>
+                    </a></td>  
+                    
+                    <td>{{ Auth::guard('web')->user()->created_at->format('D d, M Y, H:i')}}</td>
+  
+                      </tr>
+                 
+                    
+                  {{-- @endforeach --}}
+                        {{-- @else
+                        
+                      @endif
+                 --}}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                        <th>First Name</th>
+                        <th>MiddleName</th>
+                        <th>Lastname</th>
+                        <th>Classes</th>
+                        <th>Term</th>
+                        <th>Images</th>
+                        <th>View</th>
+    
+                        <th>Admit No</th>
+                        <th>Edit</th>
+                        <th>Print</th>
+                        
+                        <th>View Result</th>
+    
+                        <th>Date</th>
+    
+                      </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title" style="color: red">Your Wards</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>MiddleName</th>
+                      <th>Lastname</th>
+                      <th>Classes</th>
+                      <th>Term</th>
+                      <th>Images</th>
+                      <th>View</th>
+  
+                      <th>Admit No</th>
+                      <th>Edit</th>
+                      <th>Print</th>
+                      
+                      <th>View Result</th>
+  
+                      <th>Date</th>
+  
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {{-- @if (Auth::guard('web')->user()->section = 'Pre-School') --}}
                     @foreach ($viewyour_childrens as $viewyour_children)
                     {{-- @if ($viewyour_children->centername == Auth::guard('web')->user()->centername && $viewyour_children->status == null) --}}
                       <tr>
-                        <td>{{ $viewyour_children->fname }}</td>
+                        <td>{{ $viewyour_children->fname }} <small>{{ $viewyour_children->regnumber }}</small></td>
                         <td>{{ $viewyour_children->middlename }}</td>
                         <td>{{ $viewyour_children->surname }}</td>
                         <td>{{ $viewyour_children->classname }}</td>

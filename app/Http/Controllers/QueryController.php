@@ -137,10 +137,30 @@ class QueryController extends Controller
         return view('dashboard.viewqueries', compact('view_queriesbyheades'));
     }
 
+    public function viewqueriespreschool(){
+        $view_queriesbyheades = Query::where('section', 'Pre-School')->latest()->get();
+        return view('dashboard.viewqueriespreschool', compact('view_queriesbyheades'));
+    }
+    public function viewquerieselementary1(){
+        $view_queriesbyheades = Query::where('section', 'Primary')->latest()->get();
+        return view('dashboard.viewquerieselementary1', compact('view_queriesbyheades'));
+    }
+
+    
     public function queryrepliedviewbyheads(){
         $view_replies = Query::where('section', 'Secondary')->where('status', 'reply')->latest()->get();
         return view('dashboard.queryrepliedviewbyheads', compact('view_replies'));
     }
-  
+
+    public function queryrepliedviewbyelementheads(){
+        $view_replies = Query::where('section', 'Primary')->where('status', 'reply')->latest()->get();
+        return view('dashboard.queryrepliedviewbyelementheads', compact('view_replies'));
+    }
+     
+    public function queryrepliedviewbypreheads(){
+        $view_queriesbyheades = Query::where('section', 'Pre-School')->where('status', 'reply')->latest()->get();
+        return view('dashboard.queryrepliedviewbypreheads', compact('view_queriesbyheades'));
+    }
+    
     
 }

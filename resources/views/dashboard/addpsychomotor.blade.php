@@ -176,9 +176,9 @@
                           <textarea class="form-control" name="teacher_comment" id="" cols="20" rows="5" placeholder="Teacher's Comment"></textarea>
                       </div>
 
-                      <div class="form-group">
+                      {{-- <div class="form-group">
                         <textarea class="form-control" name="headteach_comment" id="" cols="20" rows="5" placeholder="Head Teacher's Comment"></textarea>
-                    </div>
+                    </div> --}}
                     <td>Next Term Begin: <input type="date" value="" class="form-control" name="next_term" id=""></td>
                     <td>Days School Open: <input type="number" value="" class="form-control" name="dayschopen" placeholder="No of Days School Open"></td>
                     <td>No of Days Open: <input type="number" value="" class="form-control" name="dayspresent" placeholder="No of days Present"></td>

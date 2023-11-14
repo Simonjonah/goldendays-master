@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AcademicsessionController extends Controller
 {
-    //
     public function addsession(){
 
         return view('dashboard.admin.addsession');

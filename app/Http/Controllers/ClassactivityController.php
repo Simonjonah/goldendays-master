@@ -293,6 +293,8 @@ class ClassactivityController extends Controller
        $view_singleclassactivities = Classactivity::where('slug', $slug)->first();
         return view('dashboard.parentviewsingleactivity', compact('view_singleclassactivities'));
     }
+
+    
     public function replyclassactivity($id){
         $view_singleclassactivities = Classactivity::find($id);
          return view('dashboard.replyclassactivity', compact('view_singleclassactivities'));
@@ -342,6 +344,20 @@ class ClassactivityController extends Controller
         $view_aclassactivitisbyheads = Classactivity::where('section', 'Secondary')->latest()->get();
         return view('dashboard.classactivities', compact('view_aclassactivitisbyheads'));
     }
+
+
+
+    public function preschoolclassactivities(){
+        $view_aclassactivitisbyheads = Classactivity::where('section', 'Pre-School')->latest()->get();
+        return view('dashboard.preschoolclassactivities', compact('view_aclassactivitisbyheads'));
+    }
+    
+
+    public function elementaryclassactivities(){
+        $view_aclassactivitisbyheads = Classactivity::where('section', 'Primary')->latest()->get();
+        return view('dashboard.elementaryclassactivities', compact('view_aclassactivitisbyheads'));
+    }
+    
     
     
 }

@@ -487,6 +487,14 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/parentviewstudent/{ref_no1}', [UserController::class, 'parentviewstudent'])->name('parentviewstudent');
         Route::get('/printstudents/{ref_no1}', [UserController::class, 'printstudents'])->name('printstudents');
         Route::get('/viewclassactivity', [ClassactivityController::class, 'viewclassactivity'])->name('viewclassactivity');
+        Route::get('/viewqueriespreschool', [QueryController::class, 'viewqueriespreschool'])->name('viewqueriespreschool');
+        Route::get('/queryrepliedviewbypreheads', [QueryController::class, 'queryrepliedviewbypreheads'])->name('queryrepliedviewbypreheads');
+        Route::get('/preschoolheadparents', [UserController::class, 'preschoolheadparents'])->name('preschoolheadparents');
+        Route::get('/preschoolclassactivities', [ClassactivityController::class, 'preschoolclassactivities'])->name('preschoolclassactivities');
+        Route::get('/elementresults/{classname}', [ClassnameController::class, 'elementresults'])->name('elementresults');
+        Route::get('/approveresultshead/{id}', [ResultController::class, 'approveresultshead'])->name('approveresultshead');
+        Route::get('/viewquerieselementary1', [QueryController::class, 'viewquerieselementary1'])->name('viewquerieselementary1');
+        Route::get('/queryrepliedviewbyelementheads', [QueryController::class, 'queryrepliedviewbyelementheads'])->name('queryrepliedviewbyelementheads');
         
         Route::get('/parenteditstudent/{ref_no1}', [UserController::class, 'parenteditstudent'])->name('parenteditstudent');
         Route::put('/updatebyparent/{ref_no1}', [UserController::class, 'updatebyparent'])->name('updatebyparent');
@@ -496,10 +504,12 @@ Route::prefix('web')->name('web.')->group(function() {
         
         Route::get('/viewstudent/{ref_no1}', [UserController::class, 'viewstudent'])->name('viewstudent');
         
-        // Route::put('/settingsupdate/{id}', [GuardianController::class, 'settingsupdate'])->name('settingsupdate');
+        Route::get('/elementarylessonnotes', [LessonnoteController::class, 'elementarylessonnotes'])->name('elementarylessonnotes');
+        Route::get('/elementaryheadparents', [UserController::class, 'elementaryheadparents'])->name('elementaryheadparents');
         
-        // Route::get('/profile', [GuardianController::class, 'profile'])->name('profile');
-       
+        Route::get('/elementaryclassactivities', [ClassactivityController::class, 'elementaryclassactivities'])->name('elementaryclassactivities');
+        Route::post('/searchresultbyteacherelementary', [ResultController::class, 'searchresultbyteacherelementary'])->name('searchresultbyteacherelementary');
+        
         Route::put('/updatelessonotesteacher/{id}', [LessonnoteController::class, 'updatelessonotesteacher'])->name('updatelessonotesteacher');
         Route::get('/editlessonteacher/{slug}', [LessonnoteController::class, 'editlessonteacher'])->name('editlessonteacher');
         Route::get('/viewlessonnotesteacher/{slug}', [LessonnoteController::class, 'viewlessonnotesteacher'])->name('viewlessonnotesteacher');
@@ -545,14 +555,20 @@ Route::prefix('web')->name('web.')->group(function() {
         
         Route::put('/createcomment/{id}', [ResultController::class, 'createcomment'])->name('createcomment');
         Route::put('/createpsychomotoro/{id}', [ResultController::class, 'createpsychomotoro'])->name('createpsychomotoro');
+        Route::put('/createmidpsychomotoro/{id}', [ResultController::class, 'createmidpsychomotoro'])->name('createmidpsychomotoro');
         Route::post('/createresults', [ResultController::class, 'createresults'])->name('createresults');
         Route::put('/assignstudentclass/{ref_no1}', [UserController::class, 'assignstudentclass'])->name('assignstudentclass');
         Route::get('addresults/{ref_no1}', [UserController::class, 'addresults'])->name('addresults');
-        // Route::get('payment', [SchoolfeeController::class, 'payment'])->name('payment');
+        Route::get('addmidtermresults/{ref_no}', [UserController::class, 'addmidtermresults'])->name('addmidtermresults');
         // Route::get('/generate-report', 'ReportController@generateReport');
-        //Route::get('generatePdf', [ResultController::class, 'generatePdf'])->name('generatePdf');
-        //Route::get('generatePdf', [ResultController::class, 'generatePdf'])->name('generatePdf');
+        
+        Route::post('searchresultbyteacherprinmid', [ResultController::class, 'searchresultbyteacherprinmid'])->name('searchresultbyteacherprinmid');
+        Route::get('highschoolmidtermresult/{classname}', [ClassnameController::class, 'highschoolmidtermresult'])->name('highschoolmidtermresult');
+        Route::post('searchresultbyteachermidterm', [ResultController::class, 'searchresultbyteachermidterm'])->name('searchresultbyteachermidterm');
+        Route::post('createmidtermresults', [ResultController::class, 'createmidtermresults'])->name('createmidtermresults');
+        Route::get('firstmidtermresults', [ResultController::class, 'firstmidtermresults'])->name('firstmidtermresults');
         Route::get('/promotions', [UserController::class, 'promotions'])->name('promotions');
+
         Route::get('/nurseryschoolheads', [UserController::class, 'nurseryschoolheads'])->name('nurseryschoolheads');
         
         Route::get('/crecheheads', [UserController::class, 'crecheheads'])->name('crecheheads');
@@ -582,6 +598,10 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/admisionletter', [UserController::class, 'admisionletter'])->name('classesdelete');
         Route::get('assignedstudent/{ref_no1}', [UserController::class, 'assignedstudent'])->name('assignedstudent');
         Route::get('addaclassctivities', [ClassactivityController::class, 'addaclassctivities'])->name('addaclassctivities');
+        Route::get('changeclassterm/{ref_no1}', [UserController::class, 'changeclassterm'])->name('changeclassterm');
+        Route::put('updateclassterm/{ref_no1}', [UserController::class, 'updateclassterm'])->name('updateclassterm');
+        Route::post('createmidtermresultsmidterm', [ResultController::class, 'createmidtermresultsmidterm'])->name('createmidtermresultsmidterm');
+        Route::get('addmidtermpsychomotor/{id}', [ResultController::class, 'addmidtermpsychomotor'])->name('addmidtermpsychomotor');
         
         Route::get('/logout', [UserController::class, 'logout'])->name('logout'); 
         

@@ -64,11 +64,11 @@ class ClassnameController extends Controller
 
     public function classrooms($classname){
         $view_classstudents = Classname::where('classname', $classname)->first();
-        $view_classstudents = user::where('classname', $classname)
+        $view_classstudents = user::where('classname', $classname)->where('role', 'student')
         ->where('section', 'Primary')->get();
 
         $view_student_abujas = Classname::where('classname', $classname)->first();
-        $view_student_abujas = user::where('classname', $classname)
+        $view_student_abujas = user::where('classname', $classname)->where('role', 'student')
         ->where('section', 'Secondary')->get();
 
         $view_classes = Classname::all();
@@ -135,10 +135,29 @@ class ClassnameController extends Controller
     public function highschoolresult($classname){
         $view_studentstermresults = Classname::where('classname', $classname)->first();
         $view_studentstermresults = Result::where('classname', $classname)->latest()->get();
-
         $academic_sessions = Academicsession::latest()->get();
         return view('dashboard.highschoolresult', compact('academic_sessions', 'view_studentstermresults'));
     }
+
+    public function highschoolmidtermresult($classname){
+        $view_studentstermresults = Classname::where('classname', $classname)->first();
+        $view_studentstermresults = Result::where('classname', $classname)
+        ->where('type', 'Midterm')
+        ->latest()->get();
+
+        $academic_sessions = Academicsession::latest()->get();
+        return view('dashboard.highschoolmidtermresult', compact('academic_sessions', 'view_studentstermresults'));
+    }
+    
+    public function elementresults($classname){
+        $view_studentstermresults = Classname::where('classname', $classname)->first();
+        $view_studentstermresults = Result::where('classname', $classname)->latest()->get();
+
+        $academic_sessions = Academicsession::latest()->get();
+        return view('dashboard.elementresults', compact('academic_sessions', 'view_studentstermresults'));
+    }
+
+    
 
     
     

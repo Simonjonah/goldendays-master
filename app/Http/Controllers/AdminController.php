@@ -39,7 +39,7 @@ class AdminController extends Controller
         $registration = new Admin();
         $registration->fname = $request->fname;
         $registration->surname = $request->surname;
-       $registration->role = 0;
+       $registration->role = 'sub';
         $registration->email = $request->email;
         $registration->password = \Hash::make($request->password);
         $registration->save();
@@ -68,7 +68,7 @@ class AdminController extends Controller
         $registration = new Admin();
         $registration->fname = $request->fname;
         $registration->surname = $request->surname;
-       $registration->role = 'sub';
+       $registration->role = 0;
         $registration->email = $request->email;
         $registration->password = \Hash::make($request->password);
         $registration->save();

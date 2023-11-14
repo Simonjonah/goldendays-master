@@ -11,6 +11,9 @@
         use App\Models\Classname;
         
         $classnames = Classname::where('section', 'Secondary')->get();
+        $classnamespreschools = Classname::where('section', 'Pre-School')->get();
+        $classnameselementarys = Classname::where('section', 'Primary')->get();
+        
     @endphp
 
     <div class="sidebar">
@@ -462,6 +465,40 @@
             </ul>
           </li>
           
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Midterm Results 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('web/firstmidtermresults') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>First Midterm Result</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('web/secondmidtermresults') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Second Midterm Result</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('web/thirdmidtermresults') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Third Midterm Result</p>
+                </a>
+              </li>
+            
+            </ul>
+          </li>
+          
           
           
           <li class="nav-item has-treeview">
@@ -582,36 +619,155 @@
                 </li>
 
                 @if (Auth::guard('web')->user()->promotion == 'Primary Head')
-                <li class="nav-item">
-                  <a href="{{ url('web/primaryheads') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Primary Head</p>
+                
+
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Pre-School Section
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
                   </a>
+                  <ul class="nav nav-treeview">
+                  
+                    <li class="nav-item">
+                      <a href="{{ url('web/preschoolshead') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Pre-Schools</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ url('web/preschoollessonnotes') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pre-School Lesson Notes</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ url('web/viewqueriespreschool') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pre-School Query</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{ url('web/queryrepliedviewbypreheads') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pre-School Query Replied</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{ url('web/preschoollesonnotes') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pre-School Lesson Notes</p>
+                      </a>
+                    </li>
+    
+                    <li class="nav-item">
+                      <a href="{{ url('web/preschoolheadparents') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pre-School Parents</p>
+                      </a>
+                    </li>
+    
+                    <li class="nav-item">
+                      <a href="{{ url('web/preschoolclassactivities') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Class Activities</p>
+                      </a>
+                    </li>
+
+                    @foreach ($classnamespreschools as $classnamespreschool)
+                    <li class="nav-item">
+                      <a href="{{ url('web/preschoolresult/'.$classnamespreschool->classname) }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Results in {{ $classnamespreschool->classname }}</p>
+                      </a>
+                    </li>
+                    @endforeach
+                   
+                    
+                  </ul>
                 </li>
 
-                <a href="{{ url('web/preschoolshead') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>View Pre-Schools</p>
-                </a>
-                <li class="nav-item">
-                  <a href="{{ url('web/preschoollessonnotes') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Lesson Notes</p>
+
+
+
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Elementary Section
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
                   </a>
+                  <ul class="nav nav-treeview">
+                  
+                   
+                    <li class="nav-item">
+                      <a href="{{ url('web/viewquerieselementary1') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Elementary Query</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{ url('web/queryrepliedviewbyelementheads') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Elementary Query Replied</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{ url('web/elementarylessonnotes') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Elementary Lesson Notes</p>
+                      </a>
+                    </li>
+    
+                    <li class="nav-item">
+                      <a href="{{ url('web/elementaryheadparents') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Elementary Parents</p>
+                      </a>
+                    </li>
+    
+                    <li class="nav-item">
+                      <a href="{{ url('web/elementaryclassactivities') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Elementary Class Activities</p>
+                      </a>
+                    </li>
+
+                    @foreach ($classnameselementarys as $classnameselementary)
+                    <li class="nav-item">
+                      <a href="{{ url('web/elementresults/'.$classnameselementary->classname) }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Results in {{ $classnameselementary->classname }}</p>
+                      </a>
+                    </li>
+                    @endforeach
+                   
+                    <li class="nav-item">
+                      <a href="{{ url('web/primaryheads') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Primary Head</p>
+                      </a>
+                    </li>
+    
+                    <li class="nav-item">
+                      <a href="{{ url('web/elementarylessonnotes') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Lesson Notes</p>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
 
-                <li class="nav-item">
-                  <a href="{{ url('web/elementarylessonnotes') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Lesson Notes</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ url('web/addrults') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Upload Result</p>
-                  </a>
-                </li>
+
+              
+                
                 @elseif(Auth::guard('web')->user()->promotion == 'Secondary')
 
                   
@@ -637,10 +793,28 @@
                         <p>View Query Replied</p>
                       </a>
                     </li>
+                  </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Midterm Results Section
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    @foreach ($classnames as $classname)
+                    <li class="nav-item">
+                      <a href="{{ url('web/highschoolmidtermresult/'.$classname->classname) }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Results in {{ $classname->classname }}</p>
+                      </a>
+                    </li>
+                    @endforeach
                     
                   </ul>
                 </li>
-
 
                 <li class="nav-item">
                   <a href="{{ url('web/highschools') }}" class="nav-link">
@@ -670,13 +844,9 @@
                   </a>
                 </li>
 
+                
+      
 
-                {{-- <li class="nav-item">
-                  <a href="{{ url('web/viewqueries') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Queries</p>
-                  </a>
-                </li> --}}
                 @foreach ($classnames as $classname)
                 <li class="nav-item">
                   <a href="{{ url('web/highschoolresult/'.$classname->classname) }}" class="nav-link">
@@ -685,14 +855,9 @@
                   </a>
                 </li>
                 @endforeach
+              
                 
 
-                  <li class="nav-item">
-                    <a href="{{ url('web/viewaddresults') }}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Upload Result</p>
-                    </a>
-                  </li>
                 </li>
                 
               </li>
@@ -710,14 +875,86 @@
                     <p>View Lesson Notes</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a href="{{ url('web/viewaddresults') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Upload Result</p>
                   </a>
-                </li>
+                </li> --}}
               </li>
             </li>
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Pre-School Section
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+              
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoolshead') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Pre-Schools</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoollessonnotes') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pre-School Lesson Notes</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ url('web/viewqueriespreschool') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pre-School Query</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('web/queryrepliedviewbypreheads') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pre-School Query Replied</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoollesonnotes') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pre-School Lesson Notes</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoolheadparents') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pre-School Parents</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoolclassactivities') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Class Activities</p>
+                  </a>
+                </li>
+
+                @foreach ($classnamespreschools as $classnamespreschool)
+                <li class="nav-item">
+                  <a href="{{ url('web/preschoolresult/'.$classnamespreschool->classname) }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>View Results in {{ $classnamespreschool->classname }}</p>
+                  </a>
+                </li>
+                @endforeach
+               
+                
+              </ul>
+            </li>
+
+
 
             @else
             <li class="nav-item">

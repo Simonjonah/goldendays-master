@@ -41,6 +41,7 @@
                     <th>Subjects</th>
                     <th>Section</th>
                     <th>Assign Teacher</th>
+                    <th>Edit</th>
 
                     <th>Date</th>
                   </tr>
@@ -63,7 +64,8 @@
                             <td>{{ $viewnursery_subject->subjectname }}</td>
                             <td>{{ $viewnursery_subject->section }}</td>
                          
-                          <th><a href="{{ url('admin/assignsubject/'.$viewnursery_subject->id) }}" class="btn btn-success"><i class="fas fa-user"></i></a></th>
+                            <th><a href="{{ url('admin/assignsubject/'.$viewnursery_subject->id) }}" class="btn btn-success"><i class="fas fa-user"></i></a></th>
+                            <th><a href="{{ url('admin/editsubject/'.$viewnursery_subject->id) }}" class="btn btn-info"><i class="fas fa-edit"></i></a></th>
                             
                          <td>{{ $viewnursery_subject->created_at->format('D d, M Y, H:i')}}</td>
     
@@ -83,6 +85,8 @@
                         <th>Subjects</th>
                         <th>Section</th>
                         <th>Assign Teacher</th>
+                        <th>Edit</th>
+
                         <th>Date</th>
                       </tr>
                     </tr>

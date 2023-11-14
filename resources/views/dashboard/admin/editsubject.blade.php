@@ -63,7 +63,6 @@
                         @error('subjectname')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror 
-                    </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-23">
                       <div class="form-group">

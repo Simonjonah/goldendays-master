@@ -244,6 +244,10 @@ class LessonnoteController extends Controller
         $view_primarystudents = Lessonnote::where('section', 'Primary')->get();
         return view('dashboard.elementarylessonnotes', compact('view_classess', 'view_primarystudents'));
     }
+
+    
+
+    
     
     public function approvelesssons($id){
         $reject_student = Lessonnote::find($id);

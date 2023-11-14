@@ -67,6 +67,17 @@
                       </select>
                     </div>
 
+                    <div class="form-group">
+                      <h5>Select Class</h5>
+                      <select name="classname" class="form-control"  id="">
+                        @foreach ($the_classes as $the_classe)
+                        <option value="{{ $the_classe->classname }}">{{ $the_classe->classname }}</option>
+                          
+                        @endforeach
+                        
+                      </select>
+                    </div>
+
                   {{-- <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Pin</label>
                     <input required type="number" name="pins" class="form-control" @error('pins')

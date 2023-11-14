@@ -474,6 +474,33 @@ class UserController extends Controller
         return view('dashboard.edityourstudent', compact('add_class', 'edit_students'));
     }
 
+    public function changeclassterm($ref_no1){
+        $edit_students = User::where('ref_no1', $ref_no1)->first();
+        $add_class = Classname::latest()->get();
+        return view('dashboard.changeclassterm', compact('add_class', 'edit_students'));
+    }
+
+    public function updateclassterm(Request $request, $ref_no1){
+        $edit_students = User::where('ref_no1', $ref_no1)->first();
+
+        $request->validate([
+            'term' => ['required', 'string', 'max:255'],
+            'classname' => ['required', 'string', 'max:255'],
+        ]);
+
+        $edit_students->term = $request->term;
+        $edit_students->classname = $request->classname;
+        $edit_students->update();
+        if ($edit_students) {
+            return redirect()->back()->with('success', 'You have updated the student status successfully');
+        }else{
+
+            return redirect()->back()->with('success', 'You have not updated the student status successfully');
+
+        }
+    }
+
+    
    public function adminprogress(){
         $admin_progress = User::where('role', 'student')->where('section', 'Primary')->latest()->get();
     return view('dashboard.admin.adminprogress', compact('admin_progress'));
@@ -1105,6 +1132,17 @@ class UserController extends Controller
         $view_teachersubjects = Teacherassign::where('user_id', auth::guard('web')->id())->get();
         return view('dashboard.addresults', compact('view_studentsubject', 'view_teachersubjects'));
     }
+
+    
+    public function addmidtermresults($ref_no1){
+        $view_studentsubject = User::where('ref_no1', $ref_no1)->first();
+         
+        // $view_teachersubjects = Subject::all();
+        $view_teachersubjects = Teacherassign::where('user_id', auth::guard('web')->id())->get();
+        return view('dashboard.addmidtermresults', compact('view_studentsubject', 'view_teachersubjects'));
+    }
+
+    
 
     public function changeclasses ($ref_no){
         $assign_classestoTeacher = User::where('ref_no', $ref_no)->first();
@@ -1859,6 +1897,21 @@ class UserController extends Controller
         ->where('section', 'Secondary')->latest()->get();
         return view('dashboard.highschoolparents', compact('view_highschoolparents'));
     }
+
+    public function preschoolheadparents(){
+
+        $view_highschoolparents = User::where('designation', 'parent')
+        ->where('section', 'Pre-School')->latest()->get();
+        return view('dashboard.preschoolheadparents', compact('view_highschoolparents'));
+    }
+
+    public function elementaryheadparents(){
+
+        $view_highschoolparents = User::where('designation', 'parent')
+        ->where('section', 'Primary')->latest()->get();
+        return view('dashboard.elementaryheadparents', compact('view_highschoolparents'));
+    }
+    
     
     
     public function approvedparent($ref_no){

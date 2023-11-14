@@ -54,7 +54,17 @@
                     <th>Remarks</th>
                     <th>View</th>
 
-              
+                    @if (Session::get('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+  
+                    @if (Session::get('fail'))
+                    <div class="alert alert-danger">
+                    {{ Session::get('fail') }}
+                    @endif
+  
                     {{-- <th>Date</th> --}}
                   </tr>
                   </thead>
@@ -71,8 +81,24 @@
                       <tr>
                         <td>{{ $view_studentstermresult->user['surname'] }}</td>
                         <td>{{ $view_studentstermresult->user['fname'] }}</td>
-                        <td>{{ $view_studentstermresult->user['middlename'] }}</td>
-                        <td>{{ $view_studentstermresult->user['regnumber'] }}</td>
+                        <td>{{ $view_studentstermresult->user['middlename'] }}
+                        <small>@if ($view_studentstermresult->status == null)
+                          <span class="badge badge-secondary">In Review</span>
+                          @elseif ($view_studentstermresult->status == 'reject')
+                          <span class="badge badge-danger">Reject</span>
+                          @elseif ($view_studentstermresult->status == 'suspend')
+                          <span class="badge badge-warning">Suspended</span>
+                          @elseif ($view_studentstermresult->status == 'approved')
+                          <span class="badge badge-success">Approved</span>
+  
+                          @endif</small>
+                        </td>
+                        <td>{{ $view_studentstermresult->user['regnumber'] }}
+                        <small><a href="{{ url('web/approveresultshead/'.$view_studentstermresult->id) }}"
+                          class='btn btn-success'>
+                          Aproved
+                           <i class="far fa-comment"></i></small>
+                        </td>
                         <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                           Search Pupils/Students Results
                          </button></td>

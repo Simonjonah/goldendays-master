@@ -93,6 +93,7 @@
         <label for="">Select Class</label>
         <div class="input-group mb-3">
           <select name="section" id="" class="form-control">
+            <option value="Pre-School">Pre-School</option>
             <option value="Primary">Primary</option>
             <option value="Secondary">Secondary</option>
             

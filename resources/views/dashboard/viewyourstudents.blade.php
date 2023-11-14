@@ -47,9 +47,11 @@
                     <th>Gender</th>
 
                     <th>Images</th>
-                    <th>Status</th>
-                    <th>Action</th>
                     <th>Add Results</th>
+
+                    <th>Status</th>
+
+                    <th>Change Class/Term</th>
                     <th>Add Class Activities</th>
                     <th>Edit</th>
                     <th>Date</th>
@@ -72,17 +74,18 @@
                           <td> {{ $view_student->term }}</td>
                           <td> {{ $view_student->gender }}</td>
                           <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_student->images")}}" alt=""></td>
+                          <td><a href="{{ url('web/addresults/'.$view_student->ref_no1) }}"
+                            class='btn btn-primary'>
+                            Add Results
+                        </a></td>
                           <td> <span class="badge badge-success">{{ $view_student->status }}</span></td>
-
-                          <td><a href="{{ url('web/viewstudent/'.$view_student->ref_no1) }}"
+                          
+                          <td><a href="{{ url('web/changeclassterm/'.$view_student->ref_no1) }}"
                             class='btn btn-default'>
-                             <i class="far fa-eye"></i></a></td>
+                             <i class="far fa-eye"></i>Change Class/Term</a></td>
 
                              {{-- @if ($view_student == Auth::guard('web')->user()->promotion = 'Primary Head') --}}
-                              <td><a href="{{ url('web/addresults/'.$view_student->ref_no1) }}"
-                                class='btn btn-primary'>
-                                Add Results
-                            </a></td>
+                             
 
                             
                              <td><a href="{{ url('web/addaclassctivities') }}"
@@ -115,15 +118,16 @@
                       <th>Gender</th>
   
                       <th>Images</th>
-                      <th>Status</th>
-                      <th>Action</th>
                       <th>Add Results</th>
-                    <th>Add Class Activities</th>
-                    <th>Edit</th>
-                    <th>Date</th>
-                    <th>Add Midterm Results</th>
-
-
+  
+                      <th>Status</th>
+  
+                      <th>Change Class/Term</th>
+                      <th>Add Class Activities</th>
+                      <th>Edit</th>
+                      <th>Date</th>
+                      <th>Add Midterm Results</th>
+                      
                     </tr>
                   </tfoot>
                 </table>

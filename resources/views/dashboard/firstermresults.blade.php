@@ -72,7 +72,9 @@
                         <td>{{ $view_myresult->user['surname'] }}</td>
                         <td>{{ $view_myresult->user['fname'] }}</td>
                         <td>{{ $view_myresult->user['middlename'] }}</td>
-                        <td>{{ $view_myresult->user['regnumber'] }}</td>
+                        <td>{{ $view_myresult->user['regnumber'] }}
+                        <small>{{ $view_myresult->user['section'] }}</small>
+                        </td>
                         <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                           Search Pupils/Students Results
                          </button></td>
