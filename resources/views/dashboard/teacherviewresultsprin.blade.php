@@ -80,6 +80,7 @@
                         <th>Middlename</th>
                         <th>Surname</th> --}}
                         <th>Subjects</th>
+                        <th>Code</th>
                         <th>Summative</th>
                         <th>Formative</th>
                        
@@ -107,6 +108,7 @@
                               <td>{{ $view_myresult_result->user['middlename'] }}</td>
                               <td>{{ $view_myresult_result->user['surname'] }}</td> --}}
                               <td>{{ $view_myresult_result->subjectname }}</td>
+                              <td>{{ $view_myresult_result->title }}</td>
                               <td>{{ $view_myresult_result->test_1 }}</td>
                               <td>{{ $view_myresult_result->test_2 }}</td>
                               {{-- <td>{{ $view_myresult_result->test_3 }}</td> --}}
@@ -850,12 +852,59 @@
             </div>
 
 
-
+            @if (Auth::guard('web')->user()->section == 'Secondary')
+              
             <div class="table-responsive">
               <table class="table table-bordered">
                 <tr>
-                  <th style="width:50%">AFFECTIVE/PSYCOMOTIVE </th>
-                  <th style="width:50%">DOMAIN</th>
+                  <th style="width:50%">GRADING  </th>
+                  <th style="width:50%">SYSTEM</th>
+                  
+                </tr>
+                <tr>
+                  <th>A</th>
+                  <td>90-100</td>
+                </tr>
+                <tr>
+                  <th>B</th>
+                  <td>80-89</td>
+                </tr>
+
+                <tr>
+                  <th>C</th>
+                  <td>70-79</td>
+                </tr>
+                <tr>
+                  <th>D</th>
+                  <td>60-69</td>
+                </tr>
+
+                <tr>
+                  <th>E</th>
+                  <td>50-59</td>
+                </tr>
+
+                <tr>
+                  <th>W/P</th>
+                  <td>40-49</td>
+                </tr>
+                <tr>
+                  <th>F</th>
+                  <td>0-40</td>
+                </tr>
+
+                
+                
+               
+               
+              </table>
+            @else
+              
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <tr>
+                  <th style="width:50%">GRADING  </th>
+                  <th style="width:50%">SYSTEM</th>
                   
                 </tr>
                 <tr>
@@ -881,6 +930,8 @@
                
                
               </table>
+            @endif
+
 
               <a href="{{ url('web/addcomment/'.$view_myresult_result->id) }}" class="btn btn-primary">Add Comment</a>
              

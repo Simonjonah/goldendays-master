@@ -116,13 +116,14 @@ class ClassnameController extends Controller
 
     public function addresultsad($classname){
         $view_addresults = Classname::where('classname', $classname)->first();
-        $view_addresults = User::where('role', null)->where('classname', $classname)->latest()->get();
+        $view_addresults = User::where('classname', $classname)->where('role', 'student')->latest()->get();
         return view('dashboard.admin.addresultsad', compact('view_addresults'));
     }
 
     public function viewclassresults($classname){
         $view_addresults = Classname::where('classname', $classname)->first();
         $view_addresults = Result::where('classname', $classname)->latest()->get();
+        
         return view('dashboard.admin.viewclassresults', compact('view_addresults'));
     }
 
@@ -157,10 +158,21 @@ class ClassnameController extends Controller
         return view('dashboard.elementresults', compact('academic_sessions', 'view_studentstermresults'));
     }
 
-    
+    public function highschools($classname){
+        $view_classess = Classname::where('classname', $classname)->first();
+        $view_highstudents = User::where('classname', $classname)->where('role', 'student')
+        ->where('section', 'Secondary')->get();
+        return view('dashboard.highschools', compact('view_classess', 'view_highstudents'));
+    }
 
     
-    
+    public function preschoolad($classname){
+        $view_classess = Classname::where('classname', $classname)->first();
+
+        // $view_classess = Classname::where('section', 'Pre-School')->get();
+        $view_preschools = User::where('role', 'student')->where('classname', $classname)->get();
+        return view('dashboard.admin.preschoolad', compact('view_preschools'));
+    }
     
     
 }

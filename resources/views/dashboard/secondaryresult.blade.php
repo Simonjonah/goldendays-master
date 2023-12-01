@@ -99,15 +99,16 @@ table, tr, td{
 
     <table id="myTable">
         <tr>
-          <th>AFFECTIVE DOMAIN (UBJECT OFFERED) </th>
-          <th>CAT 1</th>
-          <th>CAT 2</th>
+          <th>Subjects Title </th>
+          <th>Subjects Code </th>
+          <th>Formative</th>
+          <th>Summatve</th>
           <th>CAT 3</th>
           <th>EXAMS</th>
           <th>TOTAL</th>
-          <th>TOTAL</th>
+          <th>-</th>
           <th>GRADE</th>
-          <th>SUBJECT AVERAGE</th>
+          <th>SUBJECT TEACHER</th>
           
         </tr>
         <tr>
@@ -121,6 +122,7 @@ table, tr, td{
           <td>-</td>
           <td>-</td>
           <td>-</td>
+          <td>-</td>
 
         </tr>
    
@@ -131,35 +133,36 @@ table, tr, td{
             @endphp
         <tr>
             <td>{{ $getyour_result->subjectname }}</td>
+            <td>{{ $getyour_result->title }}</td>
             <td>{{ $getyour_result->test_1 }}</td>
             <td>{{ $getyour_result->test_2 }}</td>
             <td>{{ $getyour_result->test_3 }}</td>
             <td>{{ $getyour_result->exams }}</td>
             <td>{{ $getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams}}</td>
-            <td>@if ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 79)
+            <td>@if ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 90)
                
                 <td>A</td>
-                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 69)
+                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 89)
                 <td>B</td>
 
-                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 59)
+                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 79)
                 <td>C</td>
 
-                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 49)
+                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 69)
                 <td>D</td>
 
-                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 49)
+                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 59)
                 <td>E</td>
 
-                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 39)
-                <td>F</td>
+                @elseif ($getyour_result->test_1 + $getyour_result->test_2 + $getyour_result->test_3 + $getyour_result->exams > 49)
+                <td>W/P</td>
 
                 @else
                 <td>F</td>
 
             @endif</td>
             {{-- <td>{{ $totalaverage / 2 }}</td> --}}
-            <td>{{ round($getyour_result['test_1'] + $getyour_result['test_2'] + $getyour_result['test_3'] + $getyour_result['exams'] / 2)  }}</td>
+            <td>{{ $getyour_result->tname  }} {{ $getyour_result->tsurname  }}</td>
             {{-- round( ($row['result1'] + $row['result2']) /2) ; --}}
         </tr>
             @else
@@ -175,12 +178,13 @@ table, tr, td{
             <td>-</td>
             <td>-</td>
             <td>-</td>
-            {{-- <td>-</td> --}}
-            <td><b>{{ $total_score }}</b></td>
+            {{-- <td>-<b>{{ $total_score }}</td> --}}
+            <td>-</b></td>
             <td><b>-</b></td>
             <td>-</td>
+            <td>-</td>
             <td>Grade</td>
-            <td>Subject Average</td>
+            <td>Subject Teacher</td>
 
           </tr>
 
@@ -786,14 +790,48 @@ table, tr, td{
                     <table class="table">
                         <tr>
                 
-                          <th colspan="4">GRADING AND KEY</th>
+                          <th colspan="4">GRADING SYSTEM</th>
                         </tr>
                         <tr>
 
-                          <td>4</td>
-                          <td>3</td>
-                          <td>2</td>
-                          <td>1</td>
+                          <td>A</td>
+                          <td>B</td>
+                          <td>C</td>
+                          <td>D</td>
+                          <td>E</td>
+                          <td>W/P</td>
+                          <td>F</td>
+            
+                        </tr> 
+
+                        <tr>
+                            <td> 90-100</td>
+                            <td> 80-89</td>
+                            <td> 70-79</td>
+                            <td> 60-69</td>
+                            <td> 50-59</td>
+                            <td> 40-49</td>
+                            <td> 0-40</td>
+                        </tr>
+                       
+                      </table>
+                </div>
+
+                <div class="psy" style="margin-bottom: 30px;">
+                    <table class="table">
+                        <tr>
+                
+                          <th colspan="4">GRADING SYSTEM</th>
+                        </tr>
+                        <tr>
+
+                          <td>A</td>
+                          <td>B</td>
+                          <td>C</td>
+                          <td>D</td>
+                          <td>E</td>
+                          <td>W/P</td>
+                          <td>F</td>
             
                         </tr> 
 
@@ -801,7 +839,11 @@ table, tr, td{
                             <td> Exellence</td>
                             <td> Very Good</td>
                             <td> Good</td>
-                            <td> Fair</td>
+                            <td> Average</td>
+                            <td> Pass</td>
+                            <td> Weak Pass</td>
+                            <td> Fail</td>
+
                         </tr>
                        
                       </table>
@@ -824,10 +866,10 @@ table, tr, td{
             <td>{{ $getyour_result->regnumber }}</td>
             <td>SEX:</td>
             <td>{{ $getyour_result->user['gender'] }}</td>
-            <td>TOTAL SCORE OBTAINABLE:</td>
-            <td>{{ $total_subject * 100 }}</td>
-            <td>NO. OF DISTINGTIONS (A-B):</td>
-            <td>7A's, 3B's</td>
+            {{-- <td>TOTAL SCORE OBTAINABLE:</td>
+            <td>{{ $total_subject * 100 }}</td> --}}
+            {{-- <td>NO. OF DISTINGTIONS (A-B):</td>
+            <td>7A's, 3B's</td> --}}
         </tr>
 
         <tr>
@@ -835,21 +877,21 @@ table, tr, td{
             <td>{{ $getyour_result->classname }}</td>
             <td>TERM:</td>
             <td>{{ $getyour_result->term }} </td>
-            <td>SCORE OBTAINED:</td>
+            {{-- <td>SCORE OBTAINED:</td>
             <td>{{ $total_score }}</td>
 
-            <td>NO. OF CREDITS (C-D):</td>
-            <td>6C's 3D's</td>
+            <td>NAME OF TEACHER:</td>
+            <td>{{ $getyour_result->tname }} {{ $getyour_result->tsurname }}</td> --}}
         </tr>
         <tr>
             <td>AGE:</td>
             <td>{{ $getyour_result->user['dob'] }}</td>
             <td colspan="2"></td>
            
-            <td>PERCENTAGE:</td>
-            <td>{{ $total_score/100 }}</td>
-            <td>PUPIL'S GRADE IN CLASS:</td>
-            <td>B</td>
+            {{-- <td>PERCENTAGE:</td>
+            <td>{{ $total_score/100 }}</td> --}}
+            {{-- <td>PUPIL'S GRADE IN CLASS:</td>
+            <td>B</td> --}}
         </tr>
         
     
@@ -872,12 +914,12 @@ table, tr, td{
         </table>
 
         <table style="margin-top: 2px;">
-            <tr>
+            {{-- <tr>
                 <td>Class Teacher's Comment</td>
                 <td>{{ $getyour_result->teacher_comment}}								
                 </td>
                 <td>Signature: </td>
-            </tr>
+            </tr> --}}
 
             <tr>
                 <td>Head Teacher's Comment</td>

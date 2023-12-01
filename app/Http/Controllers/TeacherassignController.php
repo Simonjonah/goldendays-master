@@ -61,5 +61,13 @@ class TeacherassignController extends Controller
         return view('dashboard.mysubjectsguestion', compact('my_subjects'));
     }
 
+    public function viewassignteachers(){
+        $view_subjectbyheads = Teacherassign::where('section', 'Secondary')->get();
+
+        return view('dashboard.viewassignteachers', compact('view_subjectbyheads'));
+    }
+
+    
+
     
 }

@@ -23,124 +23,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title" style="color: red">Students/Pupils</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
-                      <th>Term</th>
-                      <th>Images</th>
-                      <th>View</th>
-                      <th>Status</th>
-  
-                      <th>Admit No</th>
-                      <th>Section</th>
-                      <th>Add result</th>
-                     
-  
-                      <th>Date</th>
-  
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @if (Session::get('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                    @endif
-  
-                    @if (Session::get('fail'))
-                    <div class="alert alert-danger">
-                    {{ Session::get('fail') }}
-                    @endif
-                    @foreach ($view_addresults as $view_addresult)
-
-                      @if ($view_addresult->section = 'Secondary')
-                      <tr>
-                        <td>{{ $view_addresult->classname }}</td>
-                        <td>{{ $view_addresult->middlename }}</td>
-                        <td>{{ $view_addresult->fname }}</td>
-                        <td>{{ $view_addresult->term }}</td>
-  
-                        <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_addresult->images")}}" alt=""></td>
-                        <td><a href="{{ url('admin/addresultsad1/'.$view_addresult->ref_no1) }}"
-                            class='btn btn-default'>
-                            <i class="far fa-eye"></i>
-                        </a></td>
-                        <td>@if ($view_addresult->status == null)
-                          <span class="badge badge-secondary"> In progress</span>
-                        @elseif($view_addresult->status == 'suspend')
-                        <span class="badge badge-warning"> Suspended</span>
-                        @elseif($view_addresult->status == 'reject')
-                        <span class="badge badge-danger"> Rejected</span>
-                        @elseif($view_addresult->status == 'approved')
-                        <span class="badge badge-info"> Approved</span>
-                        @elseif($view_addresult->status == 'admitted')
-                        
-                        <span class="badge badge-success">Admitted</span>
-                        @endif</td>
-                 
-  
-                      <td>{{ $view_addresult->regnumber }}</td>
-                      <td>{{ $view_addresult->section }}</td>
-                        <td><a href="{{ url('admin/addresultsad1/'.$view_addresult->ref_no1) }}"
-                          class='btn btn-info'>
-                          <i class="far fa-user">Add Results</i>
-                      </a></td>  
-                      
-                        
-                   
-                    
-                    <td>{{ $view_addresult->created_at->format('D d, M Y, H:i')}}</td>
-  
-                      </tr>
-                
-                      @else
-                        
-                      @endif
-                      
-                    
-                    @endforeach
-               
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
-                      <th>Term</th>
-                      <th>Images</th>
-                      <th>View</th>
-                      <th>Status</th>
-  
-                      <th>Admit No</th>
-                      <th>Section</th>
-                      <th>Add result</th>
-                     
-  
-                      <th>Date</th>
-  
-                    </tr>
-  
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
+    
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title" style="color: red">Students/Pupils</h3>
@@ -151,8 +34,9 @@
                   <thead>
                     <tr>
                       <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
+                      <th>Surname Name</th>
+                      <th>First Name</th>
+                      <th>Middlename</th>
                       <th>Term</th>
                       <th>Images</th>
                       <th>View</th>
@@ -170,11 +54,12 @@
                   <tbody>
                     @foreach ($view_addresults as $view_addresult)
 
-                      @if ($view_addresult->section = 'Secondary')
+                      {{-- @if ($view_addresult->section = 'Secondary') --}}
                       <tr>
                         <td>{{ $view_addresult->classname }}</td>
-                        <td>{{ $view_addresult->middlename }}</td>
+                        <td>{{ $view_addresult->surname }}</td>
                         <td>{{ $view_addresult->fname }}</td>
+                        <td>{{ $view_addresult->middlename }}</td>
                         <td>{{ $view_addresult->term }}</td>
   
                         <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$view_addresult->images")}}" alt=""></td>
@@ -209,10 +94,10 @@
                     <td>{{ $view_addresult->created_at->format('D d, M Y, H:i')}}</td>
   
                       </tr>
-                
+{{--                 
                       @else
                         
-                      @endif
+                      @endif --}}
                       
                     
                     @endforeach
@@ -222,8 +107,9 @@
                   <tfoot>
                     <tr>
                       <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
+                      <th>Surname Name</th>
+                      <th>First Name</th>
+                      <th>Middlename</th>
                       <th>Term</th>
                       <th>Images</th>
                       <th>View</th>

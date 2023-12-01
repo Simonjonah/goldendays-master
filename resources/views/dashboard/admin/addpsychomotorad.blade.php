@@ -61,7 +61,16 @@
     
                   <form action="{{ url('admin/createpsychomotoroad/'.$add_psychomotorad->id) }}" method="post">
                     @csrf
-
+                    @if (Session::get('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+  
+                    @if (Session::get('fail'))
+                    <div class="alert alert-danger">
+                    {{ Session::get('fail') }}
+                    @endif
                     @method('PUT')
                     <table class="table table-bordered">
                       <tr>

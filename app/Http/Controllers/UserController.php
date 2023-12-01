@@ -170,7 +170,7 @@ class UserController extends Controller
     public function addchild($id){
         $add_childtoparents = User::find($id);
         $view_classes = Classname::latest()->get();
-        $select_teachers = User::where('status', 'admitted')->get();
+        $select_teachers = User::where('status', 'teacher')->where('role', 'approved')->get();
         return view('dashboard.admin.addchild', compact('select_teachers', 'view_classes', 'add_childtoparents'));
     }
     public function addchildbyparent(Request $request){
@@ -818,7 +818,8 @@ class UserController extends Controller
 
     public function profile($ref_no1){
         $view_profile = User::where('ref_no1', $ref_no1)->first();
-        return view('dashboard.profile', compact('view_profile'));
+        $view_classes = Classname::all();
+        return view('dashboard.profile', compact('view_classes', 'view_profile'));
     }
 
     public function admisionletter(){
@@ -1114,7 +1115,7 @@ class UserController extends Controller
 
     public function studentsubjectsbyheads($ref_no1){
         $view_studentsubjects = User::where('ref_no1', $ref_no1)->first();
-        $view_subjects = Subject::where('section', 'Secondary')->get();
+        $view_subjects = Subject::all();
         return view('dashboard.studentsubjectsbyheads', compact('view_studentsubjects', 'view_subjects'));
     }
     
@@ -1266,11 +1267,7 @@ class UserController extends Controller
         return view('dashboard.admin.viewparent', compact('view_parent'));
     }
 
-    public function highschools(){
-        $view_classess = Classname::where('section', 'Secondary')->get();
-        $view_highstudents = User::where('section', 'Secondary')->get();
-        return view('dashboard.highschools', compact('view_classess', 'view_highstudents'));
-    }
+  
 
     
     public function preschoolshead(){
@@ -1279,11 +1276,7 @@ class UserController extends Controller
         return view('dashboard.preschoolshead', compact('view_classess', 'view_highstudents'));
     }
 
-    public function preschoolad(){
-        // $view_classess = Classname::where('section', 'Pre-School')->get();
-        $view_preschools = User::where('role', 'student')->where('section', 'Pre-School')->get();
-        return view('dashboard.admin.preschoolad', compact('view_preschools'));
-    }
+   
 
     public function viewaddresults(){
         $view_classess = Classname::where('section', 'Secondary')->get();
@@ -1323,7 +1316,6 @@ class UserController extends Controller
     }
     public function createparent1(Request $request){
         
-
         $request->validate([
         'fathername' => ['required', 'string'],
         'section' => ['required', 'string'],
@@ -1366,11 +1358,11 @@ class UserController extends Controller
         'academic_session' => ['nullable', 'string'],
         'term' => ['nullable', 'string'],
         'password' => ['nullable', 'string'],
-        'cpassword' => 'required|min:5|max:30|same:cpassword',
+       // 'cpassword' => 'required|min:5|max:30|same:cpassword',
         //'images' => 'nullable|mimes:jpg,png,jpeg'
         
         ]);
-        //dd($request->all());
+       // dd($request->all());
         $addsec_admission = new User ();
         $addsec_admission->section = $request->section;
         $addsec_admission->academic_session = $request->academic_session;
@@ -1921,16 +1913,80 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'you have approved successfully');
     }
 
+
+    public function addregnumber ($ref_no1){
+        $student_regno = User::where('ref_no1', $ref_no1)->first();
+        return view('dashboard.addregnumber ', compact('student_regno'));
+    }
+
+    public function addingregnomber(Request $request, $id){
+        $student_regno = User::where('id', $id)->first();
+        $request->validate([
+            //'regnumber' => ['nullable', 'string', 'max:255'],
+            'regnumber' => ['nullable', 'string', 'max:255', 'unique:users'],
+
+        ]);
+       
+        $student_regno->regnumber = $request->regnumber;
+        $student_regno->update();
+        if ($student_regno) {
+            return redirect()->back()->with('success', 'you have successfully registered');
+                
+            }else{
+                return redirect()->back()->with('error', 'you have fail to registered');
+        }
+    }
+
+    public function updateprofile(Request $request, $ref_no1){
+        $view_profile = User::where('ref_no1', $ref_no1)->first();
+        $request->validate([
+            'fname' => ['string', 'max:255', 'required'],
+            'middlename' => ['string', 'max:255', 'required'],
+            'surname' => ['string', 'max:255', 'required'],
+            'lastschooladdress' => ['string', 'max:255', 'required'],
+            'section' => ['string', 'max:255', 'required'],
+            'classname' => ['string', 'max:255', 'required'],
+            'images' => 'nullable|mimes:jpg,png,jpeg',
+            
+        ]);
+        //dd($request->all());
+        if ($request->hasFile('images')){
+
+            $file = $request['images'];
+            $filename = 'SimonJonah-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $request->file('images')->storeAs('resourceimages', $filename);
+
+        }else{
+
+            $path = 'noimage.jpg';
+        }
+
+      //  $add_adimission = new User();
+
+        $view_profile['images'] = $path;
+        $view_profile->fname = $request->fname;
+        $view_profile->middlename = $request->middlename;
+        $view_profile->surname = $request->surname;
+        $view_profile->lastschooladdress = $request->lastschooladdress;
+        $view_profile->classname = $request->classname;
+        $view_profile->section = $request->section;
+        
+       $view_profile->update();
+       if ($view_profile) {
+        return redirect()->back()->with('success', 'You have seccessfully updated your profile')->withInput();
+
+       }
+
+    }
+
+
     public function logout(){
         Auth::guard('web')->logout();
         return redirect('login');
     }
 
 
- 
-    
-    
-   
-    
+
+        
     
 }

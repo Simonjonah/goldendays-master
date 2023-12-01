@@ -101,7 +101,7 @@
                        Print
                       </button></td>
   
-                      <td>{{ $view_highstudent->ref_no1 }}</td>
+                      <td>{{ $view_highstudent->regnumber }}</td>
                      
                       
              

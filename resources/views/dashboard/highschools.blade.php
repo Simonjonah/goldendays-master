@@ -13,7 +13,7 @@
             <h1>Secondary Schools</h1>
           </div>
           <div class="col-sm-6">
-            @if (Auth::guard('web')->user()->promotion == 'Secondary')
+            {{-- @if (Auth::guard('web')->user()->promotion == 'Secondary')
                @foreach ($view_classess as $view_classes)
             <ol class="breadcrumb float-sm-right">
               Class
@@ -22,7 +22,7 @@
             @endforeach
             @else
               
-            @endif
+            @endif --}}
            
           </div>
         </div>
@@ -73,9 +73,9 @@
                   </thead>
                   <tbody>
                   {{-- @if (Auth::guard('web')->user()->promotion == 'Creche Head') --}}
-                  @if (Auth::guard('web')->user()->promotion == 'Secondary')
+                  {{-- @if (Auth::guard('web')->user()->promotion == 'Secondary') --}}
                     @foreach ($view_highstudents as $view_highstudent)
-                    @if ($view_highstudent->section == Auth::guard('web')->user()->section && $view_highstudent->status == null)
+                    {{-- @if ($view_highstudent->section == Auth::guard('web')->user()->section && $view_highstudent->status == null) --}}
                       <tr>
                         <td>{{ $view_highstudent->classname }}</td>
                         <td>{{ $view_highstudent->middlename }}</td>
@@ -110,12 +110,13 @@
                         Action
                       </button>
                       <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="{{ url('web/addregnumber/'.$view_highstudent->ref_no1) }}">Add Reg Number</a></li>
                        
                         <li class="dropdown-item"><a href="{{ url('web/highschoolsection') }}">High School Section</a></li>
                       </ul>
                     </div></td>
   
-                      <td>{{ $view_highstudent->ref_no1 }}</td>
+                      <td>{{ $view_highstudent->regnumber }}</td>
                         {{-- <td><a href="{{ url('admin/editstudent/'.$view_highstudent->ref_no) }}"
                           class='btn btn-info'>
                           <i class="far fa-edit"></i>
@@ -133,14 +134,14 @@
                     <td>{{ $view_highstudent->created_at->format('D d, M Y, H:i')}}</td>
   
                       </tr>
-                      @else
+                      {{-- @else
                         
-                      @endif  
+                      @endif   --}}
                     
                   @endforeach
-                        @else
+                        {{-- @else
                         
-                      @endif
+                      @endif --}}
                 
                   </tbody>
                   <tfoot>

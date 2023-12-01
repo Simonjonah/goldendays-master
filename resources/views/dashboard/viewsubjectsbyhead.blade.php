@@ -1,7 +1,7 @@
-@include('dashboard.admin.header')
+@include('dashboard.header')
 
   <!-- Main Sidebar Container -->
-  @include('dashboard.admin.sidebar')
+  @include('dashboard.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Subjects for Secondary School</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -40,45 +40,60 @@
                   <tr>
                     <th>Subjects</th>
                     <th>Code</th>
-
                     <th>Section</th>
+                    <th>Actions</th>
                     <th>Edit</th>
                     <th>Delete</th>
-                  
                     <th>Date</th>
                   </tr>
                   </thead>
                   <tbody>
-                    @csrf
                     @if (Session::get('success'))
                     <div class="alert alert-success">
                         {{ Session::get('success') }}
                     </div>
                     @endif
-  
+
                     @if (Session::get('fail'))
                     <div class="alert alert-danger">
                     {{ Session::get('fail') }}
-                    @endif
-                    @foreach ($viewnursery_subjects as $viewnursery_subject)
-                        {{-- @if ($viewnursery_subject->section = 'Primary' || $viewnursery_subject->section = 'Nursery' || $viewnursery_subject->section = 'Pre-School' || $viewnursery_subject->section = 'Preparatory') --}}
+                    </div>
+                  @endif
+                
+                    @foreach ($view_subjectbyheads as $view_subjectbyhead)
+                        @if ($view_subjectbyhead->section == 'Secondary')
                         <tr>
-                            <td>{{ $viewnursery_subject->subjectname }}</td>
-                            <td>{{ $viewnursery_subject->title }}</td>
-
-                            <td>{{ $viewnursery_subject->section }}</td>
-                         
-                            <th><a href="{{ url('admin/editsubject/'.$viewnursery_subject->id) }}" class="btn btn-info"><i class="fas fa-edit"></i></a></th>
-                            <th><a href="{{ url('admin/subdelte/'.$viewnursery_subject->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></th>
+                            <td>{{ $view_subjectbyhead->subjectname }}</td>
+                            <td>{{ $view_subjectbyhead->title }}</td>
+                            <td>{{ $view_subjectbyhead->section }}</td>
+                           
                             
-                         <td>{{ $viewnursery_subject->created_at->format('D d, M Y, H:i')}}</td>
+                            
+                            <td><a href="{{ url('web/assignsubjectbyheads/'.$view_subjectbyhead->id) }}"
+                              class='btn btn-primary'>
+                               <i class="far fa-user"></i>
+                           </a></td> 
+                        
+                             <td><a href="{{ url('web/editsubjectbyheads/'.$view_subjectbyhead->id) }}"
+                              class='btn btn-info'>
+                               <i class="far fa-edit"></i>
+                           </a></td>  
     
-                          </tr> 
-                        {{-- @else
+                         
+                         
+                           <td><a href="{{ url('web/deletesubjectbyheads/'.$view_subjectbyhead->id) }}"
+                            class='btn btn-danger'>
+                             <i class="far fa-trash-alt"></i>
+                         </a></td>
+                        
+                         <td>{{ $view_subjectbyhead->created_at->format('D d, M Y, H:i')}}</td>
+    
+                          </tr>
+                         
+                        @else
                             
-                        @endif --}}
-                     
-                     
+                        @endif
+                      
                     @endforeach
                  
                  
@@ -86,13 +101,13 @@
                   </tbody>
                   <tfoot>
                     <tr>
+                      <th>Subjects</th>
+                      <th>Code</th>
                       <th>Section</th>
-                      <th>Section</th>
+                      <th>Actions</th>
                       <th>Edit</th>
                       <th>Delete</th>
-                        
-                        <th>Date</th>
-                      </tr>
+                      <th>Date</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -109,12 +124,37 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Default Modal</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-control">
+            
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="httpS://goldenschools">GOLDEN SCHOOLS</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="https://golden.com.ng">Golden</a>.</strong> All rights
     reserved.
   </footer>
 

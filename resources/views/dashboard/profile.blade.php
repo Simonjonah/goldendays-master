@@ -176,7 +176,7 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
-                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="{{ url('web/updateprofile/'.$view_profile->ref_no1) }}" method="post" enctype="multipart/form-data">
                       @csrf
                       
                       @method('PUT')
@@ -184,19 +184,19 @@
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label"> First Name</label>
                         <div class="col-sm-10">
-                          <input type="text" name="name" value="{{ Auth::guard('web')->user()->fname }}" class="form-control" id="inputName" placeholder="First Name">
+                          <input type="text" name="fname" value="{{ Auth::guard('web')->user()->fname }}" class="form-control" id="inputName" placeholder="First Name">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label"> Middle Name</label>
                         <div class="col-sm-10">
-                          <input type="text" name="lastname" value="{{ Auth::guard('web')->user()->middlename }}" class="form-control" id="inputName" placeholder="Last Name">
+                          <input type="text" name="middlename" value="{{ Auth::guard('web')->user()->middlename }}" class="form-control" id="inputName" placeholder="Last Name">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label"> SurName</label>
                         <div class="col-sm-10">
-                          <input type="text" name="name" value="{{ Auth::guard('web')->user()->surname }}" class="form-control" id="inputName" placeholder="First Name">
+                          <input type="text" name="surname" value="{{ Auth::guard('web')->user()->surname }}" class="form-control" id="inputName" placeholder="First Name">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -206,9 +206,9 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="inputName2" value="{{ Auth::guard('web')->user()->fatheraddress }}" class="col-sm-2 col-form-label">Address</label>
+                        <label for="inputName2" value="{{ Auth::guard('web')->user()->lastschooladdress }}" class="col-sm-2 col-form-label">Address</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" value="{{ Auth::guard('web')->user()->fatheraddress }}" name="address" id="inputName2" placeholder="Address">
+                          <input type="text" class="form-control" value="{{ Auth::guard('web')->user()->lastschooladdress }}" name="lastschooladdress" id="inputName2" placeholder="Address">
                         </div>
                       </div>
                       <img class="image rounded-circle" src="{{ asset('/public/../'.Auth::guard('web')->user()->images)}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
@@ -216,8 +216,9 @@
                       <div class="form-group row">
                         <label for="inputName2" value="{{ Auth::guard('web')->user()->images }}" class="col-sm-2 col-form-label">Picture</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control" name="profileimage" id="inputName2" placeholder="profileimage">
+                          <input type="file" class="form-control" name="images" id="inputName2" placeholder="profileimage">
                         </div>
+
                       </div>
                      
                       <div class="form-group row">
@@ -226,7 +227,39 @@
                           <input type="number" name="phone" value="{{ Auth::guard('web')->user()->phone }}" class="form-control" id="inputSkills" placeholder="Phone">
                         </div>
                       </div>
-                     
+
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Classes</label>
+                        <div class="col-sm-10">
+                          <select name="classname" class="form-control" id="">
+                            @foreach ($view_classes as $view_classe)
+                            <option value="{{ $view_classe->classname }}">{{ $view_classe->classname }}</option>
+                              
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Classes</label>
+                        <div class="col-sm-10">
+                            <select name="section" id="" class="form-control">
+                              <option value="Pre-School">Pre-School</option>
+                              <option value="Primary">Primary</option>
+                              <option value="Secondary">Secondary</option>
+                          </select>
+                        </div>
+                      </div>
+
+       
+
+      
+                      <div class="form-group row">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Update</button>
+                          {{-- <input type="number" name="phone" value="{{ Auth::guard('web')->user()->phone }}" class="form-control" id="inputSkills" placeholder="Phone"> --}}
+                        </div>
+                      </div>
                     </form>
                   </div>
                   <!-- /.tab-pane -->

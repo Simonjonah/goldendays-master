@@ -286,7 +286,7 @@
                          <div class="col-sm-6">
                           <div class="form-group">
                             <label>Email</label>
-                          <input type="email" name="email" @error('email')
+                          <input required type="email" name="email" @error('email')
                           @enderror value="{{ old('email') }}" class="form-control" placeholder="Email">
                            
                           </div>

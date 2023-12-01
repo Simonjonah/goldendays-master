@@ -313,7 +313,14 @@
               <li class="nav-item">
                 <a href="{{ url('web/checkresult') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Your Results</p>
+                  <p>Terminal Results</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('web/checkresult') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Midterm Results</p>
                 </a>
               </li>
 
@@ -795,6 +802,62 @@
                     </li>
                   </ul>
                 </li>
+
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Subjects Section
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <a href="{{ url('web/addsubjectbyhead') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add Subject</p>
+                    </a>
+                    <li class="nav-item">
+                      <a href="{{ url('web/viewsubjectsbyhead') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Subjects</p>
+                      </a>
+                    </li>
+  
+                    <li class="nav-item">
+                      <a href="{{ url('web/viewassignteachers') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Subjects Teacher</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Students Section
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    @foreach ($classnames as $classname)
+                    <li class="nav-item">
+                      <a href="{{ url('web/highschools/'.$classname->classname) }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p> {{ $classname->classname }} Students</p>
+                      </a>
+                    </li>
+                    @endforeach
+                  
+                    {{-- <li class="nav-item">
+                      <a href="{{ url('web/viewassignteachers') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Subjects Teacher</p>
+                      </a>
+                    </li> --}}
+                  </ul>
+                </li>
                 <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
@@ -816,12 +879,9 @@
                   </ul>
                 </li>
 
-                <li class="nav-item">
-                  <a href="{{ url('web/highschools') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Secondary Schools</p>
-                  </a>
-                </li>
+               
+
+                
 
                 <li class="nav-item">
                   <a href="{{ url('web/highschoolessonnotes') }}" class="nav-link">
@@ -875,12 +935,7 @@
                     <p>View Lesson Notes</p>
                   </a>
                 </li>
-                {{-- <li class="nav-item">
-                  <a href="{{ url('web/viewaddresults') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Upload Result</p>
-                  </a>
-                </li> --}}
+               
               </li>
             </li>
 

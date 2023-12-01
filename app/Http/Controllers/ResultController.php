@@ -45,7 +45,7 @@ class ResultController extends Controller
                 'subjectname' => $subjectnames[$i],
                 'test_1' => $test_1s[$i],
                 'test_2' => $test_2s[$i],
-                'test_3' => $test_3s[$i],
+                // 'test_3' => $test_3s[$i],
                 'tname' => $tnames[$i],
                 'tsurname' => $tsurnames[$i],
                 'exams' => $examss[$i],
@@ -76,8 +76,8 @@ class ResultController extends Controller
         $test_3s = $request->input('test_3');
         $examss = $request->input('exams');
         $user_ids = $request->input('user_id');
-        // $tnames= $request->input('tname');
-        // $tsurnames = $request->input('tsurname');
+        $tnames= $request->input('tname');
+        $tsurnames = $request->input('tsurname');
         $teacher_ids = $request->input('teacher_id');
         $academic_sessions = $request->input('academic_session');
         $regnumbers = $request->input('regnumber');
@@ -104,8 +104,8 @@ class ResultController extends Controller
                 'exams' => $examss[$i],
                 'user_id' => $user_ids[$i],
                 'teacher_id' =>$teacher_ids[$i],
-                // 'tname' =>$tnames[$i],
-                // 'tsurname' =>$tsurnames[$i],
+                'tname' =>$tnames[$i],
+                'tsurname' =>$tsurnames[$i],
 
                 'academic_session' =>$academic_sessions[$i],
                 'regnumber' =>$regnumbers[$i],
@@ -142,7 +142,7 @@ class ResultController extends Controller
         $surnames = $request->input('surname');
         $genders = $request->input('gender');
         $images_ds = $request->input('images');
-        $titles = $request->input('title');
+        // $titles = $request->input('title');
         
         
         
@@ -168,17 +168,13 @@ class ResultController extends Controller
                 'surname' => $surnames[$i],
                 'gender' => $genders[$i],
                 'images' => $images_ds[$i],
-                'title' => $titles[$i],
+                // 'title' => $titles[$i],
                 
             ];
         }
        }
 
 
-    
-       
-        
-//dd($data);
         Result::insert($data);
 
         
@@ -189,7 +185,59 @@ class ResultController extends Controller
 
     public function createresultsad(Request $request){
         
+            $data = [];
+            $subjectnames = $request->input('subjectname');
+            $test_1s = $request->input('test_1');
+            $test_2s = $request->input('test_2');
+            $test_3s = $request->input('test_3');
+            $examss = $request->input('exams');
+            $user_ids = $request->input('user_id');
+            // $teacher_ids = $request->input('teacher_id');
+            $academic_sessions = $request->input('academic_session');
+            $regnumbers = $request->input('regnumber');
+            $terms = $request->input('term');
+            $sections = $request->input('section');
+            $classnames = $request->input('classname');
+            $fnames = $request->input('fname');
+            $middlenames = $request->input('middlename');
+            $surnames = $request->input('surname');
+            $genders = $request->input('gender');
+            $images_ds = $request->input('images');
+           
+            for ($i = 0; $i < count($subjectnames); $i++) {
+                $data[] = [
+    
+                    'subjectname' => $subjectnames[$i],
+                    'test_1' => $test_1s[$i],
+                    'test_2' => $test_2s[$i],
+                    'test_3' => $test_3s[$i],
+                    'exams' => $examss[$i],
+                    'user_id' => $user_ids[$i],
+                    'section' =>$sections[$i],
+    
+                    'academic_session' =>$academic_sessions[$i],
+                    'regnumber' =>$regnumbers[$i],
+                    'term' => $terms[$i],
+                    // 'user_id' => $user_ids[$i],
+                    'classname' => $classnames[$i],
+                    'fname' => $fnames[$i],
+                    'middlename' => $middlenames[$i],
+                    'surname' => $surnames[$i],
+                    'gender' => $genders[$i],
+                    'images' => $images_ds[$i],
+                    // 'title' => $titles[$i],
+                    
+                ];
+            
+            Result::insert($data);
+    
+        }
 
+       return redirect()->back()->with('success', 'you have added successfully');
+    }
+
+    public function createresultsadsec(Request $request){
+        
         $data = [];
         $subjectnames = $request->input('subjectname');
         $test_1s = $request->input('test_1');
@@ -197,14 +245,19 @@ class ResultController extends Controller
         $test_3s = $request->input('test_3');
         $examss = $request->input('exams');
         $user_ids = $request->input('user_id');
-        $teacher_ids = $request->input('teacher_id');
+        // $teacher_ids = $request->input('teacher_id');
         $academic_sessions = $request->input('academic_session');
         $regnumbers = $request->input('regnumber');
         $terms = $request->input('term');
-        $user_ids = $request->input('user_id');
+        $sections = $request->input('section');
         $classnames = $request->input('classname');
-        
-      
+        $fnames = $request->input('fname');
+        $middlenames = $request->input('middlename');
+        $surnames = $request->input('surname');
+        $images_ds = $request->input('images');
+        $genders = $request->input('gender');
+        $titles = $request->input('title');
+       
         for ($i = 0; $i < count($subjectnames); $i++) {
             $data[] = [
 
@@ -214,20 +267,29 @@ class ResultController extends Controller
                 'test_3' => $test_3s[$i],
                 'exams' => $examss[$i],
                 'user_id' => $user_ids[$i],
-                'teacher_id' =>$teacher_ids[$i],
+                'section' =>$sections[$i],
 
                 'academic_session' =>$academic_sessions[$i],
                 'regnumber' =>$regnumbers[$i],
                 'term' => $terms[$i],
                 // 'user_id' => $user_ids[$i],
                 'classname' => $classnames[$i],
+                'fname' => $fnames[$i],
+                'middlename' => $middlenames[$i],
+                'surname' => $surnames[$i],
+                'gender' => $genders[$i],
+                'images' => $images_ds[$i],
+                'title' => $titles[$i],
+                
             ];
-        }
+        
         Result::insert($data);
 
-        //return redirect()->route('psycomotor', ['ref_no' =>$user_ids->ref_no]); 
-       return redirect()->back()->with('success', 'you have added successfully');
     }
+
+   
+   return redirect()->back()->with('success', 'you have added successfully');
+}
 
 
     public function firstermresults(){
@@ -419,6 +481,12 @@ class ResultController extends Controller
 
         return redirect()->back()->with('success', 'you have added successfully');
     }
+    
+
+
+
+
+
     
 
     public function secondtermresults(){
@@ -955,9 +1023,8 @@ class ResultController extends Controller
              ];
          }
  
-        }else{
- 
-         $data = [];
+        }elseif (Auth::guard('web')->user()->section == 'Primary') {
+            $data = [];
          $subjectnames = $request->input('subjectname');
          $test_1s = $request->input('test_1');
          $test_2s = $request->input('test_2');
@@ -978,7 +1045,7 @@ class ResultController extends Controller
          $surnames = $request->input('surname');
          $genders = $request->input('gender');
          $images_ds = $request->input('images');
-         $titles = $request->input('title');
+        //  $titles = $request->input('title');
          
          
          
@@ -1006,7 +1073,7 @@ class ResultController extends Controller
                  'surname' => $surnames[$i],
                  'gender' => $genders[$i],
                  'images' => $images_ds[$i],
-                 'title' => $titles[$i],
+                //  'title' => $titles[$i],
                  
              ];
          }
@@ -1015,7 +1082,8 @@ class ResultController extends Controller
          Result::insert($data);
  
         return redirect()->back()->with('success', 'you have added successfully');
-     }
+
+        }
 
 
      public function createmidtermresultsmidterm(Request $request){
@@ -1150,7 +1218,7 @@ class ResultController extends Controller
          $surnames = $request->input('surname');
          $genders = $request->input('gender');
          $images_ds = $request->input('images');
-         $titles = $request->input('title');
+        //  $titles = $request->input('title');
          
          
          
@@ -1178,7 +1246,7 @@ class ResultController extends Controller
                  'surname' => $surnames[$i],
                  'gender' => $genders[$i],
                  'images' => $images_ds[$i],
-                 'title' => $titles[$i],
+                // 'title' => $titles[$i],
                  
              ];
          }

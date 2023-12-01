@@ -103,6 +103,13 @@ class SubjectController extends Controller
         $viewnursery_subjects = Subject::where('id', $id)->delete();
         return redirect()->back()->with('success', 'You have deleted successfully');
     }
+
+    public function deletesubjectbyheads($id){
+        $viewnursery_subjects = Subject::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'You have deleted successfully');
+    }
+
+    
     
     public function setsubjectquestions(){
         $view_subjects = Subject::all();
@@ -112,7 +119,74 @@ class SubjectController extends Controller
     public function addquestions($id){
         $add_questionbyadmin = Subject::find($id);
         return view('dashboard.admin.addquestions', compact('add_questionbyadmin'));
-    }  
+    } 
 
+    public function addsubjectbyhead(){
+        //$add_questionbyadmin = Subject::where('section', 'Secondary')->get();
+        return view('dashboard.addsubjectbyhead');
+    } 
+
+    public function viewsubjectsbyhead(){
+        $view_subjectbyheads = Subject::all();
+        return view('dashboard.viewsubjectsbyhead', compact('view_subjectbyheads'));
+    } 
+    
+    
+    public function createsubjectbyhead(Request $request){
+        $request->validate([
+            'subjectname' => ['required', 'string', 'max:255'],
+            'section' => ['required', 'string', 'max:255'],
+            'title' => ['nullable', 'string', 'max:255'],
+            
+        ]);
+        $addsubjects = new Subject();
+        $addsubjects->subjectname = $request->subjectname;
+        $addsubjects->section = $request->section;
+        $addsubjects->title = $request->title;
+        $addsubjects->save();
+        if ($addsubjects) {
+            return redirect()->back()->with('success', 'you have successfully registered');
+            }else{
+                return redirect()->back()->with('error', 'you have fail to registered');
+        }
+    }
+
+
+    public function assignsubjectbyheads($id){
+        $assigned_subject = Subject::find($id);
+
+        $assigned_highschool_subjects = User::where('status', 'teacher')
+        ->where('section', 'Secondary')->get();
+
+        $classnames = Classname::all();
+        
+        return view('dashboard.assignsubjectbyheads', compact('classnames', 'assigned_highschool_subjects', 'assigned_subject'));
+    }
+
+    public function editsubjectbyheads($id){
+        $edit_subject = Subject::find($id);
+        return view('dashboard.editsubjectbyheads', compact('edit_subject'));
+    } 
+
+
+    public function updatesubjectheads (Request $request, $id){
+        $edit_subject = Subject::find($id);
+
+        $request->validate([
+            'subjectname' => ['required', 'string', 'max:255'],
+            'section' => ['required', 'string', 'max:255'],
+            'title' => ['nullable', 'string', 'max:255'],
+            
+        ]);
+        $edit_subject->subjectname = $request->subjectname;
+        $edit_subject->section = $request->section;
+       $edit_subject->title = $request->title;
+        $edit_subject->update();
+        if ($edit_subject) {
+            return redirect()->back()->with('success', 'you have successfully updated');
+            }else{
+                return redirect()->back()->with('error', 'you have fail to registered');
+        }
+    }
     
 }

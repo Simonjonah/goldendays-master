@@ -37,6 +37,7 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\TransactionController;
 use App\Models\Academicsession;
 use App\Models\Classactivity;
+use App\Models\Classname;
 use App\Models\Transaction;
 use App\Models\User;
 
@@ -123,6 +124,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/sackedadmin/{id}', [AdminController::class, 'sackedadmin'])->name('sackedadmin');
         Route::get('/viewadminstrator', [AdminController::class, 'viewadminstrator'])->name('viewadminstrator');
         Route::get('/viewaccountant', [AccountController::class, 'viewaccountant'])->name('viewaccountant');
+        Route::put('/createpsychomotoroad/{user_id}', [ResultController::class, 'createpsychomotoroad'])->name('createpsychomotoroad');
 
         Route::get('deleteslessonnote/{slug}', [LessonnoteController::class, 'deleteslessonnote'])->name('deleteslessonnote');
         Route::get('lesonapprove/{slug}', [LessonnoteController::class, 'lesonapprove'])->name('lesonapprove');
@@ -134,6 +136,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('viewlessonnotesad', [LessonnoteController::class, 'viewlessonnotesad'])->name('viewlessonnotesad');
         Route::get('viewclassresults/{classname}', [ClassnameController::class, 'viewclassresults'])->name('viewclassresults');
         Route::post('createresultsad', [ResultController::class, 'createresultsad'])->name('createresultsad');
+        Route::post('createresultsadsec', [ResultController::class, 'createresultsadsec'])->name('createresultsadsec');
         Route::get('addresultsad1/{ref_no1}', [UserController::class, 'addresultsad1'])->name('addresultsad1');
         Route::get('addresultsad/{classname}', [ClassnameController::class, 'addresultsad'])->name('addresultsad');
         Route::get('addpsychomotorad/{id}', [ResultController::class, 'addpsychomotorad'])->name('addpsychomotorad');
@@ -202,7 +205,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('queriedteachers', [QueryController::class, 'queriedteachers'])->name('queriedteachers');
         Route::get('sackedteachers', [UserController::class, 'sackedteachers'])->name('sackedteachers');
         Route::get('suspendedteachers', [UserController::class, 'suspendedteachers'])->name('suspendedteachers');
-        Route::get('preschoolad', [UserController::class, 'preschoolad'])->name('preschoolad');
+        Route::get('preschoolad/{classname}', [ClassnameController::class, 'preschoolad'])->name('preschoolad');
         
         
         Route::get('preschoolsubjects', [SubjectController::class, 'preschoolsubjects'])->name('preschoolsubjects');
@@ -468,7 +471,15 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::post('/replyclassactivitys/{id}', [ClassactivityController::class, 'replyclassactivitys'])->name('replyclassactivitys');
         
         Route::post('generatePDF', [ResultController::class, 'generatePDF'])->name('generatePDF');
-
+        Route::get('addsubjectbyhead', [SubjectController::class, 'addsubjectbyhead'])->name('addsubjectbyhead');
+        Route::post('createsubjectbyhead', [SubjectController::class, 'createsubjectbyhead'])->name('createsubjectbyhead');
+        Route::get('viewsubjectsbyhead', [SubjectController::class, 'viewsubjectsbyhead'])->name('viewsubjectsbyhead');
+        Route::get('assignsubjectbyheads/{id}', [SubjectController::class, 'assignsubjectbyheads'])->name('assignsubjectbyheads');
+        Route::get('editsubjectbyheads/{id}', [SubjectController::class, 'editsubjectbyheads'])->name('editsubjectbyheads');
+        Route::put('updatesubjectheads/{id}', [SubjectController::class, 'updatesubjectheads'])->name('updatesubjectheads');
+        Route::get('deletesubjectbyheads/{id}', [SubjectController::class, 'deletesubjectbyheads'])->name('deletesubjectbyheads');
+        Route::get('viewassignteachers', [TeacherassignController::class, 'viewassignteachers'])->name('viewassignteachers');
+        
         Route::get('/checkresult', [ResultController::class, 'checkresult'])->name('checkresult');
         Route::get('/partypayment', [UserController::class, 'partypayment'])->name('partypayment');
         Route::get('/feedingpaypayment', [UserController::class, 'feedingpaypayment'])->name('feedingpaypayment');
@@ -521,6 +532,9 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('studentsubjectsbyheads/{ref_no1}', [UserController::class, 'studentsubjectsbyheads'])->name('studentsubjectsbyheads');
         Route::get('studentsubjectsall/{ref_no1}', [UserController::class, 'studentsubjectsall'])->name('studentsubjectsall');
         Route::get('preschoolshead', [UserController::class, 'preschoolshead'])->name('preschoolshead');
+
+        Route::get('addregnumber/{ref_no1}', [UserController::class, 'addregnumber'])->name('addregnumber');
+        Route::put('addingregnomber/{ref_no1}', [UserController::class, 'addingregnomber'])->name('addingregnomber');
         
         
         Route::get('/viewspecific', [ClassactivityController::class, 'viewspecific'])->name('viewspecific');
@@ -574,7 +588,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::get('/crecheheads', [UserController::class, 'crecheheads'])->name('crecheheads');
         Route::get('/preschoolheads', [UserController::class, 'preschoolheads'])->name('preschoolheads');
         Route::get('/primaryheads', [UserController::class, 'primaryheads'])->name('primaryheads');
-        Route::get('/highschools', [UserController::class, 'highschools'])->name('highschools');
+        Route::get('/highschools/{classname}', [ClassnameController::class, 'highschools'])->name('highschools');
         Route::get('/viewaddresults', [UserController::class, 'viewaddresults'])->name('viewaddresults');
         Route::get('/createsection', [UserController::class, 'createsection'])->name('createsection');
         Route::get('/preschoolsection', [UserController::class, 'preschoolsection'])->name('preschoolsection');
@@ -603,6 +617,7 @@ Route::prefix('web')->name('web.')->group(function() {
         Route::post('createmidtermresultsmidterm', [ResultController::class, 'createmidtermresultsmidterm'])->name('createmidtermresultsmidterm');
         Route::get('addmidtermpsychomotor/{id}', [ResultController::class, 'addmidtermpsychomotor'])->name('addmidtermpsychomotor');
         
+        Route::put('/updateprofile/{ref_no1}', [UserController::class, 'updateprofile'])->name('updateprofile'); 
         Route::get('/logout', [UserController::class, 'logout'])->name('logout'); 
         
        

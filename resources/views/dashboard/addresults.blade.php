@@ -82,9 +82,9 @@
                             <tr>
                               {{-- <th>S/N</th> --}}
                               <th>Subjects</th>
-                              <th>Continious Assessment Test 1</th>
-                              <th>Continious Assessment Test 2</th>
-                              <th>Continious Assessment Test 3</th>
+                              <th>Continus Assessment Test 1</th>
+                              <th>Continus Assessment Test 2</th>
+                              <th>Continus Assessment Test 3</th>
                               <th>Exams Scores</th>
                               
                             </tr>
@@ -159,9 +159,9 @@
                         <thead>
                         <tr>
                           <th>Subjects</th>
-                              <th>Continious Assessment Test 1</th>
-                              <th>Continious Assessment Test 2</th>
-                              <th>Continious Assessment Test 3</th>
+                              <th>Continus Assessment Test 1</th>
+                              <th>Continus Assessment Test 2</th>
+                              <th>Continus Assessment Test 3</th>
                               <th>Exams Scores</th>
                           
                         </tr>
@@ -174,13 +174,14 @@
 
                                   <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
                                   
-                                  <td><input type="text" value="{{ Auth::guard('web')->user()->fname }}" name="tname[]" id=""></td>
-                                  <td><input type="text" value="{{ Auth::guard('web')->user()->surname }}" name="tsurname[]" id=""></td><td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
+                                  
+                                  <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
                                   <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
                                   <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
                                   <td><input type="number" class="form-control" name="exams[]" placeholder="Exams"></td>
 
-                                  
+                                  <input type="hidden" value="{{ Auth::guard('web')->user()->fname }}" name="tname[]" id="">
+                                  <input type="hidden" value="{{ Auth::guard('web')->user()->surname }}" name="tsurname[]" id="">
                                   <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID">
                                   <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
                                   <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="Term">
@@ -210,7 +211,9 @@
   
                         </tbody>
                       </table>
-                 
+                      <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> 
+                        Submit 
+                      </button>
                   @elseif($view_studentsubject->section === 'Secondary')
 
                 <form action="{{ url('web/createresults') }}" method="post" enctype="multipart/form-data">

@@ -8,11 +8,11 @@
       <span class="brand-text font-weight-light"><br>GOLDENDESTINY SCHOOLS </span>
     </a>
     
-      <?php
-        use App\Models\Classname;
-          $view_clesses = Classname::all();
-      ?>
-
+     
+    <?php
+    use App\Models\Classname;
+      $view_clesses = Classname::all();
+  ?>
 
 
     @if (Auth::guard('admin')->user()->role == '0')
@@ -198,13 +198,19 @@
               </li>
 
               <li class="nav-item">
-                <a href="{{ url('admin/preschoolad') }}" class="nav-link">
+               
+
+              @foreach ($view_clesses as $view_clesse)
+              <li class="nav-item">
+                <a href="{{ url('admin/preschoolad/'.$view_clesse->classname) }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pre-School Pupils</p>
+                  <p>{{ $view_clesse->classname }}</p>
                 </a>
               </li>
+              @endforeach
+              
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ route('admin.adminprogress') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Elementary Pupils</p>
@@ -218,7 +224,7 @@
                   <p>High Sch. Students</p>
                 </a>
               </li>
-             
+              --}}
             </ul>
           </li>
           <li class="nav-item has-treeview">

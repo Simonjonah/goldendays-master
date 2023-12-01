@@ -90,7 +90,7 @@ l            <ol class="breadcrumb float-sm-right">
 
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Sellect Teacher</label>
+                        <label>Select Teacher</label>
                         <select name="teacher_id" class="form-control" id="">
                           @foreach ($select_teachers as $select_teacher)
                               <option value="{{ $select_teacher->id }}">{{ $select_teacher->fname }} {{ $select_teacher->surname }} {{ $select_teacher->section }}</option>

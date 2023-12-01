@@ -90,7 +90,7 @@
         @enderror
 
 
-        <label for="">Select Class</label>
+        <label for="">Select Section</label>
         <div class="input-group mb-3">
           <select name="section" id="" class="form-control">
             <option value="Pre-School">Pre-School</option>

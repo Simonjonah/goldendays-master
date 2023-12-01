@@ -54,7 +54,7 @@
                     <th>Doctor's Name</th>
                     <th>Doctor's Phone</th>
                     <th>View</th>
-                    <th>Status</th>
+                    {{-- <th>Status</th> --}}
  
 
                     <th>Ref. No</th>
@@ -66,13 +66,35 @@
                   </tr>
                   </thead>
                   <tbody>
-
+                    @if (Session::get('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+  
+                    @if (Session::get('fail'))
+                    <div class="alert alert-danger">
+                    {{ Session::get('fail') }}
+                    @endif
                     @foreach ($view_highschoolparents as $view_highschoolparent)
        
                       <tr>
                         <td>{{ $view_highschoolparent->fathername }}</td>
                         <td>{{ $view_highschoolparent->mothername }}</td>
-                        <td>{{ $view_highschoolparent->email }}</td>
+                        <td>{{ $view_highschoolparent->email }}
+                        <small> @if ($view_highschoolparent->status == null)
+                          <span class="badge badge-secondary"> In progress</span>
+                         @elseif($view_highschoolparent->status == 'suspend')
+                         <span class="badge badge-warning"> Suspended</span>
+                         @elseif($view_highschoolparent->status == 'reject')
+                         <span class="badge badge-danger"> Rejected</span>
+                         @elseif($view_highschoolparent->status == 'approved')
+                         <span class="badge badge-info"> Approved</span>
+                         @elseif($view_highschoolparent->status == 'admitted')
+                         
+                         <span class="badge badge-success">Admitted</span>
+                         @endif</small>
+                        </td>
                         <td>{{ $view_highschoolparent->phone }}
                             <a href="{{ url('web/approvedparent/'.$view_highschoolparent->ref_no) }}"
                                 class='btn btn-info'>
@@ -99,18 +121,7 @@
                             class='btn btn-default'>
                              <i class="far fa-eye"></i>
                          </a></td>
-                         <td>@if ($view_highschoolparent->status == null)
-                          <span class="badge badge-secondary"> In progress</span>
-                         @elseif($view_highschoolparent->status == 'suspend')
-                         <span class="badge badge-warning"> Suspended</span>
-                         @elseif($view_highschoolparent->status == 'reject')
-                         <span class="badge badge-danger"> Rejected</span>
-                         @elseif($view_highschoolparent->status == 'approved')
-                         <span class="badge badge-info"> Approved</span>
-                         @elseif($view_highschoolparent->status == 'admitted')
-                         
-                         <span class="badge badge-success">Admitted</span>
-                         @endif</td>
+                        
                         
                        {{-- <td> <div class="input-group-prepend">
                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
@@ -181,7 +192,7 @@
                         <th>Doctor's Name</th>
                         <th>Doctor's Phone</th>
                         <th>View</th>
-                        <th>Status</th>
+                        {{-- <th>Status</th> --}}
     
                         {{-- <th>Reg No</th> --}}
                         <th>Ref. No</th>

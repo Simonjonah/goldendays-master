@@ -175,8 +175,9 @@
 
                                   <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
                                   
-                                  <td><input type="text" value="{{ Auth::guard('web')->user()->fname }}" name="tname[]" id=""></td>
-                                  <td><input type="text" value="{{ Auth::guard('web')->user()->surname }}" name="tsurname[]" id=""></td><td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
+                                  <input type="hidden" value="{{ Auth::guard('web')->user()->fname }}" name="tname[]" id="">
+                                  <input type="hidden" value="{{ Auth::guard('web')->user()->surname }}" name="tsurname[]" id="">
+                                  <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
                                   <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
                                   <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
                                   <td><input type="number" class="form-control" name="exams[]" placeholder="Exams"></td>
@@ -209,10 +210,13 @@
   
                             @endforeach
                         
-  
+                           
                         </tbody>
+                        
                       </table>
-                 
+                      <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> 
+                        Submit 
+                      </button>
                   @elseif($view_studentsubject->section === 'Secondary')
 
                 <form action="{{ url('web/createmidtermresultsmidterm') }}" method="post" enctype="multipart/form-data">

@@ -67,21 +67,21 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Father's Name</label>
-                       <input type="text" required name="fathername" class="form-control" placeholder="Father's Name">
+                       <input type="text" required required required name="fathername" class="form-control" placeholder="Father's Name">
                       </div>
                      
                     </div>
                   <div class="col-sm-6">
                       <div class="form-group">
                         <label>Father's Occupation</label>
-                        <input type="text" required name="fatheroccupation" class="form-control" placeholder="father's Occupation">
+                        <input type="text" required required name="fatheroccupation" class="form-control" placeholder="father's Occupation">
 
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Mother's Name</label>
-                        <input type="text" name="mothername" required class="form-control" placeholder="Mother's Name">
+                        <input type="text" required required name="mothername" required class="form-control" placeholder="Mother's Name">
 
                       </div>
                     </div>
@@ -89,7 +89,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Mother's Occupation</label>
-                        <input type="text" name="motheroccupation" required class="form-control" placeholder="Mother's Occupation">
+                        <input type="text" required name="motheroccupation" required class="form-control" placeholder="Mother's Occupation">
 
                       </div>
                     </div>
@@ -139,21 +139,21 @@
                    <div class="col-sm-6">
                         <div class="form-group">
                           <label>Home Address</label>
-                          <input type="text" name="homeaddress" class="form-control" placeholder="Home address">
+                          <input type="text" required name="homeaddress" class="form-control" placeholder="Home address">
                         </div>
                       </div>
 
                     <div class="col-sm-6">
                         <div class="form-group">
                           <label>Office Address</label>
-                          <input type="text" name="officeaddress" class="form-control" placeholder="Office address">
+                          <input type="text" required name="officeaddress" class="form-control" placeholder="Office address">
                         </div>
                       </div>
 
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>State of Origin</label>
-                          <input type="text" name="stateoforigin" class="form-control" placeholder="State of Origin">
+                          <input type="text" required name="stateoforigin" class="form-control" placeholder="State of Origin">
 
                         </div>
                       </div>
@@ -161,7 +161,7 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Doctor's Name</label>
-                          <input type="text" name="doctorname" class="form-control" placeholder="Doctor's Name">
+                          <input type="text" required name="doctorname" class="form-control" placeholder="Doctor's Name">
 
                         </div>
                       </div>
@@ -169,7 +169,7 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Doctor's Phone</label>
-                          <input type="text" name="doctorphone" class="form-control" placeholder="Doctor's Phone">
+                          <input type="text" required name="doctorphone" class="form-control" placeholder="Doctor's Phone">
 
                         </div>
                       </div>
@@ -177,7 +177,7 @@
                        <div class="col-sm-6">
                         <div class="form-group">
                           <label>Emergency's Phone</label>
-                          <input type="text" name="emergencyphone" class="form-control" placeholder="Emergency's Phone">
+                          <input type="text" required name="emergencyphone" class="form-control" placeholder="Emergency's Phone">
 
                         </div>
                       </div>
@@ -185,7 +185,7 @@
                        <div class="col-sm-6">
                         <div class="form-group">
                           <label>Emergency's Address</label>
-                          <input type="text" name="emergencyaddress" class="form-control" placeholder="Emergency's Address">
+                          <input type="text" required name="emergencyaddress" class="form-control" placeholder="Emergency's Address">
 
                         </div>
                       </div>
@@ -195,14 +195,14 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Who Introduced to G.D.A</label>
-                          <input type="text" name="whointro" class="form-control" placeholder="Doctor's Phone">
+                          <input type="text" required name="whointro" class="form-control" placeholder="Doctor's Phone">
 
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Use Phone As Password</label>
-                          <input type="text" name="password" class="form-control" placeholder="Use Phone Number as Password">
+                          <input type="text" required name="password" class="form-control" placeholder="Use Phone Number as Password">
 
                         </div>
                       </div>

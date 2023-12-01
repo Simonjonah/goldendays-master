@@ -58,7 +58,7 @@
                       <th>Edit</th>
                       <th>Print</th>
                       
-                      <th>View Result</th>
+                      {{-- <th>View Result</th> --}}
   
                       <th>Date</th>
   
@@ -69,7 +69,7 @@
                     {{-- @foreach ($viewyour_childrens as $viewyour_children) --}}
                     {{-- @if ($viewyour_children->centername == Auth::guard('web')->user()->centername && $viewyour_children->status == null) --}}
                       <tr>
-                        <td>{{ Auth::guard('web')->user()->fname }} <small>{{ Auth::guard('web')->user()->regnumber }}</small></td>
+                        <td>{{ Auth::guard('web')->user()->fname }} <small>{{ Auth::guard('web')->user()->ref_no1 }}</small></td>
                         <td>{{ Auth::guard('web')->user()->middlename }}</td>
                         <td>{{ Auth::guard('web')->user()->surname }}</td>
                         <td>{{ Auth::guard('web')->user()->classname }}</td>
@@ -82,7 +82,7 @@
                             <i class="far fa-eye"></i>
                         </a></td>
                       
-                      <td>{{ Auth::guard('web')->user()->ref_no1 }}</td>
+                      <td>{{ Auth::guard('web')->user()->regnumber }}</td>
                         <td><a href="{{ url('web/parenteditstudent/'.Auth::guard('web')->user()->ref_no1) }}"
                           class='btn btn-info'>
                           <i class="far fa-edit"></i>
@@ -94,10 +94,10 @@
                           class='btn btn-info'>Print
                           <i class="far fa-print"></i>
                       </a></td>  
-                      <td><a href="{{ url('web/printstudents/'.Auth::guard('web')->user()->ref_no1) }}"
+                      {{-- <td><a href="{{ url('web/printstudents/'.Auth::guard('web')->user()->ref_no1) }}"
                         class='btn btn-info'>Check Result
                         <i class="far fa-print"></i>
-                    </a></td>  
+                    </a></td>   --}}
                     
                     <td>{{ Auth::guard('web')->user()->created_at->format('D d, M Y, H:i')}}</td>
   
@@ -124,7 +124,7 @@
                         <th>Edit</th>
                         <th>Print</th>
                         
-                        <th>View Result</th>
+                        {{-- <th>View Result</th> --}}
     
                         <th>Date</th>
     
@@ -173,7 +173,7 @@
                       <th>Edit</th>
                       <th>Print</th>
                       
-                      <th>View Result</th>
+                      {{-- <th>View Result</th> --}}
   
                       <th>Date</th>
   
@@ -184,7 +184,7 @@
                     @foreach ($viewyour_childrens as $viewyour_children)
                     {{-- @if ($viewyour_children->centername == Auth::guard('web')->user()->centername && $viewyour_children->status == null) --}}
                       <tr>
-                        <td>{{ $viewyour_children->fname }} <small>{{ $viewyour_children->regnumber }}</small></td>
+                        <td>{{ $viewyour_children->fname }} <small>ID{{ $viewyour_children->ref_no1 }}</small></td>
                         <td>{{ $viewyour_children->middlename }}</td>
                         <td>{{ $viewyour_children->surname }}</td>
                         <td>{{ $viewyour_children->classname }}</td>
@@ -192,7 +192,7 @@
                        
   
                         <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$viewyour_children->images")}}" alt=""></td>
-                        <td><a href="{{ url('web/parentviewstudent/'.$viewyour_children->ref_no1) }}"
+                        <td><a href="{{ url('web/parentviewstudent/'.$viewyour_children->regnumber) }}"
                             class='btn btn-default'>
                             <i class="far fa-eye"></i>
                         </a></td>
@@ -209,10 +209,10 @@
                           class='btn btn-info'>Print
                           <i class="far fa-print"></i>
                       </a></td>  
-                      <td><a href="{{ url('web/printstudents/'.$viewyour_children->ref_no1) }}"
+                      {{-- <td><a href="{{ url('web/printstudents/'.$viewyour_children->ref_no1) }}"
                         class='btn btn-info'>Check Result
                         <i class="far fa-print"></i>
-                    </a></td>  
+                    </a></td>   --}}
                     
                     <td>{{ $viewyour_children->created_at->format('D d, M Y, H:i')}}</td>
   
@@ -239,7 +239,7 @@
                         <th>Edit</th>
                         <th>Print</th>
                         
-                        <th>View Result</th>
+                        {{-- <th>View Result</th> --}}
     
                         <th>Date</th>
     
