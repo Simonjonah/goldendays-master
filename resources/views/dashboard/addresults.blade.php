@@ -46,7 +46,13 @@
                 <!-- /.col -->
                <div class="col-lg-8 col-md-6 col-sm-4 invoice-col">
                  
-                  <h1><strong>GOLDEN DESTINY ACADEMY</strong></h1>
+                @if (Auth::guard('web')->user()->section == 'Secondary')
+                <h3><strong>GOLDEN DESTINY ACADEMY HIGH SCHOOL</strong></h3>
+                  
+                @else
+                <h1><strong>GOLDEN DESTINY ACADEMY</strong></h1>
+                  
+                @endif
                   
                   Golden Destiny Academy Road.
                   Off Senator Akon Eyakenyi Street,
@@ -82,9 +88,9 @@
                             <tr>
                               {{-- <th>S/N</th> --}}
                               <th>Subjects</th>
-                              <th>Continus Assessment Test 1</th>
-                              <th>Continus Assessment Test 2</th>
-                              <th>Continus Assessment Test 3</th>
+                              <th>Continuous Assessment Test 1</th>
+                              <th>Continuous Assessment Test 2</th>
+                              <th>Continuous Assessment Test 3</th>
                               <th>Exams Scores</th>
                               
                             </tr>
@@ -94,15 +100,17 @@
                                 @foreach ($view_teachersubjects as $view_teachersubject)
                                   @if ($view_teachersubject->section == 'Primary')
                                   <tr>
-                                      <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
+                                      <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
 
                                       
-                                      <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
-                                      <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
-                                      <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
-                                      <td><input type="number" class="form-control" name="exams[]" placeholder="Exams"></td>
+                                      <td><input type="text" class="form-control" name="test_1[]" placeholder="Test 1"></td>
+                                      <td><input type="text" class="form-control" name="test_2[]" placeholder="Test 2"></td>
+                                      <td><input type="text" class="form-control" name="test_3[]" placeholder="Test 3"></td>
+                                      <td><input type="text" class="form-control" name="exams[]" placeholder="Exams"></td>
                                       
                                       <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID">
+                                      <input type="hidden" name="tname[]" value="{{ Auth::guard('web')->user()->fname }}" placeholder="Teacher ID">
+                                      <input type="hidden" name="tsurname[]" value="{{ Auth::guard('web')->user()->surname }}" placeholder="Teacher ID">
                                       <input type="hidden" name="user_id[]" value="{{ $view_studentsubject->id }}" placeholder="ID">
                                       <input type="hidden" name="term[]" value="{{ $view_studentsubject->term }}" placeholder="Term">
                                       <input type="hidden" name="academic_session[]" value="{{ $view_studentsubject->academic_session }}" placeholder="academic_session">
@@ -159,9 +167,9 @@
                         <thead>
                         <tr>
                           <th>Subjects</th>
-                              <th>Continus Assessment Test 1</th>
-                              <th>Continus Assessment Test 2</th>
-                              <th>Continus Assessment Test 3</th>
+                              <th>Continuous Assessment Test 1</th>
+                              <th>Continuous Assessment Test 2</th>
+                              <th>Continuous Assessment Test 3</th>
                               <th>Exams Scores</th>
                           
                         </tr>
@@ -172,13 +180,13 @@
                               @if ($view_teachersubject->section == 'Pre-School')
                               <tr>
 
-                                  <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
+                                  <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
                                   
                                   
-                                  <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
-                                  <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
-                                  <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td>
-                                  <td><input type="number" class="form-control" name="exams[]" placeholder="Exams"></td>
+                                  <td><input type="text" class="form-control" name="test_1[]" placeholder="Test 1"></td>
+                                  <td><input type="text" class="form-control" name="test_2[]" placeholder="Test 2"></td>
+                                  <td><input type="text" class="form-control" name="test_3[]" placeholder="Test 3"></td>
+                                  <td><input type="text" class="form-control" name="exams[]" placeholder="Exams"></td>
 
                                   <input type="hidden" value="{{ Auth::guard('web')->user()->fname }}" name="tname[]" id="">
                                   <input type="hidden" value="{{ Auth::guard('web')->user()->surname }}" name="tsurname[]" id="">
@@ -245,12 +253,12 @@
                           @foreach ($view_teachersubjects as $view_teachersubject)
                             @if ($view_teachersubject->section == 'Secondary')
                             <tr>
-                                <td>{{ $view_teachersubject->subject['subjectname'] }}<input type="hidden" value="{{ $view_teachersubject->subject['subjectname'] }}" name="subjectname[]" id=""></td>
-                                <td>{{ $view_teachersubject->subject['title'] }}<input type="hidden" value="{{ $view_teachersubject->subject['title'] }}" name="title[]" id=""></td>
-                                <td><input type="number" class="form-control" name="test_1[]" placeholder="Test 1"></td>
-                                <td><input type="number" class="form-control" name="test_2[]" placeholder="Test 2"></td>
-                                {{-- <td><input type="number" class="form-control" name="test_3[]" placeholder="Test 3"></td> --}}
-                                <td><input type="number" class="form-control" name="exams[]" placeholder="Exams"></td>
+                                <td>{{ $view_teachersubject->subjectname }}<input type="hidden" value="{{ $view_teachersubject->subjectname }}" name="subjectname[]" id=""></td>
+                                <td>{{ $view_teachersubject->title }}<input type="hidden" value="{{ $view_teachersubject->title }}" name="title[]" id=""></td>
+                                <td><input type="text" class="form-control" name="test_1[]" placeholder="Test 1"></td>
+                                <td><input type="text" class="form-control" name="test_2[]" placeholder="Test 2"></td>
+                                {{-- <td><input type="text" class="form-control" name="test_3[]" placeholder="Test 3"></td> --}}
+                                <td><input type="text" class="form-control" name="exams[]" placeholder="Exams"></td>
                                 <input type="hidden" name="tname[]" value="{{ Auth::guard('web')->user()->fname }}" placeholder="Teacher ID">
                                 <input type="hidden" name="tsurname[]" value="{{ Auth::guard('web')->user()->surname }}" placeholder="Teacher ID">
                                 <input type="hidden" name="teacher_id[]" value="{{ Auth::guard('web')->user()->id }}" placeholder="Teacher ID">

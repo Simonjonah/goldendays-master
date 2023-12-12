@@ -53,11 +53,11 @@
                     {{-- <th>Status</th> --}}
                     <th>View Single</th>
 
-                    <th>View</th>
+                   
                     <th>Approved</th>
                     <th>Edit</th>
 
-              
+                    <th>Delete</th>
                     {{-- <th>Date</th> --}}
                   </tr>
                   </thead>
@@ -88,7 +88,9 @@
                  @endphp
                  <tr>
                    <td>{{ $view_addresult->user['surname'] }}</td>
-                   <td>{{ $view_addresult->user['fname'] }}</td>
+                   <td>{{ $view_addresult->user['fname'] }} <br>
+                    <small style="color: red">SubJects: {{ $view_addresult->subjectname }}</small>
+                    </td>
                    <td>{{ $view_addresult->user['middlename'] }}
                   <small>@if ($view_addresult->status == null)
                     <span class="badge badge-secondary"> In progress</span>
@@ -98,10 +100,20 @@
                    <span class="badge badge-danger"> Sacked</span>
                    @else
                    <span class="badge badge-success">Approved</span>
-                   @endif</small>
+                   @endif
+                   {{ $view_addresult->section }} <br>
+                  
+                  <a href="{{ url('admin/addsection/'.$view_addresult->id) }}" class="btn btn-primary">Add Section</a>
+                  </small>
+
                   </td>
-                   <td>{{ $view_addresult->user['regnumber'] }}
-                    <small>{{ $view_addresult->classname }}</small>
+                   <td>{{ $view_addresult->user['regnumber'] }}<br>
+                    <small><span style="color: red">{{ $view_addresult->classname }}</span> 
+                    
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                        Search Pupils/Students Results
+                       </button>
+                    </small>
                   
                   </td>
                    <td><a href="{{ url('admin/addpsychomotorad/'.$view_addresult->id) }}"
@@ -144,10 +156,7 @@
                  </a></td>
 
 
-                    <td><a href="{{ url('admin/viewresults/'.$view_addresult->user_id)}}"
-                     class='btn btn-default'>
-                      View All Sujects
-                  </a></td>
+                  
 
                  
                   
@@ -163,9 +172,18 @@
                     class='btn btn-primary'>
                      <i class="far fa-edit"></i>
                  </a></td>
-                 </tr>
-               
 
+                 <td><a href="{{ url('admin/deleteresults/'.$view_addresult->id)}}"
+                  class='btn btn-default'>
+                   Delete Result
+               </a></td>
+                 </tr>
+{{--                
+                 <td><a href="{{ url('admin/viewresults/'.$view_addresult->user_id)}}"
+                  class='btn btn-default'>
+                   View Result
+               </a></td> --}}
+              
 
 
                         {{-- @else
@@ -194,9 +212,9 @@
                         <th>Grade</th>
                         {{-- <th>Status</th> --}}
                         <th>View Single</th>
-                        <th>View</th>
                         <th>Approved</th>
                         <th>Edit</th>
+                        <th>Delete</th>
     
                   
                         {{-- <th>Date</th> --}}
@@ -274,3 +292,61 @@
 </script>
 </body>
 </html>
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Search for Pupils/Students results here</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ url('admin/searchresultbyteacherprinad') }}" method="post">
+        @csrf
+        
+        <div class="form-group">
+          <label for="">Reg Number</label>
+          <select name="regnumber" class="form-control" id="">
+           @foreach ($view_addresults as $view_addresult)
+             <option value="{{ $view_addresult->regnumber }}">{{ $view_addresult->regnumber }}</option>
+           @endforeach
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="">Select Term</label>
+          <select name="term" class="form-control" id="" required>
+            <option value="">Selet Term</option>
+          
+             <option value="First Term">First Term</option>
+             <option value="Second Term">Second Term</option>
+             <option value="Third Term">Third Term</option>
+       
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="">Select Academic Session</label>
+          <select name="academic_session" class="form-control" id="">
+           @foreach ($academic_sessions as $academic_session)
+             <option value="{{ $academic_session->academic_session }}">{{ $academic_session->academic_session }}</option>
+           @endforeach
+          </select>
+        </div>
+      
+       
+
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

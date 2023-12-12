@@ -53,7 +53,7 @@ l            <ol class="breadcrumb float-sm-right">
                     <div class="col-sm-6">
                       <!-- select -->
                       <div class="form-group">
-                        <label> Sections</label>
+                        <label> Firstname</label>
                         <input type="hidden" name="academic_session" value="{{ $add_childtoparents->academic_session }}" id="">
                         <input type="hidden" name="user_id" value="{{ $add_childtoparents->id }}" id="">
                         <input type="hidden" name="section" value="{{ $add_childtoparents->section }}" id="">

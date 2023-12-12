@@ -78,14 +78,17 @@
                       </select>
                     </div>
 
-                  {{-- <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Pin</label>
-                    <input required type="number" name="pins" class="form-control" @error('pins')
-                      @enderror value="{{ old('pins') }}" id="exampleInputEmail1" placeholder="Pins">
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Select Section</label>
+                    <select name="section" class="form-control" required>
+                        <option value="Pre-School">Pre-School</option>
+                        <option value="Primary">Primary</option>
+                        <option value="Secondary">Secondary</option>
+                    </select>
                   </div>
-                  @error('pins')
+                  @error('section')
                   <span class="text-danger">{{ $message }}</span>
-                  @enderror  --}}
+                  @enderror 
 
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Year</label>

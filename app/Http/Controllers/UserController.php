@@ -24,7 +24,29 @@ class UserController extends Controller
     public function addchildbyparent1(Request $request){
        
         $request->validate([
-            //'user_id' => ['nullable', 'string'],
+            'fathername' => ['required', 'string'],
+            'section' => ['required', 'string'],
+            'mothername' => ['required', 'string'],
+            'motheroccupation' => ['required', 'string'],
+            'fatheroccupation' => ['required', 'string'],
+            'phone' => ['required', 'string', 'unique:users'],
+            
+            'academic_session' => ['required', 'string'],
+            'stateoforigin' => ['required', 'string'],
+            
+            'maritalstatus' => ['required', 'string'],
+            'officeaddress' => ['required', 'string'],
+            'homeaddress' => ['required', 'string'],
+            'doctorphone' => ['required', 'string'],
+            'doctorname' => ['required', 'string'],
+            'emergencyphone' => ['required', 'string'],
+            'emergencyaddress' => ['required', 'string'],
+            'whointro' => ['required', 'string'],
+            'academic_session' => ['required', 'string'],
+            
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            
+    
             'fname' => ['nullable', 'string', 'max:255'],
             'surname' => ['nullable', 'string'],
             'middlename' => ['nullable', 'string'],
@@ -42,122 +64,45 @@ class UserController extends Controller
             'section' => ['nullable', 'string'],
             'academic_session' => ['nullable', 'string'],
             'term' => ['nullable', 'string'],
-            'images' => 'required|mimes:jpg,png,jpeg',
-
-
-            'fathername' => ['required', 'string'],
-            'section' => ['required', 'string'],
-            'mothername' => ['required', 'string'],
-            'motheroccupation' => ['required', 'string'],
-            'fatheroccupation' => ['required', 'string'],
-            'phone' => ['required',  'string', 'unique:users'],
-            
-            'stateoforigin' => ['required', 'string'],
-            'maritalstatus' => ['required', 'string'],
-            'officeaddress' => ['required', 'string'],
-            'homeaddress' => ['required', 'string'],
-            'doctorphone' => ['required', 'string'],
-            'doctorname' => ['required', 'string'],
-            'emergencyphone' => ['required', 'string'],
-            'emergencyaddress' => ['required', 'string'],
-            'whointro' => ['required', 'string'],
-            'academic_session' => ['required', 'string'],
-
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['nullable', 'string'],
-            // 'cpassword' => 'required|min:5|max:30|same:cpassword',
-
+           // 'cpassword' => 'required|min:5|max:30|same:cpassword',
+            //'images' => 'nullable|mimes:jpg,png,jpeg'
             
-        ]);
-       //dd($request->all());
-
-        if ($request->hasFile('images')){
-
-            $file = $request['images'];
-            $filename = 'SimonJonah-' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $request->file('images')->storeAs('resourceimages', $filename);
-
-        }else{
-
-            $path = 'noimage.jpg';
+            ]);
+          // dd($request->all());
+            $addsec_admission = new User ();
+            $addsec_admission->teacher_id = Auth::guard('web')->user()->id;
+            $addsec_admission->section = $request->section;
+            $addsec_admission->academic_session = $request->academic_session;
+            
+            $addsec_admission->fathername = $request->fathername;
+            $addsec_admission->mothername = $request->mothername;
+            $addsec_admission->phone = $request->phone;
+            $addsec_admission->ref_no = substr(rand(0,time()),0, 9);
+            $addsec_admission->email = $request->email;
+            $addsec_admission->fatheroccupation = $request->fatheroccupation;
+            $addsec_admission->motheroccupation = $request->motheroccupation;
+            $addsec_admission->maritalstatus = $request->maritalstatus;
+            $addsec_admission->officeaddress = $request->officeaddress;
+            $addsec_admission->homeaddress = $request->homeaddress;
+            $addsec_admission->stateoforigin = $request->stateoforigin;
+            $addsec_admission->doctorname = $request->doctorname;
+            $addsec_admission->doctorphone = $request->doctorphone;
+            $addsec_admission->emergencyphone = $request->emergencyphone;
+            $addsec_admission->emergencyaddress = $request->emergencyaddress;
+            $addsec_admission->whointro = $request->whointro;
+            // $addsec_admission->role = 'student';
+            $addsec_admission->designation = 'parent';
+            $addsec_admission->academic_session = $request->academic_session;
+            
+            
+            $addsec_admission->password = \Hash::make($request->password);
+    
+            $addsec_admission->save();
+    
+            return redirect()->back()->with('success', 'You have seccessfully register one Parent')->withInput();
+    
         }
-
-        $add_adimission = new User();
-        $add_adimission['images'] = $path;
-        $add_adimission->teacher_id = Auth::guard('web')->user()->id;
-        $add_adimission->surname = $request->surname;
-        $add_adimission->middlename = $request->middlename;
-        $add_adimission->previouschoolname = $request->previouschoolname;
-        $add_adimission->fname = $request->fname;
-        $add_adimission->age = $request->age;
-        $add_adimission->dob = $request->dob;
-        $add_adimission->gender = $request->gender;
-        $add_adimission->bloodgroup = $request->bloodgroup;
-        $add_adimission->genotype = $request->genotype;
-        $add_adimission->user_id = Auth::guard('web')->user()->id;
-
-        $add_adimission->preclassname = $request->preclassname;
-        $add_adimission->classname = $request->classname;
-        $add_adimission->lastschooladdress = $request->lastschooladdress;
-        $add_adimission->disability = $request->disability;
-        $add_adimission->section = $request->section;
-        $add_adimission->designation = 'parent';
-        $add_adimission->role = 'student';
-        $add_adimission->term = $request->term;
-        
-         $add_adimission->ref_no = $request->ref_no;
-        
-        $add_adimission->password = \Hash::make($request->password);
-        $add_adimission->ref_no1 = substr(rand(0,time()),0, 9);
-
-
-
-
-        $add_adimission->section = $request->section;
-        $add_adimission->academic_session = $request->academic_session;
-        
-        $add_adimission->fathername = $request->fathername;
-        $add_adimission->mothername = $request->mothername;
-        $add_adimission->phone = $request->phone;
-        $add_adimission->ref_no = substr(rand(0,time()),0, 9);
-        $add_adimission->email = $request->email;
-        $add_adimission->fatheroccupation = $request->fatheroccupation;
-        $add_adimission->motheroccupation = $request->motheroccupation;
-        $add_adimission->maritalstatus = $request->maritalstatus;
-        $add_adimission->officeaddress = $request->officeaddress;
-        $add_adimission->homeaddress = $request->homeaddress;
-        $add_adimission->stateoforigin = $request->stateoforigin;
-        $add_adimission->doctorname = $request->doctorname;
-        $add_adimission->doctorphone = $request->doctorphone;
-        $add_adimission->emergencyphone = $request->emergencyphone;
-        $add_adimission->emergencyaddress = $request->emergencyaddress;
-        $add_adimission->whointro = $request->whointro;
-        $add_adimission->academic_session = $request->academic_session;
-        
-        $add_adimission->password = \Hash::make($request->password);
-
-        $add_adimission->save();
-        if ($add_adimission) {
-            DB::table('users')->updateOrInsert(
-                ['user_id' => $add_adimission->user_id],
-                // [
-                //    'student_id' => Auth::guard('web')->user()->id,
-                //     //'last_name' => $user->last_name,
-                //     // Add more fields as needed
-                // ]
-            );
-        }
-
-        return redirect()->back()->with('success', 'You have successfully add child to parent');
-        // if ($add_adimission) {
-        //     return redirect()->route('web.home')->with('success', 'you have successfully registered');
-                
-        //     }else{
-        //         return redirect()->back()->with('error', 'you have fail to registered');
-        // }
-        // return redirect()->back()->with('success', 'You have successfully add child to parent');
-
-    }
 
     public function secondregistration($ref_no){
         $addsec_registration = User::where('ref_no', $ref_no)->first();
@@ -406,6 +351,7 @@ class UserController extends Controller
        
         $request->validate([
             'fname' => ['nullable', 'string', 'max:255'],
+            'user_id' => ['nullable', 'string', 'max:255'],
             'surname' => ['nullable', 'string'],
             'middlename' => ['nullable', 'string'],
             'age' => ['nullable', 'string'],
@@ -446,6 +392,7 @@ class UserController extends Controller
         $edit_students->bloodgroup = $request->bloodgroup;
         $edit_students->genotype = $request->genotype;
         
+       $edit_students->user_id = $request->user_id;
        $edit_students->preclassname = $request->preclassname;
         $edit_students->classname = $request->classname;
         $edit_students->lastschooladdress = $request->lastschooladdress;
@@ -513,7 +460,10 @@ class UserController extends Controller
     public function editstudent($ref_no1){
         $edit_students = User::where('ref_no1', $ref_no1)->first();
         $add_class = Classname::all();
-        return view('dashboard.admin.editstudent', compact('add_class', 'edit_students'));
+        $add_parents = User::where('designation', 'parent')->get();
+
+        
+        return view('dashboard.admin.editstudent', compact('add_parents', 'add_class', 'edit_students'));
     }
 
     
@@ -598,16 +548,17 @@ class UserController extends Controller
         return view('dashboard.admin.medicalspdf', compact('printmedi_students'));
     }
     public function allstudents(){
-        $all_students = User::latest()->where('role', 'student')->get();
+        $all_students = User::where('password', null)->latest()->get();
         return view('dashboard.admin.allstudents', compact('all_students'));
     }
     public function allstudentpdf(){
-        $printall_students = User::where('role', 'student')->latest()->get();
+        $printall_students = User::where('password', null)->latest()->get();
         return view('dashboard.admin.allstudentpdf', compact('printall_students'));
     }
 
     public function allcrechepdf(){
-        $printallcreche_students = User::where('section', 'Creche')->latest()->get();
+        $printallcreche_students = User::where('section', 'Pre-School')->where('password', null)
+        ->latest()->get();
         return view('dashboard.admin.allcrechepdf', compact('printallcreche_students'));
     }
 
@@ -616,12 +567,12 @@ class UserController extends Controller
         return view('dashboard.admin.allnurserypdf', compact('printallnursery_students'));
     }
     public function allprimarypdf(){
-        $printallPrimary_students = User::where('role', 'student')->where('section', 'Primary')->latest()->get();
+        $printallPrimary_students = User::where('password', null)->where('section', 'Primary')->latest()->get();
         return view('dashboard.admin.allprimarypdf', compact('printallPrimary_students'));
     }
 
     public function allhighschpdf(){
-        $printallhigh_students = User::where('role', 'student')->where('section', 'High School')->latest()->get();
+        $printallhigh_students = User::where('password', null)->where('section', 'Secondary')->latest()->get();
         return view('dashboard.admin.allhighschpdf', compact('printallhigh_students'));
     }
 
@@ -822,6 +773,12 @@ class UserController extends Controller
         return view('dashboard.profile', compact('view_classes', 'view_profile'));
     }
 
+    public function parentprofile($ref_no){
+        $view_profile = User::where('ref_no', $ref_no)->first();
+        $view_classes = Classname::all();
+        return view('dashboard.parentprofile', compact('view_classes', 'view_profile'));
+    }
+
     public function admisionletter(){
 
         return view('dashboard.admisionletter');
@@ -969,7 +926,7 @@ class UserController extends Controller
     }
 
     public function viewteachers(){
-        $view_teachers = User::where('status', 'teacher')->get();
+        $view_teachers = User::where('status', 'teacher')->latest()->get();
         return view('dashboard.admin.viewteachers', compact('view_teachers'));
     }
 
@@ -1042,6 +999,14 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'you have approved successfully');
     }
 
+
+    public function teacherapprovehead($ref_no1){
+        $approved_teacher = User::where('ref_no1', $ref_no1)->first();
+        $approved_teacher->role = 'approved';
+        $approved_teacher->save();
+        return redirect()->back()->with('success', 'you have approved successfully');
+    }
+
     public function teachersuspend($ref_no1){
         $approved_teacher = User::where('ref_no1', $ref_no1)->first();
         $approved_teacher->role = 'suspend';
@@ -1049,18 +1014,42 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'you have suspend successfully');
     }
 
+    public function teachersuspendhead($ref_no1){
+        $approved_teacher = User::where('ref_no1', $ref_no1)->first();
+        $approved_teacher->role = 'suspend';
+        $approved_teacher->save();
+        return redirect()->back()->with('success', 'you have suspend successfully');
+    }
+    
     public function teachersacked($ref_no1){
         $approved_teacher = User::where('ref_no1', $ref_no1)->first();
         $approved_teacher->role = 'sacked';
         $approved_teacher->save();
         return redirect()->back()->with('success', 'you have sacked successfully');
     }
+
+    public function teachersackedhead($ref_no1){
+        $approved_teacher = User::where('ref_no1', $ref_no1)->first();
+        $approved_teacher->role = 'sacked';
+        $approved_teacher->save();
+        return redirect()->back()->with('success', 'you have sacked successfully');
+    }
+
+    
     
     public function teacherquery($ref_no1){
         $query_singteachers = User::where('ref_no1', $ref_no1)->first();
 
         return view('dashboard.admin.teacherquery', compact('query_singteachers'));
     }
+
+    public function teacherqueryhead($ref_no1){
+        $query_singteachers = User::where('ref_no1', $ref_no1)->first();
+
+        return view('dashboard.teacherqueryhead', compact('query_singteachers'));
+    }
+
+    
     public function teachersprint(){
         $print_teachers = User::where('status', 'teacher')->get();
 
@@ -1129,8 +1118,8 @@ class UserController extends Controller
     public function addresults($ref_no1){
         $view_studentsubject = User::where('ref_no1', $ref_no1)->first();
          
-        // $view_teachersubjects = Subject::all();
-        $view_teachersubjects = Teacherassign::where('user_id', auth::guard('web')->id())->get();
+        $view_teachersubjects = Subject::all();
+        //$view_teachersubjects = Teacherassign::where('user_id', auth::guard('web')->id())->get();
         return view('dashboard.addresults', compact('view_studentsubject', 'view_teachersubjects'));
     }
 
@@ -1264,6 +1253,7 @@ class UserController extends Controller
 
    public function viewparent($ref_no){
         $view_parent = User::where('ref_no', $ref_no)->first();
+        // $view_parent = User::where('ref_no', $ref_no)->first();
         return view('dashboard.admin.viewparent', compact('view_parent'));
     }
 
@@ -1362,7 +1352,7 @@ class UserController extends Controller
         //'images' => 'nullable|mimes:jpg,png,jpeg'
         
         ]);
-       // dd($request->all());
+      // dd($request->all());
         $addsec_admission = new User ();
         $addsec_admission->section = $request->section;
         $addsec_admission->academic_session = $request->academic_session;
@@ -1471,8 +1461,8 @@ class UserController extends Controller
 
     public function addparenteacher(){
        $view_classes = Classname::all();
-       $acas = Academicsession::all();
-        return view('dashboard.addparenteacher', compact('acas', 'view_classes'));
+       $display_acasessions = Academicsession::all();
+        return view('dashboard.addparenteacher', compact('display_acasessions', 'view_classes'));
     }
 
     public function addyourchild($id){
@@ -1481,10 +1471,11 @@ class UserController extends Controller
        $acas = Academicsession::all();
         return view('dashboard.addyourchild', compact('add_childtoparent', 'acas', 'view_classes'));
     }
-    public function yourchildren(){
+    public function yourchildrens(){
         $viewyour_childrens = User::where('user_id', auth::guard('web')->id()
         )->get();
-        return view('dashboard.yourchildren', compact('viewyour_childrens'));
+        $acas = Academicsession::all();
+        return view('dashboard.yourchildrens', compact('acas', 'viewyour_childrens'));
     }
     public function payment(){
         $viewyour_childrens = User::where('user_id', auth::guard('web')->id()
@@ -1558,9 +1549,9 @@ class UserController extends Controller
             'section' => ['nullable', 'string'],
             'academic_session' => ['nullable', 'string'],
             'term' => ['nullable', 'string'],
-            'mothername' => ['nullable', 'string'],
+            // 'mothername' => ['nullable', 'string'],
            'user_id' => ['nullable', 'string'],
-           'teacher_id' => ['nullable', 'string'],
+        //    'teacher_id' => ['nullable', 'string'],
 
             'images' => 'nullable|mimes:jpg,png,jpeg',
             
@@ -1590,11 +1581,11 @@ class UserController extends Controller
         $add_adimission->gender = $request->gender;
         $add_adimission->bloodgroup = $request->bloodgroup;
         $add_adimission->genotype = $request->genotype;
-        $add_adimission->mothername = $request->mothername;
+        // $add_adimission->mothername = $request->mothername;
         
        $add_adimission->preclassname = $request->preclassname;
        $add_adimission->user_id = $request->user_id;
-       $add_adimission->teacher_id = $request->teacher_id;
+    //    $add_adimission->teacher_id = $request->teacher_id;
     //    $add_adimission->student_id = $request->student_id;
         $add_adimission->classname = $request->classname;
         $add_adimission->lastschooladdress = $request->lastschooladdress;
@@ -1612,16 +1603,16 @@ class UserController extends Controller
 
         $add_adimission->save();
 
-        if ($add_adimission) {
-            DB::table('users')->updateOrInsert(
-                ['user_id' => $add_adimission->user_id],
-                // [
-                //    'student_id' => Auth::guard('web')->user()->id,
-                //     //'last_name' => $user->last_name,
-                //     // Add more fields as needed
-                // ]
-            );
-        }
+        // if ($add_adimission) {
+        //     DB::table('users')->updateOrInsert(
+        //         ['user_id' => $add_adimission->user_id],
+        //         [
+        //            'user_id' =>$add_adimission->user_id,
+        //             //'last_name' => $user->last_name,
+        //             // Add more fields as needed
+        //         ]
+        //     );
+        // }
 
         return redirect()->back()->with('success', 'You have successfully add child to parent');
 
@@ -1703,16 +1694,16 @@ class UserController extends Controller
 
         $add_adimission->save();
 
-        if ($add_adimission) {
-            DB::table('users')->updateOrInsert(
-                ['user_id' => $add_adimission->user_id],
-                // [
-                //    'student_id' => Auth::guard('web')->user()->id,
-                //     //'last_name' => $user->last_name,
-                //     // Add more fields as needed
-                // ]
-            );
-        }
+        // if ($add_adimission) {
+        //     DB::table('users')->updateOrInsert(
+        //         ['user_id' => $add_adimission->user_id],
+        //         // [
+        //         //    'student_id' => Auth::guard('web')->user()->id,
+        //         //     //'last_name' => $user->last_name,
+        //         //     // Add more fields as needed
+        //         // ]
+        //     );
+        // }
 
         return redirect()->back()->with('success', 'You have successfully add child to parent');
 
@@ -1725,12 +1716,15 @@ class UserController extends Controller
     }
 
     public function viewparenteacher(){
-        $view_parents = User::where('user_id', auth::guard('web')->id())->latest()->get();
+        $view_parents = User::where('teacher_id', auth::guard('web')->id())->where('designation', 'parent')
+        
+        ->latest()->get();
         return view('dashboard.viewparenteacher', compact('view_parents'));
     }
 
     public function viewyourstudents(){
-        $view_students = User::where('teacher_id', auth::guard('web')->id())->latest()->get();
+        // $view_students = User::where('teacher_id', auth::guard('web')->id())->latest()->get();
+        $view_students = User::where('role', 'student')->latest()->get();
         return view('dashboard.viewyourstudents', compact('view_students'));
     }
 
@@ -1759,7 +1753,21 @@ class UserController extends Controller
         return view('dashboard.currentresult', compact('view_yourresults'));
     }
 
+    public function highschoolteachersheads(){
+        $view_teachers = User::where('status', 'teacher')->where('section', 'Secondary')->get();
+        return view('dashboard.highschoolteachersheads', compact('view_teachers'));
+    }
+    public function viewsingleteacherhead($ref_no1){
+        $view_teachersingle = User::where('ref_no1', $ref_no1)->first();
+        return view('dashboard.viewsingleteacherhead', compact('view_teachersingle'));
+    }
 
+    public function editteacherhead($ref_no1){
+        $edit_singteachers = User::where('ref_no1', $ref_no1)->first();
+        $view_classnames = Classname::all();
+        return view('dashboard.editteacherhead', compact('edit_singteachers', 'view_classnames'));
+    }
+    
     
     public function admissions(){
         $view_classes = Classname::latest()->get();
@@ -1979,12 +1987,130 @@ class UserController extends Controller
 
     }
 
+    public function teacherupdatedhead(Request $request, $ref_no1){
+        $edit_singteachers = User::where('ref_no1', $ref_no1)->first();
+       
+        $request->validate([
+            'fname' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string'],
+            // 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['nullable', 'string'],
+            'middlename' => ['nullable', 'string'],
+            'classname' => ['nullable', 'string'],
+            'gender' => ['nullable', 'string'],
+      
+            'section' => ['nullable', 'string'],
+            'term' => ['nullable', 'string'],
+            
+            'images' => 'nullable|mimes:jpg,png,jpeg'
+        ]);
+
+        if ($request->hasFile('images')){
+
+            $file = $request['images'];
+            $filename = 'SimonJonah-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $request->file('images')->storeAs('resourceimages', $filename);
+
+        }else{
+
+            $path = 'noimage.jpg';
+        }
+
+        $edit_singteachers['images'] = $path;
+        $edit_singteachers->surname = $request->surname;
+        $edit_singteachers->fname = $request->fname;
+        $edit_singteachers->middlename = $request->middlename;
+        $edit_singteachers->phone = $request->phone;
+        $edit_singteachers->section = $request->section;
+        $edit_singteachers->gender = $request->gender;
+       
+        $edit_singteachers->term = $request->term;
+        $edit_singteachers->classname = $request->classname;
+       
+        $edit_singteachers->update();
+        if ($edit_singteachers) {
+            return redirect()->back()->with('success', 'you have successfully updated');
+                
+            }else{
+                return redirect()->back()->with('error', 'you have fail to registered');
+        }
+    }
+
+
+    public function teachersprinthead(){
+    $print_teachers = User::where('status', 'teacher')->where('section', 'Secondary')->get();
+
+        return view('dashboard.teachersprinthead', compact('print_teachers'));
+    }
+
+    public function deletestudent($id){
+        $print_teachers = User::where('id', $id)->delete();
+         
+        return redirect()->back()->with('success', 'You have deleted the child successfully');
+    }
+
+    public function parentchildren($id){
+        $view_children_parents = User::where('id', $id)->get();
+        return view('dashboard.admin.parentchildren', compact('view_children_parents'));
+    }
+    public function parentall($user_id){
+
+        // $view_children_parents Classname::where('classname', $classname)->first();
+        // $view_classstudents = User::where('classname', $classname)->where('role', 'student')
+        // ->where('section', 'Primary')->get();
+        $view_children_parents = User::where('user_id', $user_id)->get();
+        return view('dashboard.admin.parentall', compact('view_children_parents'));
+    }
+    
+
+
+    public function parentupdateprofile(Request $request, $ref_no){
+        $view_profile = User::where('ref_no', $ref_no)->first();
+        $request->validate([
+           'fathername' => ['string', 'max:255', 'required'],
+            'mothername' => ['string', 'max:255', 'required'],
+            'officeaddress' => ['string', 'max:255', 'required'],
+            'phone' => ['string', 'max:255', 'required'],
+            'section' => ['string', 'max:255', 'required'],
+            'classname' => ['string', 'max:255', 'required'],
+            'email' => ['string', 'max:255', 'required'],
+            'images' => 'nullable|mimes:jpg,png,jpeg',
+            
+        ]);
+        //dd($request->all());
+        if ($request->hasFile('images')){
+
+            $file = $request['images'];
+            $filename = 'SimonJonah-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $request->file('images')->storeAs('resourceimages', $filename);
+
+        }else{
+
+            $path = 'noimage.jpg';
+        }
+
+
+        $view_profile['images'] = $path;
+        $view_profile->fathername = $request->fathername;
+        $view_profile->mothername = $request->mothername;
+        $view_profile->officeaddress = $request->officeaddress;
+        $view_profile->phone = $request->phone;
+        $view_profile->email = $request->email;
+        $view_profile->section = $request->section;
+        $view_profile->classname = $request->classname;
+        
+       $view_profile->update();
+       if ($view_profile) {
+        return redirect()->back()->with('success', 'You have seccessfully updated your profile')->withInput();
+
+       }
+
+    }
 
     public function logout(){
         Auth::guard('web')->logout();
         return redirect('login');
     }
-
 
 
         

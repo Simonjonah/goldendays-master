@@ -3,21 +3,7 @@
 <head>
     <title>Golden Destiny Academy Terminal Result</title>
 </head>
-
-@foreach ($getyour_results as $getyour_result)
-    @if ($getyour_result->status == 'approved' && $getyour_result->type == null && $getyour_result->section == 'Secondary')
-        @include('dashboard.secondaryresult')
-    @elseif ($getyour_result->status == 'approved' && $getyour_result->type == null && $getyour_result->section == 'Primary')
-    @include('dashboard.primaryresult')
-    
-    @else
-    @include('dashboard.preschoolresult')
-
-    @endif
-@endforeach
 <style>
-
-
     /* table{
     width:200px;
     height:auto;
@@ -71,7 +57,13 @@ table, tr, td{
    $total_score = 0;
 @endphp
     
-   
+    @foreach ($getyour_results as $getyour_result)
+        @if ($getyour_result->status == 'approved' && $getyour_result->type == null)
+            
+        @else
+            
+        @endif
+    @endforeach
 
 
 
@@ -108,9 +100,9 @@ table, tr, td{
     <table id="myTable">
         <tr>
           <th>AFFECTIVE DOMAIN (UBJECT OFFERED) </th>
-          <th>CA 1</th>
-          <th>CA 2</th>
-          <th>CA 3</th>
+          <th>CAT 1</th>
+          <th>CAT 2</th>
+          <th>CAT 3</th>
           <th>EXAMS</th>
           <th>TOTAL</th>
           <th>TOTAL</th>
@@ -185,7 +177,7 @@ table, tr, td{
             <td>-</td>
             {{-- <td>-</td> --}}
             <td><b>{{ $total_score }}</b></td>
-            <td><b>687.9</b></td>
+            <td><b>-</b></td>
             <td>-</td>
             <td>Grade</td>
             <td>Subject Average</td>
@@ -834,8 +826,8 @@ table, tr, td{
             <td>{{ $getyour_result->user['gender'] }}</td>
             <td>TOTAL SCORE OBTAINABLE:</td>
             <td>{{ $total_subject * 100 }}</td>
-            <td>NO. OF DISTINGTIONS (A-B):</td>
-            <td>7A's, 3B's</td>
+            {{-- <td>NO. OF DISTINGTIONS (A-B):</td>
+            <td>7A's, 3B's</td> --}}
         </tr>
 
         <tr>
@@ -846,8 +838,8 @@ table, tr, td{
             <td>SCORE OBTAINED:</td>
             <td>{{ $total_score }}</td>
 
-            <td>NO. OF CREDITS (C-D):</td>
-            <td>6C's 3D's</td>
+            {{-- <td>NO. OF CREDITS (C-D):</td>
+            <td>6C's 3D's</td> --}}
         </tr>
         <tr>
             <td>AGE:</td>
@@ -856,8 +848,8 @@ table, tr, td{
            
             <td>PERCENTAGE:</td>
             <td>{{ $total_score/100 }}</td>
-            <td>PUPIL'S GRADE IN CLASS:</td>
-            <td>B</td>
+            {{-- <td>PUPIL'S GRADE IN CLASS:</td>
+            <td>B</td> --}}
         </tr>
         
     
@@ -891,7 +883,8 @@ table, tr, td{
                 <td>Head Teacher's Comment</td>
                 <td>{{ $getyour_result->headteach_comment}}								
                 </td>
-            <td>Signature: <img style="width: 100%; height: 2%;" src="{{ public_path('assets/dist/img/signature.png')}}"></td>
+                <td>Signature: <img style="width: 60px; height: 30px; padding-top: 2px;" src="{{ public_path('assets/dist/img/ele.png')}}"></td>
+
             </tr>
     
     

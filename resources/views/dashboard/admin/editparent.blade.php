@@ -120,7 +120,7 @@
                           <select name="maritalstatus" class="form-control">
                             <option value="{{ $edit_parent->maritalstatus }}">{{ $edit_parent->maritalstatus }}</option>
                             <option value="Single">Single</option>
-                            <option value="Maried">Maried</option>
+                            <option value="Married">Married</option>
                             <option value="Divorced">Divorced</option>
                           </select>
                         </div>

@@ -52,7 +52,8 @@
                     <th>Total</th>
                     <th>Grade</th>
                     <th>Remarks</th>
-                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
                     @if (Session::get('success'))
                     <div class="alert alert-success">
@@ -80,7 +81,9 @@
                       @endphp
                       <tr>
                         <td>{{ $view_studentstermresult->user['surname'] }}</td>
-                        <td>{{ $view_studentstermresult->user['fname'] }}</td>
+                        <td>{{ $view_studentstermresult->user['fname'] }} <br>
+                        <small style="color: red">{{ $view_studentstermresult->subjectname }}</small>
+                        </td>
                         <td>{{ $view_studentstermresult->user['middlename'] }}
                         <small>@if ($view_studentstermresult->status == null)
                           <span class="badge badge-secondary">In Review</span>
@@ -135,10 +138,15 @@
                          
                       
                      
-                         <td><a href="{{ url('web/teacherviewresults/'.$view_studentstermresult->user_id)}}"
-                          class='btn btn-default'>
-                           <i class="far fa-eye"></i>
+                         <td><a href="{{ url('web/editteacherviewresults/'.$view_studentstermresult->id)}}"
+                          class='btn btn-info'>
+                           <i class="far fa-edit"></i>
                        </a></td>
+
+                       <td><a href="{{ url('web/deleteresulthead/'.$view_studentstermresult->id)}}"
+                        class='btn btn-danger'>
+                         <i class="far fa-trash-alt"></i>
+                     </a></td>
                        
                   
 
@@ -167,7 +175,8 @@
                       <th>Total</th>
                       <th>Grade</th>
                       <th>Remarks</th>
-                      <th>View</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                 
                       {{-- <th>Date</th> --}}
                     </tr>

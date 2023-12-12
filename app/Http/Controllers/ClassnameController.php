@@ -64,11 +64,11 @@ class ClassnameController extends Controller
 
     public function classrooms($classname){
         $view_classstudents = Classname::where('classname', $classname)->first();
-        $view_classstudents = user::where('classname', $classname)->where('role', 'student')
+        $view_classstudents = user::where('classname', $classname)->where('password', null)
         ->where('section', 'Primary')->get();
 
         $view_student_abujas = Classname::where('classname', $classname)->first();
-        $view_student_abujas = user::where('classname', $classname)->where('role', 'student')
+        $view_student_abujas = user::where('classname', $classname)->where('password', null)
         ->where('section', 'Secondary')->get();
 
         $view_classes = Classname::all();
@@ -123,8 +123,8 @@ class ClassnameController extends Controller
     public function viewclassresults($classname){
         $view_addresults = Classname::where('classname', $classname)->first();
         $view_addresults = Result::where('classname', $classname)->latest()->get();
-        
-        return view('dashboard.admin.viewclassresults', compact('view_addresults'));
+        $academic_sessions = Academicsession::all();
+        return view('dashboard.admin.viewclassresults', compact('academic_sessions', 'view_addresults'));
     }
 
     public function addresultinclass($classname){
@@ -170,7 +170,7 @@ class ClassnameController extends Controller
         $view_classess = Classname::where('classname', $classname)->first();
 
         // $view_classess = Classname::where('section', 'Pre-School')->get();
-        $view_preschools = User::where('role', 'student')->where('classname', $classname)->get();
+        $view_preschools = User::where('password', null)->where('classname', $classname)->get();
         return view('dashboard.admin.preschoolad', compact('view_preschools'));
     }
     

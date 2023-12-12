@@ -82,7 +82,20 @@
                       <tr>
                         <td>{{ $view_highschoolparent->fathername }}</td>
                         <td>{{ $view_highschoolparent->mothername }}</td>
-                        <td>{{ $view_highschoolparent->email }}</td>
+                        <td>{{ $view_highschoolparent->email }}
+                        <small>@if ($view_highschoolparent->status == null)
+                          <span class="badge badge-secondary"> In progress</span>
+                         @elseif($view_highschoolparent->status == 'suspend')
+                         <span class="badge badge-warning"> Suspended</span>
+                         @elseif($view_highschoolparent->status == 'reject')
+                         <span class="badge badge-danger"> Rejected</span>
+                         @elseif($view_highschoolparent->status == 'approved')
+                         <span class="badge badge-info"> Approved</span>
+                         @elseif($view_highschoolparent->status == 'admitted')
+                         
+                         <span class="badge badge-success">Admitted</span>
+                         @endif</small>
+                        </td>
                         <td>{{ $view_highschoolparent->phone }}
                             <a href="{{ url('web/approvedparent/'.$view_highschoolparent->ref_no) }}"
                                 class='btn btn-info'>

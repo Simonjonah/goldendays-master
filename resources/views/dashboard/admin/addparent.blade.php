@@ -93,12 +93,18 @@
 
                       </div>
                     </div>
+                   
+
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Telephone</label>
-                        <input type="number" required name="phone" class="form-control" placeholder="Telephone">
-                    
+                      <input type="number" name="phone" @error('phone')
+                      @enderror value="{{ old('phone') }}" class="form-control" placeholder="Telephone">
+                       
                       </div>
+                      @error('phone')
+                      <span class="text-danger">{{ $message }}</span>
+                      @enderror
                     </div>
 
                        <div class="col-sm-6">
@@ -130,7 +136,7 @@
                           <label>Marital Status</label>
                           <select name="maritalstatus" class="form-control">
                             <option value="Single">Single</option>
-                            <option value="Maried">Maried</option>
+                            <option value="Married">Married</option>
                             <option value="Divorced">Divorced</option>
                           </select>
                         </div>

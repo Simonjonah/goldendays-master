@@ -32,7 +32,7 @@ l            <ol class="breadcrumb float-sm-right">
             
             <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">Register Child</h3>
+                <h3 class="card-title">View Child</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -229,8 +229,8 @@ l            <ol class="breadcrumb float-sm-right">
                      
                       <div class="col-sm-6">
                         <div class="form-group">
-                            {{-- <a href="{{ url('web/viewparents') }}" class="btn btn-primary">Back</a> --}}
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{{ url('web/yourchildren') }}" class="btn btn-primary">Back</a>
+                        {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
                         </div>
                       </div>
                       

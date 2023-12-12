@@ -24,34 +24,29 @@
   <!-- Main content -->
   <section class="invoice">
     <!-- title row -->
-    <div class="row">
-      <div class="col-12">
-        <h2 class="page-header">
-          <img style="width: 300px; height: 50px;" src="{{ asset('images/sch14.jpg') }}" alt=""> <br>
-          {{-- <small class="float-right">{{ $print_students->created_at->format('D d, M Y, H:i')}}</small> --}}
-        </h2>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- info row -->
     <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
+      <div class="col-sm-2 invoice-col">
        
         <address>
-          <strong>BRIXTONN SCHOOLS</strong><br>
-          @if ( Auth::guard('admin')->user()->centername = 'Uyo')
-          30 Ewet Housing, Uyo <br>
-          Akwa Ibom State, Nigeria
-          @else
-          30 Asokoro, Abuja <br>
-          Nigeria 
-          @endif
-          <br>
-          {{-- San Francisco, CA 94107<br>
-          Phone: (804) 123-5432<br>
-          Email: info@almasaeedstudio.com --}}
+          <img style="width: 70px; height: 70px;" src="{{ asset('images/sch14.png') }}" alt=""> <br>
+
         </address>
       </div>
+
+      <div class="col-sm-8 invoice-col" style="text-align: center">
+       
+        <address>
+          <h1> GOLDEN SCHOOL ACADEMY</h1><br>
+         
+            Golden Destiny Academy Street Housing extention Uyo, Akwa Ibom State, Nigeria
+            Motor: Fostering Creativity and Development
+          <br>
+         
+        </address>
+      </div>
+     
+      </div>
+     
      
       <div class="col-sm-4 invoice-col">
         {{-- <img style="width: 70%; height: 200px;" src="{{ URL::asset("/public/../$print_students->images")}}" alt=""> --}}
@@ -72,7 +67,6 @@
               <th>Middlename</th>
               <th>Class</th>
               <th>Gender</th>
-              <th>Center Name</th>
               <th>Section</th>
               <th>Form No</th>
               <th>Reg No</th>
@@ -87,7 +81,6 @@
                 <td>{{ $printallhigh_student->middlename }}</td>
                 <td>{{ $printallhigh_student->classname }}</td>
                 <td>{{ $printallhigh_student->gender }}</td>
-                <td>{{ $printallhigh_student->centername }}</td>
                 <td>{{ $printallhigh_student->section }}</td>
                 <td>{{ $printallhigh_student->ref_no }}</td>
                 <td>{{ $printallhigh_student->regnumber }}</td>

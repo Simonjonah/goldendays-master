@@ -195,6 +195,22 @@ l            <ol class="breadcrumb float-sm-right">
                         @enderror
                       </div>
 
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Assigned Child To Parent</label>
+                          <select name="user_id" class="form-control" id="">
+                            @foreach ($add_parents as $add_parent)
+                            <option value="{{ $add_parent->id }}">{{ $add_parent->fathername }} {{ $add_parent->fathersurname }}</option>
+                            @endforeach
+                          </select>
+                        
+                        </div>
+                        @error('user_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
+
                     <div class="col-sm-6">
                       <td><img style="width: 30%; height: 30%;" class="profile-user-img img-fluid"
                         src="{{ URL::asset("/public/../$edit_students->images")}}"

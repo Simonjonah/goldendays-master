@@ -34,7 +34,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{ url('admin/assignsubjectstoteacher/'.$assigned_subject->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('web/assignsubjectstoteacherheads/'.$assigned_subject->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @if (Session::get('success'))
                         <div class="alert alert-success">

@@ -37,8 +37,9 @@
                   <thead>
                     <tr>
                       <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
+                      <th>Surname</th>
+                      <th>Firstname</th>
+                      <th>Middlename</th>
                       <th>Term</th>
                       <th>Images</th>
                       <th>View</th>
@@ -76,6 +77,7 @@
                       
                         <tr>
                           <td>{{ $view_classstudent->classname }}</td>
+                          <td>{{ $view_classstudent->surname }}</td>
                           <td>{{ $view_classstudent->middlename }}</td>
                           <td>{{ $view_classstudent->fname }}</td>
                           <td>{{ $view_classstudent->term }}</td>
@@ -141,8 +143,9 @@
                   <tfoot>
                     <tr>
                       <th>Classes</th>
-                      <th>Subjects</th>
-                      <th>Lastname</th>
+                      <th>Surname</th>
+                      <th>Firstname</th>
+                      <th>Middlename</th>
                       <th>Term</th>
                       <th>Images</th>
                       <th>View</th>

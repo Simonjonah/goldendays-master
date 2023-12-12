@@ -54,9 +54,9 @@ l            <ol class="breadcrumb float-sm-right">
                       <div class="form-group">
                         <label> First Name</label>
                         <input type="hidden" name="user_id" value="{{ $add_childtoparent->id }}" id="">
-                        <input type="hidden" name="teacher_id" value="{{ Auth::guard('web')->user()->id }}" id="">
-                        <input type="hidden" name="ref_no" value="{{ Auth::guard('web')->user()->ref_no }}" id="">
-                        <input type="hidden" name="mothername" value="{{ Auth::guard('web')->user()->mothername }}" id="">
+                        {{-- <input type="text" name="teacher_id" value="{{ Auth::guard('web')->user()->id }}" id=""> --}}
+                        <input type="hidden" name="ref_no" value="{{ $add_childtoparent->ref_no }}" id="">
+                        {{-- <input type="text" name="mothername" value="{{ Auth::guard('web')->user()->mothername }}" id=""> --}}
                         {{-- <input type="text" name="email" value="{{ $add_childtoparents->email }}" id=""> --}}
                         <input type="text"  value="" class="form-control" name="fname" placeholder="fname">
                       </div>

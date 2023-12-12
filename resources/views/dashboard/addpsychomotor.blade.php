@@ -283,6 +283,67 @@
                   </table>
     
                 </div>
+
+                @if (Auth::guard('web')->user()->section == 'Secondary')
+                <table class="table table-bordered">
+                  <tr>
+                    <th style="width:50%" colspan="5" style="text-align: center">GRADING AND KEY</th>
+                    
+                  </tr>
+                  <tr>
+                    <th>0</th>
+                    <td>-</td>
+                    <td>40</td>
+                    <td>F</td>
+                    <td>FAIL</td>
+                  </tr>
+                  <tr>
+                    <th>40</th>
+                    <td>-</td>
+                    <td>49</td>
+                    <td>W/P</td>
+                    <td>WEAK PASS</td>
+                  </tr>
+                  <tr>
+                    <th>50</th>
+                    <td>-</td>
+                    <td>59</td>
+                    <td>E</td>
+                    <td>FAIR</td>
+                  </tr>
+  
+                  <tr>
+                    <th>60</th>
+                    <td>-</td>
+                    <td>69</td>
+                    <td>D</td>
+                    <td>PASS</td>
+                  </tr>
+                  <tr>
+                    <th>70</th>
+                    <td>-</td>
+                    <td>79</td>
+                    <td>C</td>
+                    <td>GOOD</td>
+                  </tr>
+  
+                  <tr>
+                    <th>80</th>
+                    <td>-</td>
+                    <td>89</td>
+                    <td>B</td>
+                    <td>VERY GOOD</td>
+                  </tr>
+                  <tr>
+                    <th>90</th>
+                    <td>-</td>
+                    <td>100</td>
+                    <td>A</td>
+                    <td>EXCELLENCE</td>
+                  </tr>
+                  
+                </table>
+                @else
                 <table class="table table-bordered">
                   <tr>
                     <th style="width:50%" colspan="5" style="text-align: center">GRADING AND KEY</th>
@@ -334,6 +395,8 @@
                   </tr>
                   
                 </table>
+                @endif
+               
               </div>
               
               <button style="margin-top: 20px;" type="submit" class="btn btn-success"><i class="far fa-bell"></i> Submit

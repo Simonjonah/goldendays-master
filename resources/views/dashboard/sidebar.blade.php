@@ -159,7 +159,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="{{ url('web/profile/'.Auth::guard('web')->user()->ref_no) }}" class="nav-link">
+            <a href="{{ url('web/parentprofile/'.Auth::guard('web')->user()->ref_no) }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Parent Profile
@@ -178,19 +178,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('web/yourchildren') }}" class="nav-link">
+                <a href="{{ url('web/yourchildrens') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Your Child</p>
                 </a>
               </li>
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ url('web/addyourchild') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Another Child</p>
                 </a>
               </li>
-              
+               --}}
             </ul>
           </li>
 
@@ -875,6 +875,27 @@
                       </a>
                     </li>
                     @endforeach
+                    
+                  </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Teachers Section
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    
+                    <li class="nav-item">
+                      <a href="{{ url('web/highschoolteachersheads') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Teachers</p>
+                      </a>
+                    </li>
+                    
                     
                   </ul>
                 </li>

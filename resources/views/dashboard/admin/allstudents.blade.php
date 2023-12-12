@@ -47,7 +47,7 @@
                     <th>Actions</th>
 
                     <th>Reg No</th>
-                    <th>Ref. No</th>
+                    
                     <th>Edit</th>
                     <th>Reject</th>
                     <th>Assigned </th>
@@ -63,79 +63,94 @@
                   </tr>
                   </thead>
                   <tbody>
-
+                    @csrf
+                    @if (Session::get('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+  
+                    @if (Session::get('fail'))
+                    <div class="alert alert-danger">
+                    {{ Session::get('fail') }}
+                    </div>
+                @endif
                     @foreach ($all_students as $all_student)
-       
-                      <tr>
-                        <td>{{ $all_student->surname }}</td>
-                        <td>{{ $all_student->middlename }}</td>
-                        <td>{{ $all_student->fname }}</td>
-                        <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$all_student->images")}}" alt=""></td>
-                        <td><a href="{{ url('admin/viewstudents/'.$all_student->ref_no) }}"
-                            class='btn btn-default'>
-                             <i class="far fa-eye"></i>
-                         </a></td>
-                         <td>@if ($all_student->status == null)
-                          <span class="badge badge-secondary"> In progress</span>
-                         @elseif($all_student->status == 'suspend')
-                         <span class="badge badge-warning"> Suspended</span>
-                         @elseif($all_student->status == 'reject')
-                         <span class="badge badge-danger"> Rejected</span>
-                         @elseif($all_student->status == 'approved')
-                         <span class="badge badge-info"> Approved</span>
-                         @elseif($all_student->status == 'admitted')
-                         
-                         <span class="badge badge-success">Admitted</span>
-                         @endif</td>
-                        
-                       <td> <div class="input-group-prepend">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                          Action
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="{{ url('admin/allcrechepdf') }}">Print All Creche</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allnurserypdf') }}">Print All Nursery</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allprimarypdf') }}">Print All Primary</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allhighschpdf') }}">Print All High School</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/alluyocentpdf') }}">Print All Uyo Center</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allabujapdf') }}">Print All Abuja Center</a></li>
-                          <li class="dropdown-item"><a href="{{ url('admin/allstudentpdf') }}">Print All Student</a></li>
-                         
-                        </ul>
-                      </div></td>
-
-                      <td>{{ $all_student->regnumber }}</td>
-                      <td>{{ $all_student->ref_no }}</td>
-
-                         <td><a href="{{ url('admin/editstudent/'.$all_student->ref_no) }}"
-                          class='btn btn-info'>
-                           <i class="far fa-edit"></i>
-                       </a></td>  
+                    @if ($all_student->role == 'student')
+                    <tr>
+                      <td>{{ $all_student->surname }}</td>
+                      <td>{{ $all_student->middlename }}</td>
+                      <td>{{ $all_student->fname }}</td>
+                      <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$all_student->images")}}" alt=""></td>
+                      <td><a href="{{ url('admin/viewstudent/'.$all_student->ref_no1) }}"
+                          class='btn btn-default'>
+                           <i class="far fa-eye"></i>
+                       </a></td>
+                       <td>@if ($all_student->status == null)
+                        <span class="badge badge-secondary"> In progress</span>
+                       @elseif($all_student->status == 'suspend')
+                       <span class="badge badge-warning"> Suspended</span>
+                       @elseif($all_student->status == 'reject')
+                       <span class="badge badge-danger"> Rejected</span>
+                       @elseif($all_student->status == 'approved')
+                       <span class="badge badge-info"> Approved</span>
+                       @elseif($all_student->status == 'admitted')
                        
-                        
-                       <th><a href="{{ url('admin/rejectstudent/'.$all_student->ref_no) }}" class="btn btn-sm bg-teal">
-                        <i class="fas fa-user"></i>
-                      </a></th>
-                      <th><a href="{{ url('admin/assignedteacher/'.$all_student->centername) }}" class="btn btn-sm bg-teal">
-                        <i class="fas fa-comments"></i>
-                      </a></th><th><a href="{{ url('admin/suspendstudent/'.$all_student->ref_no) }}" class="btn btn-sm bg-teal">
-                        <i class="fas fa-comments"></i>
-                      </a></th>
-
-                      <th> <a href="{{ url('admin/studentsaddmit/'.$all_student->ref_no) }}" class="btn btn-sm btn-primary">
-                        <i class="fas fa-user"></i> 
-                      </a></th>
+                       <span class="badge badge-success">Admitted</span>
+                       @endif</td>
                       
-                     
-                      {{-- <th><a href="{{ url('admin/studentit/'.$all_student->ref_no) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
-                       <td><a href="{{ url('admin/deletestudent/'.$all_student->ref_no) }}"
-                        class='btn btn-danger'>
-                         <i class="far fa-trash-alt"></i>
-                     </a></td>
-                     
-                     <td>{{ $all_student->created_at->format('D d, M Y, H:i')}}</td>
+                     <td> <div class="input-group-prepend">
+                      <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                        Action
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="{{ url('admin/allcrechepdf') }}">Print All Preschool</a></li>
+                        {{-- <li class="dropdown-item"><a href="{{ url('admin/allnurserypdf') }}">Print All Nursery</a></li> --}}
+                        <li class="dropdown-item"><a href="{{ url('admin/allprimarypdf') }}">Print All Primary</a></li>
+                        <li class="dropdown-item"><a href="{{ url('admin/allhighschpdf') }}">Print All High School</a></li>
+                        {{-- <li class="dropdown-item"><a href="{{ url('admin/alluyocentpdf') }}">Print All Uyo Center</a></li> --}}
+                        {{-- <li class="dropdown-item"><a href="{{ url('admin/allabujapdf') }}">Print All Abuja Center</a></li> --}}
+                        <li class="dropdown-item"><a href="{{ url('admin/allstudentpdf') }}">Print All Student</a></li>
+                       
+                      </ul>
+                    </div></td>
 
-                      </tr>
+                    <td>{{ $all_student->regnumber }}</td>
+
+                       <td><a href="{{ url('admin/editstudents/'.$all_student->ref_no1) }}"
+                        class='btn btn-info'>
+                         <i class="far fa-edit"></i>
+                     </a></td>  
+                     
+                      
+                     <th><a href="{{ url('admin/rejectstudent/'.$all_student->ref_no1) }}" class="btn btn-sm bg-teal">
+                      <i class="fas fa-user"></i>
+                    </a></th>
+                    <th><a href="{{ url('admin/addregno/'.$all_student->ref_no1) }}" class="btn btn-sm bg-teal">
+                      <i class="fas fa-comments">Add Reg. No</i>
+                    </a></th><th><a href="{{ url('admin/suspendstudent/'.$all_student->ref_no1) }}" class="btn btn-sm bg-teal">
+                      <i class="fas fa-comments"></i>
+                    </a></th>
+
+                    <th> <a href="{{ url('admin/studentsaddmit/'.$all_student->ref_no1) }}" class="btn btn-sm btn-primary">
+                      <i class="fas fa-user"></i> 
+                    </a></th>
+                    
+                   
+                    {{-- <th><a href="{{ url('admin/studentit/'.$all_student->ref_no1) }}" class="btn btn-info"><i class="fas fa-user"></i> IT</a></th> --}}
+                     <td><a href="{{ url('admin/deletestudent/'.$all_student->id) }}"
+                      class='btn btn-danger'>
+                       <i class="far fa-trash-alt"></i>
+                   </a></td>
+                   
+                   <td>{{ $all_student->created_at->format('D d, M Y, H:i')}}</td>
+
+                    </tr>
+                    @else
+                      
+                    @endif
+       
+                     
                      
                     @endforeach
                  
@@ -153,7 +168,7 @@
                       <th>Actions</th>
   
                       <th>Reg No</th>
-                      <th>Ref. No</th>
+                      
 
                       <th>Edit</th>
                       <th>Reject</th>
@@ -188,7 +203,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2023 <a href="https://brixtoonschool.com.ng">Brixtonn</a>.</strong> All rights
+    <strong>Copyright &copy; 2023 <a href="#">GOLDEN DESTINY ACADEMY</a>.</strong> All rights
     reserved.
   </footer>
 

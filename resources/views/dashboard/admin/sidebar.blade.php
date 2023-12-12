@@ -208,7 +208,12 @@
                 </a>
               </li>
               @endforeach
-              
+              <li class="nav-item">
+                <a href="{{ route('admin.allstudents') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Students</p>
+                </a>
+              </li>
 
               {{-- <li class="nav-item">
                 <a href="{{ route('admin.adminprogress') }}" class="nav-link">
@@ -860,7 +865,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              {{-- <li class="nav-item">
+              <li class="nav-item">
                 <a href="{{ route('admin.addparent') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Register Parents</p>
@@ -871,16 +876,22 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Parents</p>
                 </a>
-              </li> --}}
-
-              <li class="nav-item">
-                <a href="{{ url('admin/preschoolad') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pre-School Pupils</p>
-                </a>
               </li>
 
               <li class="nav-item">
+               
+
+              @foreach ($view_clesses as $view_clesse)
+              <li class="nav-item">
+                <a href="{{ url('admin/preschoolad/'.$view_clesse->classname) }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $view_clesse->classname }}</p>
+                </a>
+              </li>
+              @endforeach
+              
+
+              {{-- <li class="nav-item">
                 <a href="{{ route('admin.adminprogress') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Elementary Pupils</p>
@@ -894,7 +905,7 @@
                   <p>High Sch. Students</p>
                 </a>
               </li>
-             
+              --}}
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -926,7 +937,12 @@
                   </li>
                   @endforeach
                   
-                 
+                  <li class="nav-item">
+                    <a href="{{ route('admin.allstudents') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>All Students</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
             </ul>

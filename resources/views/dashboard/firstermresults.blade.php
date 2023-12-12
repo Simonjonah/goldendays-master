@@ -21,29 +21,289 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+@if (Auth::guard('web')->user()->section == 'Secondary')
+   <!-- Main content -->
+   <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Your Students Result</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Surname</th>
+                  <th>Firstname</th>
+                  <th>Middlename</th>
+                  <th>Admission No</th>
+                  <th>Search</th>
+                  <th>Psycomotor</th>
+                  {{-- <th>Ref. No</th> --}}
+                  <th>Sumative</th>
+                  <th>Formative</th>
+                  <th>CA 3</th>
+                  <th>Exams</th>
+                  <th>Total</th>
+                  <th>Grade</th>
+                  <th>Status</th>
+                  <th>View</th>
+
             
+                  {{-- <th>Date</th> --}}
+                </tr>
+                </thead>
+                <tbody>
+                  @php
+                      
+                    //  $total_score = 0;
+                  @endphp
+                  @foreach ($view_myresults as $view_myresult)
+                    @php
+                       // $total_score +=$view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams;
+                        
+                    @endphp
+                    <tr>
+                      <td>{{ $view_myresult->user['surname'] }}</td>
+                      <td>{{ $view_myresult->user['fname'] }}</td>
+                      <td>{{ $view_myresult->user['middlename'] }}
+                        <small>{{ $view_myresult->subjectname }}</small>
+                      </td>
+                      <td>{{ $view_myresult->user['regnumber'] }}
+                      <small>{{ $view_myresult->user['section'] }}</small>
+                      </td>
+                      <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                        Search Pupils/Students Results
+                       </button></td>
+                      <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
+                        class='btn btn-default'>
+                        Add Psycomotor
+                         <i class="far fa-eye"></i>
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Your Students Result</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
+                     
+
+                    {{-- <td>{{ $view_myresult->user['ref_no'] }}</td> --}}
+                    <td>{{ $view_myresult->test_1 }}</td>
+                    <td>{{ $view_myresult->test_2 }}</td>
+                    <td>{{ $view_myresult->test_3 }}</td>
+                    <td>{{ $view_myresult->exams }}</td>
+                    <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
+                    <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 79)
+                      <p>A</p>
+                     
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
+                      <p>B</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
+                      <p>C</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
+                      <p>D</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 45)
+                      <p>E</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
+                      <p>F</p>
+                      @else
+                      <p>F</p>
+                    @endif</td>
+
+                    <td>@if ($view_myresult->status == null)
+                      <span class="badge badge-secondary"> In progress</span>
+                  @elseif($view_myresult->status == 'suspend')
+                  <span class="badge badge-warning"> Suspended</span>
+                  @elseif($view_myresult->status == 'reject')
+                  <span class="badge badge-danger"> Rejected</span>
+                  @elseif($view_myresult->status == 'approved')
+                  <span class="badge badge-info"> Approved</span>
+                  @elseif($view_myresult->status == 'admitted')
+                  
+                  <span class="badge badge-success">Admitted</span>
+                  @endif</td>
+                  
+                    
+                   
+                       <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
+                        class='btn btn-default'>
+                         <i class="far fa-eye"></i>
+                     </a></td>
+                     
+                
+
+                    </tr>
+                   
+                  @endforeach
+               
+               
+                 
+                </tbody>
+                <tfoot>
                   <tr>
                     <th>Surname</th>
                     <th>Firstname</th>
                     <th>Middlename</th>
                     <th>Admission No</th>
-                    <th>Search</th>
+                  <th>Search</th>
+
                     <th>Psycomotor</th>
+
+                    {{-- <th>Ref. No</th> --}}
+                    <th>Sumative</th>
+                    <th>Formative</th>
+                    <th>CA 3</th>
+                    <th>Exams</th>
+                    <th>Total</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+
+                    <th>View</th>
+              
+                    {{-- <th>Date</th> --}}
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+@else
+   <!-- Main content -->
+   <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Your Students Result</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Surname</th>
+                  <th>Firstname</th>
+                  <th>Middlename</th>
+                  <th>Admission No</th>
+                  <th>Search</th>
+                  <th>Psycomotor</th>
+                  {{-- <th>Ref. No</th> --}}
+                  <th>CA 1</th>
+                  <th>CA 2</th>
+                  <th>CA 3</th>
+                  <th>Exams</th>
+                  <th>Total</th>
+                  <th>Grade</th>
+                  <th>Status</th>
+                  <th>View</th>
+
+            
+                  {{-- <th>Date</th> --}}
+                </tr>
+                </thead>
+                <tbody>
+                  @php
+                      
+                    //  $total_score = 0;
+                  @endphp
+                  @foreach ($view_myresults as $view_myresult)
+                    @php
+                       // $total_score +=$view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams;
+                        
+                    @endphp
+                    <tr>
+                      <td>{{ $view_myresult->user['surname'] }}</td>
+                      <td>{{ $view_myresult->user['fname'] }}</td>
+                      <td>{{ $view_myresult->user['middlename'] }}
+                        <small>{{ $view_myresult->subjectname }}</small>
+                      </td>
+                      <td>{{ $view_myresult->user['regnumber'] }}
+                      <small>{{ $view_myresult->user['section'] }}</small>
+                      </td>
+                      <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                        Search Pupils/Students Results
+                       </button></td>
+                      <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
+                        class='btn btn-default'>
+                        Add Psycomotor
+                         <i class="far fa-eye"></i>
+
+                     
+
+                    {{-- <td>{{ $view_myresult->user['ref_no'] }}</td> --}}
+                    <td>{{ $view_myresult->test_1 }}</td>
+                    <td>{{ $view_myresult->test_2 }}</td>
+                    <td>{{ $view_myresult->test_3 }}</td>
+                    <td>{{ $view_myresult->exams }}</td>
+                    <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
+                    <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 79)
+                      <p>A</p>
+                     
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
+                      <p>B</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
+                      <p>C</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
+                      <p>D</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
+                      <p>E</p>
+                      @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
+                      <p>F</p>
+                      @else
+                      <p>F</p>
+                    @endif</td>
+
+                    <td>@if ($view_myresult->status == null)
+                      <span class="badge badge-secondary"> In progress</span>
+                  @elseif($view_myresult->status == 'suspend')
+                  <span class="badge badge-warning"> Suspended</span>
+                  @elseif($view_myresult->status == 'reject')
+                  <span class="badge badge-danger"> Rejected</span>
+                  @elseif($view_myresult->status == 'approved')
+                  <span class="badge badge-info"> Approved</span>
+                  @elseif($view_myresult->status == 'admitted')
+                  
+                  <span class="badge badge-success">Admitted</span>
+                  @endif</td>
+                  
+                    
+                   
+                       <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
+                        class='btn btn-default'>
+                         <i class="far fa-eye"></i>
+                     </a></td>
+                     
+                
+
+                    </tr>
+                   
+                  @endforeach
+               
+               
+                 
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Surname</th>
+                    <th>Firstname</th>
+                    <th>Middlename</th>
+                    <th>Admission No</th>
+                  <th>Search</th>
+
+                    <th>Psycomotor</th>
+
                     {{-- <th>Ref. No</th> --}}
                     <th>CA 1</th>
                     <th>CA 2</th>
@@ -52,128 +312,27 @@
                     <th>Total</th>
                     <th>Grade</th>
                     <th>Status</th>
-                    <th>View</th>
 
+                    <th>View</th>
               
                     {{-- <th>Date</th> --}}
                   </tr>
-                  </thead>
-                  <tbody>
-                    @php
-                        
-                      //  $total_score = 0;
-                    @endphp
-                    @foreach ($view_myresults as $view_myresult)
-                      @php
-                         // $total_score +=$view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams;
-                          
-                      @endphp
-                      <tr>
-                        <td>{{ $view_myresult->user['surname'] }}</td>
-                        <td>{{ $view_myresult->user['fname'] }}</td>
-                        <td>{{ $view_myresult->user['middlename'] }}</td>
-                        <td>{{ $view_myresult->user['regnumber'] }}
-                        <small>{{ $view_myresult->user['section'] }}</small>
-                        </td>
-                        <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                          Search Pupils/Students Results
-                         </button></td>
-                        <td><a href="{{ url('web/addpsychomotor/'.$view_myresult->id) }}"
-                          class='btn btn-default'>
-                          Add Psycomotor
-                           <i class="far fa-eye"></i>
-
-                       
-
-                      {{-- <td>{{ $view_myresult->user['ref_no'] }}</td> --}}
-                      <td>{{ $view_myresult->test_1 }}</td>
-                      <td>{{ $view_myresult->test_2 }}</td>
-                      <td>{{ $view_myresult->test_3 }}</td>
-                      <td>{{ $view_myresult->exams }}</td>
-                      <td>{{ $view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams }}</td>
-                      <td>@if ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 79)
-                        <p>A</p>
-                       
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 69)
-                        <p>B</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 59)
-                        <p>C</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 49)
-                        <p>D</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 40)
-                        <p>E</p>
-                        @elseif ($view_myresult->test_1 + $view_myresult->test_2 + $view_myresult->test_3 + $view_myresult->exams > 39)
-                        <p>F</p>
-                        @else
-                        <p>F</p>
-                      @endif</td>
-
-                      <td>@if ($view_myresult->status == null)
-                        <span class="badge badge-secondary"> In progress</span>
-                    @elseif($view_myresult->status == 'suspend')
-                    <span class="badge badge-warning"> Suspended</span>
-                    @elseif($view_myresult->status == 'reject')
-                    <span class="badge badge-danger"> Rejected</span>
-                    @elseif($view_myresult->status == 'approved')
-                    <span class="badge badge-info"> Approved</span>
-                    @elseif($view_myresult->status == 'admitted')
-                    
-                    <span class="badge badge-success">Admitted</span>
-                    @endif</td>
-                    
-                      
-                     
-                         <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
-                          class='btn btn-default'>
-                           <i class="far fa-eye"></i>
-                       </a></td>
-                       
-                  
-
-                      </tr>
-                     
-                    @endforeach
-                 
-                 
-                   
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Surname</th>
-                      <th>Firstname</th>
-                      <th>Middlename</th>
-                      <th>Admission No</th>
-                    <th>Search</th>
-
-                      <th>Psycomotor</th>
-
-                      {{-- <th>Ref. No</th> --}}
-                      <th>CA 1</th>
-                      <th>CA 2</th>
-                      <th>CA 3</th>
-                      <th>Exams</th>
-                      <th>Total</th>
-                      <th>Grade</th>
-                      <th>Status</th>
-
-                      <th>View</th>
-                
-                      {{-- <th>Date</th> --}}
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
+                </tfoot>
+              </table>
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.col -->
+          <!-- /.card -->
         </div>
-        <!-- /.row -->
+        <!-- /.col -->
       </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+@endif
+   
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">

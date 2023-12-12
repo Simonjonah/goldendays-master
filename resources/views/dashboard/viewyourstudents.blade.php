@@ -63,10 +63,14 @@
 
                     @foreach ($view_students as $view_student)
                     {{-- @if ($view_student->section == Auth::guard('web')->user()->section && $view_student->term == Auth::guard('web')->user()->term && $view_student->classname == Auth::guard('web')->user()->classname && $view_student->role == Auth::guard('web')->user()->role = null) --}}
+                    @if ($view_student->section == Auth::guard('web')->user()->section && $view_student->term == Auth::guard('web')->user()->term && $view_student->classname == Auth::guard('web')->user()->classname && $view_student->role == 'student')
+
                         <tr>
                           <td>{{ $view_student->fname }}</td>
                           <td>{{ $view_student->middlename }}</td>
-                          <td>{{ $view_student->surname }}</td>
+                          <td>{{ $view_student->surname }} 
+                          <small><b style="color: red">{{ $view_student->regnumber }}</b></small>
+                          </td>
 
                           {{-- <td> {{ $view_student->centername }}</td> --}}
                           <td> {{ $view_student->classname }} <small>{{ $view_student->section }}</small></td>
@@ -101,8 +105,8 @@
                               Add Midterm Results
                           </a></td>
                         </tr>
-                    {{-- @else
-                    @endif --}}
+                    @else
+                    @endif
                   @endforeach
                       
                 

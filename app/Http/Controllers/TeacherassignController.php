@@ -10,6 +10,30 @@ use Illuminate\Support\Facades\Auth;
 class TeacherassignController extends Controller
 {
    
+    
+    public function assignsubjectstoteacherheads (Request $request, $id){
+        $add_assignteacher = User::where('id', $id)->first();
+        $request->validate([
+            'user_id' => ['required', 'string', 'max:255'],
+            'subject_id' => ['required', 'string', 'max:255'],
+            'section' => ['required', 'string', 'max:255'],
+            'classname' => ['required', 'string', 'max:255'],
+
+        ]);
+        $add_assignteacher = new Teacherassign();
+        $add_assignteacher->user_id = $request->user_id;
+        $add_assignteacher->subject_id = $request->subject_id;
+        $add_assignteacher->section = $request->section;
+        $add_assignteacher->classname = $request->classname;
+    
+        $add_assignteacher->save();
+        if ($add_assignteacher) {
+
+            return redirect()->back()->with('success', 'you have added successfully');
+            //return Redirect::to('http://127.0.0.1:8000/admin/viewsubject')->with('success', 'you have added successfully');
+        }
+     
+    }
 
     public function assignsubjectstoteacher (Request $request, $id){
         $add_assignteacher = User::where('id', $id)->first();
@@ -67,6 +91,11 @@ class TeacherassignController extends Controller
         return view('dashboard.viewassignteachers', compact('view_subjectbyheads'));
     }
 
+    public function deletesubjectbyheads($id){
+        $view_subjectbyheads = Teacherassign::where('id', $id)->delete();
+
+        return redirect()->back()->with('success', 'You have deleted successfully');
+    }
     
 
     

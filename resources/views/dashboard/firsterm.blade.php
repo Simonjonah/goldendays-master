@@ -65,7 +65,9 @@
                           <td>{{ $view_term->surname }}</td>
 
                           
-                          <td> {{ $view_term->classname }}</td>
+                          <td> {{ $view_term->classname }}
+                          <small>{{ $view_term->regnumber }}</small>
+                          </td>
                           
                           <td> {{ $view_term->term }}</td>
                           <td> {{ $view_term->gender }}</td>

@@ -19,7 +19,181 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    @if (Auth::guard('web')->user()->section == 'Secondary')
+      
+    
+    
 
+
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+           
+            <!-- Main content -->
+            <div class="invoice p-3 mb-3">
+              <!-- title row -->
+              <div class="row">
+                <div class="col-12">
+                    <h2 class="page-header">
+                        {{-- <small class="float-right">{{ $view_student->created_at->format('D d, M Y, H:i')}}</small> --}}
+                    </h2>
+                </div>
+                <!-- /.col -->
+              </div>
+              @foreach ($view_myresult_results as $view_myresult_result)
+
+              @endforeach
+              <!-- info row -->
+              <div class="row invoice-info">
+                <div class="col-sm-2 invoice-col">
+                    <img style="width: 70%; height: 100px;" src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="webLTE Logo" class="brand-image ">
+
+                 
+                </div> 
+                <!-- /.col -->
+               <div class="col-sm-8 invoice-col">
+                   <h2>GOLDEN DESTINY ACADEMY HIGH SCHOOL</h2>
+                   <address>
+                    Golden Destiny Academy Road.
+                    Off Senator Akon Eyakenyi Street,
+                    Off General Edet Akpan Ave, 520101, Uyo
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-2 invoice-col">
+                    <img style="width: 70%; height: 100px;" src="{{ URL::asset("/public/../$view_myresult_result->images")}}" alt="">
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive">
+              
+                  <table class="table table-striped">
+                      <thead>
+                      <tr>
+                        {{-- <th>S/N</th> --}}
+                        <th>Firstname</th>
+                        <th>Middlename</th>
+                        <th>Surname</th>
+                        <th>Subjects</th>
+                        <th>Formative </th>
+                        <th>Sumative</th>
+                        <th>Ca 3</th>
+                        <th>Exams</th>
+                        <th>Total</th>
+                        <th>Grade</th>
+                        <th>Subject Teacher</th>
+                        {{-- <th>Subject Average</th> --}}
+                        
+                      </tr>
+                      </thead>
+                      <tbody>
+                        @php
+                            $total_score = 0;
+                            // $totalsubject_score = 0;
+                        @endphp
+                          @foreach ($view_myresult_results as $view_myresult_result)
+                          @php
+                          $total_score +=$view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams;
+                          // $totalsubject_score +=$view_myresult_result->test_1  + $view_myresult_result->test_2  + $view_myresult_result->test_3  + $view_myresult_result->exams                            
+                          @endphp
+                          <tr>
+                              <td>{{ $view_myresult_result->user['fname'] }}</td>
+                              <td>{{ $view_myresult_result->user['middlename'] }}</td>
+                              <td>{{ $view_myresult_result->user['surname'] }}</td>
+                              <td>{{ $view_myresult_result->subjectname }}</td>
+                              <td>{{ $view_myresult_result->test_1 }}</td>
+                              <td>{{ $view_myresult_result->test_2 }}</td>
+                              <td>{{ $view_myresult_result->test_3 }}</td>
+                              <td>{{ $view_myresult_result->exams }}</td>
+                              <td>{{ $view_myresult_result->test_1  + $view_myresult_result->test_2  + $view_myresult_result->test_3  + $view_myresult_result->exams }}</td>
+                              <td>@if ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 79)
+                                <p>A</p>
+                               
+                                @elseif ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 69)
+                                <p>B</p>
+                                @elseif ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 59)
+                                <p>C</p>
+                                @elseif ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 49)
+                                <p>D</p>
+                                @elseif ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 45)
+                                <p>E</p>
+                                @elseif ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 39)
+                                <p>F</p>
+                                @else
+                                <p>F</p>
+                              @endif</td>
+                              {{-- <td>{{ $view_myresult_result->test_1  + $view_myresult_result->test_2  + $view_myresult_result->test_3  + $view_myresult_result->exams / 2}}</td> --}}
+                                
+                              {{-- <td>{{ $total_score / 2 }}</td> --}}
+                              <td>{{ $view_myresult_result->tname }} {{ $view_myresult_result->tsurname }}</td>
+                            </td>
+
+                            </tr>
+                          @endforeach
+                          <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>{{ $total_score }}</td>
+                            <td>-</td>
+                            <td>-</td>
+
+                          </tr>
+                      
+                      </tbody>
+                    </table>
+                
+                  {{-- @else
+                      
+                @endif --}}
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          
+        
+          {{-- @endif --}}
+              </div>
+              <!-- /.row -->
+
+              <!-- this row will not appear when printing -->
+              <div class="row no-print">
+                <div class="col-12">
+                  {{-- <button type="submit" class="btn btn-success"><i class="far fa-bell"></i> Submit
+                    Submit 
+                  </button>
+                 --}}
+                  {{-- <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+                    Payment
+                  </button> --}}
+
+                </form>
+                  {{-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                    <i class="fas fa-download"></i> Generate PDF
+                  </button> --}}
+                </div>
+              </div>
+            </div>
+            <!-- /.invoice -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    @else
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -105,6 +279,7 @@
                               <td>{{ $view_myresult_result->test_3 }}</td>
                               <td>{{ $view_myresult_result->exams }}</td>
                               <td>{{ $view_myresult_result->test_1  + $view_myresult_result->test_2  + $view_myresult_result->test_3  + $view_myresult_result->exams }}</td>
+                              
                               <td>@if ($view_myresult_result->test_1 + $view_myresult_result->test_2 + $view_myresult_result->test_3 + $view_myresult_result->exams > 69)
                                 <p>A</p>
                                
@@ -121,6 +296,8 @@
                                 @else
                                 <p>F</p>
                               @endif</td>
+
+                             
                               <td>{{ $view_myresult_result->test_1  + $view_myresult_result->test_2  + $view_myresult_result->test_3  + $view_myresult_result->exams / 2}}</td>
                                 
                               {{-- <td>{{ $total_score / 2 }}</td> --}}
@@ -128,8 +305,21 @@
 
                             </tr>
                           @endforeach
-                      
-                            {{-- <td>{{ $total_score }}</td> --}}
+                            <tr>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>{{ $total_score }}</td>
+                              <td>-</td>
+                              <td>-</td>
+
+
+                            </tr>
                       </tbody>
                     </table>
                 
@@ -172,8 +362,7 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-
-
+    @endif
 
 
 
@@ -864,9 +1053,12 @@
                   <td>Good</td>
                 </tr>
                 <tr>
-                  <th>1</th>
+                  <th>4</th>
                   <td>Fair</td>
                 </tr>
+                
+                
+               
 
                 
                 

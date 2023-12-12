@@ -59,6 +59,11 @@
                     Name: {{ $view_myresult_result->surname }}, {{ $view_myresult_result->fname }} {{ $view_myresult_result->middlename }}
                    
                   </address>
+                  <address>
+                    Class Teacher: {{ $view_myresult_result->tsurname }}, {{ $view_myresult_result->tname }} 
+                    
+                   
+                  </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-2 invoice-col">
@@ -88,7 +93,7 @@
                         <th>Total</th>
                         <th>Grade</th>
                         <th>Subject Average</th>
-                        <th>Teacher Name</th>
+                        {{-- <th>Teacher Name</th> --}}
 
                         
                       </tr>
@@ -134,12 +139,19 @@
                                 
                               {{-- <td>{{ $total_score / 2 }}</td> --}}
                             </td>
-                            <td>{{ $view_myresult_result->surname }}</td>
 
                             </tr>
                           @endforeach
-                      
-                            {{-- <td>{{ $total_score }}</td> --}}
+                         <td>-</td>
+                         <td>-</td>
+                         <td>-</td>
+                         <td>-</td>
+                         <td>-</td>
+                            <td>{{ $total_score }}</td>
+                         <td>-</td>
+
+                          <td>{{ $total_score / 2}}</td>
+
                       </tbody>
                     </table>
                 

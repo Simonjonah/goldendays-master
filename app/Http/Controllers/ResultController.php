@@ -82,7 +82,7 @@ class ResultController extends Controller
         $academic_sessions = $request->input('academic_session');
         $regnumbers = $request->input('regnumber');
         $terms = $request->input('term');
-        // $user_ids = $request->input('user_id');
+        $sections = $request->input('section');
         $classnames = $request->input('classname');
         $fnames = $request->input('fname');
         $middlenames = $request->input('middlename');
@@ -110,7 +110,7 @@ class ResultController extends Controller
                 'academic_session' =>$academic_sessions[$i],
                 'regnumber' =>$regnumbers[$i],
                 'term' => $terms[$i],
-                // 'user_id' => $user_ids[$i],
+                'section' => $sections[$i],
                 'classname' => $classnames[$i],
                 'fname' => $fnames[$i],
                 'middlename' => $middlenames[$i],
@@ -135,7 +135,7 @@ class ResultController extends Controller
         $academic_sessions = $request->input('academic_session');
         $regnumbers = $request->input('regnumber');
         $terms = $request->input('term');
-        // $user_ids = $request->input('user_id');
+        $sections = $request->input('section');
         $classnames = $request->input('classname');
         $fnames = $request->input('fname');
         $middlenames = $request->input('middlename');
@@ -161,7 +161,7 @@ class ResultController extends Controller
                 'academic_session' =>$academic_sessions[$i],
                 'regnumber' =>$regnumbers[$i],
                 'term' => $terms[$i],
-                // 'user_id' => $user_ids[$i],
+                'section' => $sections[$i],
                 'classname' => $classnames[$i],
                 'fname' => $fnames[$i],
                 'middlename' => $middlenames[$i],
@@ -548,28 +548,29 @@ class ResultController extends Controller
     {
 
         $request->validate([
-            // 'classname' => ['required', 'string'],
-            'regnumber' => ['required', 'string',],
-            'academic_session' => ['required', 'string',],
+            'section' => ['required', 'string'],
+            'regnumber' => ['required', 'string'],
+            'academic_session' => ['required', 'string'],
             'term' => ['required', 'string'],
             'classname' => ['required', 'string'],
-            'regnumber.exist'=>'This email does not exist in the admins table'
+            'regnumber.exist'=>'This regnumber does not exist in the admins table'
         ]);
-        if($getyour_results = Result::where('regnumber', $request->regnumber)
-        ->where('academic_session', $request->academic_session)
-        ->where('term', $request->term)
-        ->where('classname', $request->classname)
+        // if($getyour_results = Result::where('regnumber', $request->regnumber)
+        // ->where('academic_session', $request->academic_session)
+        // ->where('term', $request->term)
+        // ->where('classname', $request->classname)
 
-        ->exists()) {
-        $getyour_results = Result::where('user_id', auth::guard('web')->id()
-        )
-        ->where('regnumber', $request->regnumber)
+        // ->exists()) {
+            $getyour_results = Result::where('regnumber', $request->regnumber)
+        // $getyour_results = Result::where('user_id', auth::guard('web')->id()
+        //)
+        // ->where('regnumber', $request->regnumber)
         ->where('classname', $request->classname)
         ->where('term', $request->term)
         ->where('academic_session', $request->academic_session)->get();
-        }else{
-            return redirect()->back()->with('fail', 'There is no results for you!');
-        }
+        // }else{
+        //     return redirect()->back()->with('fail', 'There is no results for you!');
+        // }
 
         $total_subject = Result::where('user_id', auth::guard('web')->id()
         )->where('classname', $request->classname)
@@ -583,9 +584,18 @@ class ResultController extends Controller
         $total_student = Result::where('user_id', auth::guard('web')->id()
         )->where('classname', $request->classname)
         ->where('term', $request->term)->count();
-    
-        $pdf = PDF::loadView('dashboard.pdf', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
-     
+
+        if ($request->section == 'Secondary') {
+            $pdf = PDF::loadView('dashboard.pdfsecondary', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
+
+        } elseif($request->section == 'Primary') {
+            $pdf = PDF::loadView('dashboard.pdf', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
+
+        }else{
+        $pdf = PDF::loadView('dashboard.pdfpreschool', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
+
+        }
+        
         return $pdf->download('goldendestinyschools.pdf');
     }
 
@@ -709,7 +719,10 @@ class ResultController extends Controller
           $add_psychomotorad->club4 = $request->club4;
   
           $add_psychomotorad->teacher_comment = $request->teacher_comment;
-  
+          $add_psychomotorad->next_term = $request->next_term;
+          $add_psychomotorad->dayschopen = $request->dayschopen;
+          $add_psychomotorad->dayspresent = $request->dayspresent;
+          
           $add_psychomotorad->sports1 = $request->sports1;
           $add_psychomotorad->sports2 = $request->sports2;
           $add_psychomotorad->sports3 = $request->sports3;
@@ -809,9 +822,9 @@ class ResultController extends Controller
     
     public function searchresultbyteacherprin(Request $request){
         $request->validate([
-            'regnumber' => ['required', 'string',],
-            'academic_session' => ['required', 'string',],
-            'term' => ['required', 'string',],
+            'regnumber' => ['required', 'string'],
+            'academic_session' => ['required', 'string'],
+            'term' => ['required', 'string'],
 
         ], [
             'regnumber.exist'=>'This Admission number does not exist in result table'
@@ -1420,10 +1433,127 @@ class ResultController extends Controller
           $add_assignteacher->update();
   
           return redirect()->back()->with('success', 'you have added successfully');
-      }
-      
+    }
 
+    public function editteacherviewresults($id){
+        $edit_result = Result::find($id);
+        return view('dashboard.editteacherviewresults', compact('edit_result'));
+    }
+
+    public function createresultsedit(Request $request, $id){
+        $edit_result = Result::find($id);
+
+        $request->validate([
+            'test_1' => ['nullable', 'string', 'max:255'],
+            'test_2' => ['nullable', 'string', 'max:255'],
+            'test_3' => ['nullable', 'string', 'max:255'],
+            'title' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $edit_result->test_1 = $request->test_1;
+        $edit_result->test_2 = $request->test_2;
+        $edit_result->test_3 = $request->test_3;
+        $edit_result->exams = $request->exams;
+        $edit_result->update();
+        if ($edit_result) {
+            
+            return redirect()->back()->with('success', 'You have successfully update results');
+        }
+
+    }
+    
+    public function deleteresulthead($id){
+        $delet_result = Result::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'You have successfully deleted result');
+    }      
+
+
+    public function deleteresults($id){
+        $delet_result = Result::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'You have deleted successfully');
+    }
+
+    public function editviewresultsad($id){
+        $edit_result = Result::find($id);
+        return view('dashboard.admin.editviewresultsad', compact('edit_result'));
+    }
+
+    
+    public function updatecreateresultseditad(Request $request, $id){
+        $edit_result = Result::find($id);
+
+        $request->validate([
+            'test_1' => ['nullable', 'string', 'max:255'],
+            'test_2' => ['nullable', 'string', 'max:255'],
+            'test_3' => ['nullable', 'string', 'max:255'],
+            'title' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $edit_result->test_1 = $request->test_1;
+        $edit_result->test_2 = $request->test_2;
+        $edit_result->test_3 = $request->test_3;
+        $edit_result->exams = $request->exams;
+        $edit_result->update();
+        if ($edit_result) {
+            
+            return redirect()->back()->with('success', 'You have successfully update results');
+        }
+
+    }
+    
+
+
+
+    public function searchresultbyteacherprinad(Request $request){
+        $request->validate([
+            'regnumber' => ['required', 'string'],
+            'academic_session' => ['required', 'string'],
+            'term' => ['required', 'string'],
+
+        ], [
+            'regnumber.exist'=>'This Admission number does not exist in result table'
+        ]);
+        if($view_myresult_results = Result::where('regnumber', $request->regnumber)->where('term', $request->term)
+        ->where('academic_session', $request->academic_session)->where('type', null)
+        ->exists()) {
+        $view_myresult_results = Result::where('academic_session', $request->academic_session)
+        
+        ->where('regnumber', $request->regnumber)->where('term', $request->term)
+        ->where('academic_session', $request->academic_session)->where('type', null)
+        ->get();
+        }else{
+            return redirect()->back()->with('fail', 'There is no results for you!');
+        }
+        $view_results = Result::where('academic_session', $request->academic_session)
+        
+        ->where('regnumber', $request->regnumber)->where('term', $request->term)->first();
+       
+    return view('dashboard.admin.teacherviewresultsprinad', compact('view_results', 'view_myresult_results'));
+      
+    }
+
+
+    public function addsection($id){
+        $add_section = Result::find($id);
+        return view('dashboard.admin.addsection', compact('add_section'));
+    
+    }
+
+    public function updateaddsection(Request $request, $id){
+        $add_section = Result::find($id);
+        $request->validate([
+            'section' => ['required', 'string', 'max:255'],
+        ]);
+
+        $add_section->section = $request->section;
+        $add_section->update();
+        return redirect()->back()->with('success', 'You have added successfully');
+    
+    }
+
+    
 }
+
 
 
     

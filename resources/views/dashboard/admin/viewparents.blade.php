@@ -57,7 +57,7 @@
                     <th>Status</th>
                     <th>Approved</th>
 
-                    <th>Ref. No</th>
+                    {{-- <th>Ref. No</th> --}}
                     <th>Edit</th>
                     <th>Suspend</th>
                     {{-- <th>Admit</th> --}}
@@ -82,8 +82,14 @@
                     @foreach ($view_parents as $view_parent)
        
                       <tr>
-                        <td>{{ $view_parent->fathername }}</td>
-                        <td>{{ $view_parent->mothername }}</td>
+                        <td>{{ $view_parent->fathername }}
+                        <small><a href="{{ url('admin/parentchildren/'.$view_parent->id) }}" class="btn btn-sm btn-primary">
+                          <i class="fas fa-user">View Chilren ID</i> 
+                        </a></small>
+                        </td>
+                        <td>{{ $view_parent->mothername }}
+                        
+                        </td>
                         <td>{{ $view_parent->email }}</td>
                         <td>{{ $view_parent->phone }}</td>
                         <td>{{ $view_parent->homeaddress }}</td>
@@ -126,14 +132,15 @@
                           Action
                         </button>
                         <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="{{ url('admin/allparentprim') }}">Print  Parent Primary</a></li>
+                          <li class="dropdown-item"><a href="{{ url('admin/editparent/'.$view_parent->ref_no) }}">Print  Parent Primary</a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/allparentsec') }}">Print  Parent Secondary </a></li>
                           <li class="dropdown-item"><a href="{{ url('admin/parentochild1/'.$view_parent->ref_no) }}">Viiew Children </a></li>
                           
                         </ul>
                       </div></td> --}}
 
-                      <td>{{ $view_parent->ref_no }}</td>
+                     
+
                          <td><a href="{{ url('admin/editparent/'.$view_parent->ref_no) }}"
                           class='btn btn-info'>
                            <i class="far fa-edit"></i>
@@ -192,7 +199,7 @@
                         <th>Approved</th>
     
                         {{-- <th>Reg No</th> --}}
-                        <th>Ref. No</th>
+                        {{-- <th>Ref. No</th> --}}
                         <th>Edit</th>
 
                         <th>Suspend</th>
