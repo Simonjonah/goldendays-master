@@ -74,10 +74,18 @@ table, tr, td{
             <img style="width: 100%; height: 10%;" src="{{ public_path('assets/dist/img/AdminLTELogo.png')}}">
         </th>
 
-        <th style="text-align: center; width: 450px;"><h2>GOLDEN SCHOOL ACADEMY HIGH SCHOOL</h2>
-            <p style="font-weight: normal; margin-bottom: -8px;">Golden Destiny Academy Street
-                Housing extention Uyo, Akwa Ibom State, Nigeria</p>
-            <p  style="font-weight: normal; font-style:italic">Motor: Fostering Creativity and Development</p> 
+        <th style="text-align: center; width: 450px;"><h2>GOLDEN DESTINY ACADEMY <br>
+          HIGH SCHOOL 
+        </h2>
+        <address>
+
+          <p style="font-weight: normal; margin-bottom: -8px;">Golden Destiny Academy Street,
+            Housing Extension, Uyo, Akwa Ibom State, Nigeria.</p>
+            <p  style="font-weight: normal; font-style:italic">Motto: Fostering Creativity and Development</p> 
+        <p  style="font-weight: normal; font-style:italic">Email: goldendestinyacademy@gmail.com, Website: www.goldendestinyacademy.com</p> 
+        
+        </address>
+            
         </th>
             
         <th style="text-align: center">
@@ -87,8 +95,8 @@ table, tr, td{
    
 
         <tr>
-            <th colspan="2" style="text-align: center; text-transform: uppercase;">{{ $getyour_result->term }} REPORT FOR {{ $getyour_result->academic_session }} <br>
-                {{ $getyour_result->surname }}, {{ $getyour_result->middlename }} {{ $getyour_result->surname }}
+            <th colspan="2" style="text-align: center; text-transform: uppercase;">{{ $getyour_result->term }} REPORT FOR {{ $getyour_result->academic_session }} ACADEMIC SESSION <br>
+                {{ $getyour_result->surname }}, {{ $getyour_result->fname }} {{ $getyour_result->middlename }}
             </th>
             <th>-</th>
         </tr>
@@ -104,11 +112,13 @@ table, tr, td{
           <th>Formative</th>
           <th>Summatve</th>
           {{-- <th>CAT 3</th> --}}
-          <th>EXAMS</th>
-          <th>TOTAL</th>
+          <th>Examination</th>
+          <th>Total</th>
           <th>Average</th>
-          <th>GRADE</th>
-          {{-- <th>SUBJECT TEACHER</th> --}}
+          <th>-</th>
+          <th>Grade</th>
+          <th>-</th>
+          <th>REMARK</th>
           
         </tr>
         <tr>
@@ -116,7 +126,10 @@ table, tr, td{
           
           <td>-</td>
           <td>-</td>
-          <td>-</td>
+          <td>25</td>
+          <td>15</td>
+          <td>60</td>
+          <td>100</td>
           <td>-</td>
           <td>-</td>
           <td>-</td>
@@ -131,14 +144,14 @@ table, tr, td{
                 $total_score +=$getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams;
             @endphp
         <tr>
-            <td>{{ $getyour_result->subjectname }}</td>
+            <td style="text-align: left">{{ $getyour_result->subjectname }}</td>
             <td>{{ $getyour_result->title }}</td>
             <td>{{ $getyour_result->test_1 }}</td>
             <td>{{ $getyour_result->test_2 }}</td>
             {{-- <td>{{ $getyour_result->test_3 }}</td> --}}
             <td>{{ $getyour_result->exams }}</td>
             <td>{{ $getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams}}</td>
-            {{-- <td>{{ $getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams / 2}}</td> --}}
+            <td>{{ $getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams / 2}}</td>
             <td>@if ($getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams > 89)
                
                 <td>A</td>
@@ -161,6 +174,29 @@ table, tr, td{
                 <td>F</td>
 
             @endif</td>
+
+            <td>@if ($getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams > 89)
+               
+              <td>Exellence</td>
+              @elseif ($getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams > 79)
+              <td>Very Good</td>
+
+              @elseif ($getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams > 69)
+              <td>Good</td>
+
+              @elseif ($getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams > 59)
+              <td>Average</td>
+
+              @elseif ($getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams > 49)
+              <td>Pass</td>
+
+              @elseif ($getyour_result->test_1 + $getyour_result->test_2 +  $getyour_result->exams > 45)
+              <td>Weak Pass</td>
+
+              @else
+              <td>Fail</td>
+
+          @endif</td>
             {{-- <td>{{ $total_score }}</td> --}}
             {{-- <td>{{ $totalaverage / 2 }}</td> --}}
             {{-- <td>{{ $getyour_result->tname  }} {{ $getyour_result->tsurname  }}</td> --}}
@@ -185,8 +221,12 @@ table, tr, td{
             <td><b>{{ $total_score }}</td>
 
             <td>{{ $total_score / 2 }}</td>
+            <td>-</b></td>
+
             <td>Grade</td>
-            {{-- <td>Subject Teacher</td> --}}
+
+            <td>-</td>
+            <td>Remark</td>
 
           </tr>
 
@@ -864,12 +904,11 @@ table, tr, td{
 
       <table>
         <tr>
-            <td>REG CODE:</td>
+            <td>REG NO:</td>
             <td>{{ $getyour_result->regnumber }}</td>
             <td>SEX:</td>
             <td>{{ $getyour_result->user['gender'] }}</td>
-            {{-- <td>TOTAL SCORE OBTAINABLE:</td>
-            <td>{{ $total_subject * 100 }}</td> --}}
+            
             {{-- <td>NO. OF DISTINGTIONS (A-B):</td>
             <td>7A's, 3B's</td> --}}
         </tr>
@@ -879,12 +918,12 @@ table, tr, td{
             <td>{{ $getyour_result->classname }}</td>
             <td>TERM:</td>
             <td>{{ $getyour_result->term }} </td>
-            {{-- <td>SCORE OBTAINED:</td>
-            <td>{{ $total_score }}</td>
-
-            <td>NAME OF TEACHER:</td>
-            <td>{{ $getyour_result->tname }} {{ $getyour_result->tsurname }}</td> --}}
         </tr>
+
+        <tr>
+          <td>TOTAL AVERAGE:</td>
+          <td>{{ $total_score /2 }}</td>
+      </tr>
         <tr>
             <td>AGE:</td>
             <td>{{ $getyour_result->user['dob'] }}</td>
@@ -892,7 +931,7 @@ table, tr, td{
         </tr>
           <tr>
             <td>CLASS TEACHER:</td>
-            <td>{{ $getyour_result->tname }} {{ $getyour_result->surname }}</td>
+            <td>{{ $getyour_result->tname }} {{ $getyour_result->tsurname }}</td>
             <td colspan="2"></td>
            
          
@@ -926,7 +965,7 @@ table, tr, td{
             </tr> --}}
 
             <tr>
-                <td>Head Teacher's Comment</td>
+                <td>Principal's Comment</td>
                 <td>{{ $getyour_result->headteach_comment}}								
                 </td>
             <td>Signature: <img style="width: 60px; height: 30px; padding-top: 2px;" src="{{ public_path('assets/dist/img/prin.png')}}"></td>

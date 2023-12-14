@@ -37,6 +37,17 @@
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
+
+                   @if (Session::get('success'))
+              <div class="alert alert-success">
+                  {{ Session::get('success') }}
+              </div>
+              @endif
+
+              @if (Session::get('fail'))
+              <div class="alert alert-danger">
+              {{ Session::get('fail') }}
+              @endif
                 <tr>
                   <th>Surname</th>
                   <th>Firstname</th>
@@ -52,7 +63,7 @@
                   <th>Total</th>
                   <th>Grade</th>
                   <th>Status</th>
-                  <th>View</th>
+                  <th>Edit</th>
 
             
                   {{-- <th>Date</th> --}}
@@ -72,7 +83,12 @@
                       <td>{{ $view_myresult->user['surname'] }}</td>
                       <td>{{ $view_myresult->user['fname'] }}</td>
                       <td>{{ $view_myresult->user['middlename'] }}
-                        <small>{{ $view_myresult->subjectname }}</small>
+                        <small>{{ $view_myresult->subjectname }}
+                          <a href="{{ url('web/approveresultshead/'.$view_myresult->id) }}"
+                            class='btn btn-success'>
+                            Aproved
+                             <i class="far fa-comment"></i>
+                        </small>
                       </td>
                       <td>{{ $view_myresult->user['regnumber'] }}
                       <small>{{ $view_myresult->user['section'] }}</small>
@@ -125,11 +141,14 @@
                   
                     
                    
-                       <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
+                       {{-- <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
                         class='btn btn-default'>
                          <i class="far fa-eye"></i>
-                     </a></td>
-                     
+                     </a></td> --}}
+                     <td><a href="{{ url('web/editteacherviewresults/'.$view_myresult->id)}}"
+                      class='btn btn-info'>
+                       <i class="far fa-edit"></i>
+                   </a></td>
                 
 
                     </tr>
@@ -190,6 +209,16 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              @if (Session::get('success'))
+              <div class="alert alert-success">
+                  {{ Session::get('success') }}
+              </div>
+              @endif
+
+              @if (Session::get('fail'))
+              <div class="alert alert-danger">
+              {{ Session::get('fail') }}
+              @endif
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -207,7 +236,7 @@
                   <th>Total</th>
                   <th>Grade</th>
                   <th>Status</th>
-                  <th>View</th>
+                  <th>Edit</th>
 
             
                   {{-- <th>Date</th> --}}
@@ -227,7 +256,13 @@
                       <td>{{ $view_myresult->user['surname'] }}</td>
                       <td>{{ $view_myresult->user['fname'] }}</td>
                       <td>{{ $view_myresult->user['middlename'] }}
-                        <small>{{ $view_myresult->subjectname }}</small>
+                        <small>{{ $view_myresult->subjectname }}
+                        
+                          <a href="{{ url('web/approveresultshead/'.$view_myresult->id) }}"
+                            class='btn btn-success'>
+                            Aproved
+                             <i class="far fa-comment"></i>
+                        </small>
                       </td>
                       <td>{{ $view_myresult->user['regnumber'] }}
                       <small>{{ $view_myresult->user['section'] }}</small>
@@ -279,11 +314,14 @@
                   @endif</td>
                   
                     
-                   
-                       <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
+                  <td><a href="{{ url('web/editteacherviewresults/'.$view_myresult->id)}}"
+                    class='btn btn-info'>
+                     <i class="far fa-edit"></i>
+                 </a></td>
+                       {{-- <td><a href="{{ url('web/teacherviewresults/'.$view_myresult->user_id)}}"
                         class='btn btn-default'>
                          <i class="far fa-eye"></i>
-                     </a></td>
+                     </a></td> --}}
                      
                 
 
@@ -313,7 +351,7 @@
                     <th>Grade</th>
                     <th>Status</th>
 
-                    <th>View</th>
+                    <th>Edit</th>
               
                     {{-- <th>Date</th> --}}
                   </tr>

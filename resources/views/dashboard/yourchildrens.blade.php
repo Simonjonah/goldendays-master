@@ -89,7 +89,10 @@
                         </td>
                         <td>{{ $viewyour_children->surname }}</td>
                         <td>{{ $viewyour_children->classname }}</td>
-                        <td>{{ $viewyour_children->term }}</td>
+                        <td>{{ $viewyour_children->term }}
+                        
+                        <small>{{ $viewyour_children->section }}</small>
+                        </td>
                        
   
                         <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$viewyour_children->images")}}" alt=""></td>
@@ -279,7 +282,7 @@
           </div>
           <div class="form-group row">
             <label for="inputEmail3" >Select Section</label>
-            <select name="section" class="form-control" required>
+            <select name="section" class="form-control">
                 <option value="">Select Section</option>
                 <option value="Pre-School">Pre-School</option>
                 <option value="Primary">Primary</option>

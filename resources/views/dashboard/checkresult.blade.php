@@ -80,7 +80,8 @@
 
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Select Section</label>
-                    <select name="section" class="form-control" required>
+                    <select name="section" class="form-control">
+                        <option value="">Select Section</option>
                         <option value="Pre-School">Pre-School</option>
                         <option value="Primary">Primary</option>
                         <option value="Secondary">Secondary</option>

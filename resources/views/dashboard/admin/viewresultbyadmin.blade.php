@@ -50,11 +50,11 @@
                     <th>Exams</th>
                     <th>Total</th>
                     <th>Grade</th>
-                    <th>Status</th>
+                    
                     <th>View Single</th>
 
                     <th>View</th>
-                    <th>Approved</th>
+                    
                     <th>Edit</th>
 
               
@@ -88,9 +88,27 @@
                  @endphp
                  <tr>
                    <td>{{ $view_result->user['surname'] }}</td>
-                   <td>{{ $view_result->user['fname'] }}</td>
-                   <td>{{ $view_result->user['middlename'] }}</td>
-                   <td>{{ $view_result->user['regnumber'] }}</td>
+                   <td>{{ $view_result->user['fname'] }}
+                  <small>{{ $view_result->sedtion }}</small>
+                  </td>
+                   <td>{{ $view_result->user['middlename'] }} <br>
+                    {{ $view_result->classname }}
+                  <small><a href="{{ url('admin/approveresults/'.$view_result->id)}}"
+                    class='btn btn-warning'>
+                    Approved
+                 </a></small>
+                  </td>
+                   <td>{{ $view_result->user['regnumber'] }} 
+                  <small>@if ($view_result->status == null)
+                    <span class="badge badge-secondary"> In progress</span>
+                   @elseif($view_result->status == 'approve')
+                   <span class="badge badge-warning"> Suspended</span>
+                   @elseif($view_result->status == 'sacked')
+                   <span class="badge badge-danger"> Sacked</span>
+                   @else
+                   <span class="badge badge-success">Approved</span>
+                   @endif</small>
+                  </td>
                    <td><a href="{{ url('admin/addpsychomotorad/'.$view_result->id) }}"
                      class='btn btn-default'>
                      Add Psycomotor
@@ -123,15 +141,7 @@
 
                 
                     
-                 <td>@if ($view_result->status == null)
-                    <span class="badge badge-secondary"> In progress</span>
-                   @elseif($view_result->status == 'suspend')
-                   <span class="badge badge-warning"> Suspended</span>
-                   @elseif($view_result->status == 'sacked')
-                   <span class="badge badge-danger"> Sacked</span>
-                   @else
-                   <span class="badge badge-success">Approved</span>
-                   @endif</td>
+            
 
                    <td><a href="{{ url('admin/viewresult/'.$view_result->id)}}"
                     class='btn btn-default'>
@@ -143,15 +153,6 @@
                      class='btn btn-default'>
                       View All Sujects
                   </a></td>
-
-                 
-                  
-             
-                  <td><a href="{{ url('admin/approveresults/'.$view_result->id)}}"
-                    class='btn btn-warning'>
-                    Approved
-                 </a></td>
-
 
 
                  <td><a href="{{ url('admin/editviewresultsad/'.$view_result->id)}}"
@@ -187,10 +188,10 @@
                         <th>Exams</th>
                         <th>Total</th>
                         <th>Grade</th>
-                        <th>Status</th>
+                        
                         <th>View Single</th>
                         <th>View</th>
-                        <th>Approved</th>
+                        
                         <th>Edit</th>
     
                   

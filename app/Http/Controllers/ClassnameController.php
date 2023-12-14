@@ -64,12 +64,16 @@ class ClassnameController extends Controller
 
     public function classrooms($classname){
         $view_classstudents = Classname::where('classname', $classname)->first();
-        $view_classstudents = user::where('classname', $classname)->where('password', null)
+        $view_classstudents = user::where('classname', $classname)->where('role', 'student')
         ->where('section', 'Primary')->get();
 
-        $view_student_abujas = Classname::where('classname', $classname)->first();
-        $view_student_abujas = user::where('classname', $classname)->where('password', null)
+        $view_classes = Classname::where('classname', $classname)->first();
+        $view_student_abujas = User::where('classname', $classname)->where('role', 'student')
         ->where('section', 'Secondary')->get();
+
+        // $view_student_abujas = Classname::where('classname', $classname)->first();
+        // $view_student_abujas = user::where('classname', $classname)->where('password', null)
+        // ->where('section', 'Secondary')->get();
 
         $view_classes = Classname::all();
     

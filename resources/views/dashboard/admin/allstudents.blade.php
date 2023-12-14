@@ -78,9 +78,13 @@
                     @foreach ($all_students as $all_student)
                     @if ($all_student->role == 'student')
                     <tr>
-                      <td>{{ $all_student->surname }}</td>
+                      <td>{{ $all_student->surname }}
+                        {{ $all_student->classname }}
+                      </td>
                       <td>{{ $all_student->middlename }}</td>
-                      <td>{{ $all_student->fname }}</td>
+                      <td>{{ $all_student->fname }}
+                        {{ $all_student->section }}
+                      </td>
                       <td><img style="width: 100%; height: 60px;" src="{{ URL::asset("/public/../$all_student->images")}}" alt=""></td>
                       <td><a href="{{ url('admin/viewstudent/'.$all_student->ref_no1) }}"
                           class='btn btn-default'>

@@ -548,29 +548,48 @@ class ResultController extends Controller
     {
 
         $request->validate([
-            'section' => ['required', 'string'],
+            'section' => ['nullable', 'string'],
             'regnumber' => ['required', 'string'],
             'academic_session' => ['required', 'string'],
             'term' => ['required', 'string'],
             'classname' => ['required', 'string'],
-            'regnumber.exist'=>'This regnumber does not exist in the admins table'
+            
+        ], [
+            'regnumber.exist'=>'This email does not exist in the admins table'
         ]);
-        // if($getyour_results = Result::where('regnumber', $request->regnumber)
-        // ->where('academic_session', $request->academic_session)
-        // ->where('term', $request->term)
-        // ->where('classname', $request->classname)
+        // // if($getyour_results = Result::where('regnumber', $request->regnumber)
+        // // ->where('academic_session', $request->academic_session)
+        // // ->where('term', $request->term)
+        // // ->where('classname', $request->classname)
 
-        // ->exists()) {
+        // // ->exists()) {
+        //     $getyour_results = Result::where('regnumber', $request->regnumber)
+        // // $getyour_results = Result::where('user_id', auth::guard('web')->id()
+        // //)
+        // // ->where('regnumber', $request->regnumber)
+        // ->where('classname', $request->classname)
+        // ->where('term', $request->term)
+        // ->where('academic_session', $request->academic_session)->get();
+        // // }else{
+        // //     return redirect()->back()->with('fail', 'There is no results for you!');
+        // // }
+         if($getyour_results = Result::where('regnumber', $request->regnumber)
+        ->where('academic_session', $request->academic_session)
+        ->where('term', $request->term)
+        ->where('classname', $request->classname)
+        ->where('section', $request->section)
+
+        ->exists()) {
             $getyour_results = Result::where('regnumber', $request->regnumber)
-        // $getyour_results = Result::where('user_id', auth::guard('web')->id()
-        //)
-        // ->where('regnumber', $request->regnumber)
+        ->where('regnumber', $request->regnumber)
         ->where('classname', $request->classname)
         ->where('term', $request->term)
+        ->where('section', $request->section)
+
         ->where('academic_session', $request->academic_session)->get();
-        // }else{
-        //     return redirect()->back()->with('fail', 'There is no results for you!');
-        // }
+        }else{
+            return redirect()->back()->with('fail', 'Sorry result not found!');
+        }
 
         $total_subject = Result::where('user_id', auth::guard('web')->id()
         )->where('classname', $request->classname)
@@ -588,9 +607,12 @@ class ResultController extends Controller
         if ($request->section == 'Secondary') {
             $pdf = PDF::loadView('dashboard.pdfsecondary', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
 
-        } elseif($request->section == 'Primary') {
+        } elseif($request->section == 'Primary' OR $request->section == null) {
             $pdf = PDF::loadView('dashboard.pdf', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
 
+        // }elseif($request->section == null) {
+        //     $pdf = PDF::loadView('dashboard.pdf', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
+        
         }else{
         $pdf = PDF::loadView('dashboard.pdfpreschool', compact('view_results', 'total_student', 'total_subject', 'getyour_results'));
 
@@ -602,7 +624,7 @@ class ResultController extends Controller
 
 
     public function viewresultbyadmin(){
-        $view_results = Result::latest()->get();
+        $view_results = Result::where('status', null)->latest()->get();
         return view('dashboard.admin.viewresultbyadmin', compact('view_results'));
     }
 

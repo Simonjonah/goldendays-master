@@ -89,17 +89,22 @@
                  <tr>
                    <td>{{ $view_addresult->user['surname'] }}</td>
                    <td>{{ $view_addresult->user['fname'] }} <br>
-                    <small style="color: red">SubJects: {{ $view_addresult->subjectname }}</small>
+                    <small style="color: red">SubJects: {{ $view_addresult->subjectname }} 
+                      <a href="{{ url('admin/approveresults/'.$view_addresult->id)}}"
+                        class='btn btn-warning'>
+                        Approved
+                     </a>
+                    
+                    </small>
                     </td>
                    <td>{{ $view_addresult->user['middlename'] }}
                   <small>@if ($view_addresult->status == null)
                     <span class="badge badge-secondary"> In progress</span>
                    @elseif($view_addresult->status == 'suspend')
                    <span class="badge badge-warning"> Suspended</span>
-                   @elseif($view_addresult->status == 'sacked')
-                   <span class="badge badge-danger"> Sacked</span>
-                   @else
+                   @elseif($view_addresult->status == 'approved')
                    <span class="badge badge-success">Approved</span>
+
                    @endif
                    {{ $view_addresult->section }} <br>
                   
@@ -108,7 +113,9 @@
 
                   </td>
                    <td>{{ $view_addresult->user['regnumber'] }}<br>
-                    <small><span style="color: red">{{ $view_addresult->classname }}</span> 
+                    <small><span style="color: red">{{ $view_addresult->classname }}
+                    
+                    </span> 
                     
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                         Search Pupils/Students Results
@@ -330,8 +337,8 @@
         <div class="form-group">
           <label for="">Select Academic Session</label>
           <select name="academic_session" class="form-control" id="">
-           @foreach ($academic_sessions as $academic_session)
-             <option value="{{ $academic_session->academic_session }}">{{ $academic_session->academic_session }}</option>
+           @foreach ($view_addresults as $view_addresult)
+             <option value="{{ $view_addresult->academic_session }}">{{ $view_addresult->academic_session }}</option>
            @endforeach
           </select>
         </div>

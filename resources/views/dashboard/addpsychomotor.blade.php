@@ -175,7 +175,9 @@
                       <div class="form-group">
                           <textarea class="form-control" name="teacher_comment" id="" cols="20" rows="5" placeholder="Teacher's Comment"></textarea>
                       </div>
-
+                      <div class="form-group">
+                        <textarea class="form-control" name="headteach_comment" id="" cols="10" rows="3" placeholder="H.O.S Comment"></textarea>
+                    </div>
                       {{-- <div class="form-group">
                         <textarea class="form-control" name="headteach_comment" id="" cols="20" rows="5" placeholder="Head Teacher's Comment"></textarea>
                     </div> --}}

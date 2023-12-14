@@ -88,9 +88,14 @@
                  @endphp
                  <tr>
                    <td>{{ $approve_result->user['surname'] }}</td>
-                   <td>{{ $approve_result->user['fname'] }}</td>
+                   <td>{{ $approve_result->user['fname'] }}
+                    {{ $approve_result->classname }}
+                  </td>
                    <td>{{ $approve_result->user['middlename'] }}</td>
-                   <td>{{ $approve_result->user['regnumber'] }}</td>
+                   <td>{{ $approve_result->user['regnumber'] }}
+                    {{ $approve_result->section }}
+                  
+                  </td>
                    <td><a href="{{ url('admin/addpsychomotorad/'.$approve_result->id) }}"
                      class='btn btn-default'>
                      Add Psycomotor

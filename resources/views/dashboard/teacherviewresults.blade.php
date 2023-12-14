@@ -720,12 +720,12 @@
                   </div>
 
                   <div class="form-group">
-                    <textarea class="form-control" name="headteach_comment" id="" cols="10" rows="2" placeholder="Teacher's Comment">{{ $view_results->headteach_comment }}</textarea>
+                    <textarea class="form-control" name="headteach_comment" id="" cols="10" rows="2" placeholder="H.O.S Comment">{{ $view_results->headteach_comment }}</textarea>
                 </div>
 
                 <td>Next Term Begin: <input class="form-control" type="text" name="atti5" value="{{ $view_results->next_term }}" id=""></td>
                 <td>No of Days School Open: <input class="form-control" type="text" name="atti5" value="{{ $view_results->dayschopen }}" id=""></td>
-                <td>Next Term Begin: <input class="form-control" type="text" name="atti5" value="{{ $view_results->dayspresent }}" id=""></td>
+                <td>No of Days Present: <input class="form-control" type="text" name="atti5" value="{{ $view_results->dayspresent }}" id=""></td>
 
             </div>
           </div>
